@@ -1,0 +1,31 @@
+[package]
+name = "rrise"
+version = "0.1.0"
+edition = "2018"
+authors = ["David Taralla <davidtaralla@gmail.com> & Contributors to the Rrise project"]
+description = "A rust binding for Wwise"
+repository = "https://github.com/dtaralla/rrise"
+documentation = "http://docs.rs/rrise/"
+readme = "README.md"
+keywords = ["library", "sound", "3D", "wwise"]
+categories = ["multimedia", "game-development"]
+license-file = "LICENSE"
+
+[dependencies]
+ctrlc = { version = "3.2.1", optional = true }
+
+[build-dependencies]
+bindgen = "0.59.2"
+cc = "1.0.73"
+
+[target.'cfg(windows)'.build-dependencies.winreg]
+version = "0.10.1"
+
+[[example]]
+name = "windows_sample"
+required-features = ["ctrlc"]
+
+[lib]
+name = "rrise"
+path = "src/rrise.rs"
+crate-type = ["dylib", "rlib"]

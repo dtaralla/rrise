@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{65E37865-6D38-4681-929B-B1CD0BE3F39F}" SchemaVersion="103">
+	<AudioObjects>
+		<WorkUnit Name="Default Work Unit" ID="{65E37865-6D38-4681-929B-B1CD0BE3F39F}" PersistMode="Standalone">
+			<ChildrenList>
+				<Sound Name="ReferenceSound" ID="{E5E9A52C-E23D-4D63-9D27-33FBBC02DE61}" ShortID="776766935">
+					<PropertyList>
+						<Property Name="3DPosition" Type="int16" Value="1"/>
+						<Property Name="3DSpatialization" Type="int16" Value="2"/>
+						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+						<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Attenuation">
+							<Custom>
+								<Attenuation Name="Attenuation (Custom)" ID="{675F52FF-5795-4695-8255-93601FD8BF18}" ShortID="728875868">
+									<CurveUsageInfoList>
+										<VolumeDryUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="Custom">
+												<Curve Name="VolumeDry" ID="{FE6F572F-CA74-4D53-988F-F0F9F09056BE}">
+													<PropertyList>
+														<Property Name="Flags" Type="int32" Value="3"/>
+													</PropertyList>
+													<PointList>
+														<Point>
+															<XPos>0</XPos>
+															<YPos>0</YPos>
+															<Flags>5</Flags>
+														</Point>
+														<Point>
+															<XPos>100</XPos>
+															<YPos>-200</YPos>
+															<Flags>37</Flags>
+														</Point>
+													</PointList>
+												</Curve>
+											</CurveUsageInfo>
+										</VolumeDryUsage>
+										<VolumeWetGameUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
+										</VolumeWetGameUsage>
+										<VolumeWetUserUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
+										</VolumeWetUserUsage>
+										<LowPassFilterUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+										</LowPassFilterUsage>
+										<HighPassFilterUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+										</HighPassFilterUsage>
+										<SpreadUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+										</SpreadUsage>
+										<FocusUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+										</FocusUsage>
+									</CurveUsageInfoList>
+								</Attenuation>
+							</Custom>
+						</Reference>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{53EBC9F8-5C82-4A90-AF18-BE0F1BAA9DDB}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3F1283BE-1E7E-4C4B-86E5-5F7EF342BA75}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="HeadHunterMissileHit2" ID="{5349B5B4-B4C8-4165-A22D-5AE6D7F96D3F}">
+							<Language>SFX</Language>
+							<AudioFile>HeadHunterMissileHit2.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="217397202"/>
+							</MediaIDList>
+						</AudioFileSource>
+						<SourcePlugin Name="Wwise Sine" ID="{FCEC90AB-77ED-4BA1-B9FA-9B4DB686249D}" ShortID="308079593" PluginName="Wwise Sine" CompanyID="0" PluginID="100">
+							<PropertyList>
+								<Property Name="SineFrequency" Type="Real32" Value="1359"/>
+							</PropertyList>
+							<Language>SFX</Language>
+						</SourcePlugin>
+					</ChildrenList>
+					<PositioningInfo>
+						<Panner Name="" ID="{72E2872A-9001-4D0F-B741-BBA2E1C47FB6}">
+							<PropertyList>
+								<Property Name="PanX" Type="Real64" Value="-87.5"/>
+								<Property Name="PanY" Type="Real64" Value="-95.2898550724638"/>
+							</PropertyList>
+						</Panner>
+						<Position Name="" ID="{0989D157-AF39-4635-8907-EBA996B84D99}">
+							<ChildrenList>
+								<Path2D Name="ReferenceSound_Path" ID="{C0ED1ADF-B15B-4ABA-86FC-0A13DEA15B16}">
+									<PointList>
+										<Point>
+											<XPos>0</XPos>
+											<YPos>20</YPos>
+											<ZPos>-15</ZPos>
+											<Flags>12</Flags>
+											<Time>0</Time>
+										</Point>
+										<Point>
+											<XPos>0</XPos>
+											<YPos>20</YPos>
+											<ZPos>50</ZPos>
+											<Flags>0</Flags>
+											<Time>5000</Time>
+										</Point>
+									</PointList>
+								</Path2D>
+							</ChildrenList>
+						</Position>
+					</PositioningInfo>
+					<ObjectLists/>
+					<ActiveSourceList>
+						<ActiveSource Name="HeadHunterMissileHit2" ID="{5349B5B4-B4C8-4165-A22D-5AE6D7F96D3F}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>

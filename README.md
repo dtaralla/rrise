@@ -4,7 +4,7 @@
 [![MIT/Apache 2.0](https://img.shields.io/badge/license-MIT%2FApache-blue.svg)](./LICENSE)
 
 ## What is Rrise?
-Rrise is a Rust binding for Wwise. It is _not_ and *does not want* to be a complete game engine integration, but rather 
+Rrise is a Rust binding for [Wwise](https://www.audiokinetic.com/en/products/wwise). It is _not_ and *does not want* to be a complete game engine integration, but rather 
 a starting point for other crates leveraging the binding.
 
 The end goal is to provide game engines written in Rust like [Bevy](https://github.com/bevyengine/bevy) and

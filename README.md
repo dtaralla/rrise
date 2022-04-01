@@ -2,6 +2,7 @@
 
 [![Crates.io](https://img.shields.io/crates/v/rrise.svg)](https://crates.io/crates/rrise)
 [![MIT/Apache 2.0](https://img.shields.io/badge/license-MIT%2FApache-blue.svg)](./LICENSE)
+[![Crates.io](https://img.shields.io/crates/d/rrise.svg)](https://crates.io/crates/rrise)
 
 ## What is Rrise?
 Rrise is a Rust binding for [Wwise](https://www.audiokinetic.com/en/products/wwise). It is _not_ and *does not want* to 

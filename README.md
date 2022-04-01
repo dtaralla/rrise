@@ -4,12 +4,11 @@
 [![MIT/Apache 2.0](https://img.shields.io/badge/license-MIT%2FApache-blue.svg)](./LICENSE)
 
 ## What is Rrise?
-Rrise is a Rust binding for [Wwise](https://www.audiokinetic.com/en/products/wwise). It is _not_ and *does not want* to be a complete game engine integration, but rather 
-a starting point for other crates leveraging the binding.
+Rrise is a Rust binding for [Wwise](https://www.audiokinetic.com/en/products/wwise). It is _not_ and *does not want* to 
+be a complete game engine integration, but rather a starting point for other crates leveraging the binding.
 
-The end goal is to provide game engines written in Rust like [Bevy](https://github.com/bevyengine/bevy) and
-[Amethyst](https://github.com/amethyst/amethyst) with a safe Wwise API, without having to tinker with the FFI
-world.
+The end goal is to provide game engines written in Rust like [Bevy](https://github.com/bevyengine/bevy) with a safe 
+Wwise API, without having to tinker with the FFI world.
 
 ### About your expectations...
 This is planned to become a rather advanced crate, that paves the way for exciting sound engine work in established Rust

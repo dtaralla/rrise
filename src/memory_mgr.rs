@@ -11,7 +11,7 @@ pub fn init(mut settings: AkMemSettings) -> Result<(), AKRESULT> {
 }
 
 pub fn is_initialized() -> bool {
-    return unsafe { AK::MemoryMgr::IsInitialized() };
+    unsafe { AK::MemoryMgr::IsInitialized() }
 }
 
 pub fn term() {

@@ -3,14 +3,20 @@
  */
 
 #[cfg(not(wwconfig = "release"))]
+pub use crate::bindings::root::AkCommSettings;
+#[cfg(not(wwconfig = "release"))]
 use crate::bindings::root::AK::Comm;
 use crate::bindings::root::AK::{MemoryMgr, SoundEngine, StreamMgr};
-
-#[cfg(not(wwconfig = "release"))]
-pub use crate::bindings::root::AkCommSettings;
 pub use crate::bindings::root::{
-    AkDeviceSettings, AkInitSettings, AkMemSettings, AkPlatformInitSettings, AkStreamMgrSettings,
+    AkDeviceSettings, AkMemSettings, AkPlatformInitSettings, AkStreamMgrSettings,
 };
+use crate::to_os_char;
+use crate::OsChar;
+
+pub struct AkInitSettings {
+    settings: crate::bindings::root::AkInitSettings,
+    plugin_dll_path: Vec<OsChar>,
+}
 
 impl Default for AkMemSettings {
     fn default() -> Self {
@@ -45,8 +51,11 @@ impl Default for AkDeviceSettings {
 impl Default for AkInitSettings {
     fn default() -> Self {
         unsafe {
-            let mut ss: AkInitSettings = std::mem::zeroed();
-            SoundEngine::GetDefaultInitSettings(&mut ss);
+            let mut ss = AkInitSettings {
+                settings: std::mem::zeroed(),
+                plugin_dll_path: vec![],
+            };
+            SoundEngine::GetDefaultInitSettings(&mut ss.settings);
             ss
         }
     }
@@ -101,5 +110,32 @@ unsafe fn app_name() -> Option<[i8; 64]> {
         Some(std::mem::transmute(truncated))
     } else {
         None
+    }
+}
+
+impl AkInitSettings {
+    /// When using DLLs for plugins, specify their path. Leave NULL if DLLs are in the same folder as the game executable.
+    /// Note that on Windows, if `path` has spaces, the DLLs won't be discovered properly.
+    pub fn with_plugin_dll_path<T: AsRef<str>>(mut self, path: T) -> Self {
+        self.plugin_dll_path = to_os_char(path.as_ref());
+        self.settings.szPluginDLLPath = self.plugin_dll_path.as_mut_ptr();
+
+        // #[cfg(windows)]
+        // {
+        // }
+        //
+        // #[cfg(not(windows))]
+        // {
+        //     use std::os::raw::c_char;
+        //     self.plugin_dll_path =
+        //         CString::new(path.as_ref()).expect("path shouldn't contain null bytes");
+        //     self.settings.szPluginDLLPath = self.plugin_dll_path.as_ptr() as *mut c_char;
+        // }
+
+        self
+    }
+
+    pub(crate) fn as_ak(&mut self) -> &mut crate::bindings::root::AkInitSettings {
+        &mut self.settings
     }
 }

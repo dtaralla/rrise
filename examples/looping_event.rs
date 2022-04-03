@@ -2,10 +2,13 @@
  * Copyright (c) 2022 Contributors to the Rrise project
  */
 
+extern crate rrise;
+
 use rrise::settings::*;
 use rrise::{sound_engine::*, *};
+use std::path::PathBuf;
 
-use ctrlc;
+use simple_logger::SimpleLogger;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Arc;
 use std::time::Duration;
@@ -14,6 +17,7 @@ const DEFAULT_LISTENER_ID: AkGameObjectID = 1;
 const THE_GAME_OBJECT: AkGameObjectID = 100;
 
 fn main() -> Result<(), AKRESULT> {
+    SimpleLogger::new().init().unwrap();
     let should_stop = Arc::new(AtomicBool::new(false));
 
     let sstop = should_stop.clone();
@@ -75,15 +79,19 @@ fn init_sound_engine() -> Result<(), AKRESULT> {
     assert!(memory_mgr::is_initialized());
 
     // init streamingmgr
+    #[cfg(target_os = "windows")]
+    let platform = "Windows";
+    #[cfg(target_os = "linux")]
+    let platform = "Linux";
     stream_mgr::init_default_stream_mgr(
         settings::AkStreamMgrSettings::default(),
         settings::AkDeviceSettings::default(),
-        r"examples\WwiseProject\GeneratedSoundBanks\Windows",
+        format!("examples/WwiseProject/GeneratedSoundBanks/{}", platform),
     )?;
     stream_mgr::set_current_language("English(US)")?;
 
     // init soundengine
-    sound_engine::init(AkInitSettings::default(), AkPlatformInitSettings::default())?;
+    sound_engine::init(setup_example_dll_path(), AkPlatformInitSettings::default())?;
 
     // init comms
     #[cfg(not(wwconfig = "release"))]
@@ -111,4 +119,46 @@ fn term_sound_engine() -> Result<(), AKRESULT> {
     memory_mgr::term();
 
     Ok(())
+}
+
+fn setup_example_dll_path() -> AkInitSettings {
+    let wwise_sdk = PathBuf::from(std::env::var("WWISESDK").expect("env var WWISESDK not found"));
+
+    let mut path;
+    #[cfg(windows)]
+    {
+        path = wwise_sdk.join("x64_vc160");
+        if !path.is_dir() {
+            path = wwise_sdk.join("x64_vc150");
+            if !path.is_dir() {
+                path = wwise_sdk.join("x64_vc140");
+            }
+        }
+    }
+    #[cfg(target_os = "linux")]
+    {
+        path = wwise_sdk.join("Linux_x64");
+    }
+
+    path = if cfg!(wwconfig = "debug") {
+        path.join("Debug")
+    } else if cfg!(wwconfig = "release") {
+        path.join("Release")
+    } else {
+        path.join("Profile")
+    };
+
+    // -- KNOWN ISSUE ON WINDOWS --
+    // If WWISESDK contains spaces, the DLLs can't be discovered.
+    // Help wanted!
+    // Anyway, if you truly wanted to deploy something based on this crate with dynamic loading of
+    // Wwise plugins, you would need to make sure to deploy any Wwise shared library (SO or DLL)
+    // along your executable. You can't expect your players to have Wwise installed!
+    // You can also just statically link everything, using this crate features. Enabling a feature
+    // then forcing a rebuild will statically link the selected plugins instead of letting Wwise
+    // look for their shared libraries at runtime.
+    // Legal: Remember that Wwise is a licensed product, and you can't distribute their code,
+    // statically linked or not, without a proper license.
+    AkInitSettings::default()
+        .with_plugin_dll_path(path.join("bin").into_os_string().into_string().unwrap())
 }

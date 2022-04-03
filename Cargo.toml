@@ -1,6 +1,6 @@
 [package]
 name = "rrise"
-version = "0.1.0"
+version = "0.1.3"
 edition = "2018"
 authors = ["David Taralla <davidtaralla@gmail.com> & Contributors to the Rrise project"]
 description = "A rust binding for Wwise"
@@ -13,19 +13,53 @@ license-file = "LICENSE"
 
 [dependencies]
 ctrlc = { version = "3.2.1", optional = true }
+simple_logger = { version = "2.1.0", optional = true }
+paste = "1.0.7"
+log = "0.4.16"
 
 [build-dependencies]
 bindgen = "0.59.2"
 cc = "1.0.73"
+paste = "1.0.7"
 
 [target.'cfg(windows)'.build-dependencies.winreg]
 version = "0.10.1"
-
-[[example]]
-name = "windows_sample"
-required-features = ["ctrlc"]
 
 [lib]
 name = "rrise"
 path = "src/rrise.rs"
 crate-type = ["dylib", "rlib"]
+
+[features]
+default = ["AkVorbisDecoder", "AkMeterFX"]
+AkVorbisDecoder = []
+AkOpusDecoder = ["AkOggOpusDecoder", "AkWemOpusDecoder"] # KNOWN LIMITATION: link error if you use it
+AkAudioInputSource = []
+AkCompressorFX = []
+AkDelayFX = []
+AkExpanderFX = []
+AkFlangerFX = []
+AkGainFX = []
+AkGuitarDistortionFX = []
+AkHarmonizerFX = []
+AkMatrixReverbFX = []
+AkMeterFX = []
+AkParametricEQFX = []
+AkPeakLimiterFX = []
+AkPitchShifterFX = []
+AkRecorderFX = []
+AkRoomVerbFX = []
+AkSilenceSource = []
+AkSineSource = []
+AkStereoDelayFX = []
+AkSynthOneSource = []
+AkTimeStretchFX = []
+AkToneSource = []
+AkTremoloFX = []
+# Internal features, don't enable independantly!
+AkOggOpusDecoder = []
+AkWemOpusDecoder = []
+
+[[example]]
+name = "looping_event"
+required-features = ["ctrlc", "simple_logger"]

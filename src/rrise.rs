@@ -2,9 +2,6 @@
  * Copyright (c) 2022 Contributors to the Rrise project
  */
 
-use std::ffi::OsStr;
-use std::os::windows::prelude::OsStrExt;
-
 #[cfg(not(wwconfig = "release"))]
 pub mod communication;
 pub mod memory_mgr;
@@ -13,6 +10,7 @@ pub mod sound_engine;
 pub mod stream_mgr;
 
 mod bindings;
+mod bindings_static_plugins;
 mod error;
 
 pub use error::*;
@@ -80,12 +78,45 @@ pub use bindings::root::AK_SOUNDBANK_VERSION;
 pub use bindings::AK_INVALID_AUDIO_OBJECT_ID;
 pub use bindings::AK_INVALID_GAME_OBJECT;
 
-/// Converts a rust string to a vector of wide chars
-fn to_wstring<T: AsRef<str>>(str: T) -> Vec<u16> {
-    OsStr::new(str.as_ref())
-        .encode_wide()
-        .chain(Some(0).into_iter())
-        .collect()
+// #[cfg(windows)]
+pub(crate) type OsChar = crate::bindings::root::AkOSChar;
+// #[cfg(not(windows))]
+// pub(crate) type OsChar = std::os::raw::c_char;
+
+#[macro_export]
+macro_rules! with_cstring {
+    ($text:expr => $tmp:ident { $($stmt:stmt)+ }) => {
+        {
+            use ::std::ffi::CString;
+            let $tmp = CString::new($text).expect("text shouldn't contain null bytes");
+            $($stmt)+
+        }
+    };
+}
+
+/// Create a copy of str as a vector of OsChar (u16 on Windows, i8 == c_char on other platforms).
+pub(crate) fn to_os_char<T: AsRef<str>>(str: T) -> Vec<OsChar> {
+    #[cfg(windows)]
+    {
+        // On windows, AkOsChar* ~~ Vec<u16>
+        use std::ffi::OsStr;
+        use std::os::windows::ffi::OsStrExt;
+        OsStr::new(str.as_ref())
+            .encode_wide()
+            .chain(Some(0).into_iter())
+            .collect()
+    }
+
+    #[cfg(not(windows))]
+    {
+        use ::std::ffi::CString;
+        CString::new(str.as_ref())
+            .expect("str shouldn't contain null bytes")
+            .as_bytes_with_nul()
+            .iter()
+            .map(|c| *c as OsChar)
+            .collect()
+    }
 }
 
 /// Wraps an unsafe call to Wwise and match its result to a Result<(), AKRESULT>.
@@ -116,12 +147,5 @@ macro_rules! ak_call_result {
             AKRESULT::AK_Success => Ok($the_result),
             error_code => Err(error_code)
         }
-    };
-}
-
-#[macro_export]
-macro_rules! ak_text {
-    ($text:expr) => {
-        to_wstring($text).as_ptr()
     };
 }

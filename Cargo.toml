@@ -19,7 +19,7 @@ log = "0.4.16"
 
 [build-dependencies]
 bindgen = "0.59.2"
-cc = "1.0.73"
+cc = { version = "1.0.73", features = ["parallel"] }
 paste = "1.0.7"
 
 [target.'cfg(windows)'.build-dependencies.winreg]

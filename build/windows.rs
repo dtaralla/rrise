@@ -128,6 +128,7 @@ fn stream_cc_platform_specifics(build: &mut Build, wwise_sdk: &PathBuf) -> io::R
     build
         .file(wwise_sdk.join(r"samples\SoundEngine\Win32\AkDefaultIOHookBlocking.cpp"))
         .flag("-MD")
+        .flag("-MP")
         .define("WIN64", None)
         .define("WIN32_LEAN_AND_MEAN", None)
         .include(msvc_include)

@@ -172,6 +172,7 @@ fn main() -> io::Result<()> {
         .flag_if_supported("-nologo")
         .flag_if_supported("-Brepro")
         .flag_if_supported("-fpermissive")
+        .flag_if_supported("/MP")
         .warnings(false);
 
     stream_cc_platform_specifics(&mut build, &wwise_sdk)?;

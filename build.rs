@@ -169,10 +169,8 @@ fn main() -> io::Result<()> {
         .include(wwise_sdk.join("samples").join("SoundEngine"))
         .define("UNICODE", None)
         .no_default_flags(true)
-        .flag_if_supported("-nologo")
         .flag_if_supported("-Brepro")
         .flag_if_supported("-fpermissive")
-        .flag_if_supported("/MP")
         .warnings(false);
 
     stream_cc_platform_specifics(&mut build, &wwise_sdk)?;
@@ -193,7 +191,6 @@ fn main() -> io::Result<()> {
     let bindings = bindgen::Builder::default()
         .header("c/ak.h")
         .header("c/utilities/default_streaming_mgr.h")
-        // .header(static_deps_h_path.into_os_string().into_string().unwrap())
         .clang_arg(format!(
             "-I{}",
             wwise_sdk

@@ -70,7 +70,7 @@ force a rerun of Rrise's build script. You can also force a full rebuild with `c
 --features=The,Plugin,List`. 
 
 ### Known issues & limitations
-- Issue when linking AkOpusDecoder: Opus is currently unavailable.
+- On Windows, Opus is not supported (linking errors with AkOpusDecoder).
 - `wwconfig` cfg flag doesn't seem to be forwarded to the build scripts?
 - If you dynamically link Wwise effect plugins (default behavior), there is an issue on Windows where if the path given
 to `AkInitSettings::with_plugin_dll_path` contains spaces, the DLLs in that folder won't be discoverable by Wwise.
@@ -104,7 +104,7 @@ However, this launcher being only available on Windows and MacOS, you'll need to
 you can work with this crate on Linux.
 
 ## Short-term roadmap
-- Make Opus playback available
+- Make Opus playback available also on Windows
 - Spatial module basic API and example
 - Add callback and user data support for PostEvent
 - Review/Improve architecture

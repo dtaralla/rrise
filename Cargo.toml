@@ -33,7 +33,7 @@ crate-type = ["dylib", "rlib"]
 [features]
 default = ["AkVorbisDecoder", "AkMeterFX"]
 AkVorbisDecoder = []
-AkOpusDecoder = ["AkOggOpusDecoder", "AkWemOpusDecoder"] # KNOWN LIMITATION: link error if you use it
+AkOpusDecoder = ["AkOggOpusDecoder", "AkWemOpusDecoder"] # KNOWN LIMITATION: link error if you use it on Windows
 AkAudioInputSource = []
 AkCompressorFX = []
 AkDelayFX = []

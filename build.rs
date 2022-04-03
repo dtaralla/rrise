@@ -42,7 +42,7 @@ fn main() -> io::Result<()> {
     println!("cargo:rustc-link-lib=static=AkMemoryMgr");
     println!("cargo:rustc-link-lib=static=AkStreamMgr");
     static_feature!("AkVorbisDecoder");
-    static_feature!("AkOpusDecoder"); // KNOWN LIMITATION: doesn't link properly yet
+    static_feature!("AkOpusDecoder");
     static_feature!("AkMeterFX");
     static_feature!("AkAudioInputSource");
     static_feature!("AkCompressorFX");
@@ -91,7 +91,7 @@ fn main() -> io::Result<()> {
         )?;
 
         static_feature_h!(static_deps_h, "AkVorbisDecoder");
-        static_feature_h!(static_deps_h, "AkOpusDecoder"); // KNOWN LIMITATION: doesn't link properly yet
+        static_feature_h!(static_deps_h, "AkOpusDecoder");
         static_feature_h!(static_deps_h, "AkMeterFX");
         static_feature_h!(static_deps_h, "AkAudioInputSource");
         static_feature_h!(static_deps_h, "AkCompressorFX");

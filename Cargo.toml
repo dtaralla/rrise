@@ -1,6 +1,6 @@
 [package]
 name = "rrise"
-version = "0.1.3"
+version = "0.1.4"
 edition = "2018"
 authors = ["David Taralla <davidtaralla@gmail.com> & Contributors to the Rrise project"]
 description = "A rust binding for Wwise"

@@ -105,7 +105,6 @@ However, this launcher being only available on Windows and MacOS, you'll need to
 you can work with this crate on Linux.
 
 ## Short-term roadmap
-- Make Opus playback available also on Windows
 - Spatial module basic API and example
 - Add callback and user data support for PostEvent
 - Review/Improve architecture

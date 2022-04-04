@@ -122,7 +122,7 @@ pub(crate) fn to_os_char<T: AsRef<str>>(str: T) -> Vec<OsChar> {
 /// Wraps an unsafe call to Wwise and match its result to a Result<(), AKRESULT>.
 ///
 /// For example, `ak_call_result[RenderAudio(allow_sync_render)]` expands to
-/// ```rust
+/// ```rust,ignore
 /// match unsafe { RenderAudio(allow_sync_render) } {
 ///     AKRESULT::AK_Success => Ok(()),
 ///     error_code => Err(error_code)

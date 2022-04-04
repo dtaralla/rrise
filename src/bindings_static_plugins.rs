@@ -32,7 +32,6 @@ macro_rules! import_plugin_registration {
     ($feature:ident, $global_var_name:ident) => {
         paste! {
             #[cfg(feature = "" $feature)]
-            #[link(name = "" $feature, kind = "static")]
             extern "C" {
                 pub(crate) static mut [<$global_var_name Registration>]: PluginRegistration;
             }
@@ -41,7 +40,6 @@ macro_rules! import_plugin_registration {
     ($feature:ident) => {
         paste! {
             #[cfg(feature = "" $feature)]
-            #[link(name = "" $feature, kind = "static")]
             extern "C" {
                 pub(crate) static mut [<$feature Registration>]: PluginRegistration;
             }

@@ -13,7 +13,7 @@ use std::path::PathBuf;
 macro_rules! static_feature {
     ($feature:literal) => {
         #[cfg(feature = $feature)]
-        println!("cargo:rustc-link-lib=static={}", $feature);
+        println!("cargo:rustc-link-lib=static:-whole-archive={}", $feature);
     };
 }
 

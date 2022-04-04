@@ -21,7 +21,7 @@ Pull requests are more than welcome: **they are encouraged**!
 ## Capabilities
 - Build & run on Windows 10+
 - Build & run on WSL/Linux (on distros where Wwise is supported)
-- (AD)PCM & Vorbis playback
+- (AD)PCM, Vorbis & Opus playback
 - Initialize/Update/Terminate a sound engine
 - Post simple events (no callback/external source support yet)
 - Default streaming manager leveraging Wwise's sample streaming manager
@@ -40,14 +40,15 @@ display in the console.
 You can [choose](https://www.audiokinetic.com/library/edge/?source=SDK&id=soundengine_integration_plugins.html) to 
 either link statically or dynamically to the Wwise plugins.
 
-Note that some plugins like _AkMeter_ can only be statically linked and are not available for dynamic linking.
+Note that some plugins like _AkMeter_, _AkVorbisDecoder_ and _AkOpusDecoder_ can only be statically linked and are not 
+available for dynamic linking.
 
 See [this page](https://www.audiokinetic.com/library/edge/?source=SDK&id=goingfurther_builds.html#wwise_sdk_lib_dependency_requirements_plugins)
 for a list of plugins supported by Wwise, per platform.
 
 #### Dynamic linking
-This is the default behavior. Wwise plugins like _AkRoomVerb_, _AkMeter_, _Motion_ etc. will be loaded at runtime from 
-their respective shared library as needed.
+This is the default behavior. Wwise plugins like _AkRoomVerb_, _AkParametricEQ_, _Motion_ etc. will be loaded at 
+runtime from their respective shared library as needed.
 
 Any project relying on dynamic linking for some plugins needs to also deploy their respective *licensed* shared 
 libraries along the final executable (you can do this with a 
@@ -70,7 +71,6 @@ force a rerun of Rrise's build script. You can also force a full rebuild with `c
 --features=The,Plugin,List`. 
 
 ### Known issues & limitations
-- On Windows, Opus is not supported (linking errors with AkOpusDecoder).
 - `wwconfig` cfg flag doesn't seem to be forwarded to the build scripts?
 - If you dynamically link Wwise effect plugins (default behavior), there is an issue on Windows where if the path given
 to `AkInitSettings::with_plugin_dll_path` contains spaces, the DLLs in that folder won't be discoverable by Wwise.
@@ -81,6 +81,7 @@ to `AkInitSettings::with_plugin_dll_path` contains spaces, the DLLs in that fold
 ```
 
 ## Requirements
+- Rust nightly 1.61+ (to support [-wholearchive](https://github.com/rust-lang/rust/pull/93901))
 - The `bindgen` crate [requirements](https://github.com/rust-lang/rust-bindgen/blob/master/book/src/requirements.md)
 - A licensed (free, trial, commercial,...) version of Wwise installed
   - Wwise itself

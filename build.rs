@@ -241,6 +241,7 @@ fn main() -> io::Result<()> {
         .must_use_type("AKRESULT")
         .enable_cxx_namespaces()
         .parse_callbacks(Box::new(bindgen::CargoCallbacks))
+        .layout_tests(false)
         .generate()
         .expect("Unable to generate bindings");
 

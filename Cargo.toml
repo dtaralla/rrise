@@ -63,3 +63,32 @@ AkWemOpusDecoder = []
 [[example]]
 name = "looping_event"
 required-features = ["ctrlc", "simple_logger"]
+
+[[test]]
+name = "static_link_all"
+required-features = [
+    "AkVorbisDecoder",
+    "AkOpusDecoder",
+    "AkAudioInputSource",
+    "AkCompressorFX",
+    "AkDelayFX",
+    "AkExpanderFX",
+    "AkFlangerFX",
+    "AkGainFX",
+    "AkGuitarDistortionFX",
+    "AkHarmonizerFX",
+    "AkMatrixReverbFX",
+    "AkMeterFX",
+    "AkParametricEQFX",
+    "AkPeakLimiterFX",
+    "AkPitchShifterFX",
+    "AkRecorderFX",
+    "AkRoomVerbFX",
+    "AkSilenceSource",
+    "AkSineSource",
+    "AkStereoDelayFX",
+    "AkSynthOneSource",
+    "AkTimeStretchFX",
+    "AkToneSource",
+    "AkTremoloFX"
+]

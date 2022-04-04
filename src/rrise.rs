@@ -78,10 +78,7 @@ pub use bindings::root::AK_SOUNDBANK_VERSION;
 pub use bindings::AK_INVALID_AUDIO_OBJECT_ID;
 pub use bindings::AK_INVALID_GAME_OBJECT;
 
-// #[cfg(windows)]
 pub(crate) type OsChar = crate::bindings::root::AkOSChar;
-// #[cfg(not(windows))]
-// pub(crate) type OsChar = std::os::raw::c_char;
 
 #[macro_export]
 macro_rules! with_cstring {

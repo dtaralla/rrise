@@ -119,19 +119,6 @@ impl AkInitSettings {
     pub fn with_plugin_dll_path<T: AsRef<str>>(mut self, path: T) -> Self {
         self.plugin_dll_path = to_os_char(path.as_ref());
         self.settings.szPluginDLLPath = self.plugin_dll_path.as_mut_ptr();
-
-        // #[cfg(windows)]
-        // {
-        // }
-        //
-        // #[cfg(not(windows))]
-        // {
-        //     use std::os::raw::c_char;
-        //     self.plugin_dll_path =
-        //         CString::new(path.as_ref()).expect("path shouldn't contain null bytes");
-        //     self.settings.szPluginDLLPath = self.plugin_dll_path.as_ptr() as *mut c_char;
-        // }
-
         self
     }
 

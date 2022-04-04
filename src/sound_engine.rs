@@ -82,7 +82,7 @@ pub fn init(
 }
 
 pub fn is_initialized() -> bool {
-    return unsafe { IsInitialized() };
+    unsafe { IsInitialized() }
 }
 
 pub fn term() {

@@ -13,6 +13,9 @@ use ::std::marker::PhantomData;
 
 macro_rules! link_static_plugin {
     ($feature:ident) => {
+        link_static_plugin![$feature, $feature]
+    };
+    ($feature:ident, $global_var_name:ident) => {
         paste::paste! {
             #[cfg(feature = "" $feature)]
             {
@@ -32,7 +35,7 @@ macro_rules! link_static_plugin {
                     ),
                 ))]
                 ::std::convert::identity(unsafe {
-                    crate::bindings_static_plugins::[<$feature Registration>]
+                    crate::bindings_static_plugins::[<$global_var_name Registration>]
                 });
                 log::debug!(
                     "{} has been statically loaded successfully",
@@ -68,9 +71,9 @@ pub fn init(
     link_static_plugin![AkRecorderFX];
     link_static_plugin![AkRoomVerbFX];
     link_static_plugin![AkSilenceSource];
-    link_static_plugin![AkSineSource];
+    link_static_plugin![AkSineSource, SineSource];
     link_static_plugin![AkStereoDelayFX];
-    link_static_plugin![AkSynthOneSource];
+    link_static_plugin![AkSynthOneSource, AkSynthOne];
     link_static_plugin![AkTimeStretchFX];
     link_static_plugin![AkToneSource];
     link_static_plugin![AkTremoloFX];

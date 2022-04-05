@@ -59,7 +59,7 @@ fn main() -> Result<(), AKRESULT> {
         render_audio(ALLOW_SYNC_RENDER)?;
 
         if should_stop.load(Ordering::SeqCst) {
-            stop_all(AK_INVALID_GAME_OBJECT);
+            stop_all(None);
             unregister_all_game_obj()?;
             break;
         }

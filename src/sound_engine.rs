@@ -110,9 +110,9 @@ pub fn set_default_listeners(listener_ids: &[AkGameObjectID]) -> Result<(), AKRE
     )]
 }
 
-pub fn stop_all(game_object_id: AkGameObjectID) {
+pub fn stop_all(game_object_id: Option<AkGameObjectID>) {
     unsafe {
-        StopAll(game_object_id);
+        StopAll(game_object_id.unwrap_or(AK_INVALID_GAME_OBJECT));
     }
 }
 

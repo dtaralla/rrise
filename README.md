@@ -99,8 +99,10 @@ to `AkInitSettings::with_plugin_dll_path` contains spaces, the DLLs in that fold
     - Make sure the `WWISESDK` environment variable is set to that folder
 
 [^1]: Not tested on other compilers like MinGW or Clang
+
 [^2]: Current limitation of the build script. I want to improve MSVC path discovery in the future to remove this 
 requirement.
+
 [^3]: AudioKinetic doesn't provide direct downloads to their SDK: you can only install it through their launcher. 
 However, this launcher being only available on Windows and MacOS, you'll need to install it on a VM or similar before 
 you can work with this crate on Linux.

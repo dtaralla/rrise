@@ -2,6 +2,8 @@
  * Copyright (c) 2022 Contributors to the Rrise project
  */
 
+#![doc = include_str!("../README.MD")]
+
 #[cfg(not(wwconfig = "release"))]
 pub mod communication;
 pub mod memory_mgr;

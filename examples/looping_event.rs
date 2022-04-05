@@ -16,7 +16,7 @@ use std::time::Duration;
 const DEFAULT_LISTENER_ID: AkGameObjectID = 1;
 const THE_GAME_OBJECT: AkGameObjectID = 100;
 
-fn main() -> Result<(), AKRESULT> {
+fn main() -> Result<(), AkResult> {
     SimpleLogger::new().init().unwrap();
     let should_stop = Arc::new(AtomicBool::new(false));
 
@@ -73,7 +73,7 @@ fn main() -> Result<(), AKRESULT> {
     Ok(())
 }
 
-fn init_sound_engine() -> Result<(), AKRESULT> {
+fn init_sound_engine() -> Result<(), AkResult> {
     // init memorymgr
     memory_mgr::init(AkMemSettings::default())?;
     assert!(memory_mgr::is_initialized());
@@ -100,7 +100,7 @@ fn init_sound_engine() -> Result<(), AKRESULT> {
     Ok(())
 }
 
-fn term_sound_engine() -> Result<(), AKRESULT> {
+fn term_sound_engine() -> Result<(), AkResult> {
     // term comms
     #[cfg(not(wwconfig = "release"))]
     communication::term();

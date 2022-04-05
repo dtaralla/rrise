@@ -245,9 +245,11 @@ fn main() -> io::Result<()> {
         .generate()
         .expect("Unable to generate bindings");
 
-    bindings
-        .write_to_file(out_path.join("bindings.rs"))
-        .expect("Couldn't write bindings!");
+    let contents = bindings.to_string().replace("doc = \"< ", "doc = \"");
+
+    File::create(out_path.join("bindings.rs"))
+        .expect("Couldn't write bindings!")
+        .write_all(contents.as_bytes())?;
     // --- END RUN BINDGEN
 
     Ok(())

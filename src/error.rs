@@ -2,21 +2,14 @@
  * Copyright (c) 2022 Contributors to the Rrise project
  */
 
-use crate::AKRESULT;
-use crate::AKRESULT::*;
+use crate::bindings::root::AKRESULT;
+use crate::bindings::root::AKRESULT::*;
 use std::error::Error;
 use std::fmt::{Display, Formatter};
 
-#[derive(Debug)]
-pub struct FfiError<'a>(&'a str);
-impl<'a> Error for FfiError<'a> {}
-impl<'a> Display for FfiError<'a> {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self.0)
-    }
-}
-
+#[doc(hidden)]
 impl Error for AKRESULT {}
+#[doc(hidden)]
 impl Display for AKRESULT {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         write!(f, "{:?}", match self {

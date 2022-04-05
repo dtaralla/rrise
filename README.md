@@ -83,7 +83,7 @@ to `AkInitSettings::with_plugin_dll_path` contains spaces, the DLLs in that fold
 ## Requirements
 - Rust nightly 1.61+ (to support [-wholearchive](https://github.com/rust-lang/rust/pull/93901))
 - The `bindgen` crate [requirements](https://github.com/rust-lang/rust-bindgen/blob/master/book/src/requirements.md)
-- A licensed (free, trial, commercial,...) version of Wwise installed
+- A licensed (free, trial, commercial,...) version of Wwise installed (2021.1.7, untested on others)
   - Wwise itself
   - Wwise SDK (C++)
 - **On Windows: `MSVC`**[^1]

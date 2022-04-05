@@ -9,5 +9,8 @@
 
 include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 
+/// Invalid game object (may also mean all game objects)
 pub const AK_INVALID_GAME_OBJECT: root::AkAudioObjectID = u64::MAX;
+
+/// Invalid audio object ID
 pub const AK_INVALID_AUDIO_OBJECT_ID: root::AkAudioObjectID = u64::MAX;

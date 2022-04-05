@@ -2,12 +2,11 @@
  * Copyright (c) 2022 Contributors to the Rrise project
  */
 
-extern crate rrise;
-
 use rrise::settings::*;
 use rrise::{sound_engine::*, *};
 use std::path::PathBuf;
 
+use lerp::Lerp;
 use simple_logger::SimpleLogger;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Arc;
@@ -54,7 +53,10 @@ fn main() -> Result<(), AkResult> {
     }
 
     // Finally we run the standard application loop -
+    let instant = std::time::Instant::now();
     loop {
+        let app_time = instant.elapsed().as_secs_f32();
+
         const ALLOW_SYNC_RENDER: bool = true;
         render_audio(ALLOW_SYNC_RENDER)?;
 
@@ -63,6 +65,10 @@ fn main() -> Result<(), AkResult> {
             unregister_all_game_obj()?;
             break;
         }
+
+        // move sound source from -3 to 3 along X axis over the sound length (0.974s), repeatedly
+        let new_p = (-3.).lerp(3., app_time % 0.974);
+        set_position(THE_GAME_OBJECT, AkTransform::from([new_p, 0., 0.]))?;
 
         // simulate ~60 frames per second
         std::thread::sleep(Duration::from_millis(1000 / 60));

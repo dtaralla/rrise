@@ -24,9 +24,10 @@ Pull requests are more than welcome: **they are encouraged**!
 - (AD)PCM, Vorbis & Opus playback
 - Initialize/Update/Terminate a sound engine
 - Post simple events (no callback/external source support yet)
+- Set source position
 - Default streaming manager leveraging Wwise's sample streaming manager
 - Profiling from the Wwise authoring tool
-- Minimal example showcasing how to initialize the sound engine, post an event and terminate it
+- Minimal example showcasing how to initialize the sound engine, start a moving source and terminate it
 - Dynamic & static linking of Wwise plugins through cargo features
 
 ### Logging
@@ -105,8 +106,8 @@ However, this launcher being only available on Windows and MacOS, you'll need to
 you can work with this crate on Linux.
 
 ## Short-term roadmap
-- Spatial module basic API and example
 - Add callback and user data support for PostEvent
+- Spatial module basic API and example
 - Review/Improve architecture
 
 ### Legal stuff

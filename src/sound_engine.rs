@@ -143,7 +143,7 @@ pub fn term() {
 /// *Return* Always returns [AK_Success](AkResult::AK_Success)
 ///
 /// *See also*
-/// > - [PostEvent]
+/// > - [PostEvent](struct@PostEvent)
 pub fn render_audio(allow_sync_render: bool) -> Result<(), AkResult> {
     ak_call_result![RenderAudio(allow_sync_render)]
 }
@@ -187,8 +187,18 @@ pub fn register_game_obj(game_object_id: AkGameObjectID) -> Result<(), AkResult>
     ak_call_result![RegisterGameObj(game_object_id)]
 }
 
-pub fn set_position(game_object_id: AkGameObjectID) -> Result<(), AkResult> {
-    ak_call_result![RegisterGameObj(game_object_id)]
+/// Sets the position of a game object.
+///
+/// *Warning* `position`'s orientation vectors must be normalized.
+///
+/// *Return*
+/// > - [AK_Success](AkResult::AK_Success) when successful
+/// > - [AK_InvalidParameter](AkResult::AK_InvalidParameter) if parameters are not valid.
+pub fn set_position<T: Into<AkSoundPosition>>(
+    game_object_id: AkGameObjectID,
+    position: T,
+) -> Result<(), AkResult> {
+    ak_call_result![SetPosition(game_object_id, &position.into())]
 }
 
 /// Sets the default set of associated listeners for game objects that have not explicitly overridden their listener sets. Upon registration, all game objects reference the default listener set, until
@@ -273,7 +283,7 @@ pub fn load_bank_by_name<T: AsRef<str>>(name: T) -> Result<AkBankID, AkResult> {
 /// *Remarks*
 /// > - If used, the array of external sources should contain the information for each external source triggered by the
 /// event. When triggering an Event with multiple external sources, you need to differentiate each source
-/// by using the cookie property in the External Source in the Wwise project and in [AkExternalSourceInfo].
+/// by using the cookie property in the External Source in the Wwise project and in AkExternalSourceInfo.
 /// > - If an event triggers the playback of more than one external source, they must be named uniquely in the project
 /// (therefore have a unique cookie) in order to tell them apart when filling the AkExternalSourceInfo structures.
 ///

@@ -12,6 +12,9 @@ pub mod stream_mgr;
 mod bindings;
 mod bindings_static_plugins;
 mod error;
+mod transform;
+
+pub use transform::*;
 
 /// Acoustic Texture ID
 pub use bindings::root::AkAcousticTextureID;
@@ -87,6 +90,10 @@ pub use bindings::root::AkUniqueID;
 pub use bindings::root::AkVolumeValue;
 pub use error::*;
 
+#[doc(inline)]
+pub use bindings::root::AkListenerPosition;
+#[doc(inline)]
+pub use bindings::root::AkSoundPosition;
 #[doc(inline)]
 pub use bindings::root::AkTransform;
 #[doc(inline)]

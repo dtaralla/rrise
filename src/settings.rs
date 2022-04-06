@@ -2,9 +2,9 @@
  * Copyright (c) 2022 Contributors to the Rrise project
  */
 
-#[cfg(not(wwconfig = "release"))]
+#[cfg(not(wwrelease))]
 pub use crate::bindings::root::AkCommSettings;
-#[cfg(not(wwconfig = "release"))]
+#[cfg(not(wwrelease))]
 use crate::bindings::root::AK::Comm;
 use crate::bindings::root::AK::{MemoryMgr, SoundEngine, StreamMgr};
 pub use crate::bindings::root::{
@@ -103,7 +103,7 @@ impl Default for AkPlatformInitSettings {
     }
 }
 
-#[cfg(not(wwconfig = "release"))]
+#[cfg(not(wwrelease))]
 impl Default for AkCommSettings {
     /// Gets the communication module's default initialization settings values.
     ///
@@ -121,6 +121,7 @@ impl Default for AkCommSettings {
     }
 }
 
+#[cfg(not(wwrelease))]
 unsafe fn app_name() -> Option<[i8; 64]> {
     if let Some(mut name) = std::env::current_exe()
         .ok()?

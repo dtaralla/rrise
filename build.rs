@@ -2,8 +2,6 @@
  * Copyright (c) 2022 Contributors to the Rrise project
  */
 
-use bindgen;
-use cc::Build;
 use std::env;
 use std::fs::File;
 use std::io;
@@ -66,16 +64,17 @@ fn main() -> io::Result<()> {
     static_feature!("AkToneSource");
     static_feature!("AkTremoloFX");
 
-    let config_folder = if cfg!(wwconfig = "debug") {
+    let config_folder = if cfg!(wwdebug) {
         "Debug"
-    } else if cfg!(wwconfig = "release") {
+    } else if cfg!(wwrelease) {
         "Release"
     } else {
         "Profile"
     };
+    println!("Selected Wwise config: {}", config_folder);
     platform_dependencies(&wwise_sdk, config_folder);
 
-    #[cfg(not(wwconfig = "release"))]
+    #[cfg(not(wwrelease))]
     println!("cargo:rustc-link-lib=static=CommunicationCentral");
     // --- END SETUP BUILD ENV
 
@@ -175,13 +174,13 @@ fn main() -> io::Result<()> {
 
     stream_cc_platform_specifics(&mut build, &wwise_sdk)?;
 
-    #[cfg(wwconfig = "debug")]
+    #[cfg(wwdebug)]
     build.flag_if_supported("-Z7").define("_DEBUG", None);
 
     #[cfg(not(debug_assertions))]
     build.define("NDEBUG", None);
 
-    #[cfg(all(not(debug_assertions), wwconfig = "release"))]
+    #[cfg(wwrelease)]
     build.define("AK_OPTIMIZED", None);
 
     build.compile("rrise_utilities");

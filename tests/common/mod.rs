@@ -26,7 +26,7 @@ pub fn init_sound_engine() -> Result<(), AKRESULT> {
     sound_engine::init(AkInitSettings::default(), AkPlatformInitSettings::default())?;
 
     // init comms
-    #[cfg(not(wwconfig = "release"))]
+    #[cfg(not(wwrelease))]
     communication::init(AkCommSettings::default())?;
 
     Ok(())
@@ -34,7 +34,7 @@ pub fn init_sound_engine() -> Result<(), AKRESULT> {
 
 pub fn term_sound_engine() -> Result<(), AKRESULT> {
     // term comms
-    #[cfg(not(wwconfig = "release"))]
+    #[cfg(not(wwrelease))]
     communication::term();
 
     // term spatial

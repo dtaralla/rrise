@@ -4,7 +4,7 @@
 
 #![doc = include_str!("../README.MD")]
 
-#[cfg(not(wwconfig = "release"))]
+#[cfg(not(wwrelease))]
 pub mod communication;
 pub mod memory_mgr;
 pub mod settings;

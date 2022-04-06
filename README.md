@@ -34,8 +34,20 @@ Pull requests are more than welcome: **they are encouraged**!
 Rrise uses the [log](https://docs.rs/log/latest/log/index.html) crate for all its logging needs. Refer to `log`'s 
 docs for how to use it.
 
-The provided `looping_event` example installs a [simple_log](https://docs.rs/simple_logger) to get Rrise logs to 
-display in the console.
+### Accepted configs
+
+You can set the following `cfg` flags through the `RUSTFLAGS` environment variable before building to chose which 
+configuratin of Wwise you wish to link against:
+
+|                           | Flag                               | `AK_OPTIMIZED` | Comms | Description                                        |
+|---------------------------|------------------------------------|:--------------:|:-----:|----------------------------------------------------|
+| **Debug**                 | `--cfg wwdebug`                    |       ✕        |   ✔   | Useful to debug with AudioKinetic support folks    |
+| **Profile**<br/>(default) | `--cfg wwprofile`<br/>(or nothing) |       ✕        |   ✔   | That's what you should be using during development |
+| **Release**               | `--cfg wwrelease`                  |       ✔        |   ✕   | Optimized for final retail builds                  |
+
+If **Comms** are disabled, it means you can't connect to the running game from Wwise Authoring app.
+
+For more info, check the [AudioKinetic docs](https://www.audiokinetic.com/library/edge/?source=SDK&id=goingfurther_builds.html#wwise_sdk_build_config).
 
 ### Wwise Plugins
 You can [choose](https://www.audiokinetic.com/library/edge/?source=SDK&id=soundengine_integration_plugins.html) to 

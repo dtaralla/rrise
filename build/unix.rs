@@ -3,7 +3,7 @@
  */
 
 /// Updates the default stream manager cc build specs for Unix targets
-fn stream_cc_platform_specifics(build: &mut Build, wwise_sdk: &PathBuf) -> io::Result<()> {
+fn stream_cc_platform_specifics(build: &mut cc::Build, wwise_sdk: &PathBuf) -> io::Result<()> {
     build
         .compiler("clang")
         .shared_flag(true)

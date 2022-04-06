@@ -109,7 +109,7 @@ fn get_win10_sdk_version(path: &PathBuf) -> io::Result<String> {
 }
 
 /// Updates the default stream manager cc build specs for Windows target
-fn stream_cc_platform_specifics(build: &mut Build, wwise_sdk: &PathBuf) -> io::Result<()> {
+fn stream_cc_platform_specifics(build: &mut cc::Build, wwise_sdk: &PathBuf) -> io::Result<()> {
     let msvc_include = get_msvc_include_path()?;
     let win10_sdk_path = get_win10_sdk_path()?;
     let win10_sdk_version = get_win10_sdk_version(&win10_sdk_path)?;
@@ -173,7 +173,7 @@ fn platform_dependencies(wwise_sdk: &PathBuf, config_folder: &str) {
     println!("cargo:rustc-link-lib=dylib=XInput");
     println!("cargo:rustc-link-lib=dylib=user32");
 
-    #[cfg(not(wwconfig = "release"))]
+    #[cfg(not(wwrelease))]
     {
         println!("cargo:rustc-link-lib=dylib=AkAutobahn"); // for WAAPI support in game editors
         println!("cargo:rustc-link-lib=dylib=ws2_32"); // for profiling networking

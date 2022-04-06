@@ -2,6 +2,10 @@
  * Copyright (c) 2022 Contributors to the Rrise project
  */
 
+//! Handles profiling communications.
+//!
+//! Will be disabled entirely (not linked nor built) when `--cfg wwrelease` is set.
+
 use crate::bindings::root::AK;
 use crate::settings::AkCommSettings;
 use crate::{ak_call_result, AkResult};

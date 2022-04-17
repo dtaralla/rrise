@@ -37,9 +37,17 @@
 <span id="32">32</span>
 <span id="33">33</span>
 <span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
+<span id="38">38</span>
 </pre><pre class="rust"><code><span class="comment">/*
  * Copyright (c) 2022 Contributors to the Rrise project
  */</span>
+
+<span class="doccomment">//! Handles profiling communications.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! Will be disabled entirely (not linked nor built) when `--cfg wwrelease` is set.</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::bindings::root::AK</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::settings::AkCommSettings</span>;

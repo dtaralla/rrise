@@ -25,9 +25,11 @@ Pull requests are more than welcome: **they are encouraged**!
 - Initialize/Update/Terminate a sound engine
 - Post simple events (no callback/external source support yet)
 - Set source position
+- RTPCs, switches, states and triggers
 - Default streaming manager leveraging Wwise's sample streaming manager
 - Profiling from the Wwise authoring tool
 - Minimal example showcasing how to initialize the sound engine, start a moving source and terminate it
+- Doppler effect example showcasing RTPCs
 - Dynamic & static linking of Wwise plugins through cargo features
 
 ### Logging
@@ -35,9 +37,8 @@ Rrise uses the [log](https://docs.rs/log/latest/log/index.html) crate for all it
 docs for how to use it.
 
 ### Accepted configs
-
 You can set the following `cfg` flags through the `RUSTFLAGS` environment variable before building to chose which 
-configuratin of Wwise you wish to link against:
+configuration of Wwise you wish to link against:
 
 |                           | Flag                               | `AK_OPTIMIZED` | Comms | Description                                        |
 |---------------------------|------------------------------------|:--------------:|:-----:|----------------------------------------------------|

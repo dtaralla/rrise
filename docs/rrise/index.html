@@ -1,15 +1,140 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `rrise` crate."><meta name="keywords" content="rust, rustlang, rust-lang, rrise"><title>rrise - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../dark.css" disabled><link rel="stylesheet" type="text/css" href="../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../storage.js"></script><script src="../crates.js"></script><script defer src="../main.js"></script>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Rrise"><meta name="keywords" content="rust, rustlang, rust-lang, rrise"><title>rrise - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../dark.css" disabled><link rel="stylesheet" type="text/css" href="../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../storage.js"></script><script src="../crates.js"></script><script defer src="../main.js"></script>
     <noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../favicon.svg"></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../rrise/index.html"><div class="logo-container"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></div>
         </a><h2 class="location"></h2>
     </nav>
     <nav class="sidebar"><a class="sidebar-logo" href="../rrise/index.html"><div class="logo-container"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></div>
-        </a><h2 class="location"><a href="#">Crate rrise</a></h2><div class="sidebar-elems"><div class="block"><ul><li class="version">Version 0.1.5</li><li><a id="all-types" href="all.html">All Items</a></li></div></ul><section><div class="block"><ul><li><a href="#modules">Modules</a></li><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#constants">Constants</a></li><li><a href="#types">Type Definitions</a></li></ul></div></section><div id="sidebar-vars" data-name="rrise" data-ty="mod" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../rrise/index.html"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
-    <h1 class="fqn"><span class="in-band">Crate <a class="mod" href="#">rrise</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../src/rrise/rrise.rs.html#5-222">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><h2 id="modules" class="small-section-header"><a href="#modules">Modules</a></h2>
-<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="mod" href="communication/index.html" title="rrise::communication mod">communication</a></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left module-item"><a class="mod" href="memory_mgr/index.html" title="rrise::memory_mgr mod">memory_mgr</a></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left module-item"><a class="mod" href="settings/index.html" title="rrise::settings mod">settings</a></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left module-item"><a class="mod" href="sound_engine/index.html" title="rrise::sound_engine mod">sound_engine</a></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left module-item"><a class="mod" href="stream_mgr/index.html" title="rrise::stream_mgr mod">stream_mgr</a></div><div class="item-right docblock-short"></div></div></div><h2 id="structs" class="small-section-header"><a href="#structs">Structs</a></h2>
+        </a><h2 class="location"><a href="#">Crate rrise</a></h2><div class="sidebar-elems"><div class="block"><ul><li class="version">Version 0.1.6</li><li><a id="all-types" href="all.html">All Items</a></li></div></ul><section><div class="block"><ul><li><a href="#modules">Modules</a></li><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#constants">Constants</a></li><li><a href="#types">Type Definitions</a></li></ul></div></section><div id="sidebar-vars" data-name="rrise" data-ty="mod" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../rrise/index.html"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
+    <h1 class="fqn"><span class="in-band">Crate <a class="mod" href="#">rrise</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../src/rrise/rrise.rs.html#5-254">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="rrise"><a href="#rrise">Rrise</a></h2>
+<p><a href="https://crates.io/crates/rrise"><img src="https://img.shields.io/crates/v/rrise.svg" alt="Crates.io" /></a>
+<a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT%2FApache-blue.svg" alt="MIT/Apache 2.0" /></a>
+<a href="https://crates.io/crates/rrise"><img src="https://img.shields.io/crates/d/rrise.svg" alt="Crates.io" /></a></p>
+<h3 id="what-is-rrise"><a href="#what-is-rrise">What is Rrise?</a></h3>
+<p>Rrise is a Rust binding for <a href="https://www.audiokinetic.com/en/products/wwise">Wwise</a>. It is <em>not</em> and <em>does not want</em> to 
+be a complete game engine integration, but rather a starting point for other crates leveraging the binding.</p>
+<p>The end goal is to provide game engines written in Rust like <a href="https://github.com/bevyengine/bevy">Bevy</a> with a safe 
+Wwise API, without having to tinker with the FFI world.</p>
+<h4 id="about-your-expectations"><a href="#about-your-expectations">About your expectations…</a></h4>
+<p>This is planned to become a rather advanced crate, that paves the way for exciting sound engine work in established Rust
+game engines. That said, I’m definitely not the most proficient in Rust. If you notice some questionable implementation 
+or architectural choices, please reach out to improve the crate!</p>
+<p>Pull requests are more than welcome: <strong>they are encouraged</strong>!</p>
+<h3 id="capabilities"><a href="#capabilities">Capabilities</a></h3>
+<ul>
+<li>Build &amp; run on Windows 10+</li>
+<li>Build &amp; run on WSL/Linux (on distros where Wwise is supported)</li>
+<li>(AD)PCM, Vorbis &amp; Opus playback</li>
+<li>Initialize/Update/Terminate a sound engine</li>
+<li>Post simple events (no callback/external source support yet)</li>
+<li>Set source position</li>
+<li>RTPCs, switches, states and triggers</li>
+<li>Default streaming manager leveraging Wwise’s sample streaming manager</li>
+<li>Profiling from the Wwise authoring tool</li>
+<li>Minimal example showcasing how to initialize the sound engine, start a moving source and terminate it</li>
+<li>Doppler effect example showcasing RTPCs</li>
+<li>Dynamic &amp; static linking of Wwise plugins through cargo features</li>
+</ul>
+<h4 id="logging"><a href="#logging">Logging</a></h4>
+<p>Rrise uses the <a href="https://docs.rs/log/latest/log/index.html">log</a> crate for all its logging needs. Refer to <code>log</code>’s 
+docs for how to use it.</p>
+<h4 id="accepted-configs"><a href="#accepted-configs">Accepted configs</a></h4>
+<p>You can set the following <code>cfg</code> flags through the <code>RUSTFLAGS</code> environment variable before building to chose which 
+configuratin of Wwise you wish to link against:</p>
+<div><table><thead><tr><th></th><th>Flag</th><th style="text-align: center"><code>AK_OPTIMIZED</code></th><th style="text-align: center">Comms</th><th>Description</th></tr></thead><tbody>
+<tr><td><strong>Debug</strong></td><td><code>--cfg wwdebug</code></td><td style="text-align: center">✕</td><td style="text-align: center">✔</td><td>Useful to debug with AudioKinetic support folks</td></tr>
+<tr><td><strong>Profile</strong><br/>(default)</td><td><code>--cfg wwprofile</code><br/>(or nothing)</td><td style="text-align: center">✕</td><td style="text-align: center">✔</td><td>That’s what you should be using during development</td></tr>
+<tr><td><strong>Release</strong></td><td><code>--cfg wwrelease</code></td><td style="text-align: center">✔</td><td style="text-align: center">✕</td><td>Optimized for final retail builds</td></tr>
+</tbody></table>
+</div>
+<p>If <strong>Comms</strong> are disabled, it means you can’t connect to the running game from Wwise Authoring app.</p>
+<p>For more info, check the <a href="https://www.audiokinetic.com/library/edge/?source=SDK&amp;id=goingfurther_builds.html#wwise_sdk_build_config">AudioKinetic docs</a>.</p>
+<h4 id="wwise-plugins"><a href="#wwise-plugins">Wwise Plugins</a></h4>
+<p>You can <a href="https://www.audiokinetic.com/library/edge/?source=SDK&amp;id=soundengine_integration_plugins.html">choose</a> to 
+either link statically or dynamically to the Wwise plugins.</p>
+<p>Note that some plugins like <em>AkMeter</em>, <em>AkVorbisDecoder</em> and <em>AkOpusDecoder</em> can only be statically linked and are not 
+available for dynamic linking.</p>
+<p>See <a href="https://www.audiokinetic.com/library/edge/?source=SDK&amp;id=goingfurther_builds.html#wwise_sdk_lib_dependency_requirements_plugins">this page</a>
+for a list of plugins supported by Wwise, per platform.</p>
+<h5 id="dynamic-linking"><a href="#dynamic-linking">Dynamic linking</a></h5>
+<p>This is the default behavior. Wwise plugins like <em>AkRoomVerb</em>, <em>AkParametricEQ</em>, <em>Motion</em> etc. will be loaded at 
+runtime from their respective shared library as needed.</p>
+<p>Any project relying on dynamic linking for some plugins needs to also deploy their respective <em>licensed</em> shared 
+libraries along the final executable (you can do this with a 
+<a href="https://doc.rust-lang.org/cargo/reference/build-scripts.html">build script</a> for instance).</p>
+<p>You can find these shared libraries in <code>$WWISESDK/[platform]/[config]/bin</code>.</p>
+<h5 id="static-linking"><a href="#static-linking">Static linking</a></h5>
+<p>You might want to statically link some Wwise plugins instead of loading them at runtime from a shared libary. In 
+this case, you can leverage Rrise’s cargo features to enable static linking of such plugins.</p>
+<p>For example, if you want to statically link the <em>AkRoomVerb</em> plugin, just build with the <code>AkRoomVerbFX</code> feature 
+enabled. When your project runs, you can check that the static version of the plugin was loaded in the debug log:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="ident">AkRoomVerbFX</span> <span class="ident">has</span> <span class="ident">been</span> <span class="ident">statically</span> <span class="ident">loaded</span> <span class="ident">successfully</span></code></pre></div>
+<p><strong>Note:</strong> If you already built your project once, you need to make Rrise’s build script rerun to enable static 
+linking of your features. You can change the value of the <code>RRISE_RERUN_BUILD</code> environment variable before building to 
+force a rerun of Rrise’s build script. You can also force a full rebuild with <code>cargo clean &amp; cargo build  --features=The,Plugin,List</code>. </p>
+<h4 id="known-issues--limitations"><a href="#known-issues--limitations">Known issues &amp; limitations</a></h4>
+<ul>
+<li><code>wwconfig</code> cfg flag doesn’t seem to be forwarded to the build scripts?</li>
+<li>If you dynamically link Wwise effect plugins (default behavior), there is an issue on Windows where if the path given
+to <code>AkInitSettings::with_plugin_dll_path</code> contains spaces, the DLLs in that folder won’t be discoverable by Wwise.</li>
+<li>On Linux, when connecting the profiler, you will get those messages in the console (they seem totally harmless):</li>
+</ul>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>...<span class="op">/</span><span class="ident">SDK</span><span class="op">/</span><span class="ident">Linux_x64</span><span class="op">/</span><span class="ident">Profile</span><span class="op">/</span><span class="ident">bin</span><span class="op">/</span><span class="ident">libDefaultConversions</span>.<span class="ident">so</span>: <span class="ident">cannot</span> <span class="ident">open</span> <span class="ident">shared</span> <span class="ident">object</span> <span class="ident">file</span>: <span class="ident">No</span> <span class="ident">such</span> <span class="ident">file</span> <span class="ident">or</span> <span class="ident">directory</span>
+...<span class="op">/</span><span class="ident">SDK</span><span class="op">/</span><span class="ident">Linux_x64</span><span class="op">/</span><span class="ident">Profile</span><span class="op">/</span><span class="ident">bin</span><span class="op">/</span><span class="ident">libAkSoundEngineDLL</span>.<span class="ident">so</span>: <span class="ident">cannot</span> <span class="ident">open</span> <span class="ident">shared</span> <span class="ident">object</span> <span class="ident">file</span>: <span class="ident">No</span> <span class="ident">such</span> <span class="ident">file</span> <span class="ident">or</span> <span class="ident">directory</span></code></pre></div>
+<h3 id="requirements"><a href="#requirements">Requirements</a></h3>
+<ul>
+<li>Rust nightly 1.61+ (to support <a href="https://github.com/rust-lang/rust/pull/93901">-wholearchive</a>)</li>
+<li>The <code>bindgen</code> crate <a href="https://github.com/rust-lang/rust-bindgen/blob/master/book/src/requirements.md">requirements</a></li>
+<li>A licensed (free, trial, commercial,…) version of Wwise installed (2021.1.7, untested on others)
+<ul>
+<li>Wwise itself</li>
+<li>Wwise SDK (C++)</li>
+</ul>
+</li>
+<li><strong>On Windows: <code>MSVC</code></strong><sup id="fnref1"><a href="#fn1">1</a></sup>
+<ul>
+<li>Windows 10 SDK</li>
+<li>Build tools (same as Rust, for the <code>cc</code> crate)</li>
+<li><code>cl.exe</code> must be in the PATH<sup id="fnref2"><a href="#fn2">2</a></sup></li>
+<li>Wwise support for any Visual Studio 20XX deployment platform</li>
+<li>Make sure the <code>WWISESDK</code> environment variable is set to the SDK folder of your Wwise installation</li>
+</ul>
+</li>
+<li><strong>On Linux: <code>clang</code></strong>
+<ul>
+<li><code>g++</code> (for <code>libstdc++</code>)</li>
+<li>Copy the SDK folder from a Windows<sup id="fnref3"><a href="#fn3">3</a></sup> install of Wwise on your Linux workstation (for instance in /opt/wwise)
+<ul>
+<li>Make sure the <code>WWISESDK</code> environment variable is set to that folder</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="short-term-roadmap"><a href="#short-term-roadmap">Short-term roadmap</a></h3>
+<ul>
+<li>Add callback and user data support for PostEvent</li>
+<li>Spatial module basic API and example</li>
+<li>Review/Improve architecture</li>
+</ul>
+<h4 id="legal-stuff"><a href="#legal-stuff">Legal stuff</a></h4>
+<p>Wwise and the Wwise logo are trademarks of Audiokinetic Inc., registered in the U.S. and other countries.</p>
+<p>This project is in no way affiliated to Audiokinetic.</p>
+<p>You still need a licensed version of Wwise installed to compile and run this project. You need a valid Wwise license 
+to distribute any project based on this crate.</p>
+<div class="footnotes"><hr><ol><li id="fn1"><p>Not tested on other compilers like MinGW or Clang&nbsp;<a href="#fnref1">↩</a></p></li><li id="fn2"><p>Current limitation of the build script. I want to improve MSVC path discovery in the future to remove this 
+requirement.&nbsp;<a href="#fnref2">↩</a></p></li><li id="fn3"><p>AudioKinetic doesn’t provide direct downloads to their SDK: you can only install it through their launcher. 
+However, this launcher being only available on Windows and MacOS, you’ll need to install it on a VM or similar before 
+you can work with this crate on Linux.&nbsp;<a href="#fnref3">↩</a></p></li></ol></div></div></details><h2 id="modules" class="small-section-header"><a href="#modules">Modules</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="mod" href="communication/index.html" title="rrise::communication mod">communication</a></div><div class="item-right docblock-short"><p>Handles profiling communications.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="mod" href="game_syncs/index.html" title="rrise::game_syncs mod">game_syncs</a></div><div class="item-right docblock-short"><p>Everything related to RTPC, Switch, States and Triggers.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="mod" href="memory_mgr/index.html" title="rrise::memory_mgr mod">memory_mgr</a></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left module-item"><a class="mod" href="settings/index.html" title="rrise::settings mod">settings</a></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left module-item"><a class="mod" href="sound_engine/index.html" title="rrise::sound_engine mod">sound_engine</a></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left module-item"><a class="mod" href="stream_mgr/index.html" title="rrise::stream_mgr mod">stream_mgr</a></div><div class="item-right docblock-short"></div></div></div><h2 id="structs" class="small-section-header"><a href="#structs">Structs</a></h2>
 <div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.AkTransform.html" title="rrise::AkTransform struct">AkTransform</a></div><div class="item-right docblock-short"><p>Position and orientation of game objects.</p>
 </div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.AkVector.html" title="rrise::AkVector struct">AkVector</a></div><div class="item-right docblock-short"><p>3D vector.</p>
 </div></div></div><h2 id="enums" class="small-section-header"><a href="#enums">Enums</a></h2>
-<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="enum" href="enum.AkResult.html" title="rrise::AkResult enum">AkResult</a></div><div class="item-right docblock-short"><p>Standard function call result.</p>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="enum" href="enum.AkCurveInterpolation.html" title="rrise::AkCurveInterpolation enum">AkCurveInterpolation</a></div><div class="item-right docblock-short"><p>Curve interpolation types</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="enum" href="enum.AkID.html" title="rrise::AkID enum">AkID</a></div><div class="item-right docblock-short"><p>An ID for functions that can take either a string or numerical identifier for Wwise objects.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="enum" href="enum.AkResult.html" title="rrise::AkResult enum">AkResult</a></div><div class="item-right docblock-short"><p>Standard function call result.</p>
 </div></div></div><h2 id="constants" class="small-section-header"><a href="#constants">Constants</a></h2>
 <div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="constant" href="constant.AK_DEFAULT_BANK_IO_PRIORITY.html" title="rrise::AK_DEFAULT_BANK_IO_PRIORITY constant">AK_DEFAULT_BANK_IO_PRIORITY</a></div><div class="item-right docblock-short"><p>Default bank load I/O priority</p>
 </div></div><div class="item-row"><div class="item-left module-item"><a class="constant" href="constant.AK_DEFAULT_BANK_THROUGHPUT.html" title="rrise::AK_DEFAULT_BANK_THROUGHPUT constant">AK_DEFAULT_BANK_THROUGHPUT</a></div><div class="item-right docblock-short"><p>Default bank load throughput (1 Mb/ms)</p>

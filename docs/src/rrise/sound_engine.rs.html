@@ -386,21 +386,6 @@
 <span id="381">381</span>
 <span id="382">382</span>
 <span id="383">383</span>
-<span id="384">384</span>
-<span id="385">385</span>
-<span id="386">386</span>
-<span id="387">387</span>
-<span id="388">388</span>
-<span id="389">389</span>
-<span id="390">390</span>
-<span id="391">391</span>
-<span id="392">392</span>
-<span id="393">393</span>
-<span id="394">394</span>
-<span id="395">395</span>
-<span id="396">396</span>
-<span id="397">397</span>
-<span id="398">398</span>
 </pre><pre class="rust"><code><span class="comment">/*
  * Copyright (c) 2022 Contributors to the Rrise project
  */</span>
@@ -695,8 +680,7 @@
 <span class="doccomment">/// &gt; - [get_source_play_position]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PostEvent</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="ident">game_obj_id</span>: <span class="ident">AkGameObjectID</span>,
-    <span class="ident">event_id</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">AkUniqueID</span><span class="op">&gt;</span>,
-    <span class="ident">event_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span>,
+    <span class="ident">event_id</span>: <span class="ident">AkID</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
     <span class="ident">flags</span>: <span class="ident">AkCallbackType</span>,
     <span class="comment">// callback: Option&lt;Box&lt;dyn Fn(AkCallbackType, CallbackInfo)&gt;&gt;, // TODO</span>
     <span class="comment">// cookie: Option&lt;Cookie&gt;,                                      // TODO</span>
@@ -706,15 +690,11 @@
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">PostEvent</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">new</span>(
-        <span class="ident">game_obj_id</span>: <span class="ident">AkGameObjectID</span>,
-        <span class="ident">event_id</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">AkUniqueID</span><span class="op">&gt;</span>,
-        <span class="ident">event_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="ident">PostEvent</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
+    <span class="doccomment">/// Select an event by name or by ID, to play on a given game object.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">AkID</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">game_obj_id</span>: <span class="ident">AkGameObjectID</span>, <span class="ident">event_id</span>: <span class="ident">T</span>) -&gt; <span class="ident">PostEvent</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
         <span class="ident">PostEvent</span> {
             <span class="ident">game_obj_id</span>,
-            <span class="ident">event_id</span>,
-            <span class="ident">event_name</span>,
+            <span class="ident">event_id</span>: <span class="ident">event_id</span>.<span class="ident">into</span>(),
             <span class="ident">flags</span>: <span class="ident">AkCallbackType</span>(<span class="number">0</span>),
             <span class="comment">// callback: None,</span>
             <span class="comment">// cookie: None,</span>
@@ -722,16 +702,6 @@
             <span class="ident">playing_id</span>: <span class="ident">AK_INVALID_PLAYING_ID</span>,
             <span class="ident">marker</span>: <span class="ident">PhantomData</span>,
         }
-    }
-
-    <span class="doccomment">/// Select an event by name, to play on a given game object.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_event_name</span>(<span class="ident">game_obj_id</span>: <span class="ident">AkGameObjectID</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>) -&gt; <span class="ident">PostEvent</span> {
-        <span class="ident"><span class="self">Self</span>::new</span>(<span class="ident">game_obj_id</span>, <span class="prelude-val">None</span>, <span class="prelude-val">Some</span>(<span class="ident">name</span>))
-    }
-
-    <span class="doccomment">/// Select an event by id, to play on a given game object.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_event_id</span>(<span class="ident">game_obj_id</span>: <span class="ident">AkGameObjectID</span>, <span class="ident">id</span>: <span class="ident">AkUniqueID</span>) -&gt; <span class="ident">PostEvent</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="ident"><span class="self">Self</span>::new</span>(<span class="ident">game_obj_id</span>, <span class="prelude-val">Some</span>(<span class="ident">id</span>), <span class="prelude-val">None</span>)
     }
 
     <span class="doccomment">/// Add flags before posting. Bitmask: see [AkCallbackType].</span>
@@ -756,7 +726,7 @@
 
     <span class="doccomment">/// Posts the event to the sound engine.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">post</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AkPlayingID</span>, <span class="ident">AkResult</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">name</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">event_name</span> {
+        <span class="kw">if</span> <span class="kw">let</span> <span class="ident">AkID::Name</span>(<span class="ident">name</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">event_id</span> {
             <span class="kw">let</span> <span class="ident">ak_playing_id</span> <span class="op">=</span> <span class="kw">unsafe</span> {
                 <span class="macro">with_cstring!</span>[<span class="ident">name</span> =&gt; <span class="ident">cname</span> {
                     <span class="ident">PostEvent2</span>(
@@ -776,7 +746,7 @@
             } <span class="kw">else</span> {
                 <span class="prelude-val">Ok</span>(<span class="ident">ak_playing_id</span>)
             }
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">id</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">event_id</span> {
+        } <span class="kw">else</span> <span class="kw">if</span> <span class="kw">let</span> <span class="ident">AkID::ID</span>(<span class="ident">id</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">event_id</span> {
             <span class="kw">let</span> <span class="ident">ak_playing_id</span> <span class="op">=</span> <span class="kw">unsafe</span> {
                 <span class="ident">PostEvent</span>(
                     <span class="ident">id</span>,

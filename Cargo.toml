@@ -60,10 +60,15 @@ AkTremoloFX = []
 # Internal features, don't enable independantly!
 AkOggOpusDecoder = []
 AkWemOpusDecoder = []
+examples = ["ctrlc", "simple_logger", "lerp"]
 
 [[example]]
 name = "looping_event"
-required-features = ["ctrlc", "simple_logger", "lerp"]
+required-features = ["examples"]
+
+[[example]]
+name = "doppler"
+required-features = ["examples", "AkSineSource"]
 
 [[test]]
 name = "static_link_all"

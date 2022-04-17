@@ -68,7 +68,7 @@
 														</Point>
 														<Point>
 															<XPos>3.6</XPos>
-															<YPos>-0</YPos>
+															<YPos>0</YPos>
 															<Flags>0</Flags>
 														</Point>
 														<Point>
@@ -193,6 +193,216 @@
 					<ObjectLists/>
 					<ActiveSourceList>
 						<ActiveSource Name="HeadHunterMissileHit2" ID="{5349B5B4-B4C8-4165-A22D-5AE6D7F96D3F}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="DopplerSound" ID="{5B75213F-5C2E-4A80-ADD7-EBA8D18D860D}" ShortID="75081804">
+					<PropertyList>
+						<Property Name="3DSpatialization" Type="int16" Value="1"/>
+						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+						<Property Name="Pitch" Type="int32">
+							<RTPCList>
+								<RTPC Name="" ID="{47790E29-1833-4A3F-BEA8-021B7578B5B4}" ShortID="208921205">
+									<ReferenceList>
+										<Reference Name="ControlInput">
+											<ObjectRef Name="Doppler" ID="{67A41D13-76BF-4767-A905-A31C551CC04A}" WorkUnitID="{277CFB72-319A-401F-ABF2-CB1072D4AFDD}"/>
+										</Reference>
+									</ReferenceList>
+									<Curve Name="" ID="{CC484707-7CD7-4108-9BF5-4E10195C35A1}">
+										<PropertyList>
+											<Property Name="Flags" Type="int32" Value="65537"/>
+										</PropertyList>
+										<PointList>
+											<Point>
+												<XPos>0</XPos>
+												<YPos>-4800</YPos>
+												<Flags>5</Flags>
+											</Point>
+											<Point>
+												<XPos>0.25</XPos>
+												<YPos>-2400</YPos>
+												<Flags>0</Flags>
+											</Point>
+											<Point>
+												<XPos>0.5</XPos>
+												<YPos>-1200</YPos>
+												<Flags>0</Flags>
+											</Point>
+											<Point>
+												<XPos>1</XPos>
+												<YPos>0</YPos>
+												<Flags>0</Flags>
+											</Point>
+											<Point>
+												<XPos>2</XPos>
+												<YPos>1200</YPos>
+												<Flags>0</Flags>
+											</Point>
+											<Point>
+												<XPos>4</XPos>
+												<YPos>2400</YPos>
+												<Flags>0</Flags>
+											</Point>
+											<Point>
+												<XPos>8</XPos>
+												<YPos>3600</YPos>
+												<Flags>0</Flags>
+											</Point>
+											<Point>
+												<XPos>16</XPos>
+												<YPos>4800</YPos>
+												<Flags>37</Flags>
+											</Point>
+										</PointList>
+									</Curve>
+								</RTPC>
+							</RTPCList>
+						</Property>
+						<Property Name="SpeakerPanning" Type="int16" Value="1"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Attenuation">
+							<Custom>
+								<Attenuation Name="Attenuation (Custom)" ID="{8FE0C14F-7B32-4595-88CA-B3872B44B74F}" ShortID="244870445">
+									<PropertyList>
+										<Property Name="RadiusMax" Type="Real64" Value="45"/>
+									</PropertyList>
+									<CurveUsageInfoList>
+										<VolumeDryUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="Custom">
+												<Curve Name="VolumeDry" ID="{29CC49EC-5AF3-4860-B26E-4681BEE369EF}">
+													<PropertyList>
+														<Property Name="Flags" Type="int32" Value="3"/>
+													</PropertyList>
+													<PointList>
+														<Point>
+															<XPos>0</XPos>
+															<YPos>0</YPos>
+															<Flags>5</Flags>
+															<SegmentShape>Exp2</SegmentShape>
+														</Point>
+														<Point>
+															<XPos>45</XPos>
+															<YPos>-200</YPos>
+															<Flags>37</Flags>
+														</Point>
+													</PointList>
+												</Curve>
+											</CurveUsageInfo>
+										</VolumeDryUsage>
+										<VolumeWetGameUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
+										</VolumeWetGameUsage>
+										<VolumeWetUserUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
+										</VolumeWetUserUsage>
+										<LowPassFilterUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+										</LowPassFilterUsage>
+										<HighPassFilterUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+										</HighPassFilterUsage>
+										<SpreadUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="Custom">
+												<Curve Name="Spread" ID="{6DEA6636-95F7-4306-959D-C01A64C1359B}">
+													<PropertyList>
+														<Property Name="Flags" Type="int32" Value="1"/>
+													</PropertyList>
+													<PointList>
+														<Point>
+															<XPos>0</XPos>
+															<YPos>100</YPos>
+															<Flags>5</Flags>
+															<SegmentShape>Log3</SegmentShape>
+														</Point>
+														<Point>
+															<XPos>18</XPos>
+															<YPos>-0</YPos>
+															<Flags>0</Flags>
+															<SegmentShape>Constant</SegmentShape>
+														</Point>
+														<Point>
+															<XPos>45</XPos>
+															<YPos>0</YPos>
+															<Flags>37</Flags>
+														</Point>
+													</PointList>
+												</Curve>
+											</CurveUsageInfo>
+										</SpreadUsage>
+										<FocusUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+										</FocusUsage>
+									</CurveUsageInfoList>
+								</Attenuation>
+							</Custom>
+						</Reference>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{53EBC9F8-5C82-4A90-AF18-BE0F1BAA9DDB}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3F1283BE-1E7E-4C4B-86E5-5F7EF342BA75}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<SourcePlugin Name="Wwise Sine" ID="{EAA7B727-1445-4703-966C-4B04DE21E33E}" ShortID="91192747" PluginName="Wwise Sine" CompanyID="0" PluginID="100">
+							<PropertyList>
+								<Property Name="SineFrequency" Type="Real32">
+									<RTPCList>
+										<RTPC Name="" ID="{173F9517-0AFB-47CF-BEA0-C78EBEDE56A8}" ShortID="71577343">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<Custom>
+														<ModulatorTime Name="Modulator Time (Custom)" ID="{AC54D4C7-E9AC-43BB-AD87-1C9D80CC4485}" ShortID="902235470">
+															<PropertyList>
+																<Property Name="TimeModDuration" Type="Real64" Value="2"/>
+																<Property Name="TimeModLoops" Type="int32" Value="0"/>
+															</PropertyList>
+														</ModulatorTime>
+													</Custom>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{C41EC668-213A-4D8A-A8DD-002CF9E4B6EA}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="5"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>261.6</YPos>
+														<Flags>5</Flags>
+														<SegmentShape>Constant</SegmentShape>
+													</Point>
+													<Point>
+														<XPos>0.999</XPos>
+														<YPos>261.6</YPos>
+														<Flags>0</Flags>
+													</Point>
+													<Point>
+														<XPos>1</XPos>
+														<YPos>466.164</YPos>
+														<Flags>0</Flags>
+														<SegmentShape>Constant</SegmentShape>
+													</Point>
+													<Point>
+														<XPos>2</XPos>
+														<YPos>466.164</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
+							</PropertyList>
+							<Language>SFX</Language>
+						</SourcePlugin>
+					</ChildrenList>
+					<PositioningInfo>
+						<Panner Name="" ID="{EEF422F3-7177-4B6F-AD71-9B29532BB99D}"/>
+					</PositioningInfo>
+					<ObjectLists/>
+					<ActiveSourceList>
+						<ActiveSource Name="Wwise Sine" ID="{EAA7B727-1445-4703-966C-4B04DE21E33E}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
 			</ChildrenList>

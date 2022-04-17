@@ -14,6 +14,17 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="PlayDoppler" ID="{3DCEA688-739C-4EF0-9882-5AB00F3D2DF9}">
+					<ChildrenList>
+						<Action Name="" ID="{88CBDFD3-6F0E-4B87-B1ED-AF752C109F6D}" ShortID="224685095">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="DopplerSound" ID="{5B75213F-5C2E-4A80-ADD7-EBA8D18D860D}" WorkUnitID="{65E37865-6D38-4681-929B-B1CD0BE3F39F}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

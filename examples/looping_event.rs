@@ -46,7 +46,7 @@ fn main() -> Result<(), AkResult> {
         panic!("Couldn't load thebank: {}", akr);
     }
 
-    if let Ok(playing_id) = PostEvent::from_event_id(THE_GAME_OBJECT, 2586140731).post() {
+    if let Ok(playing_id) = PostEvent::new(THE_GAME_OBJECT, 2586140731).post() {
         println!("Successfully started event with playingID {}", playing_id)
     } else {
         panic!("Couldn't post event");

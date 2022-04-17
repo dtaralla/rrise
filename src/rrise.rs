@@ -150,6 +150,31 @@ pub use bindings::AK_INVALID_AUDIO_OBJECT_ID;
 #[doc(inline)]
 pub use bindings::AK_INVALID_GAME_OBJECT;
 
+#[derive(Debug, Copy, Clone)]
+/// An ID for functions that can take either a string or numerical identifier for Wwise objects.
+pub enum AkID<'a> {
+    Name(&'a str),
+    ID(AkUniqueID),
+}
+
+impl<'a> From<AkUniqueID> for AkID<'a> {
+    fn from(id: AkUniqueID) -> Self {
+        Self::ID(id)
+    }
+}
+
+impl<'a> From<&'a str> for AkID<'a> {
+    fn from(name: &'a str) -> Self {
+        Self::Name(name)
+    }
+}
+
+impl<'a> From<&'a String> for AkID<'a> {
+    fn from(name: &'a String) -> Self {
+        Self::Name(name.as_str())
+    }
+}
+
 #[doc(hidden)]
 pub(crate) type OsChar = crate::bindings::root::AkOSChar;
 

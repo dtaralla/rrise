@@ -292,8 +292,7 @@ pub fn load_bank_by_name<T: AsRef<str>>(name: T) -> Result<AkBankID, AkResult> {
 /// > - [get_source_play_position]
 pub struct PostEvent<'a> {
     game_obj_id: AkGameObjectID,
-    event_id: Option<AkUniqueID>,
-    event_name: Option<&'a str>,
+    event_id: AkID<'a>,
     flags: AkCallbackType,
     // callback: Option<Box<dyn Fn(AkCallbackType, CallbackInfo)>>, // TODO
     // cookie: Option<Cookie>,                                      // TODO
@@ -303,15 +302,11 @@ pub struct PostEvent<'a> {
 }
 
 impl<'a> PostEvent<'a> {
-    fn new(
-        game_obj_id: AkGameObjectID,
-        event_id: Option<AkUniqueID>,
-        event_name: Option<&'a str>,
-    ) -> PostEvent<'a> {
+    /// Select an event by name or by ID, to play on a given game object.
+    pub fn new<T: Into<AkID<'a>>>(game_obj_id: AkGameObjectID, event_id: T) -> PostEvent<'a> {
         PostEvent {
             game_obj_id,
-            event_id,
-            event_name,
+            event_id: event_id.into(),
             flags: AkCallbackType(0),
             // callback: None,
             // cookie: None,
@@ -319,16 +314,6 @@ impl<'a> PostEvent<'a> {
             playing_id: AK_INVALID_PLAYING_ID,
             marker: PhantomData,
         }
-    }
-
-    /// Select an event by name, to play on a given game object.
-    pub fn from_event_name(game_obj_id: AkGameObjectID, name: &'a str) -> PostEvent {
-        Self::new(game_obj_id, None, Some(name))
-    }
-
-    /// Select an event by id, to play on a given game object.
-    pub fn from_event_id(game_obj_id: AkGameObjectID, id: AkUniqueID) -> PostEvent<'a> {
-        Self::new(game_obj_id, Some(id), None)
     }
 
     /// Add flags before posting. Bitmask: see [AkCallbackType].
@@ -353,7 +338,7 @@ impl<'a> PostEvent<'a> {
 
     /// Posts the event to the sound engine.
     pub fn post(&self) -> Result<AkPlayingID, AkResult> {
-        if let Some(name) = self.event_name {
+        if let AkID::Name(name) = self.event_id {
             let ak_playing_id = unsafe {
                 with_cstring![name => cname {
                     PostEvent2(
@@ -373,7 +358,7 @@ impl<'a> PostEvent<'a> {
             } else {
                 Ok(ak_playing_id)
             }
-        } else if let Some(id) = self.event_id {
+        } else if let AkID::ID(id) = self.event_id {
             let ak_playing_id = unsafe {
                 PostEvent(
                     id,

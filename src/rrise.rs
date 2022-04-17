@@ -6,6 +6,7 @@
 
 #[cfg(not(wwrelease))]
 pub mod communication;
+pub mod game_syncs;
 pub mod memory_mgr;
 pub mod settings;
 pub mod sound_engine;
@@ -16,6 +17,7 @@ mod bindings_static_plugins;
 mod error;
 mod transform;
 
+pub use error::*;
 pub use transform::*;
 
 /// Acoustic Texture ID
@@ -48,6 +50,8 @@ pub use bindings::root::AkGameObjectID;
 pub use bindings::root::AkImageSourceID;
 /// Low-pass filter type
 pub use bindings::root::AkLPFType;
+#[doc(inline)]
+pub use bindings::root::AkListenerPosition;
 /// Memory pool ID
 pub use bindings::root::AkMemPoolId;
 /// Modulator ID
@@ -74,6 +78,8 @@ pub use bindings::root::AkRayID;
 pub use bindings::root::AkRtpcID;
 /// Real time parameter control value
 pub use bindings::root::AkRtpcValue;
+#[doc(inline)]
+pub use bindings::root::AkSoundPosition;
 /// State group ID
 pub use bindings::root::AkStateGroupID;
 /// State ID
@@ -84,20 +90,17 @@ pub use bindings::root::AkSwitchGroupID;
 pub use bindings::root::AkSwitchStateID;
 /// Time in ms
 pub use bindings::root::AkTimeMs;
+#[doc(inline)]
+pub use bindings::root::AkTransform;
 /// Trigger ID
 pub use bindings::root::AkTriggerID;
 /// Unique 32-bit ID
 pub use bindings::root::AkUniqueID;
 /// Volume value( also apply to LFE )
 pub use bindings::root::AkVolumeValue;
-pub use error::*;
 
 #[doc(inline)]
-pub use bindings::root::AkListenerPosition;
-#[doc(inline)]
-pub use bindings::root::AkSoundPosition;
-#[doc(inline)]
-pub use bindings::root::AkTransform;
+pub use bindings::root::AkCurveInterpolation;
 #[doc(inline)]
 pub use bindings::root::AkVector;
 #[doc(inline)]

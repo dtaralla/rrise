@@ -8,6 +8,7 @@
 pub mod communication;
 pub mod game_syncs;
 pub mod memory_mgr;
+pub mod query_params;
 pub mod settings;
 pub mod sound_engine;
 pub mod stream_mgr;

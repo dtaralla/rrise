@@ -6,6 +6,7 @@
 
 #include <AK/SoundEngine/Common/AkTypes.h>
 #include <AK/SoundEngine/Common/AkSoundEngine.h>
+#include <AK/SoundEngine/Common/AkQueryParameters.h>
 #include <AK/SoundEngine/Common/AkModule.h>
 #include <AK/SoundEngine/Common/AkMemoryMgr.h>
 #include <AK/SoundEngine/Common/IAkStreamMgr.h>

@@ -233,6 +233,7 @@ fn main() -> io::Result<()> {
         .rustified_enum("Ak3DSpatializationMode")
         .rustified_enum("AkPluginType")
         .rustified_enum("AkNodeType")
+        .rustified_enum("AK::SoundEngine::Query::RTPCValue_type")
         .bitfield_enum("AkAudioDeviceState")
         .bitfield_enum("AkBusHierarchyFlags")
         .bitfield_enum("AkMeteringFlags")

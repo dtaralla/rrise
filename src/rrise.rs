@@ -156,10 +156,12 @@ pub(crate) type OsChar = crate::bindings::root::AkOSChar;
 #[doc(hidden)]
 #[macro_export]
 macro_rules! with_cstring {
-    ($text:expr => $tmp:ident { $($stmt:stmt)+ }) => {
+    ($($text:expr => $tmp:ident),+ { $($stmt:stmt)+ }) => {
         {
             use ::std::ffi::CString;
+            $(
             let $tmp = CString::new($text).expect("text shouldn't contain null bytes");
+            )+
             $($stmt)+
         }
     };

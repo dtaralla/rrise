@@ -8,3 +8,4 @@ examples/WwiseProject/*.wsettings
 examples/WwiseProject/*.log
 examples/WwiseProject/GeneratedSoundBanks/
 *.akd
+*.cache

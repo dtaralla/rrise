@@ -1,6 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{88901774-D060-4881-9271-34F3BFE8ED31}" SchemaVersion="103">
 	<InteractiveMusic>
-		<WorkUnit Name="Default Work Unit" ID="{88901774-D060-4881-9271-34F3BFE8ED31}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{88901774-D060-4881-9271-34F3BFE8ED31}" PersistMode="Standalone">
+			<ChildrenList>
+				<MusicPlaylistContainer Name="MeteredMusic" ID="{BCB4664C-1198-48A2-8148-148107676DA6}" ShortID="557012987">
+					<PropertyList>
+						<Property Name="EnableAttenuation" Type="bool" Value="False"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Vorbis Auto Detect High" ID="{6F6A99BE-4FD1-49D3-89AF-54BE30CA1588}" WorkUnitID="{F6B2880C-85E5-47FA-A126-645B5DFD9ACC}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3F1283BE-1E7E-4C4B-86E5-5F7EF342BA75}"/>
+						</Reference>
+						<Reference Name="UserAuxSend0">
+							<ObjectRef Name="Meters_0123" ID="{4EC83B50-D0AB-47E6-9B3D-3E6A91B534CD}" WorkUnitID="{3F1283BE-1E7E-4C4B-86E5-5F7EF342BA75}"/>
+						</Reference>
+						<Reference Name="UserAuxSend1">
+							<ObjectRef Name="Meters_4567" ID="{E1CDEB5F-4858-4BAB-BBD1-6720F3E1D05B}" WorkUnitID="{3F1283BE-1E7E-4C4B-86E5-5F7EF342BA75}"/>
+						</Reference>
+						<Reference Name="UserAuxSend2">
+							<ObjectRef Name="Meters_8910" ID="{89305FCB-79E4-4EA6-853D-DFE1D3D93AA9}" WorkUnitID="{3F1283BE-1E7E-4C4B-86E5-5F7EF342BA75}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<MusicSegment Name="Captain Fortune" ID="{1C5CF014-168A-43B7-8F58-28C30EDF6E8B}" ShortID="193788842">
+							<PropertyList>
+								<Property Name="EndPosition" Type="Real64" Value="91476.9791666667"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{53EBC9F8-5C82-4A90-AF18-BE0F1BAA9DDB}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3F1283BE-1E7E-4C4B-86E5-5F7EF342BA75}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicTrack Name="Captain Fortune" ID="{EA0D51BE-61CC-41F1-A07A-A5E49973B72A}" ShortID="342934286">
+									<PropertyList>
+										<Property Name="OverrideEffect" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3F1283BE-1E7E-4C4B-86E5-5F7EF342BA75}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Captain Fortune" ID="{3100FA01-3E11-464B-A3A6-19035BA2A35C}">
+											<Language>SFX</Language>
+											<AudioFile>Captain Fortune.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="805741293"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<TransitionList>
+										<MusicTransition Name="Root" ID="{AE1EA65E-E824-40BA-A2AF-20F1C6767D9F}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</TransitionList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{89E99C54-137F-471D-B23E-A0357B49E856}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="Captain Fortune" ID="{7C97E2B8-3BB1-42EB-834B-7FFD358BC643}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="91476.9791666667"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="Captain Fortune" ID="{3100FA01-3E11-464B-A3A6-19035BA2A35C}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+							</ChildrenList>
+							<ObjectLists>
+								<ObjectList Name="Cues">
+									<Reference>
+										<Local>
+											<MusicCue Name="Entry Cue" ID="{9BB3EECB-1E77-4126-8364-86EE5A141642}"/>
+										</Local>
+									</Reference>
+									<Reference>
+										<Local>
+											<MusicCue Name="Exit Cue" ID="{35B92552-D643-4D44-8770-106C401D8617}">
+												<PropertyList>
+													<Property Name="CueType" Type="int16" Value="1"/>
+													<Property Name="TimeMs" Type="Real64" Value="91476.9791666667"/>
+												</PropertyList>
+											</MusicCue>
+										</Local>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
+						</MusicSegment>
+					</ChildrenList>
+					<TransitionList>
+						<MusicTransition Name="Root" ID="{02B06B20-6AC3-49B4-A10D-7693CDD277A4}">
+							<PropertyList>
+								<Property Name="IsFolder" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<MusicTransition Name="Transition" ID="{62870277-5232-4C06-A656-CBF55C2C826A}">
+									<TransitionInfo/>
+								</MusicTransition>
+							</ChildrenList>
+							<TransitionInfo/>
+						</MusicTransition>
+					</TransitionList>
+					<ObjectLists/>
+					<Playlist>
+						<MusicPlaylistItem Name="" ID="{CFC2B79D-E536-4C65-BB26-4A5EBB16904F}" ShortID="824802292">
+							<ChildrenList>
+								<MusicPlaylistItem Name="" ID="{F04975F4-C21C-4C7B-8CE3-AEF0A4B4DB5F}" ShortID="682578368">
+									<PropertyList>
+										<Property Name="LoopCount" Type="int16" Value="0"/>
+										<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+									</PropertyList>
+									<SegmentRef Name="Captain Fortune" ID="{1C5CF014-168A-43B7-8F58-28C30EDF6E8B}"/>
+								</MusicPlaylistItem>
+							</ChildrenList>
+						</MusicPlaylistItem>
+					</Playlist>
+				</MusicPlaylistContainer>
+			</ChildrenList>
+		</WorkUnit>
 	</InteractiveMusic>
 </WwiseDocument>

@@ -3,8 +3,8 @@
         </a><h2 class="location"></h2>
     </nav>
     <nav class="sidebar"><a class="sidebar-logo" href="../rrise/index.html"><div class="logo-container"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></div>
-        </a><h2 class="location"><a href="#">Crate rrise</a></h2><div class="sidebar-elems"><div class="block"><ul><li class="version">Version 0.1.6</li><li><a id="all-types" href="all.html">All Items</a></li></div></ul><section><div class="block"><ul><li><a href="#modules">Modules</a></li><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#constants">Constants</a></li><li><a href="#types">Type Definitions</a></li></ul></div></section><div id="sidebar-vars" data-name="rrise" data-ty="mod" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../rrise/index.html"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
-    <h1 class="fqn"><span class="in-band">Crate <a class="mod" href="#">rrise</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../src/rrise/rrise.rs.html#5-255">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="rrise"><a href="#rrise">Rrise</a></h2>
+        </a><h2 class="location"><a href="#">Crate rrise</a></h2><div class="sidebar-elems"><div class="block"><ul><li class="version">Version 0.1.7</li><li><a id="all-types" href="all.html">All Items</a></li></div></ul><section><div class="block"><ul><li><a href="#modules">Modules</a></li><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#constants">Constants</a></li><li><a href="#types">Type Definitions</a></li></ul></div></section><div id="sidebar-vars" data-name="rrise" data-ty="mod" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../rrise/index.html"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
+    <h1 class="fqn"><span class="in-band">Crate <a class="mod" href="#">rrise</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../src/rrise/rrise.rs.html#5-256">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="rrise"><a href="#rrise">Rrise</a></h2>
 <p><a href="https://crates.io/crates/rrise"><img src="https://img.shields.io/crates/v/rrise.svg" alt="Crates.io" /></a>
 <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT%2FApache-blue.svg" alt="MIT/Apache 2.0" /></a>
 <a href="https://crates.io/crates/rrise"><img src="https://img.shields.io/crates/d/rrise.svg" alt="Crates.io" /></a></p>
@@ -21,17 +21,21 @@ or architectural choices, please reach out to improve the crate!</p>
 <h3 id="capabilities"><a href="#capabilities">Capabilities</a></h3>
 <ul>
 <li>Build &amp; run on Windows 10+</li>
-<li>Build &amp; run on WSL/Linux (on distros where Wwise is supported)</li>
+<li>Build &amp; run on WSL<sup id="fnref1"><a href="#fn1">1</a></sup>/Linux (on distros where Wwise is supported)</li>
 <li>(AD)PCM, Vorbis &amp; Opus playback</li>
-<li>Initialize/Update/Terminate a sound engine</li>
+<li>Initialize/Update/Terminate sound &amp; music engines</li>
 <li>Post simple events (no callback/external source support yet)</li>
 <li>Set source position</li>
 <li>RTPCs, switches, states and triggers</li>
 <li>Default streaming manager leveraging Wwise’s sample streaming manager</li>
 <li>Profiling from the Wwise authoring tool</li>
+<li>Dynamic &amp; static linking of Wwise plugins through cargo features</li>
+</ul>
+<h4 id="examples"><a href="#examples">Examples</a></h4>
+<ul>
 <li>Minimal example showcasing how to initialize the sound engine, start a moving source and terminate it</li>
 <li>Doppler effect example showcasing RTPCs</li>
-<li>Dynamic &amp; static linking of Wwise plugins through cargo features</li>
+<li>Music engine example with frequency visualizer</li>
 </ul>
 <h4 id="logging"><a href="#logging">Logging</a></h4>
 <p>Rrise uses the <a href="https://docs.rs/log/latest/log/index.html">log</a> crate for all its logging needs. Refer to <code>log</code>’s 
@@ -91,11 +95,11 @@ to <code>AkInitSettings::with_plugin_dll_path</code> contains spaces, the DLLs i
 <li>Wwise SDK (C++)</li>
 </ul>
 </li>
-<li><strong>On Windows: <code>MSVC</code></strong><sup id="fnref1"><a href="#fn1">1</a></sup>
+<li><strong>On Windows: <code>MSVC</code></strong><sup id="fnref2"><a href="#fn2">2</a></sup>
 <ul>
 <li>Windows 10 SDK</li>
 <li>Build tools (same as Rust, for the <code>cc</code> crate)</li>
-<li><code>cl.exe</code> must be in the PATH<sup id="fnref2"><a href="#fn2">2</a></sup></li>
+<li><code>cl.exe</code> must be in the PATH<sup id="fnref3"><a href="#fn3">3</a></sup></li>
 <li>Wwise support for any Visual Studio 20XX deployment platform</li>
 <li>Make sure the <code>WWISESDK</code> environment variable is set to the SDK folder of your Wwise installation</li>
 </ul>
@@ -103,7 +107,7 @@ to <code>AkInitSettings::with_plugin_dll_path</code> contains spaces, the DLLs i
 <li><strong>On Linux: <code>clang</code></strong>
 <ul>
 <li><code>g++</code> (for <code>libstdc++</code>)</li>
-<li>Copy the SDK folder from a Windows<sup id="fnref3"><a href="#fn3">3</a></sup> install of Wwise on your Linux workstation (for instance in /opt/wwise)
+<li>Copy the SDK folder from a Windows<sup id="fnref4"><a href="#fn4">4</a></sup> install of Wwise on your Linux workstation (for instance in /opt/wwise)
 <ul>
 <li>Make sure the <code>WWISESDK</code> environment variable is set to that folder</li>
 </ul>
@@ -122,13 +126,13 @@ to <code>AkInitSettings::with_plugin_dll_path</code> contains spaces, the DLLs i
 <p>This project is in no way affiliated to Audiokinetic.</p>
 <p>You still need a licensed version of Wwise installed to compile and run this project. You need a valid Wwise license 
 to distribute any project based on this crate.</p>
-<div class="footnotes"><hr><ol><li id="fn1"><p>Not tested on other compilers like MinGW or Clang&nbsp;<a href="#fnref1">↩</a></p></li><li id="fn2"><p>Current limitation of the build script. I want to improve MSVC path discovery in the future to remove this 
-requirement.&nbsp;<a href="#fnref2">↩</a></p></li><li id="fn3"><p>AudioKinetic doesn’t provide direct downloads to their SDK: you can only install it through their launcher. 
+<div class="footnotes"><hr><ol><li id="fn1"><p>WSL2 on Windows 11 is required to run the <code>bevy_music_visualizer</code> example&nbsp;<a href="#fnref1">↩</a></p></li><li id="fn2"><p>Not tested on other compilers like MinGW or Clang&nbsp;<a href="#fnref2">↩</a></p></li><li id="fn3"><p>Current limitation of the build script. I want to improve MSVC path discovery in the future to remove this 
+requirement.&nbsp;<a href="#fnref3">↩</a></p></li><li id="fn4"><p>AudioKinetic doesn’t provide direct downloads to their SDK: you can only install it through their launcher. 
 However, this launcher being only available on Windows and MacOS, you’ll need to install it on a VM or similar before 
-you can work with this crate on Linux.&nbsp;<a href="#fnref3">↩</a></p></li></ol></div></div></details><h2 id="modules" class="small-section-header"><a href="#modules">Modules</a></h2>
+you can work with this crate on Linux.&nbsp;<a href="#fnref4">↩</a></p></li></ol></div></div></details><h2 id="modules" class="small-section-header"><a href="#modules">Modules</a></h2>
 <div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="mod" href="communication/index.html" title="rrise::communication mod">communication</a></div><div class="item-right docblock-short"><p>Handles profiling communications.</p>
 </div></div><div class="item-row"><div class="item-left module-item"><a class="mod" href="game_syncs/index.html" title="rrise::game_syncs mod">game_syncs</a></div><div class="item-right docblock-short"><p>Everything related to RTPC, Switch, States and Triggers.</p>
-</div></div><div class="item-row"><div class="item-left module-item"><a class="mod" href="memory_mgr/index.html" title="rrise::memory_mgr mod">memory_mgr</a></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left module-item"><a class="mod" href="query_params/index.html" title="rrise::query_params mod">query_params</a></div><div class="item-right docblock-short"><p>The sound engine parameter query interface.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="mod" href="memory_mgr/index.html" title="rrise::memory_mgr mod">memory_mgr</a></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left module-item"><a class="mod" href="music_engine/index.html" title="rrise::music_engine mod">music_engine</a></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left module-item"><a class="mod" href="query_params/index.html" title="rrise::query_params mod">query_params</a></div><div class="item-right docblock-short"><p>The sound engine parameter query interface.</p>
 </div></div><div class="item-row"><div class="item-left module-item"><a class="mod" href="settings/index.html" title="rrise::settings mod">settings</a></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left module-item"><a class="mod" href="sound_engine/index.html" title="rrise::sound_engine mod">sound_engine</a></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left module-item"><a class="mod" href="stream_mgr/index.html" title="rrise::stream_mgr mod">stream_mgr</a></div><div class="item-right docblock-short"></div></div></div><h2 id="structs" class="small-section-header"><a href="#structs">Structs</a></h2>
 <div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.AkTransform.html" title="rrise::AkTransform struct">AkTransform</a></div><div class="item-right docblock-short"><p>Position and orientation of game objects.</p>
 </div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.AkVector.html" title="rrise::AkVector struct">AkVector</a></div><div class="item-right docblock-short"><p>3D vector.</p>

@@ -10,6 +10,9 @@ readme = "README.md"
 keywords = ["library", "sound", "3D", "wwise"]
 categories = ["multimedia", "game-development"]
 license-file = "LICENSE"
+exclude = [
+    "/examples/WwiseProject/Originals",
+]
 
 [dependencies]
 ctrlc = { version = "3.2.1", optional = true }

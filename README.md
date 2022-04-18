@@ -90,7 +90,6 @@ force a rerun of Rrise's build script. You can also force a full rebuild with `c
 --features=The,Plugin,List`. 
 
 ### Known issues & limitations
-- `wwconfig` cfg flag doesn't seem to be forwarded to the build scripts?
 - If you dynamically link Wwise effect plugins (default behavior), there is an issue on Windows where if the path given
 to `AkInitSettings::with_plugin_dll_path` contains spaces, the DLLs in that folder won't be discoverable by Wwise.
 - On Linux, when connecting the profiler, you will get those messages in the console (they seem totally harmless):

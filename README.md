@@ -20,17 +20,22 @@ Pull requests are more than welcome: **they are encouraged**!
 
 ## Capabilities
 - Build & run on Windows 10+
-- Build & run on WSL/Linux (on distros where Wwise is supported)
+- Build & run on WSL[^0]/Linux (on distros where Wwise is supported)
 - (AD)PCM, Vorbis & Opus playback
-- Initialize/Update/Terminate a sound engine
+- Initialize/Update/Terminate sound & music engines
 - Post simple events (no callback/external source support yet)
 - Set source position
 - RTPCs, switches, states and triggers
 - Default streaming manager leveraging Wwise's sample streaming manager
 - Profiling from the Wwise authoring tool
+- Dynamic & static linking of Wwise plugins through cargo features
+
+[^0]: WSL2 on Windows 11 is required to run the `bevy_music_visualizer` example
+
+### Examples
 - Minimal example showcasing how to initialize the sound engine, start a moving source and terminate it
 - Doppler effect example showcasing RTPCs
-- Dynamic & static linking of Wwise plugins through cargo features
+- Music engine example with frequency visualizer
 
 ### Logging
 Rrise uses the [log](https://docs.rs/log/latest/log/index.html) crate for all its logging needs. Refer to `log`'s 

@@ -6,9 +6,9 @@
 pub use crate::bindings::root::AkCommSettings;
 #[cfg(not(wwrelease))]
 use crate::bindings::root::AK::Comm;
-use crate::bindings::root::AK::{MemoryMgr, SoundEngine, StreamMgr};
+use crate::bindings::root::AK::{MemoryMgr, MusicEngine, SoundEngine, StreamMgr};
 pub use crate::bindings::root::{
-    AkDeviceSettings, AkMemSettings, AkPlatformInitSettings, AkStreamMgrSettings,
+    AkDeviceSettings, AkMemSettings, AkMusicSettings, AkPlatformInitSettings, AkStreamMgrSettings,
 };
 use crate::to_os_char;
 use crate::OsChar;
@@ -28,6 +28,17 @@ impl Default for AkMemSettings {
         unsafe {
             let mut ss: AkMemSettings = std::mem::zeroed();
             MemoryMgr::GetDefaultSettings(&mut ss);
+            ss
+        }
+    }
+}
+
+impl Default for AkMusicSettings {
+    /// Get the default values of the initialization settings of the music engine.
+    fn default() -> Self {
+        unsafe {
+            let mut ss: AkMusicSettings = std::mem::zeroed();
+            MusicEngine::GetDefaultInitSettings(&mut ss);
             ss
         }
     }

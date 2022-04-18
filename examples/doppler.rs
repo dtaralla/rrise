@@ -133,6 +133,10 @@ fn init_sound_engine() -> Result<(), AkResult> {
     // init soundengine
     sound_engine::init(setup_example_dll_path(), AkPlatformInitSettings::default())?;
 
+    // no need for music engine
+
+    // no need for spatial
+
     // init comms
     #[cfg(not(wwrelease))]
     communication::init(AkCommSettings::default())?;

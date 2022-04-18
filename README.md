@@ -37,6 +37,12 @@ Pull requests are more than welcome: **they are encouraged**!
 - Doppler effect example showcasing RTPCs
 - Music engine example with frequency visualizer
 
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=W_GUGTm2BcA" title="Music engine example with frequency visualizer" rel="noreferrer noopener" target="_blank">
+    <img src="images/bevy_music_visualizer.png" alt="Bevy visualizer in video (click to play)" style="max-width: 100%;" />
+  </a>
+</p>
+
 ### Logging
 Rrise uses the [log](https://docs.rs/log/latest/log/index.html) crate for all its logging needs. Refer to `log`'s 
 docs for how to use it.

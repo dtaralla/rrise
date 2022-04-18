@@ -12,6 +12,7 @@ categories = ["multimedia", "game-development"]
 license-file = "LICENSE"
 exclude = [
     "/examples/WwiseProject/Originals",
+    "/videos",
 ]
 
 [dependencies]

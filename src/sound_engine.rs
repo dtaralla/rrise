@@ -8,6 +8,7 @@ use crate::{
     *,
 };
 use ::std::convert::TryInto;
+use ::std::ffi::CStr;
 use ::std::fmt::Debug;
 use ::std::marker::PhantomData;
 
@@ -290,13 +291,11 @@ pub fn load_bank_by_name<T: AsRef<str>>(name: T) -> Result<AkBankID, AkResult> {
 /// *See also*
 /// > - [render_audio]
 /// > - [get_source_play_position]
-pub struct PostEvent<'a> {
+pub struct PostEvent<'a /*, T*/> {
     game_obj_id: AkGameObjectID,
     event_id: AkID<'a>,
     flags: AkCallbackType,
-    // callback: Option<Box<dyn Fn(AkCallbackType, CallbackInfo)>>, // TODO
-    // cookie: Option<Cookie>,                                      // TODO
-    // external_sources: Vec<...>                                   // TODO
+    // external_sources: Vec<...>  // TODO
     playing_id: AkPlayingID,
     marker: PhantomData<&'a u8>,
 }
@@ -308,8 +307,6 @@ impl<'a> PostEvent<'a> {
             game_obj_id,
             event_id: event_id.into(),
             flags: AkCallbackType(0),
-            // callback: None,
-            // cookie: None,
             // external_sources: ...,
             playing_id: AK_INVALID_PLAYING_ID,
             marker: PhantomData,
@@ -317,12 +314,16 @@ impl<'a> PostEvent<'a> {
     }
 
     /// Add flags before posting. Bitmask: see [AkCallbackType].
+    ///
+    /// *See also* [post_with_callback](Self::post_with_callback)
     pub fn add_flags(&mut self, flags: AkCallbackType) -> &mut Self {
         self.flags |= flags;
         self
     }
 
     /// Set flags before posting. Bitmask: see [AkCallbackType]
+    ///
+    /// *See also* [post_with_callback](Self::post_with_callback)
     pub fn flags(&mut self, flags: AkCallbackType) -> &mut Self {
         self.flags = flags;
         self
@@ -345,8 +346,8 @@ impl<'a> PostEvent<'a> {
                         cname.as_ptr(),
                         self.game_obj_id,
                         self.flags.0 as u32,
-                        None,                   // TODO
-                        ::std::ptr::null_mut(), // TODO
+                        None,
+                        ::std::ptr::null_mut(),
                         0,                      // TODO
                         ::std::ptr::null_mut(), // TODO
                         self.playing_id,
@@ -364,8 +365,8 @@ impl<'a> PostEvent<'a> {
                     id,
                     self.game_obj_id,
                     self.flags.0 as u32,
-                    None,                   // TODO
-                    ::std::ptr::null_mut(), // TODO
+                    None,
+                    ::std::ptr::null_mut(),
                     0,                      // TODO
                     ::std::ptr::null_mut(), // TODO
                     self.playing_id,
@@ -378,6 +379,210 @@ impl<'a> PostEvent<'a> {
             }
         } else {
             panic!("need at least an event ID or and an event name to post")
+        }
+    }
+
+    /// Posts the event to the sound engine, calling `callback` according to [flags](Self::flags).
+    ///
+    /// `callback` can be a function or a closure.
+    ///
+    /// **⚡ ATTENTION ⚡**
+    ///
+    /// `callback` will be called on the audio thread, **not** on the current thread where you called
+    /// this. This means your closure or function must access shared state in a thread-safe way.
+    ///
+    /// This also means the closure or function must not be long to return, or audio might sutter as
+    /// it prevents the audio thread from processing buffers.
+    pub fn post_with_callback<F>(&self, callback: F) -> Result<AkPlayingID, AkResult>
+    where
+        F: FnMut(crate::AkCallbackInfo) + 'static,
+    {
+        // see http://blog.sagetheprogrammer.com/neat-rust-tricks-passing-rust-closures-to-c
+        let data = Box::into_raw(Box::new(callback));
+
+        if let AkID::Name(name) = self.event_id {
+            let ak_playing_id = unsafe {
+                with_cstring![name => cname {
+                    PostEvent2(
+                        cname.as_ptr(),
+                        self.game_obj_id,
+                        (self.flags | AkCallbackType::AK_EndOfEvent).0 as u32,
+                        Some(Self::call_callback_as_closure::<F>),
+                        data as *mut _,
+                        0,                      // TODO
+                        ::std::ptr::null_mut(), // TODO
+                        self.playing_id,
+                    )
+                }]
+            };
+            if ak_playing_id == AK_INVALID_PLAYING_ID {
+                Err(AkResult::AK_Fail)
+            } else {
+                Ok(ak_playing_id)
+            }
+        } else if let AkID::ID(id) = self.event_id {
+            let ak_playing_id = unsafe {
+                PostEvent(
+                    id,
+                    self.game_obj_id,
+                    (self.flags | AkCallbackType::AK_EndOfEvent).0 as u32,
+                    Some(Self::call_callback_as_closure::<F>),
+                    data as *mut _,
+                    0,                      // TODO
+                    ::std::ptr::null_mut(), // TODO
+                    self.playing_id,
+                )
+            };
+            if ak_playing_id == AK_INVALID_PLAYING_ID {
+                Err(AkResult::AK_Fail)
+            } else {
+                Ok(ak_playing_id)
+            }
+        } else {
+            panic!("need at least an event ID or and an event name to post")
+        }
+    }
+
+    unsafe extern "C" fn call_callback_as_closure<F>(
+        cb_type: AkCallbackType,
+        cb_info: *mut bindings::root::AkCallbackInfo,
+    ) where
+        F: FnMut(crate::AkCallbackInfo),
+    {
+        // see http://blog.sagetheprogrammer.com/neat-rust-tricks-passing-rust-closures-to-c
+
+        // TODO: do all this + callback(wrapped_cb_type) on the main thread, for ex. in render_audio?
+        // TODO: behind a feature enabled by default? If disabled, just do this on the audio thread
+        // TODO: and let user implement callback sync in their own way
+
+        let callback_ptr: *mut F;
+        let wrapped_cb_type: crate::AkCallbackInfo;
+        if cb_type.contains(AkCallbackType::AK_MusicSyncAll) {
+            let cb_info = *(cb_info as *mut AkMusicSyncCallbackInfo);
+            callback_ptr = cb_info._base.pCookie as *mut F;
+            wrapped_cb_type = crate::AkCallbackInfo::MusicSync {
+                game_obj_id: cb_info._base.gameObjID,
+                playing_id: cb_info.playingID,
+                segment_info: cb_info.segmentInfo,
+                music_sync_type: cb_info.musicSyncType,
+
+                user_cue_name: if cb_info.pszUserCueName.is_null() {
+                    "".to_string()
+                } else {
+                    // Safety
+                    // pszUserCueName will be valid until to_string(), which will copy the bytes from
+                    // pszUserCueName onto the Rust-managed heap
+                    CStr::from_ptr(cb_info.pszUserCueName as *const ::std::os::raw::c_char)
+                        .to_str()
+                        .unwrap()
+                        .to_string()
+                },
+            };
+        } else if cb_type.contains(AkCallbackType::AK_EndOfDynamicSequenceItem) {
+            let cb_info = *(cb_info as *mut AkDynamicSequenceItemCallbackInfo);
+            callback_ptr = cb_info._base.pCookie as *mut F;
+            wrapped_cb_type = crate::AkCallbackInfo::DynamicSequenceItem {
+                game_obj_id: cb_info._base.gameObjID,
+                playing_id: cb_info.playingID,
+                audio_node_id: cb_info.audioNodeID,
+            };
+        } else if cb_type.contains(
+            AkCallbackType::AK_EndOfEvent
+                | AkCallbackType::AK_MusicPlayStarted
+                | AkCallbackType::AK_Starvation,
+        ) {
+            let cb_info = *(cb_info as *mut AkEventCallbackInfo);
+            callback_ptr = cb_info._base.pCookie as *mut F;
+            wrapped_cb_type = crate::AkCallbackInfo::Event {
+                game_obj_id: cb_info._base.gameObjID,
+                playing_id: cb_info.playingID,
+                event_id: cb_info.eventID,
+            };
+        } else if cb_type.contains(AkCallbackType::AK_Duration) {
+            let cb_info = *(cb_info as *mut AkDurationCallbackInfo);
+            callback_ptr = cb_info._base._base.pCookie as *mut F;
+            wrapped_cb_type = crate::AkCallbackInfo::Duration {
+                game_obj_id: cb_info._base._base.gameObjID,
+                playing_id: cb_info._base.playingID,
+                event_id: cb_info._base.eventID,
+                duration: cb_info.fDuration,
+                estimated_duration: cb_info.fEstimatedDuration,
+                audio_node_id: cb_info.audioNodeID,
+                media_id: cb_info.mediaID,
+                streaming: cb_info.bStreaming,
+            };
+        } else if cb_type.contains(AkCallbackType::AK_Marker) {
+            let cb_info = *(cb_info as *mut AkMarkerCallbackInfo);
+            callback_ptr = cb_info._base._base.pCookie as *mut F;
+            wrapped_cb_type = crate::AkCallbackInfo::Marker {
+                game_obj_id: cb_info._base._base.gameObjID,
+                playing_id: cb_info._base.playingID,
+                event_id: cb_info._base.eventID,
+                identifier: cb_info.uIdentifier,
+                position: cb_info.uPosition,
+                label: if cb_info.strLabel.is_null() {
+                    "".to_string()
+                } else {
+                    // Safety
+                    // strLabel will be valid until to_string(), which will copy the bytes from
+                    // strLabel onto the Rust-managed heap
+                    CStr::from_ptr(cb_info.strLabel)
+                        .to_str()
+                        .unwrap()
+                        .to_string()
+                },
+            }
+        } else if cb_type.contains(AkCallbackType::AK_MIDIEvent) {
+            let cb_info = *(cb_info as *mut AkMIDIEventCallbackInfo);
+            callback_ptr = cb_info._base._base.pCookie as *mut F;
+            wrapped_cb_type = crate::AkCallbackInfo::Midi {
+                game_obj_id: cb_info._base._base.gameObjID,
+                playing_id: cb_info._base.playingID,
+                event_id: cb_info._base.eventID,
+                midi_event: cb_info.midiEvent.into(),
+            }
+        } else if cb_type.contains(AkCallbackType::AK_MusicPlaylistSelect) {
+            let cb_info = *(cb_info as *mut AkMusicPlaylistCallbackInfo);
+            callback_ptr = cb_info._base._base.pCookie as *mut F;
+            wrapped_cb_type = crate::AkCallbackInfo::MusicPlaylist {
+                game_obj_id: cb_info._base._base.gameObjID,
+                playing_id: cb_info._base.playingID,
+                event_id: cb_info._base.eventID,
+                playlist_id: cb_info.playlistID,
+                num_playlist_items: cb_info.uNumPlaylistItems,
+                playlist_selection: cb_info.uPlaylistSelection,
+                playlist_item_done: cb_info.uPlaylistItemDone,
+            }
+        } else if cb_type.contains(AkCallbackType::AK_SpeakerVolumeMatrix) {
+            let cb_info = *(cb_info as *mut AkSpeakerVolumeMatrixCallbackInfo);
+            callback_ptr = cb_info._base._base.pCookie as *mut F;
+            wrapped_cb_type = crate::AkCallbackInfo::SpeakerMatrixVolume {
+                game_obj_id: cb_info._base._base.gameObjID,
+                playing_id: cb_info._base.playingID,
+                event_id: cb_info._base.eventID,
+                input_config: cb_info.inputConfig,
+                output_config: cb_info.outputConfig,
+            }
+        } else {
+            if !cb_type.contains(AkCallbackType::AK_CallbackBits) {
+                // is it safe to panic here?
+                panic!("Unexpected AkCallbackType encountered: {:?}", cb_type.0);
+            }
+
+            callback_ptr = (*cb_info).pCookie as *mut F;
+            wrapped_cb_type = crate::AkCallbackInfo::Default {
+                game_obj_id: (*cb_info).gameObjID,
+            };
+        }
+        let callback = &mut *callback_ptr;
+
+        // Info needed: is this safe if the callback panics? Should we do something with
+        // catch_unwind? Is this undefined behavior?
+        callback(wrapped_cb_type);
+
+        if cb_type.contains(AkCallbackType::AK_EndOfEvent) {
+            // No more callbacks to process! Cleanup memory
+            Box::from_raw(callback_ptr); // effectively drops callback_ptr
         }
     }
 }

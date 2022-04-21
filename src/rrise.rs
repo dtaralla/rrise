@@ -20,6 +20,7 @@ mod error;
 mod transform;
 
 pub use error::*;
+use std::fmt::{Debug, Display, Formatter};
 pub use transform::*;
 
 /// Acoustic Texture ID
@@ -56,6 +57,8 @@ pub use bindings::root::AkLPFType;
 pub use bindings::root::AkListenerPosition;
 /// Memory pool ID
 pub use bindings::root::AkMemPoolId;
+/// MIDI channel number, usually 0-15.
+pub use bindings::root::AkMidiChannelNo;
 /// Modulator ID
 pub use bindings::root::AkModulatorID;
 /// Audio Output device ID
@@ -102,11 +105,31 @@ pub use bindings::root::AkUniqueID;
 pub use bindings::root::AkVolumeValue;
 
 #[doc(inline)]
+pub use bindings::root::AkReal32;
+#[doc(inline)]
+pub use bindings::root::AkUInt32;
+
+#[doc(inline)]
+pub use bindings::root::AkCallbackType;
+#[doc(inline)]
+pub use bindings::root::AkChannelConfig;
+#[doc(inline)]
 pub use bindings::root::AkCurveInterpolation;
+#[doc(inline)]
+pub use bindings::root::AkSegmentInfo;
 #[doc(inline)]
 pub use bindings::root::AkVector;
 #[doc(inline)]
 pub use bindings::root::AKRESULT as AkResult;
+
+pub use crate::bindings::root::AkMIDIEvent_tCc;
+pub use crate::bindings::root::AkMIDIEvent_tChanAftertouch;
+pub use crate::bindings::root::AkMIDIEvent_tGen;
+pub use crate::bindings::root::AkMIDIEvent_tNoteAftertouch;
+pub use crate::bindings::root::AkMIDIEvent_tNoteOnOff;
+pub use crate::bindings::root::AkMIDIEvent_tPitchBend;
+pub use crate::bindings::root::AkMIDIEvent_tProgramChange;
+pub use crate::bindings::root::AkMIDIEvent_tWwiseCmd;
 
 #[doc(inline)]
 pub use bindings::root::AK_DEFAULT_BANK_IO_PRIORITY;
@@ -253,4 +276,204 @@ macro_rules! ak_call_result {
             error_code => Err(error_code)
         }
     };
+}
+
+#[derive(Debug, Copy, Clone)]
+pub enum AkMIDIEvent {
+    Cc(AkMidiChannelNo, AkMIDIEvent_tCc),
+    ChanAftertouch(AkMidiChannelNo, AkMIDIEvent_tChanAftertouch),
+    Gen(AkMidiChannelNo, AkMIDIEvent_tGen),
+    NoteAftertouch(AkMidiChannelNo, AkMIDIEvent_tNoteAftertouch),
+    NoteOnOff(AkMidiChannelNo, AkMIDIEvent_tNoteOnOff),
+    PitchBend(AkMidiChannelNo, AkMIDIEvent_tPitchBend),
+    ProgramChange(AkMidiChannelNo, AkMIDIEvent_tProgramChange),
+    WwiseCmd(AkMidiChannelNo, AkMIDIEvent_tWwiseCmd),
+}
+
+impl From<bindings::root::AkMIDIEvent> for AkMIDIEvent {
+    fn from(e: bindings::root::AkMIDIEvent) -> Self {
+        unsafe {
+            match e.byType as u32 {
+                bindings::root::AK_MIDI_EVENT_TYPE_NOTE_OFF => {
+                    AkMIDIEvent::NoteOnOff(e.byChan, e.__bindgen_anon_1.NoteOnOff)
+                }
+                bindings::root::AK_MIDI_EVENT_TYPE_NOTE_ON => {
+                    AkMIDIEvent::NoteOnOff(e.byChan, e.__bindgen_anon_1.NoteOnOff)
+                }
+                bindings::root::AK_MIDI_EVENT_TYPE_NOTE_AFTERTOUCH => {
+                    AkMIDIEvent::NoteAftertouch(e.byChan, e.__bindgen_anon_1.NoteAftertouch)
+                }
+                bindings::root::AK_MIDI_EVENT_TYPE_CONTROLLER => {
+                    AkMIDIEvent::Cc(e.byChan, e.__bindgen_anon_1.Cc)
+                }
+                bindings::root::AK_MIDI_EVENT_TYPE_PROGRAM_CHANGE => {
+                    AkMIDIEvent::ProgramChange(e.byChan, e.__bindgen_anon_1.ProgramChange)
+                }
+                bindings::root::AK_MIDI_EVENT_TYPE_CHANNEL_AFTERTOUCH => {
+                    AkMIDIEvent::ChanAftertouch(e.byChan, e.__bindgen_anon_1.ChanAftertouch)
+                }
+                bindings::root::AK_MIDI_EVENT_TYPE_PITCH_BEND => {
+                    AkMIDIEvent::PitchBend(e.byChan, e.__bindgen_anon_1.PitchBend)
+                }
+                bindings::root::AK_MIDI_EVENT_TYPE_WWISE_CMD => {
+                    AkMIDIEvent::WwiseCmd(e.byChan, e.__bindgen_anon_1.WwiseCmd)
+                }
+                _ => AkMIDIEvent::Gen(e.byChan, e.__bindgen_anon_1.Gen),
+            }
+        }
+    }
+}
+
+#[derive(Debug)]
+pub enum AkCallbackInfo {
+    Default {
+        game_obj_id: AkGameObjectID,
+    },
+    MusicSync {
+        game_obj_id: AkGameObjectID,
+        playing_id: AkPlayingID,
+        segment_info: AkSegmentInfo,
+        music_sync_type: AkCallbackType,
+        user_cue_name: String,
+    },
+    #[non_exhaustive]
+    DynamicSequenceItem {
+        game_obj_id: AkGameObjectID,
+        playing_id: AkPlayingID,
+        audio_node_id: AkUniqueID,
+        // TODO: custom_info cookie
+    },
+    Event {
+        game_obj_id: AkGameObjectID,
+        playing_id: AkPlayingID,
+        event_id: AkUniqueID,
+    },
+    Duration {
+        game_obj_id: AkGameObjectID,
+        playing_id: AkPlayingID,
+        event_id: AkUniqueID,
+        duration: AkReal32,
+        estimated_duration: AkReal32,
+        audio_node_id: AkUniqueID,
+        media_id: AkUniqueID,
+        streaming: bool,
+    },
+    Marker {
+        game_obj_id: AkGameObjectID,
+        playing_id: AkPlayingID,
+        event_id: AkUniqueID,
+        identifier: AkUniqueID,
+        position: AkUInt32,
+        label: String,
+    },
+    Midi {
+        game_obj_id: AkGameObjectID,
+        playing_id: AkPlayingID,
+        event_id: AkUniqueID,
+        midi_event: crate::AkMIDIEvent,
+    },
+    MusicPlaylist {
+        game_obj_id: AkGameObjectID,
+        playing_id: AkPlayingID,
+        event_id: AkUniqueID,
+        playlist_id: AkUniqueID,
+        num_playlist_items: AkUInt32,
+        playlist_selection: AkUInt32,
+        playlist_item_done: AkUInt32,
+    },
+    #[non_exhaustive]
+    SpeakerMatrixVolume {
+        game_obj_id: AkGameObjectID,
+        playing_id: AkPlayingID,
+        event_id: AkUniqueID,
+        input_config: AkChannelConfig,
+        output_config: AkChannelConfig,
+        // TODO: volumes
+        // TODO: base_volume
+        // TODO: emitter_listener_volume
+        // TODO: context
+        // TODO: mixer_context
+    },
+    // TODO: BusMetering
+    // TODO: OutputDeviceMetering
+}
+
+impl AkCallbackType {
+    pub fn contains(self, flags: Self) -> bool {
+        (self & flags).0 > Self(0).0
+    }
+}
+
+impl Display for AkCallbackType {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        let mut flags = vec![];
+
+        if self.contains(AkCallbackType::AK_EndOfEvent) {
+            flags.push("AK_EndOfEvent")
+        }
+        if self.contains(AkCallbackType::AK_EndOfDynamicSequenceItem) {
+            flags.push("AK_EndOfDynamicSequenceItem")
+        }
+        if self.contains(AkCallbackType::AK_Marker) {
+            flags.push("AK_Marker")
+        }
+        if self.contains(AkCallbackType::AK_Duration) {
+            flags.push("AK_Duration")
+        }
+        if self.contains(AkCallbackType::AK_SpeakerVolumeMatrix) {
+            flags.push("AK_SpeakerVolumeMatrix")
+        }
+        if self.contains(AkCallbackType::AK_Starvation) {
+            flags.push("AK_Starvation")
+        }
+        if self.contains(AkCallbackType::AK_MusicPlaylistSelect) {
+            flags.push("AK_MusicPlaylistSelect")
+        }
+        if self.contains(AkCallbackType::AK_MusicPlayStarted) {
+            flags.push("AK_MusicPlayStarted")
+        }
+        if self.contains(AkCallbackType::AK_MusicSyncBeat) {
+            flags.push("AK_MusicSyncBeat")
+        }
+        if self.contains(AkCallbackType::AK_MusicSyncBar) {
+            flags.push("AK_MusicSyncBar")
+        }
+        if self.contains(AkCallbackType::AK_MusicSyncEntry) {
+            flags.push("AK_MusicSyncEntry")
+        }
+        if self.contains(AkCallbackType::AK_MusicSyncExit) {
+            flags.push("AK_MusicSyncExit")
+        }
+        if self.contains(AkCallbackType::AK_MusicSyncGrid) {
+            flags.push("AK_MusicSyncGrid")
+        }
+        if self.contains(AkCallbackType::AK_MusicSyncUserCue) {
+            flags.push("AK_MusicSyncUserCue")
+        }
+        if self.contains(AkCallbackType::AK_MusicSyncPoint) {
+            flags.push("AK_MusicSyncPoint")
+        }
+        if self.contains(AkCallbackType::AK_MIDIEvent) {
+            flags.push("AK_MIDIEvent")
+        }
+        if self.contains(AkCallbackType::AK_EnableGetSourcePlayPosition) {
+            flags.push("AK_EnableGetSourcePlayPosition")
+        }
+        if self.contains(AkCallbackType::AK_EnableGetMusicPlayPosition) {
+            flags.push("AK_EnableGetMusicPlayPosition")
+        }
+        if self.contains(AkCallbackType::AK_EnableGetSourceStreamBuffering) {
+            flags.push("AK_EnableGetSourceStreamBuffering")
+        }
+
+        write!(
+            f,
+            "{}",
+            if flags.is_empty() {
+                format!("<UnknownAkCallbackType:{}>", self.0)
+            } else {
+                flags.join(" | ")
+            }
+        )
+    }
 }

@@ -106,7 +106,29 @@ fn setup_audio() -> Result<(), AkResult> {
         panic!("Couldn't load thebank: {}", akr);
     }
 
-    if let Ok(playing_id) = PostEvent::new(THE_GAME_OBJECT, "PlayMeteredMusic").post() {
+    let mut call_count = 0; // Define some state that persists between calls to the callback
+    let on_music_sync = move |cb_info: AkCallbackInfo| {
+        // ! this will execute on the audio thread !
+
+        call_count += 1;
+        println!("on_music_sync was called {} times", call_count);
+
+        if let AkCallbackInfo::MusicSync {
+            game_obj_id,
+            music_sync_type,
+            ..
+        } = cb_info
+        {
+            println!("GameObj: {}, SyncType: {}", game_obj_id, music_sync_type);
+        } else {
+            println!("Not a music sync: {:?}", cb_info);
+        }
+    };
+
+    if let Ok(playing_id) = PostEvent::new(THE_GAME_OBJECT, "PlayMeteredMusic")
+        .flags(AkCallbackType::AK_MusicSyncBeat | AkCallbackType::AK_MusicSyncBar)
+        .post_with_callback(on_music_sync)
+    {
         println!("Successfully started event with playingID {}", playing_id)
     } else {
         panic!("Couldn't post event");

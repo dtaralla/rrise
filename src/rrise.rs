@@ -324,7 +324,7 @@ impl From<bindings::root::AkMIDIEvent> for AkMIDIEvent {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub enum AkCallbackInfo {
     Default {
         game_obj_id: AkGameObjectID,

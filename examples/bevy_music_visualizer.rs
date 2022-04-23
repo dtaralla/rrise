@@ -3,6 +3,7 @@
  */
 
 use bevy::prelude::*;
+use crossbeam_channel::{Receiver, Sender};
 use rrise::query_params::{get_rtpc_value, RtpcValueType};
 use rrise::settings::*;
 use rrise::{sound_engine::*, *};
@@ -36,11 +37,15 @@ fn main() -> Result<(), AkResult> {
                 (String::from("Meters_10"), 0.),
             ],
         })
+        .insert_resource(match crossbeam_channel::unbounded() {
+            (sender, receiver) => CallbackChannel { sender, receiver },
+        })
         .add_startup_system(setup)
         .add_startup_system(setup_audio.chain(error_handler))
         .add_system_to_stage(CoreStage::PreUpdate, audio_metering.chain(error_handler))
         .add_system_to_stage(CoreStage::PostUpdate, audio_rendering.chain(error_handler))
         .add_system(visualize_music)
+        .add_system(process_callbacks)
         .run();
 
     // Terminate Wwise
@@ -60,9 +65,18 @@ fn error_handler(In(result): In<Result<(), AkResult>>) {
 #[derive(Component)]
 struct BandMeter(usize);
 
+#[derive(Component)]
+struct BeatBarText;
+
 type Meter = (String, AkRtpcValue);
 struct Meters {
     meters: [Meter; 11],
+}
+
+#[derive(Clone)]
+struct CallbackChannel {
+    sender: Sender<AkCallbackInfo>,
+    receiver: Receiver<AkCallbackInfo>,
 }
 
 fn audio_metering(mut meters: ResMut<Meters>) -> Result<(), AkResult> {
@@ -89,7 +103,28 @@ fn visualize_music(mut visual_meters: Query<(&mut Transform, &BandMeter)>, meter
     }
 }
 
-fn setup_audio() -> Result<(), AkResult> {
+fn process_callbacks(
+    mut beat_bar_text: Query<&mut Text, With<BeatBarText>>,
+    time: Res<Time>,
+    callback_channel: Res<CallbackChannel>,
+) {
+    let mut beat_bar_text = beat_bar_text.single_mut();
+    while let Ok(cb_info) = callback_channel.receiver.try_recv() {
+        match cb_info {
+            AkCallbackInfo::MusicSync {
+                music_sync_type: AkCallbackType::AK_MusicSyncBar,
+                ..
+            } => beat_bar_text.sections[1].value = format!("{:.1}s", time.seconds_since_startup()),
+            AkCallbackInfo::MusicSync {
+                music_sync_type: AkCallbackType::AK_MusicSyncBeat,
+                ..
+            } => beat_bar_text.sections[4].value = format!("{:.1}s", time.seconds_since_startup()),
+            _ => (),
+        };
+    }
+}
+
+fn setup_audio(callback_channel: Res<CallbackChannel>) -> Result<(), AkResult> {
     // Setup Wwise objects and play music
     register_game_obj(DEFAULT_LISTENER_ID)?;
 
@@ -107,12 +142,21 @@ fn setup_audio() -> Result<(), AkResult> {
     }
 
     let mut call_count = 0; // Define some state that persists between calls to the callback
+    let captured_callback_channel = callback_channel.clone();
     let on_music_sync = move |cb_info: AkCallbackInfo| {
         // ! this will execute on the audio thread !
 
+        // Tell the game thread we received a callback, for safe game code execution related to it
+        captured_callback_channel
+            .sender
+            .try_send(cb_info.clone())
+            .unwrap_or(());
+
+        // Diagnostic message: persisting state can be updated
         call_count += 1;
         println!("on_music_sync was called {} times", call_count);
 
+        // Some more diagnostic messages: describe what was callback was received
         if let AkCallbackInfo::MusicSync {
             game_obj_id,
             music_sync_type,
@@ -141,12 +185,14 @@ fn setup(
     mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
+    asset_server: Res<AssetServer>,
 ) {
-    // Setup camera
+    // Setup cameras
     commands.spawn_bundle(PerspectiveCameraBundle {
         transform: Transform::from_xyz(0., 0., 15.).looking_at(Vec3::default(), Vec3::Y),
         ..default()
     });
+    commands.spawn_bundle(UiCameraBundle::default());
 
     // Setup light
     commands.spawn_bundle(DirectionalLightBundle {
@@ -166,6 +212,68 @@ fn setup(
     spawn_meter(8, "9cdf7c", &mut commands, &mut meshes, &mut materials);
     spawn_meter(9, "c9ee73", &mut commands, &mut meshes, &mut materials);
     spawn_meter(10, "fafa6e", &mut commands, &mut meshes, &mut materials);
+
+    // Setup beat/bar displays
+    let font = asset_server.load("fonts/FiraMono-Medium.ttf");
+    commands
+        .spawn_bundle(TextBundle {
+            style: Style {
+                align_self: AlignSelf::FlexEnd,
+                position_type: PositionType::Absolute,
+                position: Rect {
+                    bottom: Val::Px(8.0),
+                    right: Val::Px(8.0),
+                    ..default()
+                },
+                ..default()
+            },
+            text: Text {
+                alignment: TextAlignment {
+                    horizontal: HorizontalAlign::Right,
+                    ..default()
+                },
+                sections: vec![
+                    TextSection {
+                        value: "Last beat: ".to_string(),
+                        style: TextStyle {
+                            font: font.clone(),
+                            ..default()
+                        },
+                    },
+                    TextSection {
+                        value: "0.0s".to_string(),
+                        style: TextStyle {
+                            font: font.clone(),
+                            ..default()
+                        },
+                    },
+                    TextSection {
+                        value: "\n".to_string(),
+                        style: TextStyle {
+                            font: font.clone(),
+                            ..default()
+                        },
+                    },
+                    TextSection {
+                        value: "Last bar: ".to_string(),
+                        style: TextStyle {
+                            font: font.clone(),
+                            ..default()
+                        },
+                    },
+                    TextSection {
+                        value: "0.0s".to_string(),
+                        style: TextStyle {
+                            font: font.clone(),
+                            ..default()
+                        },
+                    },
+                ],
+                ..default()
+            },
+            ..default()
+        })
+        .insert(BeatBarText);
 }
 
 fn spawn_meter(

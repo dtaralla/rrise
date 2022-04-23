@@ -23,7 +23,7 @@ Pull requests are more than welcome: **they are encouraged**!
 - Build & run on WSL[^0]/Linux (on distros where Wwise is supported)
 - (AD)PCM, Vorbis & Opus playback
 - Initialize/Update/Terminate sound & music engines
-- Post simple events (no callback/external source support yet)
+- Post simple events (with support for callbacks as functions pointers or closures)
 - Set source position
 - RTPCs, switches, states and triggers
 - Default streaming manager leveraging Wwise's sample streaming manager
@@ -35,7 +35,7 @@ Pull requests are more than welcome: **they are encouraged**!
 ### Examples
 - Minimal example showcasing how to initialize the sound engine, start a moving source and terminate it
 - Doppler effect example showcasing RTPCs
-- Music engine example with frequency visualizer
+- Music engine example with frequency visualizer & event callbacks
 
 <p align="center">
   <a href="https://www.youtube.com/watch?v=W_GUGTm2BcA" title="Music engine example with frequency visualizer" rel="noreferrer noopener" target="_blank">
@@ -126,12 +126,11 @@ to `AkInitSettings::with_plugin_dll_path` contains spaces, the DLLs in that fold
 [^2]: Current limitation of the build script. I want to improve MSVC path discovery in the future to remove this 
 requirement.
 
-[^3]: AudioKinetic doesn't provide direct downloads to their SDK: you can only install it through their launcher. 
+[^3]: Audiokinetic doesn't provide direct downloads to their SDK: you can only install it through their launcher. 
 However, this launcher being only available on Windows and MacOS, you'll need to install it on a VM or similar before 
 you can work with this crate on Linux.
 
 ## Short-term roadmap
-- Add callback and user data support for PostEvent
 - Spatial module basic API and example
 - Review/Improve architecture
 

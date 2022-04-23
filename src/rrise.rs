@@ -279,10 +279,15 @@ macro_rules! ak_call_result {
 }
 
 #[derive(Debug, Copy, Clone)]
+/// Description of a MIDI event
 pub enum AkMIDIEvent {
+    /// Controller event
     Cc(AkMidiChannelNo, AkMIDIEvent_tCc),
+    /// Channel after touch event
     ChanAftertouch(AkMidiChannelNo, AkMIDIEvent_tChanAftertouch),
+    /// Generic event (ie, if no other variant apply)
     Gen(AkMidiChannelNo, AkMIDIEvent_tGen),
+    /// Note after touch event
     NoteAftertouch(AkMidiChannelNo, AkMIDIEvent_tNoteAftertouch),
     /// Note became On event
     NoteOn(AkMidiChannelNo, AkMIDIEvent_tNoteOnOff),
@@ -290,7 +295,9 @@ pub enum AkMIDIEvent {
     NoteOff(AkMidiChannelNo, AkMIDIEvent_tNoteOnOff),
     /// Pitch bent event
     PitchBend(AkMidiChannelNo, AkMIDIEvent_tPitchBend),
+    /// Program change event
     ProgramChange(AkMidiChannelNo, AkMIDIEvent_tProgramChange),
+    /// Wwise command event
     WwiseCmd(AkMidiChannelNo, AkMIDIEvent_tWwiseCmd),
 }
 
@@ -415,68 +422,144 @@ impl From<bindings::root::AkMIDIEvent> for AkMIDIEvent {
 }
 
 #[derive(Debug, Clone)]
+/// Callback information used for all notifications sent from Wwise.
 pub enum AkCallbackInfo {
-    Default {
-        game_obj_id: AkGameObjectID,
-    },
+    /// Basic information structure returned for notifications that are not handled by another variant.
+    Default { game_obj_id: AkGameObjectID },
+
+    /// Callback information structure corresponding to [AkCallbackType::AK_MusicSyncEntry],
+    /// [AkCallbackType::AK_MusicSyncBeat], [AkCallbackType::AK_MusicSyncBar],
+    /// [AkCallbackType::AK_MusicSyncExit], [AkCallbackType::AK_MusicSyncGrid],
+    /// [AkCallbackType::AK_MusicSyncPoint] and [AkCallbackType::AK_MusicSyncUserCue].
+    ///
+    /// If you need the Tempo, you can compute it using the `fBeatDuration`:
+    /// Tempo (beats per minute) = 60/`fBeatDuration`
     MusicSync {
         game_obj_id: AkGameObjectID,
+        /// Playing ID of Event, returned by [PostEvent::post()](sound_engine::PostEvent::post)
         playing_id: AkPlayingID,
+        /// Segment information corresponding to the segment triggering this callback
         segment_info: AkSegmentInfo,
+        /// Would be either [AkCallbackType::AK_MusicSyncEntry],
+        /// [AkCallbackType::AK_MusicSyncBeat], [AkCallbackType::AK_MusicSyncBar],
+        /// [AkCallbackType::AK_MusicSyncExit], [AkCallbackType::AK_MusicSyncGrid],
+        /// [AkCallbackType::AK_MusicSyncPoint] or [AkCallbackType::AK_MusicSyncUserCue]
         music_sync_type: AkCallbackType,
+        /// Cue name. Set for notifications [AkCallbackType::AK_MusicSyncUserCue]. Empty if cue has no name.
         user_cue_name: String,
     },
+
     #[non_exhaustive]
+    /// Callback information structure corresponding to [AkCallbackType::AK_EndOfDynamicSequenceItem].
     DynamicSequenceItem {
         game_obj_id: AkGameObjectID,
+        /// Playing ID of Dynamic Sequence, returned by [DynamicSequence::Open()](sound_engine::DynamicSequence::Open)
         playing_id: AkPlayingID,
+        /// Audio Node ID of finished item
         audio_node_id: AkUniqueID,
         // TODO: custom_info cookie
     },
+
+    /// Callback information structure corresponding to [AkCallbackType::AK_EndOfEvent],
+    /// [AkCallbackType::AK_MusicPlayStarted] and [AkCallbackType::AK_Starvation].
     Event {
         game_obj_id: AkGameObjectID,
+        /// Playing ID of Event, returned by [PostEvent::post()](sound_engine::PostEvent::post)
         playing_id: AkPlayingID,
+        /// Unique ID of Event, passed to [PostEvent::new()](sound_engine::PostEvent::new)
         event_id: AkUniqueID,
     },
+
+    /// Callback information structure corresponding to [AkCallbackType::AK_Duration].
     Duration {
         game_obj_id: AkGameObjectID,
+        /// Playing ID of Event, returned by [PostEvent::post()](sound_engine::PostEvent::post)
         playing_id: AkPlayingID,
+        /// Unique ID of Event, passed to [PostEvent::new()](sound_engine::PostEvent::new)
         event_id: AkUniqueID,
+        /// Duration of the sound (unit: milliseconds)
         duration: AkReal32,
+        /// Estimated duration of the sound depending on source settings such as pitch. (unit: milliseconds)
         estimated_duration: AkReal32,
+        /// Audio Node ID of playing item
         audio_node_id: AkUniqueID,
+        /// Media ID of playing item. (corresponds to 'ID' attribute of 'File' element in SoundBank metadata file)
         media_id: AkUniqueID,
+        /// True if source is streaming, false otherwise
         streaming: bool,
     },
+
+    /// Callback information structure corresponding to [AkCallbackType::AK_Marker].
     Marker {
         game_obj_id: AkGameObjectID,
+        /// Playing ID of Event, returned by [PostEvent::post()](sound_engine::PostEvent::post)
         playing_id: AkPlayingID,
+        /// Unique ID of Event, passed to [PostEvent::new()](sound_engine::PostEvent::new)
         event_id: AkUniqueID,
+        /// Cue point identifier
         identifier: AkUniqueID,
+        /// Position in the cue point (unit: sample frames)
         position: AkUInt32,
+        /// Label of the marker, read from the file
         label: String,
     },
+
+    /// Callback information structure corresponding to [AkCallbackType::AK_MIDIEvent].
     Midi {
         game_obj_id: AkGameObjectID,
+        /// Playing ID of Event, returned by [PostEvent::post()](sound_engine::PostEvent::post)
         playing_id: AkPlayingID,
+        /// Unique ID of Event, passed to [PostEvent::new()](sound_engine::PostEvent::new)
         event_id: AkUniqueID,
+        /// MIDI event triggered by event
         midi_event: crate::AkMIDIEvent,
     },
+
+    /// Callback information structure corresponding to [AkCallbackType::AK_MusicPlaylistSelect].
+    ///
+    /// Called when a music playlist container must select its next item to play.
+    /// The members `playlist_selection` and `playlist_item_done` are set by the sound
+    /// engine before the callback function call. They are set to the next item
+    /// selected by the sound engine.
     MusicPlaylist {
         game_obj_id: AkGameObjectID,
+        /// Playing ID of Event, returned by [PostEvent::post()](sound_engine::PostEvent::post)
         playing_id: AkPlayingID,
+        /// Unique ID of Event, passed to [PostEvent::new()](sound_engine::PostEvent::new)
         event_id: AkUniqueID,
+        /// ID of playlist node
         playlist_id: AkUniqueID,
+        /// Number of items in playlist node (may be segments or other playlists)
         num_playlist_items: AkUInt32,
+        /// Selection: set by sound engine
         playlist_selection: AkUInt32,
+        /// Playlist node done: set by sound engine
         playlist_item_done: AkUInt32,
     },
+
     #[non_exhaustive]
+    /// Callback information structure corresponding to [AkCallbackType::AK_SpeakerVolumeMatrix],
+    /// and passed to callbacks registered in [RegisterBusVolumeCallback()] or
+    /// [PostEvent](sound_engine::PostEvent) with [AkCallbackType::AK_SpeakerVolumeMatrix].
+    ///
+    /// These callbacks are called at every audio frame for every connection from an input (voice
+    /// or bus) to an output bus (standard or auxiliary), at the point when an input signal is about to be mixed into a mixing bus, but just before
+    /// having been scaled in accordance to volumes authored in Wwise. The volumes are passed via this structure as pointers because they can be modified
+    /// in the callbacks. They are factored into two linear values ([0..1]): a common base value (pfBaseVolume), that is channel-agnostic and represents
+    /// the collapsed gain of all volume changes in Wwise (sliders, actions, RTPC, attenuations, ...), and a matrix of gains per input/output channel,
+    /// which depends on spatialization. Use the methods of AK::SpeakerVolumes::Matrix, defined in AkCommonDefs.h, to perform operations on them.
+    /// Access each input channel of the volumes matrix with AK::SpeakerVolumes::Matrix::GetChannel(), passing it the input and output channel configuration.
+    /// Then, you may access each element of the output vector using the standard bracket [] operator. See AK::SpeakerVolumes for more details.
+    /// It is crucial that the processing done in the callback be lightweight and non-blocking.
     SpeakerMatrixVolume {
         game_obj_id: AkGameObjectID,
+        /// Playing ID of Event, returned by [PostEvent::post()](sound_engine::PostEvent::post)
         playing_id: AkPlayingID,
+        /// Unique ID of Event, passed to [PostEvent::new()](sound_engine::PostEvent::new)
         event_id: AkUniqueID,
+        /// Channel configuration of the voice/bus
         input_config: AkChannelConfig,
+        /// Channel configuration of the output bus
         output_config: AkChannelConfig,
         // TODO: volumes
         // TODO: base_volume
@@ -489,6 +572,7 @@ pub enum AkCallbackInfo {
 }
 
 impl AkCallbackType {
+    /// Checks whether this bitflag has at least one of the bits in `flags` set.
     pub fn contains(self, flags: Self) -> bool {
         (self & flags).0 > Self(0).0
     }

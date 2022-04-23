@@ -284,10 +284,100 @@ pub enum AkMIDIEvent {
     ChanAftertouch(AkMidiChannelNo, AkMIDIEvent_tChanAftertouch),
     Gen(AkMidiChannelNo, AkMIDIEvent_tGen),
     NoteAftertouch(AkMidiChannelNo, AkMIDIEvent_tNoteAftertouch),
-    NoteOnOff(AkMidiChannelNo, AkMIDIEvent_tNoteOnOff),
+    /// Note became On event
+    NoteOn(AkMidiChannelNo, AkMIDIEvent_tNoteOnOff),
+    /// Note became Off event
+    NoteOff(AkMidiChannelNo, AkMIDIEvent_tNoteOnOff),
+    /// Pitch bent event
     PitchBend(AkMidiChannelNo, AkMIDIEvent_tPitchBend),
     ProgramChange(AkMidiChannelNo, AkMIDIEvent_tProgramChange),
     WwiseCmd(AkMidiChannelNo, AkMIDIEvent_tWwiseCmd),
+}
+
+impl AkMIDIEvent {
+    pub fn is_wwise_cmd(&self) -> bool {
+        matches!(self, Self::WwiseCmd(_, _))
+    }
+
+    pub fn is_wwise_cmd_play(&self) -> bool {
+        match self {
+            Self::WwiseCmd(_, wwise_cmd) => {
+                wwise_cmd.uCmd == bindings::root::AK_MIDI_WWISE_CMD_PLAY as u16
+            }
+            _ => false,
+        }
+    }
+
+    pub fn is_wwise_cmd_pause(&self) -> bool {
+        match self {
+            Self::WwiseCmd(_, wwise_cmd) => {
+                wwise_cmd.uCmd == bindings::root::AK_MIDI_WWISE_CMD_PAUSE as u16
+            }
+            _ => false,
+        }
+    }
+
+    pub fn is_wwise_cmd_stop(&self) -> bool {
+        match self {
+            Self::WwiseCmd(_, wwise_cmd) => {
+                wwise_cmd.uCmd == bindings::root::AK_MIDI_WWISE_CMD_STOP as u16
+            }
+            _ => false,
+        }
+    }
+
+    pub fn is_wwise_cmd_resume(&self) -> bool {
+        match self {
+            Self::WwiseCmd(_, wwise_cmd) => {
+                wwise_cmd.uCmd == bindings::root::AK_MIDI_WWISE_CMD_RESUME as u16
+            }
+            _ => false,
+        }
+    }
+
+    pub fn is_wwise_cmd_seek_ms(&self) -> bool {
+        match self {
+            Self::WwiseCmd(_, wwise_cmd) => {
+                wwise_cmd.uCmd == bindings::root::AK_MIDI_WWISE_CMD_SEEK_MS as u16
+            }
+            _ => false,
+        }
+    }
+
+    pub fn is_wwise_cmd_seek_samples(&self) -> bool {
+        match self {
+            Self::WwiseCmd(_, wwise_cmd) => {
+                wwise_cmd.uCmd == bindings::root::AK_MIDI_WWISE_CMD_SEEK_SAMPLES as u16
+            }
+            _ => false,
+        }
+    }
+
+    pub fn is_wwise_cmd_seek(&self) -> bool {
+        self.is_wwise_cmd_seek_ms() || self.is_wwise_cmd_seek_samples()
+    }
+
+    pub fn is_wwise_cmd_known(&self) -> bool {
+        self.is_wwise_cmd_play()
+            || self.is_wwise_cmd_pause()
+            || self.is_wwise_cmd_resume()
+            || self.is_wwise_cmd_stop()
+            || self.is_wwise_cmd_seek()
+    }
+
+    pub fn is_note_on(&self) -> bool {
+        match self {
+            Self::NoteOn(_, note_on_off) => note_on_off.byVelocity == 0,
+            _ => false,
+        }
+    }
+
+    pub fn is_note_off(&self) -> bool {
+        match self {
+            Self::NoteOff(_, note_on_off) => note_on_off.byVelocity == 0,
+            _ => false,
+        }
+    }
 }
 
 impl From<bindings::root::AkMIDIEvent> for AkMIDIEvent {
@@ -295,10 +385,10 @@ impl From<bindings::root::AkMIDIEvent> for AkMIDIEvent {
         unsafe {
             match e.byType as u32 {
                 bindings::root::AK_MIDI_EVENT_TYPE_NOTE_OFF => {
-                    AkMIDIEvent::NoteOnOff(e.byChan, e.__bindgen_anon_1.NoteOnOff)
+                    AkMIDIEvent::NoteOn(e.byChan, e.__bindgen_anon_1.NoteOnOff)
                 }
                 bindings::root::AK_MIDI_EVENT_TYPE_NOTE_ON => {
-                    AkMIDIEvent::NoteOnOff(e.byChan, e.__bindgen_anon_1.NoteOnOff)
+                    AkMIDIEvent::NoteOff(e.byChan, e.__bindgen_anon_1.NoteOnOff)
                 }
                 bindings::root::AK_MIDI_EVENT_TYPE_NOTE_AFTERTOUCH => {
                     AkMIDIEvent::NoteAftertouch(e.byChan, e.__bindgen_anon_1.NoteAftertouch)

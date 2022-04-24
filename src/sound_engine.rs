@@ -214,6 +214,18 @@ pub fn set_default_listeners(listener_ids: &[AkGameObjectID]) -> Result<(), AkRe
     )]
 }
 
+/// Add a single listener to the default set of listeners. Upon registration, all game objects reference the default listener set, until
+/// a call to [add_listener], [remove_listener], [set_listeners] or [set_game_object_output_bus_volume] is made on that game object.
+pub fn add_default_listener(listener_id: AkGameObjectID) -> Result<(), AkResult> {
+    ak_call_result![AddDefaultListener(listener_id)]
+}
+
+/// Remove a single listener from the default set of listeners. Upon registration, all game objects reference the default listener set, until
+/// a call to [add_listener], [remove_listener], [set_listeners] or [set_game_object_output_bus_volume] is made on that game object.
+pub fn remove_default_listener(listener_id: AkGameObjectID) -> Result<(), AkResult> {
+    ak_call_result![RemoveDefaultListener(listener_id)]
+}
+
 /// Stops the current content playing associated to the specified game object ID.
 ///
 /// If no game object is specified, all sounds will be stopped.

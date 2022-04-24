@@ -127,9 +127,7 @@ fn process_callbacks(
 fn setup_audio(callback_channel: Res<CallbackChannel>) -> Result<(), AkResult> {
     // Setup Wwise objects and play music
     register_game_obj(DEFAULT_LISTENER_ID)?;
-
-    let listeners = vec![DEFAULT_LISTENER_ID];
-    set_default_listeners(&listeners)?;
+    add_default_listener(DEFAULT_LISTENER_ID)?;
 
     register_game_obj(THE_GAME_OBJECT)?;
 

@@ -492,6 +492,7 @@ impl<'a> PostEvent<'a> {
             callback_ptr = cb_info._base.pCookie as *mut F;
             wrapped_cb_type = crate::AkCallbackInfo::Event {
                 game_obj_id: cb_info._base.gameObjID,
+                callback_type: cb_type,
                 playing_id: cb_info.playingID,
                 event_id: cb_info.eventID,
             };
@@ -569,6 +570,7 @@ impl<'a> PostEvent<'a> {
             callback_ptr = (*cb_info).pCookie as *mut F;
             wrapped_cb_type = crate::AkCallbackInfo::Default {
                 game_obj_id: (*cb_info).gameObjID,
+                callback_type: cb_type,
             };
         }
         let callback = &mut *callback_ptr;

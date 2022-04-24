@@ -425,7 +425,10 @@ impl From<bindings::root::AkMIDIEvent> for AkMIDIEvent {
 /// Callback information used for all notifications sent from Wwise.
 pub enum AkCallbackInfo {
     /// Basic information structure returned for notifications that are not handled by another variant.
-    Default { game_obj_id: AkGameObjectID },
+    Default {
+        game_obj_id: AkGameObjectID,
+        callback_type: AkCallbackType,
+    },
 
     /// Callback information structure corresponding to [AkCallbackType::AK_MusicSyncEntry],
     /// [AkCallbackType::AK_MusicSyncBeat], [AkCallbackType::AK_MusicSyncBar],
@@ -464,6 +467,9 @@ pub enum AkCallbackInfo {
     /// [AkCallbackType::AK_MusicPlayStarted] and [AkCallbackType::AK_Starvation].
     Event {
         game_obj_id: AkGameObjectID,
+        /// Would be either [AkCallbackType::AK_EndOfEvent], [AkCallbackType::AK_MusicPlayStarted]
+        /// or [AkCallbackType::AK_Starvation]
+        callback_type: AkCallbackType,
         /// Playing ID of Event, returned by [PostEvent::post()](sound_engine::PostEvent::post)
         playing_id: AkPlayingID,
         /// Unique ID of Event, passed to [PostEvent::new()](sound_engine::PostEvent::new)

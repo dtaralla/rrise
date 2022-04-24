@@ -10,7 +10,6 @@ use crate::{
 use ::std::convert::TryInto;
 use ::std::ffi::CStr;
 use ::std::fmt::Debug;
-use ::std::marker::PhantomData;
 
 macro_rules! link_static_plugin {
     ($feature:ident) => {
@@ -291,13 +290,12 @@ pub fn load_bank_by_name<T: AsRef<str>>(name: T) -> Result<AkBankID, AkResult> {
 /// *See also*
 /// > - [render_audio]
 /// > - [get_source_play_position]
-pub struct PostEvent<'a /*, T*/> {
+pub struct PostEvent<'a> {
     game_obj_id: AkGameObjectID,
     event_id: AkID<'a>,
     flags: AkCallbackType,
     // external_sources: Vec<...>  // TODO
     playing_id: AkPlayingID,
-    marker: PhantomData<&'a u8>,
 }
 
 impl<'a> PostEvent<'a> {
@@ -309,7 +307,6 @@ impl<'a> PostEvent<'a> {
             flags: AkCallbackType(0),
             // external_sources: ...,
             playing_id: AK_INVALID_PLAYING_ID,
-            marker: PhantomData,
         }
     }
 

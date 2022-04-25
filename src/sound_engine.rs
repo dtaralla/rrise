@@ -204,6 +204,35 @@ pub fn register_game_obj(game_object_id: AkGameObjectID) -> Result<(), AkResult>
     ak_call_result![RegisterGameObj(game_object_id)]
 }
 
+/// Registers a game object.
+///
+/// The name is just for monitoring purpose, and is not forwarded to Wwise when the `wwrelease`
+/// cfg flag is on (in that case, calling this has the same effect as calling [register_game_obj()]).
+///
+/// *Return*
+/// > - AK_Success if successful
+/// > - AK_Fail if the specified AkGameObjectID is invalid (0 is an invalid ID)
+///
+/// *Remark* Registering a game object twice does nothing. Unregistering it once unregisters it no
+/// matter how many times it has been registered.
+///
+/// *See also*
+/// > - [register_game_obj]
+/// > - [unregister_game_obj]
+/// > - [unregister_all_game_obj]
+pub fn register_named_game_obj<T: AsRef<str>>(
+    game_object_id: AkGameObjectID,
+    name: T,
+) -> Result<(), AkResult> {
+    #[cfg(wwrelease)]
+    return register_game_obj(game_object_id);
+
+    #[cfg(not(wwrelease))]
+    return with_cstring![name.as_ref() => cname {
+        ak_call_result![RegisterGameObj1(game_object_id, cname.as_ptr())]
+    }];
+}
+
 /// Sets the position of a game object.
 ///
 /// *Warning* `position`'s orientation vectors must be normalized.

@@ -243,6 +243,63 @@ pub fn remove_default_listener(listener_id: AkGameObjectID) -> Result<(), AkResu
     ak_call_result![RemoveDefaultListener(listener_id)]
 }
 
+/// Sets a game object's associated listeners.
+///
+/// All listeners that have previously been added via [add_listener] or set via [set_listeners] will be removed and replaced with the listeners in the array `listener_ids`.
+/// Calling this function will override the default set of listeners and `emitter_id` will now reference its own, unique set of listeners.
+///
+/// *See also*
+/// > - [set_listeners()]
+/// > - [remove_listener()]
+/// > - [add_default_listener()]
+/// > - [remove_default_listener()]
+/// > - [set_default_listeners()]
+pub fn set_listeners(
+    emitter_id: AkGameObjectID,
+    listener_ids: &[AkGameObjectID],
+) -> Result<(), AkResult> {
+    ak_call_result![SetListeners(
+        emitter_id,
+        listener_ids.as_ptr(),
+        listener_ids.len().try_into().unwrap(),
+    )]
+}
+
+/// Add a single listener to a game object's set of associated listeners.
+///
+/// Any listeners that have previously been added or set via [add_listener] or [set_listeners] will remain as listeners and `listener_id` will be added as an additional listener.
+/// Calling this function will override the default set of listeners and `emitter_id` will now reference its own, unique set of listeners.
+///
+/// *See also*
+/// > - [set_listeners()]
+/// > - [remove_listener()]
+/// > - [add_default_listener()]
+/// > - [remove_default_listener()]
+/// > - [set_default_listeners()]
+pub fn add_listener(
+    emitter_id: AkGameObjectID,
+    listener_id: AkGameObjectID,
+) -> Result<(), AkResult> {
+    ak_call_result![AddListener(emitter_id, listener_id)]
+}
+
+/// Remove a single listener from a game object's set of active listeners.
+///
+/// Calling this function will override the default set of listeners and `emitter_id` will now reference its own, unique set of listeners.
+///
+/// *See also*
+/// > - [add_listener()]
+/// > - [set_listeners()]
+/// > - [add_default_listener()]
+/// > - [remove_default_listener()]
+/// > - [set_default_listeners()]
+pub fn remove_listener(
+    emitter_id: AkGameObjectID,
+    listener_id: AkGameObjectID,
+) -> Result<(), AkResult> {
+    ak_call_result![RemoveListener(emitter_id, listener_id)]
+}
+
 /// Stops the current content playing associated to the specified game object ID.
 ///
 /// If no game object is specified, all sounds will be stopped.

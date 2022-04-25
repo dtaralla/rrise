@@ -178,10 +178,27 @@ pub fn unregister_all_game_obj() -> Result<(), AkResult> {
 /// matter how many times it has been registered. Unregistering a game object while it is
 /// in use is allowed, but the control over the parameters of this game object is lost.
 /// For example, say a sound associated with this game object is a 3D moving sound. This sound will
-/// stop moving when the game object is unregistered, and there will be no way to regain control over the game object.
+/// stop moving when the game object is unregistered, and there will be no way to regain control
+/// over the game object.
 ///
 /// *See also*
 /// > - [register_game_obj]
+/// > - [unregister_all_game_obj]
+pub fn unregister_game_obj(game_object_id: AkGameObjectID) -> Result<(), AkResult> {
+    ak_call_result![UnregisterGameObj(game_object_id)]
+}
+
+/// Registers a game object.
+///
+/// *Return*
+/// > - AK_Success if successful
+/// > - AK_Fail if the specified AkGameObjectID is invalid (0 is an invalid ID)
+///
+/// *Remark* Registering a game object twice does nothing. Unregistering it once unregisters it no
+/// matter how many times it has been registered.
+///
+/// *See also*
+/// > - [unregister_game_obj]
 /// > - [unregister_all_game_obj]
 pub fn register_game_obj(game_object_id: AkGameObjectID) -> Result<(), AkResult> {
     ak_call_result![RegisterGameObj(game_object_id)]

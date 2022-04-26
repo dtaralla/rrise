@@ -48,8 +48,8 @@
 <span class="doccomment">/// Any call done in between is potentially unsafe.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// *Return* [AkResult::AK_Success] if the Init was successful, [AkResult::AK_Fail] otherwise.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">init</span>(<span class="kw-2">mut</span> <span class="ident">init_settings</span>: <span class="ident">AkMusicSettings</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">AkResult</span><span class="op">&gt;</span> {
-    <span class="macro">ak_call_result!</span>[<span class="ident">Init</span>(<span class="kw-2">&amp;mut</span> <span class="ident">init_settings</span>)]<span class="question-mark">?</span>;
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">init</span>(<span class="ident">init_settings</span>: <span class="kw-2">&amp;mut</span> <span class="ident">AkMusicSettings</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">AkResult</span><span class="op">&gt;</span> {
+    <span class="macro">ak_call_result!</span>[<span class="ident">Init</span>(<span class="ident">init_settings</span>)]<span class="question-mark">?</span>;
     <span class="prelude-val">Ok</span>(())
 }
 

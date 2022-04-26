@@ -656,6 +656,37 @@
 <span id="651">651</span>
 <span id="652">652</span>
 <span id="653">653</span>
+<span id="654">654</span>
+<span id="655">655</span>
+<span id="656">656</span>
+<span id="657">657</span>
+<span id="658">658</span>
+<span id="659">659</span>
+<span id="660">660</span>
+<span id="661">661</span>
+<span id="662">662</span>
+<span id="663">663</span>
+<span id="664">664</span>
+<span id="665">665</span>
+<span id="666">666</span>
+<span id="667">667</span>
+<span id="668">668</span>
+<span id="669">669</span>
+<span id="670">670</span>
+<span id="671">671</span>
+<span id="672">672</span>
+<span id="673">673</span>
+<span id="674">674</span>
+<span id="675">675</span>
+<span id="676">676</span>
+<span id="677">677</span>
+<span id="678">678</span>
+<span id="679">679</span>
+<span id="680">680</span>
+<span id="681">681</span>
+<span id="682">682</span>
+<span id="683">683</span>
+<span id="684">684</span>
 </pre><pre class="rust"><code><span class="comment">/*
  * Copyright (c) 2022 Contributors to the Rrise project
  */</span>
@@ -711,8 +742,6 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkImageSourceID</span>;
 <span class="doccomment">/// Low-pass filter type</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkLPFType</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkListenerPosition</span>;
 <span class="doccomment">/// Memory pool ID</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkMemPoolId</span>;
 <span class="doccomment">/// MIDI channel number, usually 0-15.</span>
@@ -741,8 +770,6 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkRtpcID</span>;
 <span class="doccomment">/// Real time parameter control value</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkRtpcValue</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkSoundPosition</span>;
 <span class="doccomment">/// State group ID</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkStateGroupID</span>;
 <span class="doccomment">/// State ID</span>
@@ -753,8 +780,6 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkSwitchStateID</span>;
 <span class="doccomment">/// Time in ms</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkTimeMs</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkTransform</span>;
 <span class="doccomment">/// Trigger ID</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkTriggerID</span>;
 <span class="doccomment">/// Unique 32-bit ID</span>
@@ -765,8 +790,13 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkReal32</span>;
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkThreadProperties</span>;
+<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkUInt32</span>;
 
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;linux&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkAudioAPI</span>;
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkCallbackType</span>;
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
@@ -774,7 +804,17 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkCurveInterpolation</span>;
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkListenerPosition</span>;
+<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkOutputSettings</span>;
+<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkPanningRule</span>;
+<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkSegmentInfo</span>;
+<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkSoundPosition</span>;
+<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkTransform</span>;
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkVector</span>;
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
@@ -843,6 +883,15 @@
     <span class="ident">ID</span>(<span class="ident">AkUniqueID</span>),
 }
 
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Display</span> <span class="kw">for</span> <span class="ident">AkID</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
+            <span class="ident"><span class="self">Self</span>::Name</span>(<span class="ident">s</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;{}&quot;</span>, <span class="ident">s</span>),
+            <span class="ident"><span class="self">Self</span>::ID</span>(<span class="ident">id</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;{}&quot;</span>, <span class="ident">id</span>),
+        }
+    }
+}
+
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">AkUniqueID</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">AkID</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">id</span>: <span class="ident">AkUniqueID</span>) -&gt; <span class="self">Self</span> {
         <span class="ident"><span class="self">Self</span>::ID</span>(<span class="ident">id</span>)
@@ -862,7 +911,7 @@
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">type</span> <span class="ident">OsChar</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::bindings::root::AkOSChar</span>;
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">type</span> <span class="ident">OsChar</span> <span class="op">=</span> <span class="ident">bindings::root::AkOSChar</span>;
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="attribute">#[<span class="ident">macro_export</span>]</span>
@@ -1083,7 +1132,10 @@
 <span class="doccomment">/// Callback information used for all notifications sent from Wwise.</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">AkCallbackInfo</span> {
     <span class="doccomment">/// Basic information structure returned for notifications that are not handled by another variant.</span>
-    <span class="ident">Default</span> { <span class="ident">game_obj_id</span>: <span class="ident">AkGameObjectID</span> },
+    <span class="ident">Default</span> {
+        <span class="ident">game_obj_id</span>: <span class="ident">AkGameObjectID</span>,
+        <span class="ident">callback_type</span>: <span class="ident">AkCallbackType</span>,
+    },
 
     <span class="doccomment">/// Callback information structure corresponding to [AkCallbackType::AK_MusicSyncEntry],</span>
     <span class="doccomment">/// [AkCallbackType::AK_MusicSyncBeat], [AkCallbackType::AK_MusicSyncBar],</span>
@@ -1122,6 +1174,9 @@
     <span class="doccomment">/// [AkCallbackType::AK_MusicPlayStarted] and [AkCallbackType::AK_Starvation].</span>
     <span class="ident">Event</span> {
         <span class="ident">game_obj_id</span>: <span class="ident">AkGameObjectID</span>,
+        <span class="doccomment">/// Would be either [AkCallbackType::AK_EndOfEvent], [AkCallbackType::AK_MusicPlayStarted]</span>
+        <span class="doccomment">/// or [AkCallbackType::AK_Starvation]</span>
+        <span class="ident">callback_type</span>: <span class="ident">AkCallbackType</span>,
         <span class="doccomment">/// Playing ID of Event, returned by [PostEvent::post()](sound_engine::PostEvent::post)</span>
         <span class="ident">playing_id</span>: <span class="ident">AkPlayingID</span>,
         <span class="doccomment">/// Unique ID of Event, passed to [PostEvent::new()](sound_engine::PostEvent::new)</span>
@@ -1170,7 +1225,7 @@
         <span class="doccomment">/// Unique ID of Event, passed to [PostEvent::new()](sound_engine::PostEvent::new)</span>
         <span class="ident">event_id</span>: <span class="ident">AkUniqueID</span>,
         <span class="doccomment">/// MIDI event triggered by event</span>
-        <span class="ident">midi_event</span>: <span class="ident"><span class="kw">crate</span>::AkMIDIEvent</span>,
+        <span class="ident">midi_event</span>: <span class="ident">AkMIDIEvent</span>,
     },
 
     <span class="doccomment">/// Callback information structure corresponding to [AkCallbackType::AK_MusicPlaylistSelect].</span>
@@ -1233,6 +1288,13 @@
     <span class="doccomment">/// Checks whether this bitflag has at least one of the bits in `flags` set.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">contains</span>(<span class="self">self</span>, <span class="ident">flags</span>: <span class="self">Self</span>) -&gt; <span class="ident">bool</span> {
         (<span class="self">self</span> <span class="op">&amp;</span> <span class="ident">flags</span>).<span class="number">0</span> <span class="op">&gt;</span> <span class="self">Self</span>(<span class="number">0</span>).<span class="number">0</span>
+    }
+}
+
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::derivable_impls</span>)]</span>
+<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">AkCallbackType</span> {
+    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
+        <span class="self">Self</span>(<span class="number">0</span>)
     }
 }
 

@@ -75,6 +75,7 @@
 <span id="70">70</span>
 <span id="71">71</span>
 <span id="72">72</span>
+<span id="73">73</span>
 </pre><pre class="rust"><code><span class="comment">/*
  * Copyright (c) 2022 Contributors to the Rrise project
  */</span>
@@ -94,8 +95,8 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// *See also*</span>
 <span class="doccomment">/// - [AkStreamMgrSettings::default]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">init</span>(<span class="kw-2">mut</span> <span class="ident">settings</span>: <span class="ident">AkStreamMgrSettings</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">AkResult</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">addr</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">AK::StreamMgr::Create</span>(<span class="kw-2">&amp;mut</span> <span class="ident">settings</span>) };
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">init</span>(<span class="ident">settings</span>: <span class="kw-2">&amp;</span><span class="ident">AkStreamMgrSettings</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">AkResult</span><span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="ident">addr</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">AK::StreamMgr::Create</span>(<span class="ident">settings</span>) };
     <span class="kw">if</span> <span class="ident">addr</span> <span class="op">==</span> <span class="ident">std::ptr::null_mut</span>() {
         <span class="prelude-val">Err</span>(<span class="ident">AkResult::AK_Fail</span>)
     } <span class="kw">else</span> {
@@ -105,13 +106,14 @@
 
 <span class="doccomment">/// Initializes the default streaming manager, specifying the folder in which to find the generated soundbanks when they are loaded.</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">init_default_stream_mgr</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span>(
-    <span class="ident">stream_mgr_settings</span>: <span class="ident">AkStreamMgrSettings</span>,
-    <span class="kw-2">mut</span> <span class="ident">device_settings</span>: <span class="ident">AkDeviceSettings</span>,
+    <span class="ident">stream_mgr_settings</span>: <span class="kw-2">&amp;</span><span class="ident">AkStreamMgrSettings</span>,
+    <span class="ident">device_settings</span>: <span class="kw-2">&amp;mut</span> <span class="ident">AkDeviceSettings</span>,
     <span class="ident">bank_location</span>: <span class="ident">T</span>,
 ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">AkResult</span><span class="op">&gt;</span> {
     <span class="ident">init</span>(<span class="ident">stream_mgr_settings</span>)<span class="question-mark">?</span>;
-    <span class="ident">device_settings</span>.<span class="ident">bUseStreamCache</span> <span class="op">=</span> <span class="bool-val">true</span>;
+    <span class="ident">device_settings</span>.<span class="ident">use_stream_cache</span> <span class="op">=</span> <span class="bool-val">true</span>;
 
+    <span class="kw">let</span> <span class="ident">device_settings</span> <span class="op">=</span> <span class="ident">device_settings</span>.<span class="ident">as_ak</span>();
     <span class="kw">let</span> <span class="ident">pin_bytes</span> <span class="op">=</span> <span class="ident">to_os_char</span>(<span class="kw-2">&amp;</span><span class="ident">bank_location</span>);
     <span class="macro">ak_call_result!</span>[<span class="ident">InitDefaultStreamMgr</span>(<span class="kw-2">&amp;</span><span class="ident">device_settings</span>, <span class="ident">pin_bytes</span>.<span class="ident">as_ptr</span>())]
 }

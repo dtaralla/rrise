@@ -593,6 +593,13 @@ impl AkCallbackType {
     }
 }
 
+#[allow(clippy::derivable_impls)]
+impl Default for AkCallbackType {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+
 impl Display for AkCallbackType {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         let mut flags = vec![];

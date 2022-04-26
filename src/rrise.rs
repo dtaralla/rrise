@@ -185,6 +185,15 @@ pub enum AkID<'a> {
     ID(AkUniqueID),
 }
 
+impl<'a> Display for AkID<'a> {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::Name(s) => write!(f, "{}", s),
+            Self::ID(id) => write!(f, "{}", id),
+        }
+    }
+}
+
 impl<'a> From<AkUniqueID> for AkID<'a> {
     fn from(id: AkUniqueID) -> Self {
         Self::ID(id)

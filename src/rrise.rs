@@ -53,8 +53,6 @@ pub use bindings::root::AkGameObjectID;
 pub use bindings::root::AkImageSourceID;
 /// Low-pass filter type
 pub use bindings::root::AkLPFType;
-#[doc(inline)]
-pub use bindings::root::AkListenerPosition;
 /// Memory pool ID
 pub use bindings::root::AkMemPoolId;
 /// MIDI channel number, usually 0-15.
@@ -83,8 +81,6 @@ pub use bindings::root::AkRayID;
 pub use bindings::root::AkRtpcID;
 /// Real time parameter control value
 pub use bindings::root::AkRtpcValue;
-#[doc(inline)]
-pub use bindings::root::AkSoundPosition;
 /// State group ID
 pub use bindings::root::AkStateGroupID;
 /// State ID
@@ -95,8 +91,6 @@ pub use bindings::root::AkSwitchGroupID;
 pub use bindings::root::AkSwitchStateID;
 /// Time in ms
 pub use bindings::root::AkTimeMs;
-#[doc(inline)]
-pub use bindings::root::AkTransform;
 /// Trigger ID
 pub use bindings::root::AkTriggerID;
 /// Unique 32-bit ID
@@ -107,8 +101,13 @@ pub use bindings::root::AkVolumeValue;
 #[doc(inline)]
 pub use bindings::root::AkReal32;
 #[doc(inline)]
+pub use bindings::root::AkThreadProperties;
+#[doc(inline)]
 pub use bindings::root::AkUInt32;
 
+#[cfg(target_os = "linux")]
+#[doc(inline)]
+pub use bindings::root::AkAudioAPI;
 #[doc(inline)]
 pub use bindings::root::AkCallbackType;
 #[doc(inline)]
@@ -116,7 +115,17 @@ pub use bindings::root::AkChannelConfig;
 #[doc(inline)]
 pub use bindings::root::AkCurveInterpolation;
 #[doc(inline)]
+pub use bindings::root::AkListenerPosition;
+#[doc(inline)]
+pub use bindings::root::AkOutputSettings;
+#[doc(inline)]
+pub use bindings::root::AkPanningRule;
+#[doc(inline)]
 pub use bindings::root::AkSegmentInfo;
+#[doc(inline)]
+pub use bindings::root::AkSoundPosition;
+#[doc(inline)]
+pub use bindings::root::AkTransform;
 #[doc(inline)]
 pub use bindings::root::AkVector;
 #[doc(inline)]
@@ -213,7 +222,7 @@ impl<'a> From<&'a String> for AkID<'a> {
 }
 
 #[doc(hidden)]
-pub(crate) type OsChar = crate::bindings::root::AkOSChar;
+pub(crate) type OsChar = bindings::root::AkOSChar;
 
 #[doc(hidden)]
 #[macro_export]
@@ -527,7 +536,7 @@ pub enum AkCallbackInfo {
         /// Unique ID of Event, passed to [PostEvent::new()](sound_engine::PostEvent::new)
         event_id: AkUniqueID,
         /// MIDI event triggered by event
-        midi_event: crate::AkMIDIEvent,
+        midi_event: AkMIDIEvent,
     },
 
     /// Callback information structure corresponding to [AkCallbackType::AK_MusicPlaylistSelect].

@@ -14,8 +14,8 @@ use crate::{ak_call_result, AkResult};
 /// Any call done in between is potentially unsafe.
 ///
 /// *Return* [AkResult::AK_Success] if the Init was successful, [AkResult::AK_Fail] otherwise.
-pub fn init(mut init_settings: AkMusicSettings) -> Result<(), AkResult> {
-    ak_call_result![Init(&mut init_settings)]?;
+pub fn init(init_settings: &mut AkMusicSettings) -> Result<(), AkResult> {
+    ak_call_result![Init(init_settings)]?;
     Ok(())
 }
 

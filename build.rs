@@ -238,6 +238,7 @@ fn main() -> io::Result<()> {
         .bitfield_enum("AkBusHierarchyFlags")
         .bitfield_enum("AkMeteringFlags")
         .bitfield_enum("AkCallbackType")
+        .bitfield_enum("AkAudioAPILinux")
         .must_use_type("AKRESULT")
         .enable_cxx_namespaces()
         .parse_callbacks(Box::new(bindgen::CargoCallbacks))

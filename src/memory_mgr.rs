@@ -7,8 +7,8 @@ use crate::settings::AkMemSettings;
 use crate::{ak_call_result, AkResult};
 
 /// Initialize the default implementation of the Memory Manager.
-pub fn init(mut settings: AkMemSettings) -> Result<(), AkResult> {
-    ak_call_result![AK::MemoryMgr::Init(&mut settings)]
+pub fn init(settings: &mut AkMemSettings) -> Result<(), AkResult> {
+    ak_call_result![AK::MemoryMgr::Init(settings)]
 }
 
 /// Query whether the Memory Manager has been successfully initialized.

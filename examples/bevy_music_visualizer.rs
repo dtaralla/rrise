@@ -13,12 +13,6 @@ const DEFAULT_LISTENER_ID: AkGameObjectID = 1;
 const THE_GAME_OBJECT: AkGameObjectID = 100;
 
 fn main() -> Result<(), AkResult> {
-    // Initialize Wwise
-    init_sound_engine()?;
-    if !is_initialized() {
-        panic!("Unknown error: the sound engine didn't initialize properly");
-    }
-
     // Run the Bevy app
     App::new()
         .add_plugins(DefaultPlugins)
@@ -40,8 +34,9 @@ fn main() -> Result<(), AkResult> {
         .insert_resource(match crossbeam_channel::unbounded() {
             (sender, receiver) => CallbackChannel { sender, receiver },
         })
+        .add_startup_system(init_sound_engine.chain(error_handler))
+        .add_startup_system_to_stage(StartupStage::PostStartup, setup_audio.chain(error_handler)) // PostStartup so that Bevy Window already initialized
         .add_startup_system(setup)
-        .add_startup_system(setup_audio.chain(error_handler))
         .add_system_to_stage(CoreStage::PreUpdate, audio_metering.chain(error_handler))
         .add_system_to_stage(CoreStage::PostUpdate, audio_rendering.chain(error_handler))
         .add_system(visualize_music)
@@ -261,13 +256,9 @@ fn setup(
                     },
                     TextSection {
                         value: "0.0s".to_string(),
-                        style: TextStyle {
-                            font: font.clone(),
-                            ..default()
-                        },
+                        style: TextStyle { font, ..default() },
                     },
                 ],
-                ..default()
             },
             ..default()
         })
@@ -298,9 +289,10 @@ fn spawn_meter(
         .insert(BandMeter(index));
 }
 
-fn init_sound_engine() -> Result<(), AkResult> {
+#[cfg_attr(target_os = "linux", allow(unused_variables))]
+fn init_sound_engine(windows: Res<Windows>) -> Result<(), AkResult> {
     // init memorymgr
-    memory_mgr::init(AkMemSettings::default())?;
+    memory_mgr::init(&mut AkMemSettings::default())?;
     assert!(memory_mgr::is_initialized());
 
     // init streamingmgr
@@ -309,21 +301,46 @@ fn init_sound_engine() -> Result<(), AkResult> {
     #[cfg(target_os = "linux")]
     let platform = "Linux";
     stream_mgr::init_default_stream_mgr(
-        settings::AkStreamMgrSettings::default(),
-        settings::AkDeviceSettings::default(),
+        &AkStreamMgrSettings::default(),
+        &mut AkDeviceSettings::default(),
         format!("examples/WwiseProject/GeneratedSoundBanks/{}", platform),
     )?;
     stream_mgr::set_current_language("English(US)")?;
 
     // init soundengine
-    sound_engine::init(setup_example_dll_path(), AkPlatformInitSettings::default())?;
+    {
+        let mut platform_settings = AkPlatformInitSettings::default();
+
+        #[cfg(windows)]
+        // Find the Bevy window and register it as owner of the sound engine
+        if let Some(w) = windows.iter().next() {
+            use raw_window_handle::{HasRawWindowHandle, RawWindowHandle};
+
+            platform_settings.h_wnd.store(
+                match unsafe { w.raw_window_handle().get_handle().raw_window_handle() } {
+                    #[cfg(windows)]
+                    RawWindowHandle::Win32(h) => h.hwnd,
+                    other => {
+                        panic!("Unexpected window handle: {:?}", other)
+                    }
+                },
+                std::sync::atomic::Ordering::SeqCst,
+            );
+        }
+
+        sound_engine::init(&mut setup_example_dll_path(), &mut platform_settings)?;
+    }
 
     // init musicengine
-    music_engine::init(settings::AkMusicSettings::default())?;
+    music_engine::init(&mut settings::AkMusicSettings::default())?;
 
     // init comms
     #[cfg(not(wwrelease))]
-    communication::init(AkCommSettings::default())?;
+    communication::init(&AkCommSettings::default())?;
+
+    if !is_initialized() {
+        panic!("Unknown error: the sound engine didn't initialize properly");
+    }
 
     Ok(())
 }

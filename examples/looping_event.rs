@@ -79,7 +79,7 @@ fn main() -> Result<(), AkResult> {
 
 fn init_sound_engine() -> Result<(), AkResult> {
     // init memorymgr
-    memory_mgr::init(AkMemSettings::default())?;
+    memory_mgr::init(&mut AkMemSettings::default())?;
     assert!(memory_mgr::is_initialized());
 
     // init streamingmgr
@@ -88,14 +88,17 @@ fn init_sound_engine() -> Result<(), AkResult> {
     #[cfg(target_os = "linux")]
     let platform = "Linux";
     stream_mgr::init_default_stream_mgr(
-        settings::AkStreamMgrSettings::default(),
-        settings::AkDeviceSettings::default(),
+        &AkStreamMgrSettings::default(),
+        &mut AkDeviceSettings::default(),
         format!("examples/WwiseProject/GeneratedSoundBanks/{}", platform),
     )?;
     stream_mgr::set_current_language("English(US)")?;
 
     // init soundengine
-    sound_engine::init(setup_example_dll_path(), AkPlatformInitSettings::default())?;
+    sound_engine::init(
+        &mut setup_example_dll_path(),
+        &mut AkPlatformInitSettings::default(),
+    )?;
 
     // no need for music engine
 
@@ -103,7 +106,7 @@ fn init_sound_engine() -> Result<(), AkResult> {
 
     // init comms
     #[cfg(not(wwrelease))]
-    communication::init(AkCommSettings::default())?;
+    communication::init(&AkCommSettings::default())?;
 
     Ok(())
 }

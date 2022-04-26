@@ -4,7 +4,7 @@
 
 use crate::{
     bindings::root::{AK::SoundEngine::*, *},
-    settings::AkInitSettings,
+    settings::{AkInitSettings, AkPlatformInitSettings},
     *,
 };
 use ::std::convert::TryInto;
@@ -68,10 +68,12 @@ macro_rules! link_static_plugin {
 /// > - [AkInitSettings::default]
 /// > - [AkPlatformInitSettings::default]
 pub fn init(
-    mut init_settings: AkInitSettings,
-    mut platform_init_settings: AkPlatformInitSettings,
+    init_settings: &mut AkInitSettings,
+    platform_init_settings: &mut AkPlatformInitSettings,
 ) -> Result<(), AkResult> {
-    ak_call_result![Init(init_settings.as_ak(), &mut platform_init_settings)]?;
+    let mut init_settings = init_settings.as_ak();
+    let mut platform_init_settings = platform_init_settings.as_ak();
+    ak_call_result![Init(&mut init_settings, &mut platform_init_settings)]?;
 
     link_static_plugin![AkVorbisDecoder];
     link_static_plugin![AkOggOpusDecoder]; // see Ak/Plugin/AkOpusDecoderFactory.h
@@ -128,7 +130,7 @@ pub fn is_initialized() -> bool {
 /// > - [init]
 pub fn term() {
     unsafe {
-        AK::SoundEngine::Term();
+        Term();
     }
 }
 
@@ -136,7 +138,7 @@ pub fn term() {
 ///
 /// This method has to be called periodically (usually once per game frame).
 ///
-/// `allow_sync_render`: When AkInitSettings::bUseLEngineThread is false, `RenderAudio` may generate
+/// `allow_sync_render`: When AkInitSettings::b_use_lengine_thread is false, `RenderAudio` may generate
 /// an audio buffer -- unless in_bAllowSyncRender is set to false. Use in_bAllowSyncRender=false
 /// when calling RenderAudio from a Sound Engine callback.
 ///
@@ -562,10 +564,6 @@ impl<'a> PostEvent<'a> {
         F: FnMut(crate::AkCallbackInfo),
     {
         // see http://blog.sagetheprogrammer.com/neat-rust-tricks-passing-rust-closures-to-c
-
-        // TODO: do all this + callback(wrapped_cb_type) on the main thread, for ex. in render_audio?
-        // TODO: behind a feature enabled by default? If disabled, just do this on the audio thread
-        // TODO: and let user implement callback sync in their own way
 
         let callback_ptr: *mut F;
         let wrapped_cb_type: crate::AkCallbackInfo;

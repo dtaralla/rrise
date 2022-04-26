@@ -24,8 +24,8 @@ use crate::{ak_call_result, AkResult};
 /// > - [AK_InvalidParameter](AkResult::AK_InvalidParameter) if one of the settings is invalid.
 /// > - [AK_InsufficientMemory](AkResult::AK_InsufficientMemory) if the specified pool size is too small for initialization.
 /// > - [AK_Fail](AkResult::AK_Fail) for other errors.
-pub fn init(settings: AkCommSettings) -> Result<(), AkResult> {
-    ak_call_result![AK::Comm::Init(&settings)]
+pub fn init(settings: &AkCommSettings) -> Result<(), AkResult> {
+    ak_call_result![AK::Comm::Init(settings)]
 }
 
 /// Terminates the communication module.

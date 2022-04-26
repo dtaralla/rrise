@@ -17,8 +17,8 @@ use crate::{ak_call_result, to_os_char, AkResult};
 ///
 /// *See also*
 /// - [AkStreamMgrSettings::default]
-pub fn init(mut settings: AkStreamMgrSettings) -> Result<(), AkResult> {
-    let addr = unsafe { AK::StreamMgr::Create(&mut settings) };
+pub fn init(settings: &AkStreamMgrSettings) -> Result<(), AkResult> {
+    let addr = unsafe { AK::StreamMgr::Create(settings) };
     if addr == std::ptr::null_mut() {
         Err(AkResult::AK_Fail)
     } else {
@@ -28,13 +28,14 @@ pub fn init(mut settings: AkStreamMgrSettings) -> Result<(), AkResult> {
 
 /// Initializes the default streaming manager, specifying the folder in which to find the generated soundbanks when they are loaded.
 pub fn init_default_stream_mgr<T: AsRef<str>>(
-    stream_mgr_settings: AkStreamMgrSettings,
-    mut device_settings: AkDeviceSettings,
+    stream_mgr_settings: &AkStreamMgrSettings,
+    device_settings: &mut AkDeviceSettings,
     bank_location: T,
 ) -> Result<(), AkResult> {
     init(stream_mgr_settings)?;
-    device_settings.bUseStreamCache = true;
+    device_settings.use_stream_cache = true;
 
+    let device_settings = device_settings.as_ak();
     let pin_bytes = to_os_char(&bank_location);
     ak_call_result![InitDefaultStreamMgr(&device_settings, pin_bytes.as_ptr())]
 }

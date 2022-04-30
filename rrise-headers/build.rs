@@ -6,7 +6,7 @@ use lazy_static::lazy_static;
 use regex::Regex;
 use std::collections::BTreeMap;
 use std::env;
-use std::ffi::OsStr;
+use std::ffi::{OsStr, OsString};
 use std::fmt::{Display, Formatter};
 use std::fs::File;
 use std::io::{BufRead, BufReader, Write};
@@ -104,45 +104,41 @@ fn main() {
         bank_path = bank_path.parent().unwrap().to_path_buf();
     };
 
-    let init_bank_path = bank_path.join("Init.txt");
-    let mut soundbank_paths = vec![init_bank_path];
+    let mut soundbank_paths = BTreeMap::<OsString, PathBuf>::new();
 
-    // Find localized dir if it exists
-    let any_language_dir;
-    #[allow(unused_must_use)]
-    {
-        let mut it = WalkDir::new(bank_path.clone()).max_depth(1).into_iter();
-        it.next().unwrap(); // First entry is always the '.' directory
+    let txt_ext: &OsStr = OsStr::new("txt");
+    for dir in WalkDir::new(bank_path.clone()).max_depth(2).into_iter() {
+        match dir {
+            Ok(entry) => {
+                if let Some(ext) = entry.path().extension() {
+                    if ext == txt_ext {
+                        let path = entry.into_path();
+                        let sb_name = path.file_stem().unwrap();
 
-        // All languages dir have a copy of the bank for the resources we're interested in. Pick
-        // the first one and go with it.
-        any_language_dir = it.next();
-    }
-
-    match any_language_dir {
-        Some(Ok(dir)) => {
-            for fr in WalkDir::new(dir.path()).max_depth(1) {
-                match fr {
-                    Ok(f) => {
-                        if let Some(ext) = f.path().extension() {
-                            if ext == OsStr::new("txt") {
-                                soundbank_paths.push(f.into_path());
+                        // Take the most up-to-date bank variant (happens when multiple languages
+                        // are defined then removed)
+                        if let Some(existing_sb) = soundbank_paths.get(sb_name) {
+                            let existing_sb_last_mod =
+                                existing_sb.metadata().unwrap().modified().unwrap();
+                            let new_sb_last_mod = path.metadata().unwrap().modified().unwrap();
+                            if existing_sb_last_mod > new_sb_last_mod {
+                                continue;
                             }
                         }
+
+                        soundbank_paths.insert(sb_name.to_os_string(), path);
                     }
-                    Err(e) => panic!("Couldn't walk {} - {}", dir.path().to_str().unwrap(), e),
-                };
+                }
             }
+            Err(e) => panic!("Couldn't walk {} - {}", bank_path.to_str().unwrap(), e),
         }
-        Some(Err(e)) => panic!("Couldn't walk {} - {}", bank_path.to_str().unwrap(), e),
-        None => (),
-    };
+    }
 
     // ---- COLLECT DATA
     type Resource = (String, u32);
     let mut resources: BTreeMap<ResourceType, Vec<Resource>> = BTreeMap::new();
     let mut grouped_resources: BTreeMap<String, BTreeMap<String, Vec<Resource>>> = BTreeMap::new();
-    for bank_file in soundbank_paths.iter() {
+    for bank_file in soundbank_paths.values() {
         println!("cargo:rerun-if-changed={}", bank_file.to_str().unwrap());
 
         let bank = File::open(bank_file)
@@ -233,8 +229,8 @@ fn main() {
 
     out.write_all("pub mod bnk {\n".as_bytes())
         .expect("Failed to write headers");
-    for bnk in soundbank_paths.iter() {
-        let bnk = bnk.file_stem().unwrap().to_str().unwrap();
+    for bnk in soundbank_paths.keys() {
+        let bnk = bnk.to_str().unwrap();
         out.write_fmt(format_args!(
             "\tpub const {}: &str = \"{}.bnk\";\n",
             to_rust_name(bnk),

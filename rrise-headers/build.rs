@@ -4,7 +4,7 @@
 
 use lazy_static::lazy_static;
 use regex::Regex;
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, BTreeSet};
 use std::env;
 use std::ffi::{OsStr, OsString};
 use std::fmt::{Display, Formatter};
@@ -48,10 +48,7 @@ impl ResourceType {
     }
 
     fn is_grouped(&self) -> bool {
-        match self {
-            Self::State | Self::Switch => true,
-            _ => false,
-        }
+        matches!(self, Self::State | Self::Switch)
     }
 }
 
@@ -136,8 +133,8 @@ fn main() {
 
     // ---- COLLECT DATA
     type Resource = (String, u32);
-    let mut resources: BTreeMap<ResourceType, Vec<Resource>> = BTreeMap::new();
-    let mut grouped_resources: BTreeMap<String, BTreeMap<String, Vec<Resource>>> = BTreeMap::new();
+    let mut resources = BTreeMap::<ResourceType, BTreeSet<Resource>>::new();
+    let mut grouped_resources = BTreeMap::<String, BTreeMap<String, BTreeSet<Resource>>>::new();
     for bank_file in soundbank_paths.values() {
         println!("cargo:rerun-if-changed={}", bank_file.to_str().unwrap());
 
@@ -207,9 +204,12 @@ fn main() {
                         .or_default()
                         .entry(group_name)
                         .or_default()
-                        .push((name, id));
+                        .insert((name, id));
                 } else {
-                    resources.entry(current_type).or_default().push((name, id));
+                    resources
+                        .entry(current_type)
+                        .or_default()
+                        .insert((name, id));
                 }
             }
         }
@@ -245,8 +245,6 @@ fn main() {
         out.write_fmt(format_args!("\npub mod {} {{\n", res_type))
             .expect("Failed to write headers");
 
-        res.sort_by(|(n1, _), (n2, _)| n1.cmp(n2));
-
         for (res_name, res_id) in res.iter() {
             out.write_fmt(format_args!(
                 "\tpub const {}: u32 = {};\n",
@@ -258,8 +256,6 @@ fn main() {
                 if let Some(group) = groups_of_type.get_mut(res_name) {
                     out.write_fmt(format_args!("\n\tpub mod {} {{\n", res_name))
                         .expect("Failed to write headers");
-
-                    group.sort_by(|(n1, _), (n2, _)| n1.cmp(n2));
 
                     for (res_name, res_id) in group.iter() {
                         out.write_fmt(format_args!(

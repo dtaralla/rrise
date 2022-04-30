@@ -7,6 +7,7 @@ use crossbeam_channel::{Receiver, Sender};
 use rrise::query_params::{get_rtpc_value, RtpcValueType};
 use rrise::settings::*;
 use rrise::{sound_engine::*, *};
+use rrise_headers::rr;
 use std::path::PathBuf;
 
 const DEFAULT_LISTENER_ID: AkGameObjectID = 1;
@@ -18,17 +19,17 @@ fn main() -> Result<(), AkResult> {
         .add_plugins(DefaultPlugins)
         .insert_resource(Meters {
             meters: [
-                (String::from("Meters_00"), 0.),
-                (String::from("Meters_01"), 0.),
-                (String::from("Meters_02"), 0.),
-                (String::from("Meters_03"), 0.),
-                (String::from("Meters_04"), 0.),
-                (String::from("Meters_05"), 0.),
-                (String::from("Meters_06"), 0.),
-                (String::from("Meters_07"), 0.),
-                (String::from("Meters_08"), 0.),
-                (String::from("Meters_09"), 0.),
-                (String::from("Meters_10"), 0.),
+                (rr::xbus::Meters_00, 0.),
+                (rr::xbus::Meters_01, 0.),
+                (rr::xbus::Meters_02, 0.),
+                (rr::xbus::Meters_03, 0.),
+                (rr::xbus::Meters_04, 0.),
+                (rr::xbus::Meters_05, 0.),
+                (rr::xbus::Meters_06, 0.),
+                (rr::xbus::Meters_07, 0.),
+                (rr::xbus::Meters_08, 0.),
+                (rr::xbus::Meters_09, 0.),
+                (rr::xbus::Meters_10, 0.),
             ],
         })
         .insert_resource(match crossbeam_channel::unbounded() {
@@ -63,7 +64,7 @@ struct BandMeter(usize);
 #[derive(Component)]
 struct BeatBarText;
 
-type Meter = (String, AkRtpcValue);
+type Meter = (AkUniqueID, AkRtpcValue);
 struct Meters {
     meters: [Meter; 11],
 }
@@ -76,7 +77,7 @@ struct CallbackChannel {
 
 fn audio_metering(mut meters: ResMut<Meters>) -> Result<(), AkResult> {
     for meter in &mut meters.meters {
-        let rtpc_value = get_rtpc_value(meter.0.as_str(), None, None, RtpcValueType::Global(0.))?;
+        let rtpc_value = get_rtpc_value(meter.0, None, None, RtpcValueType::Global(0.))?;
         meter.1 = match rtpc_value {
             RtpcValueType::Global(v) => v,
             _ => 0.,
@@ -126,11 +127,11 @@ fn setup_audio(callback_channel: Res<CallbackChannel>) -> Result<(), AkResult> {
 
     register_game_obj(THE_GAME_OBJECT)?;
 
-    if let Err(akr) = load_bank_by_name("Init.bnk") {
+    if let Err(akr) = load_bank_by_name(rr::bnk::Init) {
         panic!("Couldn't load initbank: {}", akr);
     }
 
-    if let Err(akr) = load_bank_by_name("TheBank.bnk") {
+    if let Err(akr) = load_bank_by_name(rr::bnk::TheBank) {
         panic!("Couldn't load thebank: {}", akr);
     }
 
@@ -162,7 +163,7 @@ fn setup_audio(callback_channel: Res<CallbackChannel>) -> Result<(), AkResult> {
         }
     };
 
-    if let Ok(playing_id) = PostEvent::new(THE_GAME_OBJECT, "PlayMeteredMusic")
+    if let Ok(playing_id) = PostEvent::new(THE_GAME_OBJECT, rr::ev::PlayMeteredMusic)
         .flags(AkCallbackType::AK_MusicSyncBeat | AkCallbackType::AK_MusicSyncBar)
         .post_with_callback(on_music_sync)
     {

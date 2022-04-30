@@ -73,8 +73,11 @@ impl Display for ResourceType {
 }
 
 fn main() {
+    if env::var("DOCS_RS").is_ok() {
+        return;
+    }
+
     println!("cargo:rerun-if-env-changed=BANK_PATH");
-    println!("cargo:rerun-if-env-changed=PATH_AS_NAME");
 
     let mut bank_path =
         PathBuf::from(env::var("BANK_PATH").expect("env variable BANK_PATH not found"));

@@ -1,6 +1,6 @@
 [package]
 name = "rrise-headers"
-version = "0.2.0"
+version = "0.2.1"
 edition = "2021"
 authors = ["David Taralla <davidtaralla@gmail.com> & Contributors to the Rrise project"]
 description = "A helper for Rrise, generating headers based on soundbank definition files"

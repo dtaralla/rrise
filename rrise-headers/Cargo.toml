@@ -11,6 +11,9 @@ keywords = ["library", "sound", "3D", "wwise"]
 categories = ["multimedia", "game-development"]
 license-file = "LICENSE"
 
+[package.metadata.docs.rs]
+rustc-args = ["--cfg", "docsrs"]
+
 [build-dependencies]
 walkdir = "2.3"
 regex = { version = "1.5", features = ["pattern"] }

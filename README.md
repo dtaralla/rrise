@@ -14,9 +14,10 @@ Wwise API, without having to tinker with the FFI world.
 ### About your expectations...
 This is planned to become a rather advanced crate, that paves the way for exciting sound engine work in established Rust
 game engines. That said, I'm definitely not the most proficient in Rust. If you notice some questionable implementation 
-or architectural choices, please reach out to improve the crate!
+or architectural choices, please reach out to improve the crate. Pull requests are more than welcome: **they are 
+encouraged**!
 
-Pull requests are more than welcome: **they are encouraged**!
+In order to use this crate, you should check the [system requirements](#Requirements) below.
 
 ## Capabilities
 - Build & run on Windows 10+
@@ -32,6 +33,14 @@ Pull requests are more than welcome: **they are encouraged**!
 
 [^0]: WSL2 on Windows 11 is required to run the `bevy_music_visualizer` example
 
+### Logging
+Rrise uses the [log](https://docs.rs/log/latest/log/index.html) crate for all its logging needs. Refer to `log`'s
+docs for how to use it.
+
+### Wwise project identifiers
+Checkout the [rrise-headers](/rrise-headers) crate to automatically generate your Wwise project structure as namespaced
+Rust constants!
+
 ### Examples
 - Minimal example showcasing how to initialize the sound engine, start a moving source and terminate it
 - Doppler effect example showcasing RTPCs
@@ -43,11 +52,9 @@ Pull requests are more than welcome: **they are encouraged**!
   </a>
 </p>
 
-### Logging
-Rrise uses the [log](https://docs.rs/log/latest/log/index.html) crate for all its logging needs. Refer to `log`'s 
-docs for how to use it.
+## Configuration
 
-### Accepted configs
+### Config flags
 You can set the following `cfg` flags through the `RUSTFLAGS` environment variable before building to chose which 
 configuration of Wwise you wish to link against:
 
@@ -95,7 +102,7 @@ linking of your features. You can change the value of the `RRISE_RERUN_BUILD` en
 force a rerun of Rrise's build script. You can also force a full rebuild with `cargo clean & cargo build 
 --features=The,Plugin,List`. 
 
-### Known issues & limitations
+## Known issues & limitations
 - If you dynamically link Wwise effect plugins (default behavior), there is an issue on Windows where if the path given
 to `AkInitSettings::with_plugin_dll_path` contains spaces, the DLLs in that folder won't be discoverable by Wwise.
 - On Linux, when connecting the profiler, you will get those messages in the console (they seem totally harmless):

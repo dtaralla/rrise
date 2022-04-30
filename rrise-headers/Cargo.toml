@@ -1,0 +1,17 @@
+[package]
+name = "rrise-headers"
+version = "0.2.0"
+edition = "2021"
+authors = ["David Taralla <davidtaralla@gmail.com> & Contributors to the Rrise project"]
+description = "A helper for Rrise, generating headers based on soundbank definition files"
+repository = "https://github.com/dtaralla/rrise"
+documentation = "https://docs.rs/rrise-headers"
+readme = "README.md"
+keywords = ["library", "sound", "3D", "wwise"]
+categories = ["multimedia", "game-development"]
+license-file = "LICENSE"
+
+[build-dependencies]
+walkdir = "2.3"
+regex = { version = "1.5", features = ["pattern"] }
+lazy_static = "1.4"

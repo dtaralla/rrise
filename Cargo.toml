@@ -15,6 +15,12 @@ exclude = [
     "/videos",
 ]
 
+[workspace]
+members = ["rrise-headers"]
+
+[patch.crates-io]
+rrise-headers = { path = "rrise-headers" }
+
 [dependencies]
 paste = "1.0.7"
 log = "0.4.16"

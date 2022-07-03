@@ -224,7 +224,7 @@ pub fn register_game_obj(game_object_id: AkGameObjectID) -> Result<(), AkResult>
 /// > - [unregister_all_game_obj]
 pub fn register_named_game_obj<T: AsRef<str>>(
     game_object_id: AkGameObjectID,
-    name: T,
+    #[cfg_attr(wwrelease, allow(unused_variables))] name: T,
 ) -> Result<(), AkResult> {
     #[cfg(wwrelease)]
     return register_game_obj(game_object_id);

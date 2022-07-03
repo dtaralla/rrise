@@ -141,6 +141,222 @@
 						</MusicPlaylistItem>
 					</Playlist>
 				</MusicPlaylistContainer>
+				<MusicPlaylistContainer Name="SpatialMusic" ID="{D9634238-85D0-4176-A532-D7741B78B71A}" ShortID="1055125162">
+					<PropertyList>
+						<Property Name="3DSpatialization" Type="int16" Value="2"/>
+						<Property Name="EnableDiffraction" Type="bool" Value="True"/>
+						<Property Name="SpeakerPanning" Type="int16" Value="1"/>
+						<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Attenuation">
+							<Custom>
+								<Attenuation Name="Attenuation (Custom)" ID="{5CB28678-5D84-488F-AB37-41EDE5B603C3}" ShortID="809795703">
+									<PropertyList>
+										<Property Name="HeightSpreadEnable" Type="bool">
+											<ValueList>
+												<Value>False</Value>
+											</ValueList>
+										</Property>
+										<Property Name="RadiusMax" Type="Real64" Value="15"/>
+									</PropertyList>
+									<CurveUsageInfoList>
+										<VolumeDryUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="Custom">
+												<Curve Name="VolumeDry" ID="{FF7D6780-03EA-4B9E-92AA-76FB002C20CB}">
+													<PropertyList>
+														<Property Name="Flags" Type="int32" Value="3"/>
+													</PropertyList>
+													<PointList>
+														<Point>
+															<XPos>0</XPos>
+															<YPos>0</YPos>
+															<Flags>5</Flags>
+															<SegmentShape>Log2</SegmentShape>
+														</Point>
+														<Point>
+															<XPos>15</XPos>
+															<YPos>-200</YPos>
+															<Flags>37</Flags>
+														</Point>
+													</PointList>
+												</Curve>
+											</CurveUsageInfo>
+										</VolumeDryUsage>
+										<VolumeWetGameUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
+										</VolumeWetGameUsage>
+										<VolumeWetUserUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
+										</VolumeWetUserUsage>
+										<LowPassFilterUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+										</LowPassFilterUsage>
+										<HighPassFilterUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+										</HighPassFilterUsage>
+										<SpreadUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="Custom">
+												<Curve Name="Spread" ID="{1EE0B9DB-2322-43AC-A7BC-8B58F05B0B60}">
+													<PropertyList>
+														<Property Name="Flags" Type="int32" Value="1"/>
+													</PropertyList>
+													<PointList>
+														<Point>
+															<XPos>0</XPos>
+															<YPos>100</YPos>
+															<Flags>5</Flags>
+															<SegmentShape>Log2</SegmentShape>
+														</Point>
+														<Point>
+															<XPos>1</XPos>
+															<YPos>-0</YPos>
+															<Flags>0</Flags>
+															<SegmentShape>Constant</SegmentShape>
+														</Point>
+														<Point>
+															<XPos>15</XPos>
+															<YPos>0</YPos>
+															<Flags>37</Flags>
+														</Point>
+													</PointList>
+												</Curve>
+											</CurveUsageInfo>
+										</SpreadUsage>
+										<FocusUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+										</FocusUsage>
+									</CurveUsageInfoList>
+								</Attenuation>
+							</Custom>
+						</Reference>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Vorbis Auto Detect High" ID="{6F6A99BE-4FD1-49D3-89AF-54BE30CA1588}" WorkUnitID="{F6B2880C-85E5-47FA-A126-645B5DFD9ACC}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3F1283BE-1E7E-4C4B-86E5-5F7EF342BA75}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<MusicSegment Name="Captain Fortune" ID="{AB5ABA79-17DB-4C10-86AD-9DBA7D52B577}" ShortID="479993435">
+							<PropertyList>
+								<Property Name="EndPosition" Type="Real64" Value="91476.9791666667"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{53EBC9F8-5C82-4A90-AF18-BE0F1BAA9DDB}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3F1283BE-1E7E-4C4B-86E5-5F7EF342BA75}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicTrack Name="Captain Fortune" ID="{AAD7672C-D2C2-41D4-B96E-ADBDF1829A43}" ShortID="768279964">
+									<PropertyList>
+										<Property Name="OverrideEffect" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{3F1283BE-1E7E-4C4B-86E5-5F7EF342BA75}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Captain Fortune" ID="{3BD55FB6-A25A-42A6-BC61-BDA878B355A0}">
+											<Language>SFX</Language>
+											<AudioFile>Captain Fortune.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="805741293"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<TransitionList>
+										<MusicTransition Name="Root" ID="{272075AD-B215-455F-B475-8B1445CC9FD9}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</TransitionList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{1594A455-BEC7-4F94-9221-6B952179A8F4}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="Captain Fortune" ID="{C09C0048-2267-44A2-ABA5-CB004A2ABFCB}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="91476.9791666667"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="Captain Fortune" ID="{3BD55FB6-A25A-42A6-BC61-BDA878B355A0}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+							</ChildrenList>
+							<ObjectLists>
+								<ObjectList Name="Cues">
+									<Reference>
+										<Local>
+											<MusicCue Name="Entry Cue" ID="{0A9B4AB6-42A1-435A-A8E2-06E28974A1D8}"/>
+										</Local>
+									</Reference>
+									<Reference>
+										<Local>
+											<MusicCue Name="Exit Cue" ID="{05593AA9-731F-41BD-8429-8E00BB8A0F9E}">
+												<PropertyList>
+													<Property Name="CueType" Type="int16" Value="1"/>
+													<Property Name="TimeMs" Type="Real64" Value="91476.9791666667"/>
+												</PropertyList>
+											</MusicCue>
+										</Local>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
+						</MusicSegment>
+					</ChildrenList>
+					<PositioningInfo>
+						<Panner Name="" ID="{98808F65-9F4E-4A2D-9962-F17890DBCA01}"/>
+					</PositioningInfo>
+					<TransitionList>
+						<MusicTransition Name="Root" ID="{915949B0-4218-4E32-BF66-10D2DDB52E3B}">
+							<PropertyList>
+								<Property Name="IsFolder" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<MusicTransition Name="Transition" ID="{6F62EB17-7312-45B2-A5F1-C9A32D283F35}">
+									<TransitionInfo/>
+								</MusicTransition>
+							</ChildrenList>
+							<TransitionInfo/>
+						</MusicTransition>
+					</TransitionList>
+					<ObjectLists/>
+					<Playlist>
+						<MusicPlaylistItem Name="" ID="{23E8654B-6BAC-4CAD-829F-CB86DF7FC8EF}" ShortID="606903463">
+							<ChildrenList>
+								<MusicPlaylistItem Name="" ID="{57C23625-61EE-4FE7-8645-D88309B9982E}" ShortID="681362488">
+									<PropertyList>
+										<Property Name="LoopCount" Type="int16" Value="0"/>
+										<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+									</PropertyList>
+									<SegmentRef Name="Captain Fortune" ID="{AB5ABA79-17DB-4C10-86AD-9DBA7D52B577}"/>
+								</MusicPlaylistItem>
+							</ChildrenList>
+						</MusicPlaylistItem>
+					</Playlist>
+				</MusicPlaylistContainer>
 			</ChildrenList>
 		</WorkUnit>
 	</InteractiveMusic>

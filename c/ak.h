@@ -13,6 +13,7 @@
 #include <AK/SoundEngine/Common/AkStreamMgrModule.h>
 #include <AK/SoundEngine/Common/AkMidiWwiseCmds.h>
 #include <AK/MusicEngine/Common/AkMusicEngine.h>
+#include <AK/SpatialAudio/Common/AkSpatialAudio.h>
 #include <AK/Tools/Common/AkPlatformFuncs.h>
 
 #ifndef AK_OPTIMIZED

@@ -441,6 +441,49 @@ However, this bus' output bus volume needs to be greater than -80, otherwise thi
 							</ReferenceList>
 							<ObjectLists/>
 						</AuxBus>
+						<Bus Name="Reverb" ID="{E459AD6C-26B1-4B9E-9BFC-206E674C279F}">
+							<ChildrenList>
+								<AuxBus Name="BigRoom" ID="{8F7E5037-EEB3-4737-8BF8-F11945170E6E}">
+									<PropertyList>
+										<Property Name="3DSpatialization" Type="int16" Value="2"/>
+										<Property Name="BusChannelConfig" Type="int32">
+											<ValueList>
+												<Value>3840</Value>
+											</ValueList>
+										</Property>
+										<Property Name="EnableAttenuation" Type="bool" Value="False"/>
+										<Property Name="ListenerRelativeRouting" Type="bool" Value="True"/>
+										<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Effect0" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+											<ObjectRef Name="Room_Large" ID="{AD8EFAFC-7121-4D5F-BE4D-B13FBD6CEBAE}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+										</Reference>
+									</ReferenceList>
+									<ObjectLists/>
+								</AuxBus>
+								<AuxBus Name="SmallRoom" ID="{B496824F-AB8E-4769-A1AB-996C93E4194A}">
+									<PropertyList>
+										<Property Name="3DSpatialization" Type="int16" Value="2"/>
+										<Property Name="BusChannelConfig" Type="int32">
+											<ValueList>
+												<Value>3840</Value>
+											</ValueList>
+										</Property>
+										<Property Name="EnableAttenuation" Type="bool" Value="False"/>
+										<Property Name="ListenerRelativeRouting" Type="bool" Value="True"/>
+										<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Effect0" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+											<ObjectRef Name="Room_Medium" ID="{F5C06EC1-E4A4-4332-A7D3-A89E2986B74F}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+										</Reference>
+									</ReferenceList>
+									<ObjectLists/>
+								</AuxBus>
+							</ChildrenList>
+							<ObjectLists/>
+						</Bus>
 					</ChildrenList>
 					<ObjectLists/>
 				</Bus>

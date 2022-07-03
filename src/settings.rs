@@ -7,7 +7,10 @@ pub use crate::bindings::root::AkCommSettings;
 #[cfg(not(wwrelease))]
 use crate::bindings::root::AK::Comm;
 use crate::bindings::root::AK::{MemoryMgr, MusicEngine, SoundEngine, StreamMgr};
-pub use crate::bindings::root::{AkMemSettings, AkMusicSettings, AkStreamMgrSettings};
+pub use crate::bindings::root::{
+    AkMemSettings, AkMusicSettings, AkSpatialAudioInitSettings, AkStreamMgrSettings,
+};
+use crate::bindings::root::{AK_DEFAULT_MOVEMENT_THRESHOLD, AK_MAX_SOUND_PROPAGATION_DEPTH};
 use crate::to_os_char;
 use crate::OsChar;
 use log::error;
@@ -31,6 +34,25 @@ impl Default for AkMusicSettings {
             let mut ss: AkMusicSettings = std::mem::zeroed();
             MusicEngine::GetDefaultInitSettings(&mut ss);
             ss
+        }
+    }
+}
+
+impl Default for AkSpatialAudioInitSettings {
+    /// Get the default values of the initialization settings of the music engine.
+    fn default() -> Self {
+        AkSpatialAudioInitSettings {
+            uMaxSoundPropagationDepth: AK_MAX_SOUND_PROPAGATION_DEPTH,
+            fMovementThreshold: AK_DEFAULT_MOVEMENT_THRESHOLD as f32,
+            uNumberOfPrimaryRays: 100,
+            uMaxReflectionOrder: 1,
+            fMaxPathLength: 10_000.,
+            fCPULimitPercentage: 0.,
+            bEnableDiffractionOnReflection: true,
+            bEnableGeometricDiffractionAndTransmission: true,
+            bCalcEmitterVirtualPosition: true,
+            bUseObstruction: true,
+            bUseOcclusion: true,
         }
     }
 }

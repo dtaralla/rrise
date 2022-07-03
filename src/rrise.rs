@@ -12,6 +12,7 @@ pub mod music_engine;
 pub mod query_params;
 pub mod settings;
 pub mod sound_engine;
+pub mod spatial_audio;
 pub mod stream_mgr;
 
 mod bindings;
@@ -49,8 +50,6 @@ pub use bindings::root::AkDeviceID;
 pub use bindings::root::AkFileID;
 /// Game object ID
 pub use bindings::root::AkGameObjectID;
-/// Image Source ID
-pub use bindings::root::AkImageSourceID;
 /// Low-pass filter type
 pub use bindings::root::AkLPFType;
 /// Memory pool ID

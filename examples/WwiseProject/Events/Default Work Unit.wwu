@@ -36,6 +36,17 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Play3DMusic" ID="{1CC25C1F-DE5A-4FEE-AD0E-5BCC37D93BCD}">
+					<ChildrenList>
+						<Action Name="" ID="{5C52C74D-6991-47C4-843D-4FC5C56EF9B5}" ShortID="1061204282">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SpatialMusic" ID="{D9634238-85D0-4176-A532-D7741B78B71A}" WorkUnitID="{88901774-D060-4881-9271-34F3BFE8ED31}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

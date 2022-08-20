@@ -182,11 +182,10 @@ fn setup(
     asset_server: Res<AssetServer>,
 ) {
     // Setup cameras
-    commands.spawn_bundle(PerspectiveCameraBundle {
+    commands.spawn_bundle(Camera3dBundle {
         transform: Transform::from_xyz(0., 0., 15.).looking_at(Vec3::default(), Vec3::Y),
         ..default()
     });
-    commands.spawn_bundle(UiCameraBundle::default());
 
     // Setup light
     commands.spawn_bundle(DirectionalLightBundle {
@@ -214,7 +213,7 @@ fn setup(
             style: Style {
                 align_self: AlignSelf::FlexEnd,
                 position_type: PositionType::Absolute,
-                position: Rect {
+                position: UiRect {
                     bottom: Val::Px(8.0),
                     right: Val::Px(8.0),
                     ..default()
@@ -291,7 +290,7 @@ fn spawn_meter(
 }
 
 #[cfg_attr(target_os = "linux", allow(unused_variables))]
-fn init_sound_engine(windows: Res<Windows>) -> Result<(), AkResult> {
+fn init_sound_engine() -> Result<(), AkResult> {
     // init memorymgr
     memory_mgr::init(&mut AkMemSettings::default())?;
     assert!(memory_mgr::is_initialized());
@@ -311,24 +310,6 @@ fn init_sound_engine(windows: Res<Windows>) -> Result<(), AkResult> {
     // init soundengine
     {
         let mut platform_settings = AkPlatformInitSettings::default();
-
-        #[cfg(windows)]
-        // Find the Bevy window and register it as owner of the sound engine
-        if let Some(w) = windows.iter().next() {
-            use raw_window_handle::{HasRawWindowHandle, RawWindowHandle};
-
-            platform_settings.h_wnd.store(
-                match unsafe { w.raw_window_handle().get_handle().raw_window_handle() } {
-                    #[cfg(windows)]
-                    RawWindowHandle::Win32(h) => h.hwnd,
-                    other => {
-                        panic!("Unexpected window handle: {:?}", other)
-                    }
-                },
-                std::sync::atomic::Ordering::SeqCst,
-            );
-        }
-
         sound_engine::init(&mut setup_example_dll_path(), &mut platform_settings)?;
     }
 

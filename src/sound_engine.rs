@@ -694,7 +694,7 @@ impl<'a> PostEvent<'a> {
 
         if cb_type.contains(AkCallbackType::AK_EndOfEvent) {
             // No more callbacks to process! Cleanup memory
-            Box::from_raw(callback_ptr); // effectively drops callback_ptr
+            drop(Box::from_raw(callback_ptr));
         }
     }
 }

@@ -2,128 +2,73 @@
  * Copyright (c) 2022 Contributors to the Rrise project
  */
 
-use std::io::{ErrorKind, Read};
-use winreg::{enums::*, RegKey, HKEY};
+use cc;
+use cc::windows_registry::VsVers;
+use std::ffi::OsStr;
+use std::io::ErrorKind;
 
-fn get_msvc_include_path() -> io::Result<PathBuf> {
-    let mut cl_exe_path = String::new();
-    std::process::Command::new("where")
-        .arg("cl.exe")
-        .output()
-        .expect("No output for where cl.exe")
-        .stdout
-        .as_slice()
-        .read_to_string(&mut cl_exe_path)
-        .unwrap();
+fn get_msvc_env_paths(env_key: &str) -> io::Result<Vec<PathBuf>> {
+    let target_env = match env::var("TARGET") {
+        Ok(target) => target,
+        Err(_) => {
+            return Err(io::Error::new(
+                ErrorKind::NotFound,
+                "Can't find TARGET cargo environment variable",
+            ))
+        }
+    };
 
-    let cl_exe_path = PathBuf::from(cl_exe_path).parent().unwrap().to_path_buf();
-    let msvc_include = cl_exe_path
-        .join(r"..\..\..\include")
-        .canonicalize()
-        .unwrap();
+    let cl_tool = match cc::windows_registry::find_tool(&target_env, "cl.exe") {
+        Some(tool) => tool,
+        None => {
+            return Err(io::Error::new(
+                ErrorKind::NotFound,
+                format!(
+                    "Can't find cl.exe tool given by target triple {}",
+                    target_env
+                ),
+            ))
+        }
+    };
 
-    if msvc_include.is_dir() {
-        io::Result::Ok(msvc_include)
-    } else {
-        io::Result::Err(io::Error::new(
-            ErrorKind::Unsupported,
-            format!(
-                "Can't find MSVC includes at {} based on cl.exe location {}",
-                msvc_include.into_os_string().into_string().unwrap(),
-                cl_exe_path.into_os_string().into_string().unwrap()
-            ),
-        ))
-    }
-}
-
-/// Construct the Windows 10 SDK install path.
-fn get_win10_sdk_path() -> io::Result<PathBuf> {
-    match get_win10_sdk_dir(HKEY_LOCAL_MACHINE, "SOFTWARE\\Wow6432Node") {
-        Ok(path) => Ok(path),
-        Err(_) => match get_win10_sdk_dir(HKEY_CURRENT_USER, "SOFTWARE\\Wow6432Node") {
-            Ok(path) => Ok(path),
-            Err(_) => match get_win10_sdk_dir(HKEY_LOCAL_MACHINE, "SOFTWARE") {
-                Ok(path) => Ok(path),
-                Err(_) => match get_win10_sdk_dir(HKEY_CURRENT_USER, "SOFTWARE") {
-                    Ok(path) => Ok(path),
-                    Err(_) => io::Result::Err(io::Error::new(
-                        ErrorKind::Unsupported,
-                        "Could not find Windows 10 SDK in registry, is is properly installed?",
-                    )),
-                },
-            },
-        },
-    }
-}
-
-/// Parse registry to find the Windows 10 SDKs install path.
-fn get_win10_sdk_dir(hkey: HKEY, subkey_root: &str) -> io::Result<PathBuf> {
-    let subkey = RegKey::predef(hkey).open_subkey(format!(
-        "{}\\Microsoft\\Microsoft SDKs\\Windows\\v10.0",
-        subkey_root
-    ))?;
-    let value: String = subkey.get_value("InstallationFolder")?;
-    Ok(PathBuf::from(value))
-}
-
-/// Finds the most recent Windows 10 SDK version installed based on the SDKs install path.
-fn get_win10_sdk_version(path: &PathBuf) -> io::Result<String> {
-    let include_path = path.join("include\\");
-    if let Ok(child_dirs) = include_path.read_dir() {
-        let mut found: Option<String> = None;
-        for p in child_dirs.filter_map(Result::ok) {
-            let folder_name = p
-                .file_name()
-                .into_string()
-                .expect("Unreadable SDK folder name");
-            if p.path().join("um\\winsdkver.h").is_file() && folder_name.starts_with("10.") {
-                found = match found {
-                    Some(s) => {
-                        if s < folder_name {
-                            Some(folder_name)
-                        } else {
-                            Some(s)
-                        }
+    for env_entry in cl_tool.env().into_iter() {
+        if env_entry.0 == env_key {
+            return Ok(env_entry
+                .1
+                .to_str()
+                .unwrap()
+                .split(";")
+                .filter_map(|s| {
+                    if s.is_empty() {
+                        None
+                    } else {
+                        Some(PathBuf::from(OsStr::new(s)))
                     }
-                    None => Some(folder_name),
-                };
-            }
+                })
+                .collect());
         }
-
-        match found {
-            None => io::Result::Err(io::Error::new(
-                ErrorKind::Unsupported,
-                "Can't deduce SDK version, reinstall Windows 10 SDK",
-            )),
-            Some(s) => Ok(s),
-        }
-    } else {
-        io::Result::Err(io::Error::new(
-            ErrorKind::Unsupported,
-            format!(
-                "SDK folder corrupted; {:?} doesn't exist; reinstall Windows 10 SDK",
-                include_path
-            ),
-        ))
     }
+
+    Err(io::Error::new(
+        ErrorKind::NotFound,
+        format!(
+            "Can't find cl.exe tool's {} env variable - check your MSVC install",
+            env_key
+        ),
+    ))
 }
 
 /// Updates the default stream manager cc build specs for Windows target
 fn stream_cc_platform_specifics(build: &mut cc::Build, wwise_sdk: &PathBuf) -> io::Result<()> {
-    let msvc_include = get_msvc_include_path()?;
-    let win10_sdk_path = get_win10_sdk_path()?;
-    let win10_sdk_version = get_win10_sdk_version(&win10_sdk_path)?;
-    let win10_sdk_lib = win10_sdk_path
-        .join("Lib")
-        .join(&win10_sdk_version)
-        .join("um")
-        .join("x64");
-    let win10_sdk_include = win10_sdk_path.join("Include").join(&win10_sdk_version);
+    let msvc_include_paths = get_msvc_env_paths("INCLUDE")?;
+    let msvc_libs = get_msvc_env_paths("LIB")?;
 
-    println!(
-        "cargo:rustc-link-search={}",
-        win10_sdk_lib.into_os_string().into_string().unwrap()
-    );
+    for lib in msvc_libs {
+        println!(
+            "cargo:rustc-link-search={}",
+            lib.into_os_string().into_string().unwrap()
+        );
+    }
 
     build
         .file(wwise_sdk.join(r"samples\SoundEngine\Win32\AkDefaultIOHookBlocking.cpp"))
@@ -132,10 +77,7 @@ fn stream_cc_platform_specifics(build: &mut cc::Build, wwise_sdk: &PathBuf) -> i
         .flag("-MP")
         .define("WIN64", None)
         .define("WIN32_LEAN_AND_MEAN", None)
-        .include(msvc_include)
-        .include(win10_sdk_include.join("um"))
-        .include(win10_sdk_include.join("shared"))
-        .include(win10_sdk_include.join("ucrt"))
+        .includes(msvc_include_paths)
         .include(wwise_sdk.join(r"samples\SoundEngine\Win32"));
 
     Ok(())
@@ -143,13 +85,29 @@ fn stream_cc_platform_specifics(build: &mut cc::Build, wwise_sdk: &PathBuf) -> i
 
 /// Updates build environment with required dependencies for Windows target
 fn platform_dependencies(wwise_sdk: &PathBuf, config_folder: &str) {
-    let mut path = wwise_sdk.join("x64_vc160");
-    if !path.is_dir() {
-        path = wwise_sdk.join("x64_vc150");
-        if !path.is_dir() {
-            path = wwise_sdk.join("x64_vc140");
-        }
+    let vs_version = cc::windows_registry::find_vs_version().expect("No MSVC install found");
+
+    let wwise_vc = match vs_version {
+        VsVers::Vs14 => "x64_vc140",
+        VsVers::Vs15 => "x64_vc150",
+        VsVers::Vs16 => "x64_vc160",
+        VsVers::Vs17 => "x64_vc170",
+        _ => panic!("Unsupported MSVC version: {:?}", vs_version),
+    };
+    let path = wwise_sdk.join(wwise_vc);
+
+    if !path.exists() {
+        panic!(
+            "Could not find {}.\n\
+            You are using MSVC {:?} but the {} Wwise SDK target probably wasn't installed or \
+            doesn't exist for this version of Wwise.\n\
+            Note that Vs17 (Visual Studio 2022) is supported since Wwise 2021.1.10 only.",
+            path.to_str().unwrap(),
+            vs_version,
+            wwise_vc
+        )
     }
+
     println!(
         "cargo:rustc-link-search={}",
         path.join(config_folder)

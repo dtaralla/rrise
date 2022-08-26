@@ -37,9 +37,6 @@ bindgen = "0.59.2"
 cc = { version = "1.0.73", features = ["parallel"] }
 paste = "1.0.7"
 
-[target.'cfg(windows)'.build-dependencies.winreg]
-version = "0.10.1"
-
 [target.'cfg(windows)'.dependencies.bevy]
 version = "0.8.0"
 optional = true

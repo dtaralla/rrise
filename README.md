@@ -115,14 +115,16 @@ to `AkInitSettings::with_plugin_dll_path` contains spaces, the DLLs in that fold
 - Rust nightly 1.61+ (to support [-wholearchive](https://github.com/rust-lang/rust/pull/93901))
   - Tested on nightly 1.65.0
 - The `bindgen` crate [requirements](https://github.com/rust-lang/rust-bindgen/blob/master/book/src/requirements.md)
-- A licensed (free, trial, commercial,...) version of Wwise installed (2021.1.7, untested on others)
-  - Wwise itself
+- A licensed (free, trial, commercial,...) version of Wwise installed
+  - Tested Wwise versions:
+    - 2021.1.7
+    - 2021.1.9
+    - 2021.1.10
   - Wwise SDK (C++)
 - **On Windows: `MSVC`**[^1]
   - Windows 10 SDK
   - Build tools (same as Rust, for the `cc` crate)
-  - `cl.exe` must be in the PATH[^2]
-  - Wwise support for any Visual Studio 20XX deployment platform
+  - Wwise support for Visual Studio 2015 (14.0), 2017 (15.0), 2019 (16.0), 2022 (17.0)[^2] deployment platform
   - Make sure the `WWISESDK` environment variable is set to the SDK folder of your Wwise installation
 - **On Linux: `clang`**
   - `g++` (for `libstdc++`)
@@ -131,8 +133,8 @@ to `AkInitSettings::with_plugin_dll_path` contains spaces, the DLLs in that fold
 
 [^1]: Not tested on other compilers like MinGW or Clang
 
-[^2]: Current limitation of the build script. I want to improve MSVC path discovery in the future to remove this 
-requirement.
+[^2]: Only Wwise 2021.1.10+ supports VS2022. Trying to compile this crate with VS2022 and a version of Wwise older than
+2021.1.10 will fail.
 
 [^3]: Audiokinetic doesn't provide direct downloads to their SDK: you can only install it through their launcher. 
 However, this launcher being only available on Windows and MacOS, you'll need to install it on a VM or similar before 

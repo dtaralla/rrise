@@ -105,6 +105,9 @@ required-features = [
 ]
 
 [[test]]
+name = "one_frame_render"
+
+[[test]]
 name = "static_link_all"
 required-features = [
     "AkVorbisDecoder",

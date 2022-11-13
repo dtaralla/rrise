@@ -11,9 +11,11 @@ use rrise::{
 use rrise_headers::rr;
 
 use bevy::prelude::*;
-use cc;
 use crossbeam_channel::{Receiver, Sender};
 use std::path::PathBuf;
+
+#[cfg(windows)]
+use cc;
 
 const DEFAULT_LISTENER_ID: AkGameObjectID = 1;
 const THE_GAME_OBJECT: AkGameObjectID = 100;

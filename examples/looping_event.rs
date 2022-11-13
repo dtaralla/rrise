@@ -5,13 +5,15 @@
 use rrise::settings::*;
 use rrise::{sound_engine::*, *};
 
-use cc;
 use lerp::Lerp;
 use simple_logger::SimpleLogger;
 use std::path::PathBuf;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Arc;
 use std::time::Duration;
+
+#[cfg(windows)]
+use cc;
 
 const DEFAULT_LISTENER_ID: AkGameObjectID = 1;
 const THE_GAME_OBJECT: AkGameObjectID = 100;

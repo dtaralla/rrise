@@ -5,13 +5,15 @@
 use rrise::settings::*;
 use rrise::{game_syncs::SetRtpcValue, sound_engine::*, *};
 
-use cc;
 use lerp::Lerp;
 use simple_logger::SimpleLogger;
 use std::path::PathBuf;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Arc;
 use std::time::Duration;
+
+#[cfg(windows)]
+use cc;
 
 const SPEED_OF_SOUND: f32 = 340_f32;
 const DEFAULT_LISTENER_ID: AkGameObjectID = 1;

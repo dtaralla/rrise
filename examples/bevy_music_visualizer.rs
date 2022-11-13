@@ -40,11 +40,20 @@ fn main() -> Result<(), AkResult> {
         .insert_resource(match crossbeam_channel::unbounded() {
             (sender, receiver) => CallbackChannel { sender, receiver },
         })
-        .add_startup_system(init_sound_engine.chain(error_handler))
-        .add_startup_system_to_stage(StartupStage::PostStartup, setup_audio.chain(error_handler)) // PostStartup so that Bevy Window already initialized
+        .add_startup_system(init_sound_engine.pipe(system_adapter::unwrap))
+        .add_startup_system_to_stage(
+            StartupStage::PostStartup,
+            setup_audio.pipe(system_adapter::unwrap),
+        ) // PostStartup so that Bevy Window already initialized
         .add_startup_system(setup)
-        .add_system_to_stage(CoreStage::PreUpdate, audio_metering.chain(error_handler))
-        .add_system_to_stage(CoreStage::PostUpdate, audio_rendering.chain(error_handler))
+        .add_system_to_stage(
+            CoreStage::PreUpdate,
+            audio_metering.pipe(system_adapter::unwrap),
+        )
+        .add_system_to_stage(
+            CoreStage::PostUpdate,
+            audio_rendering.pipe(system_adapter::unwrap),
+        )
         .add_system(visualize_music)
         .add_system(process_callbacks)
         .run();
@@ -57,12 +66,6 @@ fn main() -> Result<(), AkResult> {
     Ok(())
 }
 
-fn error_handler(In(result): In<Result<(), AkResult>>) {
-    if let Err(akr) = result {
-        panic!("Unexpected error in system: {}", akr);
-    }
-}
-
 #[derive(Component)]
 struct BandMeter(usize);
 
@@ -70,11 +73,13 @@ struct BandMeter(usize);
 struct BeatBarText;
 
 type Meter = (AkUniqueID, AkRtpcValue);
+
+#[derive(Resource)]
 struct Meters {
     meters: [Meter; 11],
 }
 
-#[derive(Clone)]
+#[derive(Clone, Resource)]
 struct CallbackChannel {
     sender: Sender<AkCallbackInfo>,
     receiver: Receiver<AkCallbackInfo>,
@@ -115,11 +120,11 @@ fn process_callbacks(
             AkCallbackInfo::MusicSync {
                 music_sync_type: AkCallbackType::AK_MusicSyncBar,
                 ..
-            } => beat_bar_text.sections[1].value = format!("{:.1}s", time.seconds_since_startup()),
+            } => beat_bar_text.sections[1].value = format!("{:.1}s", time.elapsed_seconds()),
             AkCallbackInfo::MusicSync {
                 music_sync_type: AkCallbackType::AK_MusicSyncBeat,
                 ..
-            } => beat_bar_text.sections[4].value = format!("{:.1}s", time.seconds_since_startup()),
+            } => beat_bar_text.sections[4].value = format!("{:.1}s", time.elapsed_seconds()),
             _ => (),
         };
     }
@@ -187,13 +192,13 @@ fn setup(
     asset_server: Res<AssetServer>,
 ) {
     // Setup cameras
-    commands.spawn_bundle(Camera3dBundle {
+    commands.spawn(Camera3dBundle {
         transform: Transform::from_xyz(0., 0., 15.).looking_at(Vec3::default(), Vec3::Y),
         ..default()
     });
 
     // Setup light
-    commands.spawn_bundle(DirectionalLightBundle {
+    commands.spawn(DirectionalLightBundle {
         directional_light: Default::default(),
         ..default()
     });
@@ -213,8 +218,8 @@ fn setup(
 
     // Setup beat/bar displays
     let font = asset_server.load("fonts/FiraMono-Medium.ttf");
-    commands
-        .spawn_bundle(TextBundle {
+    commands.spawn((
+        TextBundle {
             style: Style {
                 align_self: AlignSelf::FlexEnd,
                 position_type: PositionType::Absolute,
@@ -266,8 +271,9 @@ fn setup(
                 ],
             },
             ..default()
-        })
-        .insert(BeatBarText);
+        },
+        BeatBarText,
+    ));
 }
 
 fn spawn_meter(
@@ -277,8 +283,8 @@ fn spawn_meter(
     meshes: &mut ResMut<Assets<Mesh>>,
     materials: &mut ResMut<Assets<StandardMaterial>>,
 ) {
-    commands
-        .spawn_bundle(PbrBundle {
+    commands.spawn((
+        PbrBundle {
             mesh: meshes.add(Mesh::from(shape::Box {
                 min_x: 0.0,
                 min_y: 0.0,
@@ -290,8 +296,9 @@ fn spawn_meter(
             material: materials.add(Color::hex(hex).unwrap().into()),
             transform: Transform::from_xyz(-5. + (index as f32), -5., 0.),
             ..default()
-        })
-        .insert(BandMeter(index));
+        },
+        BandMeter(index),
+    ));
 }
 
 #[cfg_attr(target_os = "linux", allow(unused_variables))]

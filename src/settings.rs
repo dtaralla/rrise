@@ -97,10 +97,17 @@ unsafe fn app_name() -> Option<[i8; 64]> {
     }
 }
 
-#[derive(Default)]
 pub struct AkInitSettingsPrivate {
     #[doc = "When using DLLs for plugins, specify their path. Leave NULL if DLLs are in the same folder as the game executable."]
     plugin_dll_path: Vec<OsChar>,
+}
+
+impl Default for AkInitSettingsPrivate {
+    fn default() -> Self {
+        Self {
+            plugin_dll_path: vec![0]
+        }
+    }
 }
 
 /// Platform-independent initialization settings of the sound engine

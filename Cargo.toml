@@ -22,6 +22,7 @@ members = ["rrise-headers"]
 rrise-headers = { path = "rrise-headers" }
 
 [dependencies]
+cc = { version = "1.0.73", optional = true }
 paste = "1.0.7"
 log = "0.4.16"
 ctrlc = { version = "3.2.1", optional = true }
@@ -83,7 +84,7 @@ AkTremoloFX = []
 # Internal features, don't enable independantly!
 AkOggOpusDecoder = []
 AkWemOpusDecoder = []
-examples = ["ctrlc", "simple_logger", "lerp"]
+examples = ["ctrlc", "simple_logger", "lerp", "cc"]
 
 [[example]]
 name = "looping_event"
@@ -96,6 +97,7 @@ required-features = ["examples", "AkSineSource"]
 [[example]]
 name = "bevy_music_visualizer"
 required-features = [
+    "examples",
     "rrise-headers",
     "AkMeterFX",
     "AkParametricEQFX",

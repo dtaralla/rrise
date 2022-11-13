@@ -2,12 +2,17 @@
  * Copyright (c) 2022 Contributors to the Rrise project
  */
 
-use bevy::prelude::*;
-use crossbeam_channel::{Receiver, Sender};
-use rrise::query_params::{get_rtpc_value, RtpcValueType};
-use rrise::settings::*;
-use rrise::{sound_engine::*, *};
+use rrise::{
+    query_params::{get_rtpc_value, RtpcValueType},
+    settings::*,
+    sound_engine::*,
+    *,
+};
 use rrise_headers::rr;
+
+use bevy::prelude::*;
+use cc;
+use crossbeam_channel::{Receiver, Sender};
 use std::path::PathBuf;
 
 const DEFAULT_LISTENER_ID: AkGameObjectID = 1;
@@ -355,12 +360,27 @@ fn setup_example_dll_path() -> AkInitSettings {
     let mut path;
     #[cfg(windows)]
     {
-        path = wwise_sdk.join("x64_vc160");
-        if !path.is_dir() {
-            path = wwise_sdk.join("x64_vc150");
-            if !path.is_dir() {
-                path = wwise_sdk.join("x64_vc140");
-            }
+        let vs_version = cc::windows_registry::find_vs_version().expect("No MSVC install found");
+
+        let wwise_vc = match vs_version {
+            cc::windows_registry::VsVers::Vs14 => "x64_vc140",
+            cc::windows_registry::VsVers::Vs15 => "x64_vc150",
+            cc::windows_registry::VsVers::Vs16 => "x64_vc160",
+            cc::windows_registry::VsVers::Vs17 => "x64_vc170",
+            _ => panic!("Unsupported MSVC version: {:?}", vs_version),
+        };
+        path = wwise_sdk.join(wwise_vc);
+
+        if !path.exists() {
+            panic!(
+                "Could not find {}.\n\
+                You are using MSVC {:?} but the {} Wwise SDK target probably wasn't installed or \
+                doesn't exist for this version of Wwise.\n\
+                Note that Vs17 (Visual Studio 2022) is supported since Wwise 2021.1.10 only.",
+                path.to_str().unwrap(),
+                vs_version,
+                wwise_vc
+            )
         }
     }
     #[cfg(target_os = "linux")]

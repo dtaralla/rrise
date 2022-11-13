@@ -105,7 +105,7 @@ pub struct AkInitSettingsPrivate {
 impl Default for AkInitSettingsPrivate {
     fn default() -> Self {
         Self {
-            plugin_dll_path: vec![0]
+            plugin_dll_path: vec![0],
         }
     }
 }

@@ -1,3 +1,3 @@
-(function() {var implementors = {};
-implementors["rrise"] = [{"text":"impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/ops/bit/trait.BitOrAssign.html\" title=\"trait core::ops::bit::BitOrAssign\">BitOrAssign</a>&lt;<a class=\"struct\" href=\"rrise/struct.AkCallbackType.html\" title=\"struct rrise::AkCallbackType\">AkCallbackType</a>&gt; for <a class=\"struct\" href=\"rrise/struct.AkCallbackType.html\" title=\"struct rrise::AkCallbackType\">AkCallbackType</a>","synthetic":false,"types":["rrise::bindings::root::AkCallbackType"]}];
-if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
+(function() {var implementors = {
+"rrise":[["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/ops/bit/trait.BitOrAssign.html\" title=\"trait core::ops::bit::BitOrAssign\">BitOrAssign</a>&lt;<a class=\"struct\" href=\"rrise/struct.AkCallbackType.html\" title=\"struct rrise::AkCallbackType\">AkCallbackType</a>&gt; for <a class=\"struct\" href=\"rrise/struct.AkCallbackType.html\" title=\"struct rrise::AkCallbackType\">AkCallbackType</a>"]]
+};if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

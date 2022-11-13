@@ -1,9 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/rrise.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>rrise.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../rrise/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
-        </a><h2 class="location"></h2>
-    </nav>
-    <nav class="sidebar"><a class="sidebar-logo" href="../../rrise/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
-        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../rrise/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/rrise.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>rrise.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-eabf764633b9d7be.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-777f3e9583f8c92d.css"><link rel="stylesheet" disabled href="../../static.files/dark-e2f4109f2e82e3af.css"><link rel="stylesheet" disabled href="../../static.files/ayu-c360e709a65bed99.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../static.files/source-script-74087aa2e88f4475.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-c2d2a5dbaed13e6b.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../rrise/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -689,688 +684,687 @@
 <span id="684">684</span>
 </pre><pre class="rust"><code><span class="comment">/*
  * Copyright (c) 2022 Contributors to the Rrise project
- */</span>
+ */
 
-<span class="attribute">#![<span class="ident">doc</span> <span class="op">=</span> <span class="macro">include_str!</span>(<span class="string">&quot;../README.MD&quot;</span>)]</span>
+</span><span class="attr">#![doc = <span class="macro">include_str!</span>(<span class="string">&quot;../README.MD&quot;</span>)]
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">wwrelease</span>))]</span>
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">communication</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">game_syncs</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">memory_mgr</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">music_engine</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">query_params</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">settings</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">sound_engine</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">stream_mgr</span>;
+#[cfg(not(wwrelease))]
+</span><span class="kw">pub mod </span>communication;
+<span class="kw">pub mod </span>game_syncs;
+<span class="kw">pub mod </span>memory_mgr;
+<span class="kw">pub mod </span>music_engine;
+<span class="kw">pub mod </span>query_params;
+<span class="kw">pub mod </span>settings;
+<span class="kw">pub mod </span>sound_engine;
+<span class="kw">pub mod </span>stream_mgr;
 
-<span class="kw">mod</span> <span class="ident">bindings</span>;
-<span class="kw">mod</span> <span class="ident">bindings_static_plugins</span>;
-<span class="kw">mod</span> <span class="ident">error</span>;
-<span class="kw">mod</span> <span class="ident">transform</span>;
+<span class="kw">mod </span>bindings;
+<span class="kw">mod </span>bindings_static_plugins;
+<span class="kw">mod </span>error;
+<span class="kw">mod </span>transform;
 
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">error</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">std::fmt</span>::{<span class="ident">Debug</span>, <span class="ident">Display</span>, <span class="ident">Formatter</span>};
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">transform</span>::<span class="kw-2">*</span>;
+<span class="kw">pub use </span>error::<span class="kw-2">*</span>;
+<span class="kw">use </span>std::fmt::{Debug, Display, Formatter};
+<span class="kw">pub use </span>transform::<span class="kw-2">*</span>;
 
-<span class="doccomment">/// Acoustic Texture ID</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkAcousticTextureID</span>;
-<span class="doccomment">/// Argument value ID</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkArgumentValueID</span>;
-<span class="doccomment">/// Audio Object ID</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkAudioObjectID</span>;
-<span class="doccomment">/// Auxilliary bus ID</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkAuxBusID</span>;
-<span class="doccomment">/// Run time bank ID</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkBankID</span>;
-<span class="doccomment">/// Channel mask (similar to WAVE_FORMAT_EXTENSIBLE). Bit values are defined in AkSpeakerConfig.h.</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkChannelMask</span>;
-<span class="doccomment">/// Codec plug-in ID</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkCodecID</span>;
-<span class="doccomment">/// Data compression format ID</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkDataCompID</span>;
-<span class="doccomment">/// Data interleaved state ID</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkDataInterleaveID</span>;
-<span class="doccomment">/// Data sample type ID</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkDataTypeID</span>;
-<span class="doccomment">/// I/O device ID</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkDeviceID</span>;
-<span class="doccomment">/// Integer-type file identifier</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkFileID</span>;
-<span class="doccomment">/// Game object ID</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkGameObjectID</span>;
-<span class="doccomment">/// Image Source ID</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkImageSourceID</span>;
-<span class="doccomment">/// Low-pass filter type</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkLPFType</span>;
-<span class="doccomment">/// Memory pool ID</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkMemPoolId</span>;
-<span class="doccomment">/// MIDI channel number, usually 0-15.</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkMidiChannelNo</span>;
-<span class="doccomment">/// Modulator ID</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkModulatorID</span>;
-<span class="doccomment">/// Audio Output device ID</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkOutputDeviceID</span>;
-<span class="doccomment">/// Unique node (bus, voice) identifier for profiling.</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkPipelineID</span>;
-<span class="doccomment">/// Pitch value</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkPitchValue</span>;
-<span class="doccomment">/// Playing ID</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkPlayingID</span>;
-<span class="doccomment">/// Source or effect plug-in ID</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkPluginID</span>;
-<span class="doccomment">/// Source or effect plug-in parameter ID</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkPluginParamID</span>;
-<span class="doccomment">/// Port number</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkPortNumber</span>;
-<span class="doccomment">/// Priority</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkPriority</span>;
-<span class="doccomment">/// Unique (per emitter) identifier for an emitter-listener ray.</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkRayID</span>;
-<span class="doccomment">/// Real time parameter control ID</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkRtpcID</span>;
-<span class="doccomment">/// Real time parameter control value</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkRtpcValue</span>;
-<span class="doccomment">/// State group ID</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkStateGroupID</span>;
-<span class="doccomment">/// State ID</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkStateID</span>;
-<span class="doccomment">/// Switch group ID</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkSwitchGroupID</span>;
-<span class="doccomment">/// Switch ID</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkSwitchStateID</span>;
-<span class="doccomment">/// Time in ms</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkTimeMs</span>;
-<span class="doccomment">/// Trigger ID</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkTriggerID</span>;
-<span class="doccomment">/// Unique 32-bit ID</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkUniqueID</span>;
-<span class="doccomment">/// Volume value( also apply to LFE )</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkVolumeValue</span>;
+<span class="doccomment">/// Acoustic Texture ID
+</span><span class="kw">pub use </span>bindings::root::AkAcousticTextureID;
+<span class="doccomment">/// Argument value ID
+</span><span class="kw">pub use </span>bindings::root::AkArgumentValueID;
+<span class="doccomment">/// Audio Object ID
+</span><span class="kw">pub use </span>bindings::root::AkAudioObjectID;
+<span class="doccomment">/// Auxilliary bus ID
+</span><span class="kw">pub use </span>bindings::root::AkAuxBusID;
+<span class="doccomment">/// Run time bank ID
+</span><span class="kw">pub use </span>bindings::root::AkBankID;
+<span class="doccomment">/// Channel mask (similar to WAVE_FORMAT_EXTENSIBLE). Bit values are defined in AkSpeakerConfig.h.
+</span><span class="kw">pub use </span>bindings::root::AkChannelMask;
+<span class="doccomment">/// Codec plug-in ID
+</span><span class="kw">pub use </span>bindings::root::AkCodecID;
+<span class="doccomment">/// Data compression format ID
+</span><span class="kw">pub use </span>bindings::root::AkDataCompID;
+<span class="doccomment">/// Data interleaved state ID
+</span><span class="kw">pub use </span>bindings::root::AkDataInterleaveID;
+<span class="doccomment">/// Data sample type ID
+</span><span class="kw">pub use </span>bindings::root::AkDataTypeID;
+<span class="doccomment">/// I/O device ID
+</span><span class="kw">pub use </span>bindings::root::AkDeviceID;
+<span class="doccomment">/// Integer-type file identifier
+</span><span class="kw">pub use </span>bindings::root::AkFileID;
+<span class="doccomment">/// Game object ID
+</span><span class="kw">pub use </span>bindings::root::AkGameObjectID;
+<span class="doccomment">/// Image Source ID
+</span><span class="kw">pub use </span>bindings::root::AkImageSourceID;
+<span class="doccomment">/// Low-pass filter type
+</span><span class="kw">pub use </span>bindings::root::AkLPFType;
+<span class="doccomment">/// Memory pool ID
+</span><span class="kw">pub use </span>bindings::root::AkMemPoolId;
+<span class="doccomment">/// MIDI channel number, usually 0-15.
+</span><span class="kw">pub use </span>bindings::root::AkMidiChannelNo;
+<span class="doccomment">/// Modulator ID
+</span><span class="kw">pub use </span>bindings::root::AkModulatorID;
+<span class="doccomment">/// Audio Output device ID
+</span><span class="kw">pub use </span>bindings::root::AkOutputDeviceID;
+<span class="doccomment">/// Unique node (bus, voice) identifier for profiling.
+</span><span class="kw">pub use </span>bindings::root::AkPipelineID;
+<span class="doccomment">/// Pitch value
+</span><span class="kw">pub use </span>bindings::root::AkPitchValue;
+<span class="doccomment">/// Playing ID
+</span><span class="kw">pub use </span>bindings::root::AkPlayingID;
+<span class="doccomment">/// Source or effect plug-in ID
+</span><span class="kw">pub use </span>bindings::root::AkPluginID;
+<span class="doccomment">/// Source or effect plug-in parameter ID
+</span><span class="kw">pub use </span>bindings::root::AkPluginParamID;
+<span class="doccomment">/// Port number
+</span><span class="kw">pub use </span>bindings::root::AkPortNumber;
+<span class="doccomment">/// Priority
+</span><span class="kw">pub use </span>bindings::root::AkPriority;
+<span class="doccomment">/// Unique (per emitter) identifier for an emitter-listener ray.
+</span><span class="kw">pub use </span>bindings::root::AkRayID;
+<span class="doccomment">/// Real time parameter control ID
+</span><span class="kw">pub use </span>bindings::root::AkRtpcID;
+<span class="doccomment">/// Real time parameter control value
+</span><span class="kw">pub use </span>bindings::root::AkRtpcValue;
+<span class="doccomment">/// State group ID
+</span><span class="kw">pub use </span>bindings::root::AkStateGroupID;
+<span class="doccomment">/// State ID
+</span><span class="kw">pub use </span>bindings::root::AkStateID;
+<span class="doccomment">/// Switch group ID
+</span><span class="kw">pub use </span>bindings::root::AkSwitchGroupID;
+<span class="doccomment">/// Switch ID
+</span><span class="kw">pub use </span>bindings::root::AkSwitchStateID;
+<span class="doccomment">/// Time in ms
+</span><span class="kw">pub use </span>bindings::root::AkTimeMs;
+<span class="doccomment">/// Trigger ID
+</span><span class="kw">pub use </span>bindings::root::AkTriggerID;
+<span class="doccomment">/// Unique 32-bit ID
+</span><span class="kw">pub use </span>bindings::root::AkUniqueID;
+<span class="doccomment">/// Volume value( also apply to LFE )
+</span><span class="kw">pub use </span>bindings::root::AkVolumeValue;
 
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkReal32</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkThreadProperties</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkUInt32</span>;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AkReal32;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AkThreadProperties;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AkUInt32;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;linux&quot;</span>)]</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkAudioAPI</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkCallbackType</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkChannelConfig</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkCurveInterpolation</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkListenerPosition</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkOutputSettings</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkPanningRule</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkSegmentInfo</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkSoundPosition</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkTransform</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AkVector</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AKRESULT</span> <span class="kw">as</span> <span class="ident">AkResult</span>;
+<span class="attr">#[cfg(target_os = <span class="string">&quot;linux&quot;</span>)]
+#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AkAudioAPI;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AkCallbackType;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AkChannelConfig;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AkCurveInterpolation;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AkListenerPosition;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AkOutputSettings;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AkPanningRule;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AkSegmentInfo;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AkSoundPosition;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AkTransform;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AkVector;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AKRESULT <span class="kw">as </span>AkResult;
 
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::bindings::root::AkMIDIEvent_tCc</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::bindings::root::AkMIDIEvent_tChanAftertouch</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::bindings::root::AkMIDIEvent_tGen</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::bindings::root::AkMIDIEvent_tNoteAftertouch</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::bindings::root::AkMIDIEvent_tNoteOnOff</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::bindings::root::AkMIDIEvent_tPitchBend</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::bindings::root::AkMIDIEvent_tProgramChange</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::bindings::root::AkMIDIEvent_tWwiseCmd</span>;
+<span class="kw">pub use </span><span class="kw">crate</span>::bindings::root::AkMIDIEvent_tCc;
+<span class="kw">pub use </span><span class="kw">crate</span>::bindings::root::AkMIDIEvent_tChanAftertouch;
+<span class="kw">pub use </span><span class="kw">crate</span>::bindings::root::AkMIDIEvent_tGen;
+<span class="kw">pub use </span><span class="kw">crate</span>::bindings::root::AkMIDIEvent_tNoteAftertouch;
+<span class="kw">pub use </span><span class="kw">crate</span>::bindings::root::AkMIDIEvent_tNoteOnOff;
+<span class="kw">pub use </span><span class="kw">crate</span>::bindings::root::AkMIDIEvent_tPitchBend;
+<span class="kw">pub use </span><span class="kw">crate</span>::bindings::root::AkMIDIEvent_tProgramChange;
+<span class="kw">pub use </span><span class="kw">crate</span>::bindings::root::AkMIDIEvent_tWwiseCmd;
 
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AK_DEFAULT_BANK_IO_PRIORITY</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AK_DEFAULT_BANK_THROUGHPUT</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AK_DEFAULT_POOL_ID</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AK_DEFAULT_PRIORITY</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AK_DEFAULT_SWITCH_STATE</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AK_FALLBACK_ARGUMENTVALUE_ID</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AK_INVALID_AUX_ID</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AK_INVALID_BANK_ID</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AK_INVALID_CHANNELMASK</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AK_INVALID_DEVICE_ID</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AK_INVALID_FILE_ID</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AK_INVALID_OUTPUT_DEVICE_ID</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AK_INVALID_PIPELINE_ID</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AK_INVALID_PLAYING_ID</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AK_INVALID_PLUGINID</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AK_INVALID_POOL_ID</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AK_INVALID_RTPC_ID</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AK_INVALID_UNIQUE_ID</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AK_MAX_PRIORITY</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AK_MIN_PRIORITY</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::root::AK_SOUNDBANK_VERSION</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::AK_INVALID_AUDIO_OBJECT_ID</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bindings::AK_INVALID_GAME_OBJECT</span>;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AK_DEFAULT_BANK_IO_PRIORITY;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AK_DEFAULT_BANK_THROUGHPUT;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AK_DEFAULT_POOL_ID;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AK_DEFAULT_PRIORITY;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AK_DEFAULT_SWITCH_STATE;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AK_FALLBACK_ARGUMENTVALUE_ID;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AK_INVALID_AUX_ID;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AK_INVALID_BANK_ID;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AK_INVALID_CHANNELMASK;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AK_INVALID_DEVICE_ID;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AK_INVALID_FILE_ID;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AK_INVALID_OUTPUT_DEVICE_ID;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AK_INVALID_PIPELINE_ID;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AK_INVALID_PLAYING_ID;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AK_INVALID_PLUGINID;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AK_INVALID_POOL_ID;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AK_INVALID_RTPC_ID;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AK_INVALID_UNIQUE_ID;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AK_MAX_PRIORITY;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AK_MIN_PRIORITY;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::root::AK_SOUNDBANK_VERSION;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::AK_INVALID_AUDIO_OBJECT_ID;
+<span class="attr">#[doc(inline)]
+</span><span class="kw">pub use </span>bindings::AK_INVALID_GAME_OBJECT;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="doccomment">/// An ID for functions that can take either a string or numerical identifier for Wwise objects.</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">AkID</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">Name</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>),
-    <span class="ident">ID</span>(<span class="ident">AkUniqueID</span>),
+<span class="attr">#[derive(Debug, Copy, Clone)]
+</span><span class="doccomment">/// An ID for functions that can take either a string or numerical identifier for Wwise objects.
+</span><span class="kw">pub enum </span>AkID&lt;<span class="lifetime">&#39;a</span>&gt; {
+    Name(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str),
+    ID(AkUniqueID),
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Display</span> <span class="kw">for</span> <span class="ident">AkID</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::Name</span>(<span class="ident">s</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;{}&quot;</span>, <span class="ident">s</span>),
-            <span class="ident"><span class="self">Self</span>::ID</span>(<span class="ident">id</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;{}&quot;</span>, <span class="ident">id</span>),
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Display <span class="kw">for </span>AkID&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; std::fmt::Result {
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::Name(s) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;{}&quot;</span>, s),
+            <span class="self">Self</span>::ID(id) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;{}&quot;</span>, id),
         }
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">AkUniqueID</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">AkID</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">id</span>: <span class="ident">AkUniqueID</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::ID</span>(<span class="ident">id</span>)
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; From&lt;AkUniqueID&gt; <span class="kw">for </span>AkID&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>from(id: AkUniqueID) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::ID(id)
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">AkID</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::Name</span>(<span class="ident">name</span>)
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; From&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt; <span class="kw">for </span>AkID&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>from(name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::Name(name)
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">String</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">AkID</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">String</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::Name</span>(<span class="ident">name</span>.<span class="ident">as_str</span>())
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; From&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>String&gt; <span class="kw">for </span>AkID&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>from(name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>String) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::Name(name.as_str())
     }
 }
 
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">type</span> <span class="ident">OsChar</span> <span class="op">=</span> <span class="ident">bindings::root::AkOSChar</span>;
+<span class="attr">#[doc(hidden)]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">type </span>OsChar = bindings::root::AkOSChar;
 
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="attribute">#[<span class="ident">macro_export</span>]</span>
-<span class="macro">macro_rules!</span> <span class="ident">with_cstring</span> {
-    ($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">text</span>:<span class="ident">expr</span> =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">tmp</span>:<span class="ident">ident</span>),<span class="op">+</span> { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">stmt</span>:<span class="ident">stmt</span>)<span class="op">+</span> }) =&gt; {
+<span class="attr">#[doc(hidden)]
+#[macro_export]
+</span><span class="macro">macro_rules! </span>with_cstring {
+    ($(<span class="macro-nonterminal">$text</span>:expr =&gt; <span class="macro-nonterminal">$tmp</span>:ident),+ { $(<span class="macro-nonterminal">$stmt</span>:stmt)+ }) =&gt; {
         {
-            <span class="kw">use</span> <span class="ident">::std::ffi::CString</span>;
+            <span class="kw">use </span>::std::ffi::CString;
             $(
-            <span class="kw">let</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">tmp</span> <span class="op">=</span> <span class="ident">CString::new</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">text</span>).<span class="ident">expect</span>(<span class="string">&quot;text shouldn&#39;t contain null bytes&quot;</span>);
-            )<span class="op">+</span>
-            $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">stmt</span>)<span class="op">+</span>
+            <span class="kw">let </span><span class="macro-nonterminal">$tmp </span>= CString::new(<span class="macro-nonterminal">$text</span>).expect(<span class="string">&quot;text shouldn&#39;t contain null bytes&quot;</span>);
+            )+
+            $(<span class="macro-nonterminal">$stmt</span>)+
         }
     };
 }
 
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="doccomment">/// Create a copy of str as a vector of OsChar (u16 on Windows, i8 == c_char on other platforms).</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">to_os_char</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">str</span>: <span class="ident">T</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">OsChar</span><span class="op">&gt;</span> {
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
-    {
-        <span class="comment">// On windows, AkOsChar* ~~ Vec&lt;u16&gt;</span>
-        <span class="kw">use</span> <span class="ident">std::ffi::OsStr</span>;
-        <span class="kw">use</span> <span class="ident">std::os::windows::ffi::OsStrExt</span>;
-        <span class="ident">OsStr::new</span>(<span class="ident">str</span>.<span class="ident">as_ref</span>())
-            .<span class="ident">encode_wide</span>()
-            .<span class="ident">chain</span>(<span class="prelude-val">Some</span>(<span class="number">0</span>).<span class="ident">into_iter</span>())
-            .<span class="ident">collect</span>()
+<span class="attr">#[doc(hidden)]
+</span><span class="doccomment">/// Create a copy of str as a vector of OsChar (u16 on Windows, i8 == c_char on other platforms).
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>to_os_char&lt;T: AsRef&lt;str&gt;&gt;(str: T) -&gt; Vec&lt;OsChar&gt; {
+    <span class="attr">#[cfg(windows)]
+    </span>{
+        <span class="comment">// On windows, AkOsChar* ~~ Vec&lt;u16&gt;
+        </span><span class="kw">use </span>std::ffi::OsStr;
+        <span class="kw">use </span>std::os::windows::ffi::OsStrExt;
+        OsStr::new(str.as_ref())
+            .encode_wide()
+            .chain(<span class="prelude-val">Some</span>(<span class="number">0</span>).into_iter())
+            .collect()
     }
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">windows</span>))]</span>
-    {
-        <span class="kw">use</span> <span class="ident">::std::ffi::CString</span>;
-        <span class="ident">CString::new</span>(<span class="ident">str</span>.<span class="ident">as_ref</span>())
-            .<span class="ident">expect</span>(<span class="string">&quot;str shouldn&#39;t contain null bytes&quot;</span>)
-            .<span class="ident">as_bytes_with_nul</span>()
-            .<span class="ident">iter</span>()
-            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="kw-2">*</span><span class="ident">c</span> <span class="kw">as</span> <span class="ident">OsChar</span>)
-            .<span class="ident">collect</span>()
+    <span class="attr">#[cfg(not(windows))]
+    </span>{
+        <span class="kw">use </span>::std::ffi::CString;
+        CString::new(str.as_ref())
+            .expect(<span class="string">&quot;str shouldn&#39;t contain null bytes&quot;</span>)
+            .as_bytes_with_nul()
+            .iter()
+            .map(|c| <span class="kw-2">*</span>c <span class="kw">as </span>OsChar)
+            .collect()
     }
 }
 
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="doccomment">/// Wraps an unsafe call to Wwise and match its result to a Result&lt;(), AkResult&gt;.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// For example, `ak_call_result[RenderAudio(allow_sync_render)]` expands to</span>
-<span class="doccomment">/// ```rust,ignore</span>
-<span class="doccomment">/// match unsafe { RenderAudio(allow_sync_render) } {</span>
-<span class="doccomment">///     AkResult::AK_Success =&gt; Ok(()),</span>
-<span class="doccomment">///     error_code =&gt; Err(error_code)</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">macro_export</span>]</span>
-<span class="macro">macro_rules!</span> <span class="ident">ak_call_result</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">the_call</span>:<span class="ident">expr</span>) =&gt; {
-        <span class="kw">match</span> <span class="kw">unsafe</span> { <span class="macro-nonterminal">$</span><span class="macro-nonterminal">the_call</span> } {
-            <span class="ident">AkResult::AK_Success</span> =&gt; <span class="prelude-val">Ok</span>(()),
-            <span class="ident">error_code</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">error_code</span>)
+<span class="attr">#[doc(hidden)]
+</span><span class="doccomment">/// Wraps an unsafe call to Wwise and match its result to a Result&lt;(), AkResult&gt;.
+///
+/// For example, `ak_call_result[RenderAudio(allow_sync_render)]` expands to
+/// ```rust,ignore
+/// match unsafe { RenderAudio(allow_sync_render) } {
+///     AkResult::AK_Success =&gt; Ok(()),
+///     error_code =&gt; Err(error_code)
+/// }
+/// ```
+</span><span class="attr">#[macro_export]
+</span><span class="macro">macro_rules! </span>ak_call_result {
+    (<span class="macro-nonterminal">$the_call</span>:expr) =&gt; {
+        <span class="kw">match unsafe </span>{ <span class="macro-nonterminal">$the_call </span>} {
+            AkResult::AK_Success =&gt; <span class="prelude-val">Ok</span>(()),
+            error_code =&gt; <span class="prelude-val">Err</span>(error_code)
         }
     };
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">the_call</span>:<span class="ident">expr</span> =&gt; ($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">the_tupled_result</span>:<span class="ident">expr</span>),<span class="kw-2">*</span>)) =&gt; {
-        <span class="kw">match</span> <span class="kw">unsafe</span> { <span class="macro-nonterminal">$</span><span class="macro-nonterminal">the_call</span> } {
-            <span class="ident">AkResult::AK_Success</span> =&gt; <span class="prelude-val">Ok</span>(($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">the_tupled_result</span>),<span class="kw-2">*</span>)),
-            <span class="ident">error_code</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">error_code</span>)
+    (<span class="macro-nonterminal">$the_call</span>:expr =&gt; ($(<span class="macro-nonterminal">$the_tupled_result</span>:expr),<span class="kw-2">*</span>)) =&gt; {
+        <span class="kw">match unsafe </span>{ <span class="macro-nonterminal">$the_call </span>} {
+            AkResult::AK_Success =&gt; <span class="prelude-val">Ok</span>(($(<span class="macro-nonterminal">$the_tupled_result</span>),<span class="kw-2">*</span>)),
+            error_code =&gt; <span class="prelude-val">Err</span>(error_code)
         }
     };
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">the_call</span>:<span class="ident">expr</span> =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">the_result</span>:<span class="ident">expr</span>) =&gt; {
-        <span class="kw">match</span> <span class="kw">unsafe</span> { <span class="macro-nonterminal">$</span><span class="macro-nonterminal">the_call</span> } {
-            <span class="ident">AkResult::AK_Success</span> =&gt; <span class="prelude-val">Ok</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">the_result</span>),
-            <span class="ident">error_code</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">error_code</span>)
+    (<span class="macro-nonterminal">$the_call</span>:expr =&gt; <span class="macro-nonterminal">$the_result</span>:expr) =&gt; {
+        <span class="kw">match unsafe </span>{ <span class="macro-nonterminal">$the_call </span>} {
+            AkResult::AK_Success =&gt; <span class="prelude-val">Ok</span>(<span class="macro-nonterminal">$the_result</span>),
+            error_code =&gt; <span class="prelude-val">Err</span>(error_code)
         }
     };
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="doccomment">/// Description of a MIDI event</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">AkMIDIEvent</span> {
-    <span class="doccomment">/// Controller event</span>
-    <span class="ident">Cc</span>(<span class="ident">AkMidiChannelNo</span>, <span class="ident">AkMIDIEvent_tCc</span>),
-    <span class="doccomment">/// Channel after touch event</span>
-    <span class="ident">ChanAftertouch</span>(<span class="ident">AkMidiChannelNo</span>, <span class="ident">AkMIDIEvent_tChanAftertouch</span>),
-    <span class="doccomment">/// Generic event (ie, if no other variant apply)</span>
-    <span class="ident">Gen</span>(<span class="ident">AkMidiChannelNo</span>, <span class="ident">AkMIDIEvent_tGen</span>),
-    <span class="doccomment">/// Note after touch event</span>
-    <span class="ident">NoteAftertouch</span>(<span class="ident">AkMidiChannelNo</span>, <span class="ident">AkMIDIEvent_tNoteAftertouch</span>),
-    <span class="doccomment">/// Note became On event</span>
-    <span class="ident">NoteOn</span>(<span class="ident">AkMidiChannelNo</span>, <span class="ident">AkMIDIEvent_tNoteOnOff</span>),
-    <span class="doccomment">/// Note became Off event</span>
-    <span class="ident">NoteOff</span>(<span class="ident">AkMidiChannelNo</span>, <span class="ident">AkMIDIEvent_tNoteOnOff</span>),
-    <span class="doccomment">/// Pitch bent event</span>
-    <span class="ident">PitchBend</span>(<span class="ident">AkMidiChannelNo</span>, <span class="ident">AkMIDIEvent_tPitchBend</span>),
-    <span class="doccomment">/// Program change event</span>
-    <span class="ident">ProgramChange</span>(<span class="ident">AkMidiChannelNo</span>, <span class="ident">AkMIDIEvent_tProgramChange</span>),
-    <span class="doccomment">/// Wwise command event</span>
-    <span class="ident">WwiseCmd</span>(<span class="ident">AkMidiChannelNo</span>, <span class="ident">AkMIDIEvent_tWwiseCmd</span>),
+<span class="attr">#[derive(Debug, Copy, Clone)]
+</span><span class="doccomment">/// Description of a MIDI event
+</span><span class="kw">pub enum </span>AkMIDIEvent {
+    <span class="doccomment">/// Controller event
+    </span>Cc(AkMidiChannelNo, AkMIDIEvent_tCc),
+    <span class="doccomment">/// Channel after touch event
+    </span>ChanAftertouch(AkMidiChannelNo, AkMIDIEvent_tChanAftertouch),
+    <span class="doccomment">/// Generic event (ie, if no other variant apply)
+    </span>Gen(AkMidiChannelNo, AkMIDIEvent_tGen),
+    <span class="doccomment">/// Note after touch event
+    </span>NoteAftertouch(AkMidiChannelNo, AkMIDIEvent_tNoteAftertouch),
+    <span class="doccomment">/// Note became On event
+    </span>NoteOn(AkMidiChannelNo, AkMIDIEvent_tNoteOnOff),
+    <span class="doccomment">/// Note became Off event
+    </span>NoteOff(AkMidiChannelNo, AkMIDIEvent_tNoteOnOff),
+    <span class="doccomment">/// Pitch bent event
+    </span>PitchBend(AkMidiChannelNo, AkMIDIEvent_tPitchBend),
+    <span class="doccomment">/// Program change event
+    </span>ProgramChange(AkMidiChannelNo, AkMIDIEvent_tProgramChange),
+    <span class="doccomment">/// Wwise command event
+    </span>WwiseCmd(AkMidiChannelNo, AkMIDIEvent_tWwiseCmd),
 }
 
-<span class="kw">impl</span> <span class="ident">AkMIDIEvent</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_wwise_cmd</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="macro">matches!</span>(<span class="self">self</span>, <span class="ident"><span class="self">Self</span>::WwiseCmd</span>(<span class="kw">_</span>, <span class="kw">_</span>))
+<span class="kw">impl </span>AkMIDIEvent {
+    <span class="kw">pub fn </span>is_wwise_cmd(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="macro">matches!</span>(<span class="self">self</span>, <span class="self">Self</span>::WwiseCmd(<span class="kw">_</span>, <span class="kw">_</span>))
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_wwise_cmd_play</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::WwiseCmd</span>(<span class="kw">_</span>, <span class="ident">wwise_cmd</span>) =&gt; {
-                <span class="ident">wwise_cmd</span>.<span class="ident">uCmd</span> <span class="op">==</span> <span class="ident">bindings::root::AK_MIDI_WWISE_CMD_PLAY</span> <span class="kw">as</span> <span class="ident">u16</span>
+    <span class="kw">pub fn </span>is_wwise_cmd_play(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::WwiseCmd(<span class="kw">_</span>, wwise_cmd) =&gt; {
+                wwise_cmd.uCmd == bindings::root::AK_MIDI_WWISE_CMD_PLAY <span class="kw">as </span>u16
             }
-            <span class="kw">_</span> =&gt; <span class="bool-val">false</span>,
+            <span class="kw">_ </span>=&gt; <span class="bool-val">false</span>,
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_wwise_cmd_pause</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::WwiseCmd</span>(<span class="kw">_</span>, <span class="ident">wwise_cmd</span>) =&gt; {
-                <span class="ident">wwise_cmd</span>.<span class="ident">uCmd</span> <span class="op">==</span> <span class="ident">bindings::root::AK_MIDI_WWISE_CMD_PAUSE</span> <span class="kw">as</span> <span class="ident">u16</span>
+    <span class="kw">pub fn </span>is_wwise_cmd_pause(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::WwiseCmd(<span class="kw">_</span>, wwise_cmd) =&gt; {
+                wwise_cmd.uCmd == bindings::root::AK_MIDI_WWISE_CMD_PAUSE <span class="kw">as </span>u16
             }
-            <span class="kw">_</span> =&gt; <span class="bool-val">false</span>,
+            <span class="kw">_ </span>=&gt; <span class="bool-val">false</span>,
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_wwise_cmd_stop</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::WwiseCmd</span>(<span class="kw">_</span>, <span class="ident">wwise_cmd</span>) =&gt; {
-                <span class="ident">wwise_cmd</span>.<span class="ident">uCmd</span> <span class="op">==</span> <span class="ident">bindings::root::AK_MIDI_WWISE_CMD_STOP</span> <span class="kw">as</span> <span class="ident">u16</span>
+    <span class="kw">pub fn </span>is_wwise_cmd_stop(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::WwiseCmd(<span class="kw">_</span>, wwise_cmd) =&gt; {
+                wwise_cmd.uCmd == bindings::root::AK_MIDI_WWISE_CMD_STOP <span class="kw">as </span>u16
             }
-            <span class="kw">_</span> =&gt; <span class="bool-val">false</span>,
+            <span class="kw">_ </span>=&gt; <span class="bool-val">false</span>,
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_wwise_cmd_resume</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::WwiseCmd</span>(<span class="kw">_</span>, <span class="ident">wwise_cmd</span>) =&gt; {
-                <span class="ident">wwise_cmd</span>.<span class="ident">uCmd</span> <span class="op">==</span> <span class="ident">bindings::root::AK_MIDI_WWISE_CMD_RESUME</span> <span class="kw">as</span> <span class="ident">u16</span>
+    <span class="kw">pub fn </span>is_wwise_cmd_resume(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::WwiseCmd(<span class="kw">_</span>, wwise_cmd) =&gt; {
+                wwise_cmd.uCmd == bindings::root::AK_MIDI_WWISE_CMD_RESUME <span class="kw">as </span>u16
             }
-            <span class="kw">_</span> =&gt; <span class="bool-val">false</span>,
+            <span class="kw">_ </span>=&gt; <span class="bool-val">false</span>,
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_wwise_cmd_seek_ms</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::WwiseCmd</span>(<span class="kw">_</span>, <span class="ident">wwise_cmd</span>) =&gt; {
-                <span class="ident">wwise_cmd</span>.<span class="ident">uCmd</span> <span class="op">==</span> <span class="ident">bindings::root::AK_MIDI_WWISE_CMD_SEEK_MS</span> <span class="kw">as</span> <span class="ident">u16</span>
+    <span class="kw">pub fn </span>is_wwise_cmd_seek_ms(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::WwiseCmd(<span class="kw">_</span>, wwise_cmd) =&gt; {
+                wwise_cmd.uCmd == bindings::root::AK_MIDI_WWISE_CMD_SEEK_MS <span class="kw">as </span>u16
             }
-            <span class="kw">_</span> =&gt; <span class="bool-val">false</span>,
+            <span class="kw">_ </span>=&gt; <span class="bool-val">false</span>,
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_wwise_cmd_seek_samples</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::WwiseCmd</span>(<span class="kw">_</span>, <span class="ident">wwise_cmd</span>) =&gt; {
-                <span class="ident">wwise_cmd</span>.<span class="ident">uCmd</span> <span class="op">==</span> <span class="ident">bindings::root::AK_MIDI_WWISE_CMD_SEEK_SAMPLES</span> <span class="kw">as</span> <span class="ident">u16</span>
+    <span class="kw">pub fn </span>is_wwise_cmd_seek_samples(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::WwiseCmd(<span class="kw">_</span>, wwise_cmd) =&gt; {
+                wwise_cmd.uCmd == bindings::root::AK_MIDI_WWISE_CMD_SEEK_SAMPLES <span class="kw">as </span>u16
             }
-            <span class="kw">_</span> =&gt; <span class="bool-val">false</span>,
+            <span class="kw">_ </span>=&gt; <span class="bool-val">false</span>,
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_wwise_cmd_seek</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">is_wwise_cmd_seek_ms</span>() <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">is_wwise_cmd_seek_samples</span>()
+    <span class="kw">pub fn </span>is_wwise_cmd_seek(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.is_wwise_cmd_seek_ms() || <span class="self">self</span>.is_wwise_cmd_seek_samples()
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_wwise_cmd_known</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">is_wwise_cmd_play</span>()
-            <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">is_wwise_cmd_pause</span>()
-            <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">is_wwise_cmd_resume</span>()
-            <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">is_wwise_cmd_stop</span>()
-            <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">is_wwise_cmd_seek</span>()
+    <span class="kw">pub fn </span>is_wwise_cmd_known(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.is_wwise_cmd_play()
+            || <span class="self">self</span>.is_wwise_cmd_pause()
+            || <span class="self">self</span>.is_wwise_cmd_resume()
+            || <span class="self">self</span>.is_wwise_cmd_stop()
+            || <span class="self">self</span>.is_wwise_cmd_seek()
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_note_on</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::NoteOn</span>(<span class="kw">_</span>, <span class="ident">note_on_off</span>) =&gt; <span class="ident">note_on_off</span>.<span class="ident">byVelocity</span> <span class="op">==</span> <span class="number">0</span>,
-            <span class="kw">_</span> =&gt; <span class="bool-val">false</span>,
+    <span class="kw">pub fn </span>is_note_on(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::NoteOn(<span class="kw">_</span>, note_on_off) =&gt; note_on_off.byVelocity == <span class="number">0</span>,
+            <span class="kw">_ </span>=&gt; <span class="bool-val">false</span>,
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_note_off</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::NoteOff</span>(<span class="kw">_</span>, <span class="ident">note_on_off</span>) =&gt; <span class="ident">note_on_off</span>.<span class="ident">byVelocity</span> <span class="op">==</span> <span class="number">0</span>,
-            <span class="kw">_</span> =&gt; <span class="bool-val">false</span>,
-        }
-    }
-}
-
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">bindings::root::AkMIDIEvent</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">AkMIDIEvent</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">e</span>: <span class="ident">bindings::root::AkMIDIEvent</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">unsafe</span> {
-            <span class="kw">match</span> <span class="ident">e</span>.<span class="ident">byType</span> <span class="kw">as</span> <span class="ident">u32</span> {
-                <span class="ident">bindings::root::AK_MIDI_EVENT_TYPE_NOTE_OFF</span> =&gt; {
-                    <span class="ident">AkMIDIEvent::NoteOn</span>(<span class="ident">e</span>.<span class="ident">byChan</span>, <span class="ident">e</span>.<span class="ident">__bindgen_anon_1</span>.<span class="ident">NoteOnOff</span>)
-                }
-                <span class="ident">bindings::root::AK_MIDI_EVENT_TYPE_NOTE_ON</span> =&gt; {
-                    <span class="ident">AkMIDIEvent::NoteOff</span>(<span class="ident">e</span>.<span class="ident">byChan</span>, <span class="ident">e</span>.<span class="ident">__bindgen_anon_1</span>.<span class="ident">NoteOnOff</span>)
-                }
-                <span class="ident">bindings::root::AK_MIDI_EVENT_TYPE_NOTE_AFTERTOUCH</span> =&gt; {
-                    <span class="ident">AkMIDIEvent::NoteAftertouch</span>(<span class="ident">e</span>.<span class="ident">byChan</span>, <span class="ident">e</span>.<span class="ident">__bindgen_anon_1</span>.<span class="ident">NoteAftertouch</span>)
-                }
-                <span class="ident">bindings::root::AK_MIDI_EVENT_TYPE_CONTROLLER</span> =&gt; {
-                    <span class="ident">AkMIDIEvent::Cc</span>(<span class="ident">e</span>.<span class="ident">byChan</span>, <span class="ident">e</span>.<span class="ident">__bindgen_anon_1</span>.<span class="ident">Cc</span>)
-                }
-                <span class="ident">bindings::root::AK_MIDI_EVENT_TYPE_PROGRAM_CHANGE</span> =&gt; {
-                    <span class="ident">AkMIDIEvent::ProgramChange</span>(<span class="ident">e</span>.<span class="ident">byChan</span>, <span class="ident">e</span>.<span class="ident">__bindgen_anon_1</span>.<span class="ident">ProgramChange</span>)
-                }
-                <span class="ident">bindings::root::AK_MIDI_EVENT_TYPE_CHANNEL_AFTERTOUCH</span> =&gt; {
-                    <span class="ident">AkMIDIEvent::ChanAftertouch</span>(<span class="ident">e</span>.<span class="ident">byChan</span>, <span class="ident">e</span>.<span class="ident">__bindgen_anon_1</span>.<span class="ident">ChanAftertouch</span>)
-                }
-                <span class="ident">bindings::root::AK_MIDI_EVENT_TYPE_PITCH_BEND</span> =&gt; {
-                    <span class="ident">AkMIDIEvent::PitchBend</span>(<span class="ident">e</span>.<span class="ident">byChan</span>, <span class="ident">e</span>.<span class="ident">__bindgen_anon_1</span>.<span class="ident">PitchBend</span>)
-                }
-                <span class="ident">bindings::root::AK_MIDI_EVENT_TYPE_WWISE_CMD</span> =&gt; {
-                    <span class="ident">AkMIDIEvent::WwiseCmd</span>(<span class="ident">e</span>.<span class="ident">byChan</span>, <span class="ident">e</span>.<span class="ident">__bindgen_anon_1</span>.<span class="ident">WwiseCmd</span>)
-                }
-                <span class="kw">_</span> =&gt; <span class="ident">AkMIDIEvent::Gen</span>(<span class="ident">e</span>.<span class="ident">byChan</span>, <span class="ident">e</span>.<span class="ident">__bindgen_anon_1</span>.<span class="ident">Gen</span>),
-            }
+    <span class="kw">pub fn </span>is_note_off(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::NoteOff(<span class="kw">_</span>, note_on_off) =&gt; note_on_off.byVelocity == <span class="number">0</span>,
+            <span class="kw">_ </span>=&gt; <span class="bool-val">false</span>,
         }
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
-<span class="doccomment">/// Callback information used for all notifications sent from Wwise.</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">AkCallbackInfo</span> {
-    <span class="doccomment">/// Basic information structure returned for notifications that are not handled by another variant.</span>
-    <span class="ident">Default</span> {
-        <span class="ident">game_obj_id</span>: <span class="ident">AkGameObjectID</span>,
-        <span class="ident">callback_type</span>: <span class="ident">AkCallbackType</span>,
-    },
-
-    <span class="doccomment">/// Callback information structure corresponding to [AkCallbackType::AK_MusicSyncEntry],</span>
-    <span class="doccomment">/// [AkCallbackType::AK_MusicSyncBeat], [AkCallbackType::AK_MusicSyncBar],</span>
-    <span class="doccomment">/// [AkCallbackType::AK_MusicSyncExit], [AkCallbackType::AK_MusicSyncGrid],</span>
-    <span class="doccomment">/// [AkCallbackType::AK_MusicSyncPoint] and [AkCallbackType::AK_MusicSyncUserCue].</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// If you need the Tempo, you can compute it using the `fBeatDuration`:</span>
-    <span class="doccomment">/// Tempo (beats per minute) = 60/`fBeatDuration`</span>
-    <span class="ident">MusicSync</span> {
-        <span class="ident">game_obj_id</span>: <span class="ident">AkGameObjectID</span>,
-        <span class="doccomment">/// Playing ID of Event, returned by [PostEvent::post()](sound_engine::PostEvent::post)</span>
-        <span class="ident">playing_id</span>: <span class="ident">AkPlayingID</span>,
-        <span class="doccomment">/// Segment information corresponding to the segment triggering this callback</span>
-        <span class="ident">segment_info</span>: <span class="ident">AkSegmentInfo</span>,
-        <span class="doccomment">/// Would be either [AkCallbackType::AK_MusicSyncEntry],</span>
-        <span class="doccomment">/// [AkCallbackType::AK_MusicSyncBeat], [AkCallbackType::AK_MusicSyncBar],</span>
-        <span class="doccomment">/// [AkCallbackType::AK_MusicSyncExit], [AkCallbackType::AK_MusicSyncGrid],</span>
-        <span class="doccomment">/// [AkCallbackType::AK_MusicSyncPoint] or [AkCallbackType::AK_MusicSyncUserCue]</span>
-        <span class="ident">music_sync_type</span>: <span class="ident">AkCallbackType</span>,
-        <span class="doccomment">/// Cue name. Set for notifications [AkCallbackType::AK_MusicSyncUserCue]. Empty if cue has no name.</span>
-        <span class="ident">user_cue_name</span>: <span class="ident">String</span>,
-    },
-
-    <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
-    <span class="doccomment">/// Callback information structure corresponding to [AkCallbackType::AK_EndOfDynamicSequenceItem].</span>
-    <span class="ident">DynamicSequenceItem</span> {
-        <span class="ident">game_obj_id</span>: <span class="ident">AkGameObjectID</span>,
-        <span class="doccomment">/// Playing ID of Dynamic Sequence, returned by [DynamicSequence::Open()](sound_engine::DynamicSequence::Open)</span>
-        <span class="ident">playing_id</span>: <span class="ident">AkPlayingID</span>,
-        <span class="doccomment">/// Audio Node ID of finished item</span>
-        <span class="ident">audio_node_id</span>: <span class="ident">AkUniqueID</span>,
-        <span class="comment">// TODO: custom_info cookie</span>
-    },
-
-    <span class="doccomment">/// Callback information structure corresponding to [AkCallbackType::AK_EndOfEvent],</span>
-    <span class="doccomment">/// [AkCallbackType::AK_MusicPlayStarted] and [AkCallbackType::AK_Starvation].</span>
-    <span class="ident">Event</span> {
-        <span class="ident">game_obj_id</span>: <span class="ident">AkGameObjectID</span>,
-        <span class="doccomment">/// Would be either [AkCallbackType::AK_EndOfEvent], [AkCallbackType::AK_MusicPlayStarted]</span>
-        <span class="doccomment">/// or [AkCallbackType::AK_Starvation]</span>
-        <span class="ident">callback_type</span>: <span class="ident">AkCallbackType</span>,
-        <span class="doccomment">/// Playing ID of Event, returned by [PostEvent::post()](sound_engine::PostEvent::post)</span>
-        <span class="ident">playing_id</span>: <span class="ident">AkPlayingID</span>,
-        <span class="doccomment">/// Unique ID of Event, passed to [PostEvent::new()](sound_engine::PostEvent::new)</span>
-        <span class="ident">event_id</span>: <span class="ident">AkUniqueID</span>,
-    },
-
-    <span class="doccomment">/// Callback information structure corresponding to [AkCallbackType::AK_Duration].</span>
-    <span class="ident">Duration</span> {
-        <span class="ident">game_obj_id</span>: <span class="ident">AkGameObjectID</span>,
-        <span class="doccomment">/// Playing ID of Event, returned by [PostEvent::post()](sound_engine::PostEvent::post)</span>
-        <span class="ident">playing_id</span>: <span class="ident">AkPlayingID</span>,
-        <span class="doccomment">/// Unique ID of Event, passed to [PostEvent::new()](sound_engine::PostEvent::new)</span>
-        <span class="ident">event_id</span>: <span class="ident">AkUniqueID</span>,
-        <span class="doccomment">/// Duration of the sound (unit: milliseconds)</span>
-        <span class="ident">duration</span>: <span class="ident">AkReal32</span>,
-        <span class="doccomment">/// Estimated duration of the sound depending on source settings such as pitch. (unit: milliseconds)</span>
-        <span class="ident">estimated_duration</span>: <span class="ident">AkReal32</span>,
-        <span class="doccomment">/// Audio Node ID of playing item</span>
-        <span class="ident">audio_node_id</span>: <span class="ident">AkUniqueID</span>,
-        <span class="doccomment">/// Media ID of playing item. (corresponds to &#39;ID&#39; attribute of &#39;File&#39; element in SoundBank metadata file)</span>
-        <span class="ident">media_id</span>: <span class="ident">AkUniqueID</span>,
-        <span class="doccomment">/// True if source is streaming, false otherwise</span>
-        <span class="ident">streaming</span>: <span class="ident">bool</span>,
-    },
-
-    <span class="doccomment">/// Callback information structure corresponding to [AkCallbackType::AK_Marker].</span>
-    <span class="ident">Marker</span> {
-        <span class="ident">game_obj_id</span>: <span class="ident">AkGameObjectID</span>,
-        <span class="doccomment">/// Playing ID of Event, returned by [PostEvent::post()](sound_engine::PostEvent::post)</span>
-        <span class="ident">playing_id</span>: <span class="ident">AkPlayingID</span>,
-        <span class="doccomment">/// Unique ID of Event, passed to [PostEvent::new()](sound_engine::PostEvent::new)</span>
-        <span class="ident">event_id</span>: <span class="ident">AkUniqueID</span>,
-        <span class="doccomment">/// Cue point identifier</span>
-        <span class="ident">identifier</span>: <span class="ident">AkUniqueID</span>,
-        <span class="doccomment">/// Position in the cue point (unit: sample frames)</span>
-        <span class="ident">position</span>: <span class="ident">AkUInt32</span>,
-        <span class="doccomment">/// Label of the marker, read from the file</span>
-        <span class="ident">label</span>: <span class="ident">String</span>,
-    },
-
-    <span class="doccomment">/// Callback information structure corresponding to [AkCallbackType::AK_MIDIEvent].</span>
-    <span class="ident">Midi</span> {
-        <span class="ident">game_obj_id</span>: <span class="ident">AkGameObjectID</span>,
-        <span class="doccomment">/// Playing ID of Event, returned by [PostEvent::post()](sound_engine::PostEvent::post)</span>
-        <span class="ident">playing_id</span>: <span class="ident">AkPlayingID</span>,
-        <span class="doccomment">/// Unique ID of Event, passed to [PostEvent::new()](sound_engine::PostEvent::new)</span>
-        <span class="ident">event_id</span>: <span class="ident">AkUniqueID</span>,
-        <span class="doccomment">/// MIDI event triggered by event</span>
-        <span class="ident">midi_event</span>: <span class="ident">AkMIDIEvent</span>,
-    },
-
-    <span class="doccomment">/// Callback information structure corresponding to [AkCallbackType::AK_MusicPlaylistSelect].</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Called when a music playlist container must select its next item to play.</span>
-    <span class="doccomment">/// The members `playlist_selection` and `playlist_item_done` are set by the sound</span>
-    <span class="doccomment">/// engine before the callback function call. They are set to the next item</span>
-    <span class="doccomment">/// selected by the sound engine.</span>
-    <span class="ident">MusicPlaylist</span> {
-        <span class="ident">game_obj_id</span>: <span class="ident">AkGameObjectID</span>,
-        <span class="doccomment">/// Playing ID of Event, returned by [PostEvent::post()](sound_engine::PostEvent::post)</span>
-        <span class="ident">playing_id</span>: <span class="ident">AkPlayingID</span>,
-        <span class="doccomment">/// Unique ID of Event, passed to [PostEvent::new()](sound_engine::PostEvent::new)</span>
-        <span class="ident">event_id</span>: <span class="ident">AkUniqueID</span>,
-        <span class="doccomment">/// ID of playlist node</span>
-        <span class="ident">playlist_id</span>: <span class="ident">AkUniqueID</span>,
-        <span class="doccomment">/// Number of items in playlist node (may be segments or other playlists)</span>
-        <span class="ident">num_playlist_items</span>: <span class="ident">AkUInt32</span>,
-        <span class="doccomment">/// Selection: set by sound engine</span>
-        <span class="ident">playlist_selection</span>: <span class="ident">AkUInt32</span>,
-        <span class="doccomment">/// Playlist node done: set by sound engine</span>
-        <span class="ident">playlist_item_done</span>: <span class="ident">AkUInt32</span>,
-    },
-
-    <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
-    <span class="doccomment">/// Callback information structure corresponding to [AkCallbackType::AK_SpeakerVolumeMatrix],</span>
-    <span class="doccomment">/// and passed to callbacks registered in [RegisterBusVolumeCallback()] or</span>
-    <span class="doccomment">/// [PostEvent](sound_engine::PostEvent) with [AkCallbackType::AK_SpeakerVolumeMatrix].</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// These callbacks are called at every audio frame for every connection from an input (voice</span>
-    <span class="doccomment">/// or bus) to an output bus (standard or auxiliary), at the point when an input signal is about to be mixed into a mixing bus, but just before</span>
-    <span class="doccomment">/// having been scaled in accordance to volumes authored in Wwise. The volumes are passed via this structure as pointers because they can be modified</span>
-    <span class="doccomment">/// in the callbacks. They are factored into two linear values ([0..1]): a common base value (pfBaseVolume), that is channel-agnostic and represents</span>
-    <span class="doccomment">/// the collapsed gain of all volume changes in Wwise (sliders, actions, RTPC, attenuations, ...), and a matrix of gains per input/output channel,</span>
-    <span class="doccomment">/// which depends on spatialization. Use the methods of AK::SpeakerVolumes::Matrix, defined in AkCommonDefs.h, to perform operations on them.</span>
-    <span class="doccomment">/// Access each input channel of the volumes matrix with AK::SpeakerVolumes::Matrix::GetChannel(), passing it the input and output channel configuration.</span>
-    <span class="doccomment">/// Then, you may access each element of the output vector using the standard bracket [] operator. See AK::SpeakerVolumes for more details.</span>
-    <span class="doccomment">/// It is crucial that the processing done in the callback be lightweight and non-blocking.</span>
-    <span class="ident">SpeakerMatrixVolume</span> {
-        <span class="ident">game_obj_id</span>: <span class="ident">AkGameObjectID</span>,
-        <span class="doccomment">/// Playing ID of Event, returned by [PostEvent::post()](sound_engine::PostEvent::post)</span>
-        <span class="ident">playing_id</span>: <span class="ident">AkPlayingID</span>,
-        <span class="doccomment">/// Unique ID of Event, passed to [PostEvent::new()](sound_engine::PostEvent::new)</span>
-        <span class="ident">event_id</span>: <span class="ident">AkUniqueID</span>,
-        <span class="doccomment">/// Channel configuration of the voice/bus</span>
-        <span class="ident">input_config</span>: <span class="ident">AkChannelConfig</span>,
-        <span class="doccomment">/// Channel configuration of the output bus</span>
-        <span class="ident">output_config</span>: <span class="ident">AkChannelConfig</span>,
-        <span class="comment">// TODO: volumes</span>
-        <span class="comment">// TODO: base_volume</span>
-        <span class="comment">// TODO: emitter_listener_volume</span>
-        <span class="comment">// TODO: context</span>
-        <span class="comment">// TODO: mixer_context</span>
-    },
-    <span class="comment">// TODO: BusMetering</span>
-    <span class="comment">// TODO: OutputDeviceMetering</span>
-}
-
-<span class="kw">impl</span> <span class="ident">AkCallbackType</span> {
-    <span class="doccomment">/// Checks whether this bitflag has at least one of the bits in `flags` set.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">contains</span>(<span class="self">self</span>, <span class="ident">flags</span>: <span class="self">Self</span>) -&gt; <span class="ident">bool</span> {
-        (<span class="self">self</span> <span class="op">&amp;</span> <span class="ident">flags</span>).<span class="number">0</span> <span class="op">&gt;</span> <span class="self">Self</span>(<span class="number">0</span>).<span class="number">0</span>
+<span class="kw">impl </span>From&lt;bindings::root::AkMIDIEvent&gt; <span class="kw">for </span>AkMIDIEvent {
+    <span class="kw">fn </span>from(e: bindings::root::AkMIDIEvent) -&gt; <span class="self">Self </span>{
+        <span class="kw">unsafe </span>{
+            <span class="kw">match </span>e.byType <span class="kw">as </span>u32 {
+                bindings::root::AK_MIDI_EVENT_TYPE_NOTE_OFF =&gt; {
+                    AkMIDIEvent::NoteOn(e.byChan, e.__bindgen_anon_1.NoteOnOff)
+                }
+                bindings::root::AK_MIDI_EVENT_TYPE_NOTE_ON =&gt; {
+                    AkMIDIEvent::NoteOff(e.byChan, e.__bindgen_anon_1.NoteOnOff)
+                }
+                bindings::root::AK_MIDI_EVENT_TYPE_NOTE_AFTERTOUCH =&gt; {
+                    AkMIDIEvent::NoteAftertouch(e.byChan, e.__bindgen_anon_1.NoteAftertouch)
+                }
+                bindings::root::AK_MIDI_EVENT_TYPE_CONTROLLER =&gt; {
+                    AkMIDIEvent::Cc(e.byChan, e.__bindgen_anon_1.Cc)
+                }
+                bindings::root::AK_MIDI_EVENT_TYPE_PROGRAM_CHANGE =&gt; {
+                    AkMIDIEvent::ProgramChange(e.byChan, e.__bindgen_anon_1.ProgramChange)
+                }
+                bindings::root::AK_MIDI_EVENT_TYPE_CHANNEL_AFTERTOUCH =&gt; {
+                    AkMIDIEvent::ChanAftertouch(e.byChan, e.__bindgen_anon_1.ChanAftertouch)
+                }
+                bindings::root::AK_MIDI_EVENT_TYPE_PITCH_BEND =&gt; {
+                    AkMIDIEvent::PitchBend(e.byChan, e.__bindgen_anon_1.PitchBend)
+                }
+                bindings::root::AK_MIDI_EVENT_TYPE_WWISE_CMD =&gt; {
+                    AkMIDIEvent::WwiseCmd(e.byChan, e.__bindgen_anon_1.WwiseCmd)
+                }
+                <span class="kw">_ </span>=&gt; AkMIDIEvent::Gen(e.byChan, e.__bindgen_anon_1.Gen),
+            }
+        }
     }
 }
 
-<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::derivable_impls</span>)]</span>
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">AkCallbackType</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
+<span class="attr">#[derive(Debug, Clone)]
+</span><span class="doccomment">/// Callback information used for all notifications sent from Wwise.
+</span><span class="kw">pub enum </span>AkCallbackInfo {
+    <span class="doccomment">/// Basic information structure returned for notifications that are not handled by another variant.
+    </span>Default {
+        game_obj_id: AkGameObjectID,
+        callback_type: AkCallbackType,
+    },
+
+    <span class="doccomment">/// Callback information structure corresponding to [AkCallbackType::AK_MusicSyncEntry],
+    /// [AkCallbackType::AK_MusicSyncBeat], [AkCallbackType::AK_MusicSyncBar],
+    /// [AkCallbackType::AK_MusicSyncExit], [AkCallbackType::AK_MusicSyncGrid],
+    /// [AkCallbackType::AK_MusicSyncPoint] and [AkCallbackType::AK_MusicSyncUserCue].
+    ///
+    /// If you need the Tempo, you can compute it using the `fBeatDuration`:
+    /// Tempo (beats per minute) = 60/`fBeatDuration`
+    </span>MusicSync {
+        game_obj_id: AkGameObjectID,
+        <span class="doccomment">/// Playing ID of Event, returned by [PostEvent::post()](sound_engine::PostEvent::post)
+        </span>playing_id: AkPlayingID,
+        <span class="doccomment">/// Segment information corresponding to the segment triggering this callback
+        </span>segment_info: AkSegmentInfo,
+        <span class="doccomment">/// Would be either [AkCallbackType::AK_MusicSyncEntry],
+        /// [AkCallbackType::AK_MusicSyncBeat], [AkCallbackType::AK_MusicSyncBar],
+        /// [AkCallbackType::AK_MusicSyncExit], [AkCallbackType::AK_MusicSyncGrid],
+        /// [AkCallbackType::AK_MusicSyncPoint] or [AkCallbackType::AK_MusicSyncUserCue]
+        </span>music_sync_type: AkCallbackType,
+        <span class="doccomment">/// Cue name. Set for notifications [AkCallbackType::AK_MusicSyncUserCue]. Empty if cue has no name.
+        </span>user_cue_name: String,
+    },
+
+    <span class="attr">#[non_exhaustive]
+    </span><span class="doccomment">/// Callback information structure corresponding to [AkCallbackType::AK_EndOfDynamicSequenceItem].
+    </span>DynamicSequenceItem {
+        game_obj_id: AkGameObjectID,
+        <span class="doccomment">/// Playing ID of Dynamic Sequence, returned by [DynamicSequence::Open()](sound_engine::DynamicSequence::Open)
+        </span>playing_id: AkPlayingID,
+        <span class="doccomment">/// Audio Node ID of finished item
+        </span>audio_node_id: AkUniqueID,
+        <span class="comment">// TODO: custom_info cookie
+    </span>},
+
+    <span class="doccomment">/// Callback information structure corresponding to [AkCallbackType::AK_EndOfEvent],
+    /// [AkCallbackType::AK_MusicPlayStarted] and [AkCallbackType::AK_Starvation].
+    </span>Event {
+        game_obj_id: AkGameObjectID,
+        <span class="doccomment">/// Would be either [AkCallbackType::AK_EndOfEvent], [AkCallbackType::AK_MusicPlayStarted]
+        /// or [AkCallbackType::AK_Starvation]
+        </span>callback_type: AkCallbackType,
+        <span class="doccomment">/// Playing ID of Event, returned by [PostEvent::post()](sound_engine::PostEvent::post)
+        </span>playing_id: AkPlayingID,
+        <span class="doccomment">/// Unique ID of Event, passed to [PostEvent::new()](sound_engine::PostEvent::new)
+        </span>event_id: AkUniqueID,
+    },
+
+    <span class="doccomment">/// Callback information structure corresponding to [AkCallbackType::AK_Duration].
+    </span>Duration {
+        game_obj_id: AkGameObjectID,
+        <span class="doccomment">/// Playing ID of Event, returned by [PostEvent::post()](sound_engine::PostEvent::post)
+        </span>playing_id: AkPlayingID,
+        <span class="doccomment">/// Unique ID of Event, passed to [PostEvent::new()](sound_engine::PostEvent::new)
+        </span>event_id: AkUniqueID,
+        <span class="doccomment">/// Duration of the sound (unit: milliseconds)
+        </span>duration: AkReal32,
+        <span class="doccomment">/// Estimated duration of the sound depending on source settings such as pitch. (unit: milliseconds)
+        </span>estimated_duration: AkReal32,
+        <span class="doccomment">/// Audio Node ID of playing item
+        </span>audio_node_id: AkUniqueID,
+        <span class="doccomment">/// Media ID of playing item. (corresponds to &#39;ID&#39; attribute of &#39;File&#39; element in SoundBank metadata file)
+        </span>media_id: AkUniqueID,
+        <span class="doccomment">/// True if source is streaming, false otherwise
+        </span>streaming: bool,
+    },
+
+    <span class="doccomment">/// Callback information structure corresponding to [AkCallbackType::AK_Marker].
+    </span>Marker {
+        game_obj_id: AkGameObjectID,
+        <span class="doccomment">/// Playing ID of Event, returned by [PostEvent::post()](sound_engine::PostEvent::post)
+        </span>playing_id: AkPlayingID,
+        <span class="doccomment">/// Unique ID of Event, passed to [PostEvent::new()](sound_engine::PostEvent::new)
+        </span>event_id: AkUniqueID,
+        <span class="doccomment">/// Cue point identifier
+        </span>identifier: AkUniqueID,
+        <span class="doccomment">/// Position in the cue point (unit: sample frames)
+        </span>position: AkUInt32,
+        <span class="doccomment">/// Label of the marker, read from the file
+        </span>label: String,
+    },
+
+    <span class="doccomment">/// Callback information structure corresponding to [AkCallbackType::AK_MIDIEvent].
+    </span>Midi {
+        game_obj_id: AkGameObjectID,
+        <span class="doccomment">/// Playing ID of Event, returned by [PostEvent::post()](sound_engine::PostEvent::post)
+        </span>playing_id: AkPlayingID,
+        <span class="doccomment">/// Unique ID of Event, passed to [PostEvent::new()](sound_engine::PostEvent::new)
+        </span>event_id: AkUniqueID,
+        <span class="doccomment">/// MIDI event triggered by event
+        </span>midi_event: AkMIDIEvent,
+    },
+
+    <span class="doccomment">/// Callback information structure corresponding to [AkCallbackType::AK_MusicPlaylistSelect].
+    ///
+    /// Called when a music playlist container must select its next item to play.
+    /// The members `playlist_selection` and `playlist_item_done` are set by the sound
+    /// engine before the callback function call. They are set to the next item
+    /// selected by the sound engine.
+    </span>MusicPlaylist {
+        game_obj_id: AkGameObjectID,
+        <span class="doccomment">/// Playing ID of Event, returned by [PostEvent::post()](sound_engine::PostEvent::post)
+        </span>playing_id: AkPlayingID,
+        <span class="doccomment">/// Unique ID of Event, passed to [PostEvent::new()](sound_engine::PostEvent::new)
+        </span>event_id: AkUniqueID,
+        <span class="doccomment">/// ID of playlist node
+        </span>playlist_id: AkUniqueID,
+        <span class="doccomment">/// Number of items in playlist node (may be segments or other playlists)
+        </span>num_playlist_items: AkUInt32,
+        <span class="doccomment">/// Selection: set by sound engine
+        </span>playlist_selection: AkUInt32,
+        <span class="doccomment">/// Playlist node done: set by sound engine
+        </span>playlist_item_done: AkUInt32,
+    },
+
+    <span class="attr">#[non_exhaustive]
+    </span><span class="doccomment">/// Callback information structure corresponding to [AkCallbackType::AK_SpeakerVolumeMatrix],
+    /// and passed to callbacks registered in [RegisterBusVolumeCallback()] or
+    /// [PostEvent](sound_engine::PostEvent) with [AkCallbackType::AK_SpeakerVolumeMatrix].
+    ///
+    /// These callbacks are called at every audio frame for every connection from an input (voice
+    /// or bus) to an output bus (standard or auxiliary), at the point when an input signal is about to be mixed into a mixing bus, but just before
+    /// having been scaled in accordance to volumes authored in Wwise. The volumes are passed via this structure as pointers because they can be modified
+    /// in the callbacks. They are factored into two linear values ([0..1]): a common base value (pfBaseVolume), that is channel-agnostic and represents
+    /// the collapsed gain of all volume changes in Wwise (sliders, actions, RTPC, attenuations, ...), and a matrix of gains per input/output channel,
+    /// which depends on spatialization. Use the methods of AK::SpeakerVolumes::Matrix, defined in AkCommonDefs.h, to perform operations on them.
+    /// Access each input channel of the volumes matrix with AK::SpeakerVolumes::Matrix::GetChannel(), passing it the input and output channel configuration.
+    /// Then, you may access each element of the output vector using the standard bracket [] operator. See AK::SpeakerVolumes for more details.
+    /// It is crucial that the processing done in the callback be lightweight and non-blocking.
+    </span>SpeakerMatrixVolume {
+        game_obj_id: AkGameObjectID,
+        <span class="doccomment">/// Playing ID of Event, returned by [PostEvent::post()](sound_engine::PostEvent::post)
+        </span>playing_id: AkPlayingID,
+        <span class="doccomment">/// Unique ID of Event, passed to [PostEvent::new()](sound_engine::PostEvent::new)
+        </span>event_id: AkUniqueID,
+        <span class="doccomment">/// Channel configuration of the voice/bus
+        </span>input_config: AkChannelConfig,
+        <span class="doccomment">/// Channel configuration of the output bus
+        </span>output_config: AkChannelConfig,
+        <span class="comment">// TODO: volumes
+        // TODO: base_volume
+        // TODO: emitter_listener_volume
+        // TODO: context
+        // TODO: mixer_context
+    </span>},
+    <span class="comment">// TODO: BusMetering
+    // TODO: OutputDeviceMetering
+</span>}
+
+<span class="kw">impl </span>AkCallbackType {
+    <span class="doccomment">/// Checks whether this bitflag has at least one of the bits in `flags` set.
+    </span><span class="kw">pub fn </span>contains(<span class="self">self</span>, flags: <span class="self">Self</span>) -&gt; bool {
+        (<span class="self">self </span>&amp; flags).<span class="number">0 </span>&gt; <span class="self">Self</span>(<span class="number">0</span>).<span class="number">0
+    </span>}
+}
+
+<span class="attr">#[allow(clippy::derivable_impls)]
+</span><span class="kw">impl </span>Default <span class="kw">for </span>AkCallbackType {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
         <span class="self">Self</span>(<span class="number">0</span>)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Display</span> <span class="kw">for</span> <span class="ident">AkCallbackType</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">flags</span> <span class="op">=</span> <span class="macro">vec!</span>[];
+<span class="kw">impl </span>Display <span class="kw">for </span>AkCallbackType {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; std::fmt::Result {
+        <span class="kw">let </span><span class="kw-2">mut </span>flags = <span class="macro">vec!</span>[];
 
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">contains</span>(<span class="ident">AkCallbackType::AK_EndOfEvent</span>) {
-            <span class="ident">flags</span>.<span class="ident">push</span>(<span class="string">&quot;AK_EndOfEvent&quot;</span>)
+        <span class="kw">if </span><span class="self">self</span>.contains(AkCallbackType::AK_EndOfEvent) {
+            flags.push(<span class="string">&quot;AK_EndOfEvent&quot;</span>)
         }
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">contains</span>(<span class="ident">AkCallbackType::AK_EndOfDynamicSequenceItem</span>) {
-            <span class="ident">flags</span>.<span class="ident">push</span>(<span class="string">&quot;AK_EndOfDynamicSequenceItem&quot;</span>)
+        <span class="kw">if </span><span class="self">self</span>.contains(AkCallbackType::AK_EndOfDynamicSequenceItem) {
+            flags.push(<span class="string">&quot;AK_EndOfDynamicSequenceItem&quot;</span>)
         }
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">contains</span>(<span class="ident">AkCallbackType::AK_Marker</span>) {
-            <span class="ident">flags</span>.<span class="ident">push</span>(<span class="string">&quot;AK_Marker&quot;</span>)
+        <span class="kw">if </span><span class="self">self</span>.contains(AkCallbackType::AK_Marker) {
+            flags.push(<span class="string">&quot;AK_Marker&quot;</span>)
         }
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">contains</span>(<span class="ident">AkCallbackType::AK_Duration</span>) {
-            <span class="ident">flags</span>.<span class="ident">push</span>(<span class="string">&quot;AK_Duration&quot;</span>)
+        <span class="kw">if </span><span class="self">self</span>.contains(AkCallbackType::AK_Duration) {
+            flags.push(<span class="string">&quot;AK_Duration&quot;</span>)
         }
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">contains</span>(<span class="ident">AkCallbackType::AK_SpeakerVolumeMatrix</span>) {
-            <span class="ident">flags</span>.<span class="ident">push</span>(<span class="string">&quot;AK_SpeakerVolumeMatrix&quot;</span>)
+        <span class="kw">if </span><span class="self">self</span>.contains(AkCallbackType::AK_SpeakerVolumeMatrix) {
+            flags.push(<span class="string">&quot;AK_SpeakerVolumeMatrix&quot;</span>)
         }
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">contains</span>(<span class="ident">AkCallbackType::AK_Starvation</span>) {
-            <span class="ident">flags</span>.<span class="ident">push</span>(<span class="string">&quot;AK_Starvation&quot;</span>)
+        <span class="kw">if </span><span class="self">self</span>.contains(AkCallbackType::AK_Starvation) {
+            flags.push(<span class="string">&quot;AK_Starvation&quot;</span>)
         }
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">contains</span>(<span class="ident">AkCallbackType::AK_MusicPlaylistSelect</span>) {
-            <span class="ident">flags</span>.<span class="ident">push</span>(<span class="string">&quot;AK_MusicPlaylistSelect&quot;</span>)
+        <span class="kw">if </span><span class="self">self</span>.contains(AkCallbackType::AK_MusicPlaylistSelect) {
+            flags.push(<span class="string">&quot;AK_MusicPlaylistSelect&quot;</span>)
         }
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">contains</span>(<span class="ident">AkCallbackType::AK_MusicPlayStarted</span>) {
-            <span class="ident">flags</span>.<span class="ident">push</span>(<span class="string">&quot;AK_MusicPlayStarted&quot;</span>)
+        <span class="kw">if </span><span class="self">self</span>.contains(AkCallbackType::AK_MusicPlayStarted) {
+            flags.push(<span class="string">&quot;AK_MusicPlayStarted&quot;</span>)
         }
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">contains</span>(<span class="ident">AkCallbackType::AK_MusicSyncBeat</span>) {
-            <span class="ident">flags</span>.<span class="ident">push</span>(<span class="string">&quot;AK_MusicSyncBeat&quot;</span>)
+        <span class="kw">if </span><span class="self">self</span>.contains(AkCallbackType::AK_MusicSyncBeat) {
+            flags.push(<span class="string">&quot;AK_MusicSyncBeat&quot;</span>)
         }
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">contains</span>(<span class="ident">AkCallbackType::AK_MusicSyncBar</span>) {
-            <span class="ident">flags</span>.<span class="ident">push</span>(<span class="string">&quot;AK_MusicSyncBar&quot;</span>)
+        <span class="kw">if </span><span class="self">self</span>.contains(AkCallbackType::AK_MusicSyncBar) {
+            flags.push(<span class="string">&quot;AK_MusicSyncBar&quot;</span>)
         }
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">contains</span>(<span class="ident">AkCallbackType::AK_MusicSyncEntry</span>) {
-            <span class="ident">flags</span>.<span class="ident">push</span>(<span class="string">&quot;AK_MusicSyncEntry&quot;</span>)
+        <span class="kw">if </span><span class="self">self</span>.contains(AkCallbackType::AK_MusicSyncEntry) {
+            flags.push(<span class="string">&quot;AK_MusicSyncEntry&quot;</span>)
         }
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">contains</span>(<span class="ident">AkCallbackType::AK_MusicSyncExit</span>) {
-            <span class="ident">flags</span>.<span class="ident">push</span>(<span class="string">&quot;AK_MusicSyncExit&quot;</span>)
+        <span class="kw">if </span><span class="self">self</span>.contains(AkCallbackType::AK_MusicSyncExit) {
+            flags.push(<span class="string">&quot;AK_MusicSyncExit&quot;</span>)
         }
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">contains</span>(<span class="ident">AkCallbackType::AK_MusicSyncGrid</span>) {
-            <span class="ident">flags</span>.<span class="ident">push</span>(<span class="string">&quot;AK_MusicSyncGrid&quot;</span>)
+        <span class="kw">if </span><span class="self">self</span>.contains(AkCallbackType::AK_MusicSyncGrid) {
+            flags.push(<span class="string">&quot;AK_MusicSyncGrid&quot;</span>)
         }
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">contains</span>(<span class="ident">AkCallbackType::AK_MusicSyncUserCue</span>) {
-            <span class="ident">flags</span>.<span class="ident">push</span>(<span class="string">&quot;AK_MusicSyncUserCue&quot;</span>)
+        <span class="kw">if </span><span class="self">self</span>.contains(AkCallbackType::AK_MusicSyncUserCue) {
+            flags.push(<span class="string">&quot;AK_MusicSyncUserCue&quot;</span>)
         }
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">contains</span>(<span class="ident">AkCallbackType::AK_MusicSyncPoint</span>) {
-            <span class="ident">flags</span>.<span class="ident">push</span>(<span class="string">&quot;AK_MusicSyncPoint&quot;</span>)
+        <span class="kw">if </span><span class="self">self</span>.contains(AkCallbackType::AK_MusicSyncPoint) {
+            flags.push(<span class="string">&quot;AK_MusicSyncPoint&quot;</span>)
         }
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">contains</span>(<span class="ident">AkCallbackType::AK_MIDIEvent</span>) {
-            <span class="ident">flags</span>.<span class="ident">push</span>(<span class="string">&quot;AK_MIDIEvent&quot;</span>)
+        <span class="kw">if </span><span class="self">self</span>.contains(AkCallbackType::AK_MIDIEvent) {
+            flags.push(<span class="string">&quot;AK_MIDIEvent&quot;</span>)
         }
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">contains</span>(<span class="ident">AkCallbackType::AK_EnableGetSourcePlayPosition</span>) {
-            <span class="ident">flags</span>.<span class="ident">push</span>(<span class="string">&quot;AK_EnableGetSourcePlayPosition&quot;</span>)
+        <span class="kw">if </span><span class="self">self</span>.contains(AkCallbackType::AK_EnableGetSourcePlayPosition) {
+            flags.push(<span class="string">&quot;AK_EnableGetSourcePlayPosition&quot;</span>)
         }
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">contains</span>(<span class="ident">AkCallbackType::AK_EnableGetMusicPlayPosition</span>) {
-            <span class="ident">flags</span>.<span class="ident">push</span>(<span class="string">&quot;AK_EnableGetMusicPlayPosition&quot;</span>)
+        <span class="kw">if </span><span class="self">self</span>.contains(AkCallbackType::AK_EnableGetMusicPlayPosition) {
+            flags.push(<span class="string">&quot;AK_EnableGetMusicPlayPosition&quot;</span>)
         }
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">contains</span>(<span class="ident">AkCallbackType::AK_EnableGetSourceStreamBuffering</span>) {
-            <span class="ident">flags</span>.<span class="ident">push</span>(<span class="string">&quot;AK_EnableGetSourceStreamBuffering&quot;</span>)
+        <span class="kw">if </span><span class="self">self</span>.contains(AkCallbackType::AK_EnableGetSourceStreamBuffering) {
+            flags.push(<span class="string">&quot;AK_EnableGetSourceStreamBuffering&quot;</span>)
         }
 
         <span class="macro">write!</span>(
-            <span class="ident">f</span>,
+            f,
             <span class="string">&quot;{}&quot;</span>,
-            <span class="kw">if</span> <span class="ident">flags</span>.<span class="ident">is_empty</span>() {
+            <span class="kw">if </span>flags.is_empty() {
                 <span class="macro">format!</span>(<span class="string">&quot;&lt;UnknownAkCallbackType:{}&gt;&quot;</span>, <span class="self">self</span>.<span class="number">0</span>)
-            } <span class="kw">else</span> {
-                <span class="ident">flags</span>.<span class="ident">join</span>(<span class="string">&quot; | &quot;</span>)
+            } <span class="kw">else </span>{
+                flags.join(<span class="string">&quot; | &quot;</span>)
             }
         )
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="rrise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (76d770ac2 2022-04-02)" ></div>
-</body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="rrise" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (42325c525 2022-11-11)" data-search-js="search-39ee4160c7dc16c9.js" data-settings-js="settings-3a0b9947ba1bd99a.js" data-settings-css="settings-a66f7524084a489a.css" ></div></body></html>

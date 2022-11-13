@@ -1,9 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src\sound_engine.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>sound_engine.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../rrise/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
-        </a><h2 class="location"></h2>
-    </nav>
-    <nav class="sidebar"><a class="sidebar-logo" href="../../rrise/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
-        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../rrise/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src\sound_engine.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>sound_engine.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-eabf764633b9d7be.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-777f3e9583f8c92d.css"><link rel="stylesheet" disabled href="../../static.files/dark-e2f4109f2e82e3af.css"><link rel="stylesheet" disabled href="../../static.files/ayu-c360e709a65bed99.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../static.files/source-script-74087aa2e88f4475.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-c2d2a5dbaed13e6b.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../rrise/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -705,704 +700,703 @@
 <span id="700">700</span>
 </pre><pre class="rust"><code><span class="comment">/*
  * Copyright (c) 2022 Contributors to the Rrise project
- */</span>
+ */
 
-<span class="kw">use</span> <span class="kw">crate</span>::{
-    <span class="ident">bindings::root</span>::{<span class="ident">AK::SoundEngine</span>::<span class="kw-2">*</span>, <span class="kw-2">*</span>},
-    <span class="ident">settings</span>::{<span class="ident">AkInitSettings</span>, <span class="ident">AkPlatformInitSettings</span>},
+</span><span class="kw">use crate</span>::{
+    bindings::root::{AK::SoundEngine::<span class="kw-2">*</span>, <span class="kw-2">*</span>},
+    settings::{AkInitSettings, AkPlatformInitSettings},
     <span class="kw-2">*</span>,
 };
-<span class="kw">use</span> <span class="ident">::std::convert::TryInto</span>;
-<span class="kw">use</span> <span class="ident">::std::ffi::CStr</span>;
-<span class="kw">use</span> <span class="ident">::std::fmt::Debug</span>;
+<span class="kw">use </span>::std::convert::TryInto;
+<span class="kw">use </span>::std::ffi::CStr;
+<span class="kw">use </span>::std::fmt::Debug;
 
-<span class="macro">macro_rules!</span> <span class="ident">link_static_plugin</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">feature</span>:<span class="ident">ident</span>) =&gt; {
-        <span class="macro">link_static_plugin!</span>[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">feature</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">feature</span>]
+<span class="macro">macro_rules! </span>link_static_plugin {
+    (<span class="macro-nonterminal">$feature</span>:ident) =&gt; {
+        <span class="macro">link_static_plugin!</span>[<span class="macro-nonterminal">$feature</span>, <span class="macro-nonterminal">$feature</span>]
     };
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">feature</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">global_var_name</span>:<span class="ident">ident</span>) =&gt; {
-        <span class="macro">paste::paste!</span> {
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;&quot;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">feature</span>)]</span>
-            {
-                <span class="comment">// If max log level doesn&#39;t include debug, need to explicitly reference this variable</span>
-                <span class="comment">// or it won&#39;t be statically linked and the plugin won&#39;t be able to be loaded.</span>
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(
-                    <span class="ident">all</span>(
-                        <span class="ident">debug_assertions</span>,
-                        <span class="ident">all</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;max_level_debug&quot;</span>), <span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;max_level_trace&quot;</span>))
+    (<span class="macro-nonterminal">$feature</span>:ident, <span class="macro-nonterminal">$global_var_name</span>:ident) =&gt; {
+        <span class="macro">paste::paste! </span>{
+            <span class="attr">#[cfg(feature = <span class="string">&quot;&quot; </span><span class="macro-nonterminal">$feature</span>)]
+            </span>{
+                <span class="comment">// If max log level doesn&#39;t include debug, need to explicitly reference this variable
+                // or it won&#39;t be statically linked and the plugin won&#39;t be able to be loaded.
+                </span><span class="attr">#[cfg(any(
+                    all(
+                        debug_assertions,
+                        all(not(feature = <span class="string">&quot;max_level_debug&quot;</span>), not(feature = <span class="string">&quot;max_level_trace&quot;</span>))
                     ),
-                    <span class="ident">all</span>(
-                        <span class="ident">not</span>(<span class="ident">debug_assertions</span>),
-                        <span class="ident">all</span>(
-                            <span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;release_max_level_debug&quot;</span>),
-                            <span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;release_max_level_trace&quot;</span>)
+                    all(
+                        not(debug_assertions),
+                        all(
+                            not(feature = <span class="string">&quot;release_max_level_debug&quot;</span>),
+                            not(feature = <span class="string">&quot;release_max_level_trace&quot;</span>)
                         )
                     ),
-                ))]</span>
-                <span class="ident">::std::convert::identity</span>(<span class="kw">unsafe</span> {
-                    <span class="ident"><span class="kw">crate</span>::bindings_static_plugins</span>::[<span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">global_var_name</span> <span class="ident">Registration</span><span class="op">&gt;</span>]
+                ))]
+                </span>::std::convert::identity(<span class="kw">unsafe </span>{
+                    <span class="kw">crate</span>::bindings_static_plugins::[&lt;<span class="macro-nonterminal">$global_var_name </span>Registration&gt;]
                 });
                 <span class="macro">log::debug!</span>(
                     <span class="string">&quot;{} has been statically loaded successfully&quot;</span>,
-                    <span class="macro">stringify!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">feature</span>)
+                    <span class="macro">stringify!</span>(<span class="macro-nonterminal">$feature</span>)
                 )
             }
         }
     };
 }
 
-<span class="doccomment">/// Initialize the sound engine.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *Warning* This function is not thread-safe.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *Remark* The initial settings should be initialized using [AkInitSettings::default]</span>
-<span class="doccomment">/// and [AkPlatformInitSettings::default] to fill the structures with their</span>
-<span class="doccomment">/// default settings. This is not mandatory, but it helps avoid backward compatibility problems.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *Return*</span>
-<span class="doccomment">/// &gt; - [AK_Success](AkResult::AK_Success) if the initialization was successful</span>
-<span class="doccomment">/// &gt; - [AK_MemManagerNotInitialized](AkResult::AK_MemManagerNotInitialized) if the memory manager is not available or not properly initialized</span>
-<span class="doccomment">/// &gt; - [AK_StreamMgrNotInitialized](AkResult::AK_StreamMgrNotInitialized) if the stream manager is not available or not properly initialized</span>
-<span class="doccomment">/// &gt; - [AK_SSEInstructionsNotSupported](AkResult::AK_SSEInstructionsNotSupported) if the machine does not support SSE instruction (only on the PC)</span>
-<span class="doccomment">/// &gt; - [AK_InsufficientMemory](AkResult::AK_InsufficientMemory) or [AK_Fail](AkResult::AK_Fail) if there is not enough memory available to initialize the sound engine properly</span>
-<span class="doccomment">/// &gt; - [AK_InvalidParameter](AkResult::AK_InvalidParameter) if some parameters are invalid</span>
-<span class="doccomment">/// &gt; - [AK_Fail](AkResult::AK_Fail) if the sound engine is already initialized, or if the provided settings result in insufficient resources for the initialization.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *See also*</span>
-<span class="doccomment">/// &gt; - [term]</span>
-<span class="doccomment">/// &gt; - [AkInitSettings::default]</span>
-<span class="doccomment">/// &gt; - [AkPlatformInitSettings::default]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">init</span>(
-    <span class="ident">init_settings</span>: <span class="kw-2">&amp;mut</span> <span class="ident">AkInitSettings</span>,
-    <span class="ident">platform_init_settings</span>: <span class="kw-2">&amp;mut</span> <span class="ident">AkPlatformInitSettings</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">AkResult</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">init_settings</span> <span class="op">=</span> <span class="ident">init_settings</span>.<span class="ident">as_ak</span>();
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">platform_init_settings</span> <span class="op">=</span> <span class="ident">platform_init_settings</span>.<span class="ident">as_ak</span>();
-    <span class="macro">ak_call_result!</span>[<span class="ident">Init</span>(<span class="kw-2">&amp;mut</span> <span class="ident">init_settings</span>, <span class="kw-2">&amp;mut</span> <span class="ident">platform_init_settings</span>)]<span class="question-mark">?</span>;
+<span class="doccomment">/// Initialize the sound engine.
+///
+/// *Warning* This function is not thread-safe.
+///
+/// *Remark* The initial settings should be initialized using [AkInitSettings::default]
+/// and [AkPlatformInitSettings::default] to fill the structures with their
+/// default settings. This is not mandatory, but it helps avoid backward compatibility problems.
+///
+/// *Return*
+/// &gt; - [AK_Success](AkResult::AK_Success) if the initialization was successful
+/// &gt; - [AK_MemManagerNotInitialized](AkResult::AK_MemManagerNotInitialized) if the memory manager is not available or not properly initialized
+/// &gt; - [AK_StreamMgrNotInitialized](AkResult::AK_StreamMgrNotInitialized) if the stream manager is not available or not properly initialized
+/// &gt; - [AK_SSEInstructionsNotSupported](AkResult::AK_SSEInstructionsNotSupported) if the machine does not support SSE instruction (only on the PC)
+/// &gt; - [AK_InsufficientMemory](AkResult::AK_InsufficientMemory) or [AK_Fail](AkResult::AK_Fail) if there is not enough memory available to initialize the sound engine properly
+/// &gt; - [AK_InvalidParameter](AkResult::AK_InvalidParameter) if some parameters are invalid
+/// &gt; - [AK_Fail](AkResult::AK_Fail) if the sound engine is already initialized, or if the provided settings result in insufficient resources for the initialization.
+///
+/// *See also*
+/// &gt; - [term]
+/// &gt; - [AkInitSettings::default]
+/// &gt; - [AkPlatformInitSettings::default]
+</span><span class="kw">pub fn </span>init(
+    init_settings: <span class="kw-2">&amp;mut </span>AkInitSettings,
+    platform_init_settings: <span class="kw-2">&amp;mut </span>AkPlatformInitSettings,
+) -&gt; <span class="prelude-ty">Result</span>&lt;(), AkResult&gt; {
+    <span class="kw">let </span><span class="kw-2">mut </span>init_settings = init_settings.as_ak();
+    <span class="kw">let </span><span class="kw-2">mut </span>platform_init_settings = platform_init_settings.as_ak();
+    <span class="macro">ak_call_result!</span>[Init(<span class="kw-2">&amp;mut </span>init_settings, <span class="kw-2">&amp;mut </span>platform_init_settings)]<span class="question-mark">?</span>;
 
-    <span class="macro">link_static_plugin!</span>[<span class="ident">AkVorbisDecoder</span>];
-    <span class="macro">link_static_plugin!</span>[<span class="ident">AkOggOpusDecoder</span>]; <span class="comment">// see Ak/Plugin/AkOpusDecoderFactory.h</span>
-    <span class="macro">link_static_plugin!</span>[<span class="ident">AkWemOpusDecoder</span>]; <span class="comment">// see Ak/Plugin/AkOpusDecoderFactory.h</span>
-    <span class="macro">link_static_plugin!</span>[<span class="ident">AkMeterFX</span>];
-    <span class="macro">link_static_plugin!</span>[<span class="ident">AkAudioInputSource</span>];
-    <span class="macro">link_static_plugin!</span>[<span class="ident">AkCompressorFX</span>];
-    <span class="macro">link_static_plugin!</span>[<span class="ident">AkDelayFX</span>];
-    <span class="macro">link_static_plugin!</span>[<span class="ident">AkExpanderFX</span>];
-    <span class="macro">link_static_plugin!</span>[<span class="ident">AkFlangerFX</span>];
-    <span class="macro">link_static_plugin!</span>[<span class="ident">AkGainFX</span>];
-    <span class="macro">link_static_plugin!</span>[<span class="ident">AkGuitarDistortionFX</span>];
-    <span class="macro">link_static_plugin!</span>[<span class="ident">AkHarmonizerFX</span>];
-    <span class="macro">link_static_plugin!</span>[<span class="ident">AkMatrixReverbFX</span>];
-    <span class="macro">link_static_plugin!</span>[<span class="ident">AkParametricEQFX</span>];
-    <span class="macro">link_static_plugin!</span>[<span class="ident">AkPeakLimiterFX</span>];
-    <span class="macro">link_static_plugin!</span>[<span class="ident">AkPitchShifterFX</span>];
-    <span class="macro">link_static_plugin!</span>[<span class="ident">AkRecorderFX</span>];
-    <span class="macro">link_static_plugin!</span>[<span class="ident">AkRoomVerbFX</span>];
-    <span class="macro">link_static_plugin!</span>[<span class="ident">AkSilenceSource</span>];
-    <span class="macro">link_static_plugin!</span>[<span class="ident">AkSineSource</span>, <span class="ident">SineSource</span>];
-    <span class="macro">link_static_plugin!</span>[<span class="ident">AkStereoDelayFX</span>];
-    <span class="macro">link_static_plugin!</span>[<span class="ident">AkSynthOneSource</span>, <span class="ident">AkSynthOne</span>];
-    <span class="macro">link_static_plugin!</span>[<span class="ident">AkTimeStretchFX</span>];
-    <span class="macro">link_static_plugin!</span>[<span class="ident">AkToneSource</span>];
-    <span class="macro">link_static_plugin!</span>[<span class="ident">AkTremoloFX</span>];
+    <span class="macro">link_static_plugin!</span>[AkVorbisDecoder];
+    <span class="macro">link_static_plugin!</span>[AkOggOpusDecoder]; <span class="comment">// see Ak/Plugin/AkOpusDecoderFactory.h
+    </span><span class="macro">link_static_plugin!</span>[AkWemOpusDecoder]; <span class="comment">// see Ak/Plugin/AkOpusDecoderFactory.h
+    </span><span class="macro">link_static_plugin!</span>[AkMeterFX];
+    <span class="macro">link_static_plugin!</span>[AkAudioInputSource];
+    <span class="macro">link_static_plugin!</span>[AkCompressorFX];
+    <span class="macro">link_static_plugin!</span>[AkDelayFX];
+    <span class="macro">link_static_plugin!</span>[AkExpanderFX];
+    <span class="macro">link_static_plugin!</span>[AkFlangerFX];
+    <span class="macro">link_static_plugin!</span>[AkGainFX];
+    <span class="macro">link_static_plugin!</span>[AkGuitarDistortionFX];
+    <span class="macro">link_static_plugin!</span>[AkHarmonizerFX];
+    <span class="macro">link_static_plugin!</span>[AkMatrixReverbFX];
+    <span class="macro">link_static_plugin!</span>[AkParametricEQFX];
+    <span class="macro">link_static_plugin!</span>[AkPeakLimiterFX];
+    <span class="macro">link_static_plugin!</span>[AkPitchShifterFX];
+    <span class="macro">link_static_plugin!</span>[AkRecorderFX];
+    <span class="macro">link_static_plugin!</span>[AkRoomVerbFX];
+    <span class="macro">link_static_plugin!</span>[AkSilenceSource];
+    <span class="macro">link_static_plugin!</span>[AkSineSource, SineSource];
+    <span class="macro">link_static_plugin!</span>[AkStereoDelayFX];
+    <span class="macro">link_static_plugin!</span>[AkSynthOneSource, AkSynthOne];
+    <span class="macro">link_static_plugin!</span>[AkTimeStretchFX];
+    <span class="macro">link_static_plugin!</span>[AkToneSource];
+    <span class="macro">link_static_plugin!</span>[AkTremoloFX];
 
     <span class="prelude-val">Ok</span>(())
 }
 
-<span class="doccomment">/// Query whether or not the sound engine has been successfully initialized.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *Warning* This function is not thread-safe. It should not be called at the same time as [init()] or [term()].</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *Return* `True` if the sound engine has been initialized, `False` otherwise.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *See also*</span>
-<span class="doccomment">/// &gt; - [init]</span>
-<span class="doccomment">/// &gt; - [term]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_initialized</span>() -&gt; <span class="ident">bool</span> {
-    <span class="kw">unsafe</span> { <span class="ident">IsInitialized</span>() }
+<span class="doccomment">/// Query whether or not the sound engine has been successfully initialized.
+///
+/// *Warning* This function is not thread-safe. It should not be called at the same time as [init()] or [term()].
+///
+/// *Return* `True` if the sound engine has been initialized, `False` otherwise.
+///
+/// *See also*
+/// &gt; - [init]
+/// &gt; - [term]
+</span><span class="kw">pub fn </span>is_initialized() -&gt; bool {
+    <span class="kw">unsafe </span>{ IsInitialized() }
 }
 
-<span class="doccomment">/// Terminates the sound engine.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// If some sounds are still playing or events are still being processed when this function is</span>
-<span class="doccomment">/// called, they will be stopped.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *Warning* This function is not thread-safe.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *Warning* Before calling `Term`, you must ensure that no other thread is accessing the sound engine.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *See also*</span>
-<span class="doccomment">/// &gt; - [init]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">term</span>() {
-    <span class="kw">unsafe</span> {
-        <span class="ident">Term</span>();
+<span class="doccomment">/// Terminates the sound engine.
+///
+/// If some sounds are still playing or events are still being processed when this function is
+/// called, they will be stopped.
+///
+/// *Warning* This function is not thread-safe.
+///
+/// *Warning* Before calling `Term`, you must ensure that no other thread is accessing the sound engine.
+///
+/// *See also*
+/// &gt; - [init]
+</span><span class="kw">pub fn </span>term() {
+    <span class="kw">unsafe </span>{
+        Term();
     }
 }
 
-<span class="doccomment">/// Processes all commands in the sound engine&#39;s command queue.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This method has to be called periodically (usually once per game frame).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// `allow_sync_render`: When AkInitSettings::b_use_lengine_thread is false, `RenderAudio` may generate</span>
-<span class="doccomment">/// an audio buffer -- unless in_bAllowSyncRender is set to false. Use in_bAllowSyncRender=false</span>
-<span class="doccomment">/// when calling RenderAudio from a Sound Engine callback.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *Return* Always returns [AK_Success](AkResult::AK_Success)</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *See also*</span>
-<span class="doccomment">/// &gt; - [PostEvent](struct@PostEvent)</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_audio</span>(<span class="ident">allow_sync_render</span>: <span class="ident">bool</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">AkResult</span><span class="op">&gt;</span> {
-    <span class="macro">ak_call_result!</span>[<span class="ident">RenderAudio</span>(<span class="ident">allow_sync_render</span>)]
+<span class="doccomment">/// Processes all commands in the sound engine&#39;s command queue.
+///
+/// This method has to be called periodically (usually once per game frame).
+///
+/// `allow_sync_render`: When AkInitSettings::b_use_lengine_thread is false, `RenderAudio` may generate
+/// an audio buffer -- unless in_bAllowSyncRender is set to false. Use in_bAllowSyncRender=false
+/// when calling RenderAudio from a Sound Engine callback.
+///
+/// *Return* Always returns [AK_Success](AkResult::AK_Success)
+///
+/// *See also*
+/// &gt; - [PostEvent](struct@PostEvent)
+</span><span class="kw">pub fn </span>render_audio(allow_sync_render: bool) -&gt; <span class="prelude-ty">Result</span>&lt;(), AkResult&gt; {
+    <span class="macro">ak_call_result!</span>[RenderAudio(allow_sync_render)]
 }
 
-<span class="doccomment">/// Unregister all game objects, or all game objects with a particular matching set of property flags.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This function to can be used to unregister all game objects.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *Return* AK_Success if successful</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *Remark* Registering a game object twice does nothing. Unregistering it once unregisters it no</span>
-<span class="doccomment">/// matter how many times it has been registered. Unregistering a game object while it is</span>
-<span class="doccomment">/// in use is allowed, but the control over the parameters of this game object is lost.</span>
-<span class="doccomment">/// For example, if a sound associated with this game object is a 3D moving sound, it will</span>
-<span class="doccomment">/// stop moving once the game object is unregistered, and there will be no way to recover</span>
-<span class="doccomment">/// the control over this game object.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *See also*</span>
-<span class="doccomment">/// - [register_game_obj]</span>
-<span class="doccomment">/// - [unregister_game_obj]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">unregister_all_game_obj</span>() -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">AkResult</span><span class="op">&gt;</span> {
-    <span class="macro">ak_call_result!</span>[<span class="ident">UnregisterAllGameObj</span>()]
+<span class="doccomment">/// Unregister all game objects, or all game objects with a particular matching set of property flags.
+///
+/// This function to can be used to unregister all game objects.
+///
+/// *Return* AK_Success if successful
+///
+/// *Remark* Registering a game object twice does nothing. Unregistering it once unregisters it no
+/// matter how many times it has been registered. Unregistering a game object while it is
+/// in use is allowed, but the control over the parameters of this game object is lost.
+/// For example, if a sound associated with this game object is a 3D moving sound, it will
+/// stop moving once the game object is unregistered, and there will be no way to recover
+/// the control over this game object.
+///
+/// *See also*
+/// - [register_game_obj]
+/// - [unregister_game_obj]
+</span><span class="kw">pub fn </span>unregister_all_game_obj() -&gt; <span class="prelude-ty">Result</span>&lt;(), AkResult&gt; {
+    <span class="macro">ak_call_result!</span>[UnregisterAllGameObj()]
 }
 
-<span class="doccomment">/// Unregisters a game object.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *Return*</span>
-<span class="doccomment">/// &gt; - AK_Success if successful</span>
-<span class="doccomment">/// &gt; - AK_Fail if the specified AkGameObjectID is invalid (0 is an invalid ID)</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *Remark* Registering a game object twice does nothing. Unregistering it once unregisters it no</span>
-<span class="doccomment">/// matter how many times it has been registered. Unregistering a game object while it is</span>
-<span class="doccomment">/// in use is allowed, but the control over the parameters of this game object is lost.</span>
-<span class="doccomment">/// For example, say a sound associated with this game object is a 3D moving sound. This sound will</span>
-<span class="doccomment">/// stop moving when the game object is unregistered, and there will be no way to regain control</span>
-<span class="doccomment">/// over the game object.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *See also*</span>
-<span class="doccomment">/// &gt; - [register_game_obj]</span>
-<span class="doccomment">/// &gt; - [unregister_all_game_obj]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">unregister_game_obj</span>(<span class="ident">game_object_id</span>: <span class="ident">AkGameObjectID</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">AkResult</span><span class="op">&gt;</span> {
-    <span class="macro">ak_call_result!</span>[<span class="ident">UnregisterGameObj</span>(<span class="ident">game_object_id</span>)]
+<span class="doccomment">/// Unregisters a game object.
+///
+/// *Return*
+/// &gt; - AK_Success if successful
+/// &gt; - AK_Fail if the specified AkGameObjectID is invalid (0 is an invalid ID)
+///
+/// *Remark* Registering a game object twice does nothing. Unregistering it once unregisters it no
+/// matter how many times it has been registered. Unregistering a game object while it is
+/// in use is allowed, but the control over the parameters of this game object is lost.
+/// For example, say a sound associated with this game object is a 3D moving sound. This sound will
+/// stop moving when the game object is unregistered, and there will be no way to regain control
+/// over the game object.
+///
+/// *See also*
+/// &gt; - [register_game_obj]
+/// &gt; - [unregister_all_game_obj]
+</span><span class="kw">pub fn </span>unregister_game_obj(game_object_id: AkGameObjectID) -&gt; <span class="prelude-ty">Result</span>&lt;(), AkResult&gt; {
+    <span class="macro">ak_call_result!</span>[UnregisterGameObj(game_object_id)]
 }
 
-<span class="doccomment">/// Registers a game object.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *Return*</span>
-<span class="doccomment">/// &gt; - AK_Success if successful</span>
-<span class="doccomment">/// &gt; - AK_Fail if the specified AkGameObjectID is invalid (0 is an invalid ID)</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *Remark* Registering a game object twice does nothing. Unregistering it once unregisters it no</span>
-<span class="doccomment">/// matter how many times it has been registered.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *See also*</span>
-<span class="doccomment">/// &gt; - [unregister_game_obj]</span>
-<span class="doccomment">/// &gt; - [unregister_all_game_obj]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">register_game_obj</span>(<span class="ident">game_object_id</span>: <span class="ident">AkGameObjectID</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">AkResult</span><span class="op">&gt;</span> {
-    <span class="macro">ak_call_result!</span>[<span class="ident">RegisterGameObj</span>(<span class="ident">game_object_id</span>)]
+<span class="doccomment">/// Registers a game object.
+///
+/// *Return*
+/// &gt; - AK_Success if successful
+/// &gt; - AK_Fail if the specified AkGameObjectID is invalid (0 is an invalid ID)
+///
+/// *Remark* Registering a game object twice does nothing. Unregistering it once unregisters it no
+/// matter how many times it has been registered.
+///
+/// *See also*
+/// &gt; - [unregister_game_obj]
+/// &gt; - [unregister_all_game_obj]
+</span><span class="kw">pub fn </span>register_game_obj(game_object_id: AkGameObjectID) -&gt; <span class="prelude-ty">Result</span>&lt;(), AkResult&gt; {
+    <span class="macro">ak_call_result!</span>[RegisterGameObj(game_object_id)]
 }
 
-<span class="doccomment">/// Registers a game object.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The name is just for monitoring purpose, and is not forwarded to Wwise when the `wwrelease`</span>
-<span class="doccomment">/// cfg flag is on (in that case, calling this has the same effect as calling [register_game_obj()]).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *Return*</span>
-<span class="doccomment">/// &gt; - AK_Success if successful</span>
-<span class="doccomment">/// &gt; - AK_Fail if the specified AkGameObjectID is invalid (0 is an invalid ID)</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *Remark* Registering a game object twice does nothing. Unregistering it once unregisters it no</span>
-<span class="doccomment">/// matter how many times it has been registered.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *See also*</span>
-<span class="doccomment">/// &gt; - [register_game_obj]</span>
-<span class="doccomment">/// &gt; - [unregister_game_obj]</span>
-<span class="doccomment">/// &gt; - [unregister_all_game_obj]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">register_named_game_obj</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span>(
-    <span class="ident">game_object_id</span>: <span class="ident">AkGameObjectID</span>,
-    <span class="ident">name</span>: <span class="ident">T</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">AkResult</span><span class="op">&gt;</span> {
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">wwrelease</span>)]</span>
-    <span class="kw">return</span> <span class="ident">register_game_obj</span>(<span class="ident">game_object_id</span>);
+<span class="doccomment">/// Registers a game object.
+///
+/// The name is just for monitoring purpose, and is not forwarded to Wwise when the `wwrelease`
+/// cfg flag is on (in that case, calling this has the same effect as calling [register_game_obj()]).
+///
+/// *Return*
+/// &gt; - AK_Success if successful
+/// &gt; - AK_Fail if the specified AkGameObjectID is invalid (0 is an invalid ID)
+///
+/// *Remark* Registering a game object twice does nothing. Unregistering it once unregisters it no
+/// matter how many times it has been registered.
+///
+/// *See also*
+/// &gt; - [register_game_obj]
+/// &gt; - [unregister_game_obj]
+/// &gt; - [unregister_all_game_obj]
+</span><span class="kw">pub fn </span>register_named_game_obj&lt;T: AsRef&lt;str&gt;&gt;(
+    game_object_id: AkGameObjectID,
+    <span class="attr">#[cfg_attr(wwrelease, allow(unused_variables))] </span>name: T,
+) -&gt; <span class="prelude-ty">Result</span>&lt;(), AkResult&gt; {
+    <span class="attr">#[cfg(wwrelease)]
+    </span><span class="kw">return </span>register_game_obj(game_object_id);
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">wwrelease</span>))]</span>
-    <span class="kw">return</span> <span class="macro">with_cstring!</span>[<span class="ident">name</span>.<span class="ident">as_ref</span>() =&gt; <span class="ident">cname</span> {
-        <span class="macro">ak_call_result!</span>[<span class="ident">RegisterGameObj1</span>(<span class="ident">game_object_id</span>, <span class="ident">cname</span>.<span class="ident">as_ptr</span>())]
+    <span class="attr">#[cfg(not(wwrelease))]
+    </span><span class="kw">return </span><span class="macro">with_cstring!</span>[name.as_ref() =&gt; cname {
+        <span class="macro">ak_call_result!</span>[RegisterGameObj1(game_object_id, cname.as_ptr())]
     }];
 }
 
-<span class="doccomment">/// Sets the position of a game object.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *Warning* `position`&#39;s orientation vectors must be normalized.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *Return*</span>
-<span class="doccomment">/// &gt; - [AK_Success](AkResult::AK_Success) when successful</span>
-<span class="doccomment">/// &gt; - [AK_InvalidParameter](AkResult::AK_InvalidParameter) if parameters are not valid.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_position</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">AkSoundPosition</span><span class="op">&gt;</span><span class="op">&gt;</span>(
-    <span class="ident">game_object_id</span>: <span class="ident">AkGameObjectID</span>,
-    <span class="ident">position</span>: <span class="ident">T</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">AkResult</span><span class="op">&gt;</span> {
-    <span class="macro">ak_call_result!</span>[<span class="ident">SetPosition</span>(<span class="ident">game_object_id</span>, <span class="kw-2">&amp;</span><span class="ident">position</span>.<span class="ident">into</span>())]
+<span class="doccomment">/// Sets the position of a game object.
+///
+/// *Warning* `position`&#39;s orientation vectors must be normalized.
+///
+/// *Return*
+/// &gt; - [AK_Success](AkResult::AK_Success) when successful
+/// &gt; - [AK_InvalidParameter](AkResult::AK_InvalidParameter) if parameters are not valid.
+</span><span class="kw">pub fn </span>set_position&lt;T: Into&lt;AkSoundPosition&gt;&gt;(
+    game_object_id: AkGameObjectID,
+    position: T,
+) -&gt; <span class="prelude-ty">Result</span>&lt;(), AkResult&gt; {
+    <span class="macro">ak_call_result!</span>[SetPosition(game_object_id, <span class="kw-2">&amp;</span>position.into())]
 }
 
-<span class="doccomment">/// Sets the default set of associated listeners for game objects that have not explicitly overridden their listener sets. Upon registration, all game objects reference the default listener set, until</span>
-<span class="doccomment">/// a call to [add_listener], [remove_listener], [set_listeners] or [set_game_object_output_bus_volume] is made on that game object.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// All default listeners that have previously been added via AddDefaultListener or set via SetDefaultListeners will be removed and replaced with the listeners in the array in_pListenerGameObjs.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *Return* Always returns [AK_Success](AkResult::AK_Success)</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_default_listeners</span>(<span class="ident">listener_ids</span>: <span class="kw-2">&amp;</span>[<span class="ident">AkGameObjectID</span>]) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">AkResult</span><span class="op">&gt;</span> {
-    <span class="macro">ak_call_result!</span>[<span class="ident">SetDefaultListeners</span>(
-        <span class="ident">listener_ids</span>.<span class="ident">as_ptr</span>(),
-        <span class="ident">listener_ids</span>.<span class="ident">len</span>().<span class="ident">try_into</span>().<span class="ident">unwrap</span>()
+<span class="doccomment">/// Sets the default set of associated listeners for game objects that have not explicitly overridden their listener sets. Upon registration, all game objects reference the default listener set, until
+/// a call to [add_listener], [remove_listener], [set_listeners] or [set_game_object_output_bus_volume] is made on that game object.
+///
+/// All default listeners that have previously been added via AddDefaultListener or set via SetDefaultListeners will be removed and replaced with the listeners in the array in_pListenerGameObjs.
+///
+/// *Return* Always returns [AK_Success](AkResult::AK_Success)
+</span><span class="kw">pub fn </span>set_default_listeners(listener_ids: <span class="kw-2">&amp;</span>[AkGameObjectID]) -&gt; <span class="prelude-ty">Result</span>&lt;(), AkResult&gt; {
+    <span class="macro">ak_call_result!</span>[SetDefaultListeners(
+        listener_ids.as_ptr(),
+        listener_ids.len().try_into().unwrap()
     )]
 }
 
-<span class="doccomment">/// Add a single listener to the default set of listeners. Upon registration, all game objects reference the default listener set, until</span>
-<span class="doccomment">/// a call to [add_listener], [remove_listener], [set_listeners] or [set_game_object_output_bus_volume] is made on that game object.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_default_listener</span>(<span class="ident">listener_id</span>: <span class="ident">AkGameObjectID</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">AkResult</span><span class="op">&gt;</span> {
-    <span class="macro">ak_call_result!</span>[<span class="ident">AddDefaultListener</span>(<span class="ident">listener_id</span>)]
+<span class="doccomment">/// Add a single listener to the default set of listeners. Upon registration, all game objects reference the default listener set, until
+/// a call to [add_listener], [remove_listener], [set_listeners] or [set_game_object_output_bus_volume] is made on that game object.
+</span><span class="kw">pub fn </span>add_default_listener(listener_id: AkGameObjectID) -&gt; <span class="prelude-ty">Result</span>&lt;(), AkResult&gt; {
+    <span class="macro">ak_call_result!</span>[AddDefaultListener(listener_id)]
 }
 
-<span class="doccomment">/// Remove a single listener from the default set of listeners. Upon registration, all game objects reference the default listener set, until</span>
-<span class="doccomment">/// a call to [add_listener], [remove_listener], [set_listeners] or [set_game_object_output_bus_volume] is made on that game object.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">remove_default_listener</span>(<span class="ident">listener_id</span>: <span class="ident">AkGameObjectID</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">AkResult</span><span class="op">&gt;</span> {
-    <span class="macro">ak_call_result!</span>[<span class="ident">RemoveDefaultListener</span>(<span class="ident">listener_id</span>)]
+<span class="doccomment">/// Remove a single listener from the default set of listeners. Upon registration, all game objects reference the default listener set, until
+/// a call to [add_listener], [remove_listener], [set_listeners] or [set_game_object_output_bus_volume] is made on that game object.
+</span><span class="kw">pub fn </span>remove_default_listener(listener_id: AkGameObjectID) -&gt; <span class="prelude-ty">Result</span>&lt;(), AkResult&gt; {
+    <span class="macro">ak_call_result!</span>[RemoveDefaultListener(listener_id)]
 }
 
-<span class="doccomment">/// Sets a game object&#39;s associated listeners.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// All listeners that have previously been added via [add_listener] or set via [set_listeners] will be removed and replaced with the listeners in the array `listener_ids`.</span>
-<span class="doccomment">/// Calling this function will override the default set of listeners and `emitter_id` will now reference its own, unique set of listeners.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *See also*</span>
-<span class="doccomment">/// &gt; - [set_listeners()]</span>
-<span class="doccomment">/// &gt; - [remove_listener()]</span>
-<span class="doccomment">/// &gt; - [add_default_listener()]</span>
-<span class="doccomment">/// &gt; - [remove_default_listener()]</span>
-<span class="doccomment">/// &gt; - [set_default_listeners()]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_listeners</span>(
-    <span class="ident">emitter_id</span>: <span class="ident">AkGameObjectID</span>,
-    <span class="ident">listener_ids</span>: <span class="kw-2">&amp;</span>[<span class="ident">AkGameObjectID</span>],
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">AkResult</span><span class="op">&gt;</span> {
-    <span class="macro">ak_call_result!</span>[<span class="ident">SetListeners</span>(
-        <span class="ident">emitter_id</span>,
-        <span class="ident">listener_ids</span>.<span class="ident">as_ptr</span>(),
-        <span class="ident">listener_ids</span>.<span class="ident">len</span>().<span class="ident">try_into</span>().<span class="ident">unwrap</span>(),
+<span class="doccomment">/// Sets a game object&#39;s associated listeners.
+///
+/// All listeners that have previously been added via [add_listener] or set via [set_listeners] will be removed and replaced with the listeners in the array `listener_ids`.
+/// Calling this function will override the default set of listeners and `emitter_id` will now reference its own, unique set of listeners.
+///
+/// *See also*
+/// &gt; - [set_listeners()]
+/// &gt; - [remove_listener()]
+/// &gt; - [add_default_listener()]
+/// &gt; - [remove_default_listener()]
+/// &gt; - [set_default_listeners()]
+</span><span class="kw">pub fn </span>set_listeners(
+    emitter_id: AkGameObjectID,
+    listener_ids: <span class="kw-2">&amp;</span>[AkGameObjectID],
+) -&gt; <span class="prelude-ty">Result</span>&lt;(), AkResult&gt; {
+    <span class="macro">ak_call_result!</span>[SetListeners(
+        emitter_id,
+        listener_ids.as_ptr(),
+        listener_ids.len().try_into().unwrap(),
     )]
 }
 
-<span class="doccomment">/// Add a single listener to a game object&#39;s set of associated listeners.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Any listeners that have previously been added or set via [add_listener] or [set_listeners] will remain as listeners and `listener_id` will be added as an additional listener.</span>
-<span class="doccomment">/// Calling this function will override the default set of listeners and `emitter_id` will now reference its own, unique set of listeners.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *See also*</span>
-<span class="doccomment">/// &gt; - [set_listeners()]</span>
-<span class="doccomment">/// &gt; - [remove_listener()]</span>
-<span class="doccomment">/// &gt; - [add_default_listener()]</span>
-<span class="doccomment">/// &gt; - [remove_default_listener()]</span>
-<span class="doccomment">/// &gt; - [set_default_listeners()]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_listener</span>(
-    <span class="ident">emitter_id</span>: <span class="ident">AkGameObjectID</span>,
-    <span class="ident">listener_id</span>: <span class="ident">AkGameObjectID</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">AkResult</span><span class="op">&gt;</span> {
-    <span class="macro">ak_call_result!</span>[<span class="ident">AddListener</span>(<span class="ident">emitter_id</span>, <span class="ident">listener_id</span>)]
+<span class="doccomment">/// Add a single listener to a game object&#39;s set of associated listeners.
+///
+/// Any listeners that have previously been added or set via [add_listener] or [set_listeners] will remain as listeners and `listener_id` will be added as an additional listener.
+/// Calling this function will override the default set of listeners and `emitter_id` will now reference its own, unique set of listeners.
+///
+/// *See also*
+/// &gt; - [set_listeners()]
+/// &gt; - [remove_listener()]
+/// &gt; - [add_default_listener()]
+/// &gt; - [remove_default_listener()]
+/// &gt; - [set_default_listeners()]
+</span><span class="kw">pub fn </span>add_listener(
+    emitter_id: AkGameObjectID,
+    listener_id: AkGameObjectID,
+) -&gt; <span class="prelude-ty">Result</span>&lt;(), AkResult&gt; {
+    <span class="macro">ak_call_result!</span>[AddListener(emitter_id, listener_id)]
 }
 
-<span class="doccomment">/// Remove a single listener from a game object&#39;s set of active listeners.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Calling this function will override the default set of listeners and `emitter_id` will now reference its own, unique set of listeners.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *See also*</span>
-<span class="doccomment">/// &gt; - [add_listener()]</span>
-<span class="doccomment">/// &gt; - [set_listeners()]</span>
-<span class="doccomment">/// &gt; - [add_default_listener()]</span>
-<span class="doccomment">/// &gt; - [remove_default_listener()]</span>
-<span class="doccomment">/// &gt; - [set_default_listeners()]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">remove_listener</span>(
-    <span class="ident">emitter_id</span>: <span class="ident">AkGameObjectID</span>,
-    <span class="ident">listener_id</span>: <span class="ident">AkGameObjectID</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">AkResult</span><span class="op">&gt;</span> {
-    <span class="macro">ak_call_result!</span>[<span class="ident">RemoveListener</span>(<span class="ident">emitter_id</span>, <span class="ident">listener_id</span>)]
+<span class="doccomment">/// Remove a single listener from a game object&#39;s set of active listeners.
+///
+/// Calling this function will override the default set of listeners and `emitter_id` will now reference its own, unique set of listeners.
+///
+/// *See also*
+/// &gt; - [add_listener()]
+/// &gt; - [set_listeners()]
+/// &gt; - [add_default_listener()]
+/// &gt; - [remove_default_listener()]
+/// &gt; - [set_default_listeners()]
+</span><span class="kw">pub fn </span>remove_listener(
+    emitter_id: AkGameObjectID,
+    listener_id: AkGameObjectID,
+) -&gt; <span class="prelude-ty">Result</span>&lt;(), AkResult&gt; {
+    <span class="macro">ak_call_result!</span>[RemoveListener(emitter_id, listener_id)]
 }
 
-<span class="doccomment">/// Stops the current content playing associated to the specified game object ID.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// If no game object is specified, all sounds will be stopped.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">stop_all</span>(<span class="ident">game_object_id</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">AkGameObjectID</span><span class="op">&gt;</span>) {
-    <span class="kw">unsafe</span> {
-        <span class="ident">StopAll</span>(<span class="ident">game_object_id</span>.<span class="ident">unwrap_or</span>(<span class="ident">AK_INVALID_GAME_OBJECT</span>));
+<span class="doccomment">/// Stops the current content playing associated to the specified game object ID.
+///
+/// If no game object is specified, all sounds will be stopped.
+</span><span class="kw">pub fn </span>stop_all(game_object_id: <span class="prelude-ty">Option</span>&lt;AkGameObjectID&gt;) {
+    <span class="kw">unsafe </span>{
+        StopAll(game_object_id.unwrap_or(AK_INVALID_GAME_OBJECT));
     }
 }
 
-<span class="doccomment">/// Load a bank synchronously (by Unicode string).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The bank name is passed to the Stream Manager.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// A bank load request will be posted, and consumed by the Bank Manager thread.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The function returns when the request has been completely processed.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *Return*</span>
-<span class="doccomment">/// The bank ID (see [get_id_from_string]). You may use this ID with [unload_bank].</span>
-<span class="doccomment">/// &gt; - [AK_Success](AkResult::AK_Success): Load or unload successful.</span>
-<span class="doccomment">/// &gt; - [AK_InsufficientMemory](AkResult::AK_InsufficientMemory): Insufficient memory to store bank data.</span>
-<span class="doccomment">/// &gt; - [AK_BankReadError](AkResult::AK_BankReadError): I/O error.</span>
-<span class="doccomment">/// &gt; - [AK_WrongBankVersion](AkResult::AK_WrongBankVersion): Invalid bank version: make sure the version of Wwise that you used to generate the SoundBanks matches that of the SDK you are currently using.</span>
-<span class="doccomment">/// &gt; - [AK_InvalidFile](AkResult::AK_InvalidFile): File specified could not be opened.</span>
-<span class="doccomment">/// &gt; - [AK_InvalidParameter](AkResult::AK_InvalidParameter): Invalid parameter, invalid memory alignment.</span>
-<span class="doccomment">/// &gt; - [AK_Fail](AkResult::AK_Fail): Load or unload failed for any other reason. (Most likely small allocation failure)</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *Remarks*</span>
-<span class="doccomment">/// &gt; - The initialization bank must be loaded first.</span>
-<span class="doccomment">/// &gt; - All SoundBanks subsequently loaded must come from the same Wwise project as the</span>
-<span class="doccomment">///   initialization bank. If you need to load SoundBanks from a different project, you</span>
-<span class="doccomment">///   must first unload ALL banks, including the initialization bank, then load the</span>
-<span class="doccomment">///   initialization bank from the other project, and finally load banks from that project.</span>
-<span class="doccomment">/// &gt; - Codecs and plug-ins must be registered before loading banks that use them.</span>
-<span class="doccomment">/// &gt; - Loading a bank referencing an unregistered plug-in or codec will result in a load bank success,</span>
-<span class="doccomment">/// but the plug-ins will not be used. More specifically, playing a sound that uses an unregistered effect plug-in</span>
-<span class="doccomment">/// will result in audio playback without applying the said effect. If an unregistered source plug-in is used by an event&#39;s audio objects,</span>
-<span class="doccomment">/// posting the event will fail.</span>
-<span class="doccomment">/// &gt; - The sound engine internally calls get_id_from_string(name) to return the correct bank ID.</span>
-<span class="doccomment">/// Therefore, in_pszString should be the real name of the SoundBank (with or without the BNK extension - it is trimmed internally),</span>
-<span class="doccomment">/// not the name of the file (if you changed it), nor the full path of the file. The path should be resolved in</span>
-<span class="doccomment">/// your implementation of the Stream Manager, or in the Low-Level I/O module if you use the default Stream Manager&#39;s implementation.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *See also*</span>
-<span class="doccomment">/// &gt; - [unload_bank_by_name]</span>
-<span class="doccomment">/// &gt; - [unload_bank_by_id]</span>
-<span class="doccomment">/// &gt; - [clear_banks]</span>
-<span class="doccomment">/// &gt; - [get_id_from_string]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">load_bank_by_name</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">name</span>: <span class="ident">T</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AkBankID</span>, <span class="ident">AkResult</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">bank_id</span> <span class="op">=</span> <span class="number">0</span>;
-    <span class="macro">with_cstring!</span>[<span class="ident">name</span>.<span class="ident">as_ref</span>() =&gt; <span class="ident">cname</span> {
-        <span class="macro">ak_call_result!</span>[<span class="ident">LoadBank1</span>(<span class="ident">cname</span>.<span class="ident">as_ptr</span>(), <span class="kw-2">&amp;mut</span> <span class="ident">bank_id</span>) =&gt; <span class="ident">bank_id</span>]
+<span class="doccomment">/// Load a bank synchronously (by Unicode string).
+///
+/// The bank name is passed to the Stream Manager.
+///
+/// A bank load request will be posted, and consumed by the Bank Manager thread.
+///
+/// The function returns when the request has been completely processed.
+///
+/// *Return*
+/// The bank ID (see [get_id_from_string]). You may use this ID with [unload_bank].
+/// &gt; - [AK_Success](AkResult::AK_Success): Load or unload successful.
+/// &gt; - [AK_InsufficientMemory](AkResult::AK_InsufficientMemory): Insufficient memory to store bank data.
+/// &gt; - [AK_BankReadError](AkResult::AK_BankReadError): I/O error.
+/// &gt; - [AK_WrongBankVersion](AkResult::AK_WrongBankVersion): Invalid bank version: make sure the version of Wwise that you used to generate the SoundBanks matches that of the SDK you are currently using.
+/// &gt; - [AK_InvalidFile](AkResult::AK_InvalidFile): File specified could not be opened.
+/// &gt; - [AK_InvalidParameter](AkResult::AK_InvalidParameter): Invalid parameter, invalid memory alignment.
+/// &gt; - [AK_Fail](AkResult::AK_Fail): Load or unload failed for any other reason. (Most likely small allocation failure)
+///
+/// *Remarks*
+/// &gt; - The initialization bank must be loaded first.
+/// &gt; - All SoundBanks subsequently loaded must come from the same Wwise project as the
+///   initialization bank. If you need to load SoundBanks from a different project, you
+///   must first unload ALL banks, including the initialization bank, then load the
+///   initialization bank from the other project, and finally load banks from that project.
+/// &gt; - Codecs and plug-ins must be registered before loading banks that use them.
+/// &gt; - Loading a bank referencing an unregistered plug-in or codec will result in a load bank success,
+/// but the plug-ins will not be used. More specifically, playing a sound that uses an unregistered effect plug-in
+/// will result in audio playback without applying the said effect. If an unregistered source plug-in is used by an event&#39;s audio objects,
+/// posting the event will fail.
+/// &gt; - The sound engine internally calls get_id_from_string(name) to return the correct bank ID.
+/// Therefore, in_pszString should be the real name of the SoundBank (with or without the BNK extension - it is trimmed internally),
+/// not the name of the file (if you changed it), nor the full path of the file. The path should be resolved in
+/// your implementation of the Stream Manager, or in the Low-Level I/O module if you use the default Stream Manager&#39;s implementation.
+///
+/// *See also*
+/// &gt; - [unload_bank_by_name]
+/// &gt; - [unload_bank_by_id]
+/// &gt; - [clear_banks]
+/// &gt; - [get_id_from_string]
+</span><span class="kw">pub fn </span>load_bank_by_name&lt;T: AsRef&lt;str&gt;&gt;(name: T) -&gt; <span class="prelude-ty">Result</span>&lt;AkBankID, AkResult&gt; {
+    <span class="kw">let </span><span class="kw-2">mut </span>bank_id = <span class="number">0</span>;
+    <span class="macro">with_cstring!</span>[name.as_ref() =&gt; cname {
+        <span class="macro">ak_call_result!</span>[LoadBank1(cname.as_ptr(), <span class="kw-2">&amp;mut </span>bank_id) =&gt; bank_id]
     }]
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="doccomment">/// Helper to post events to the sound engine.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Use [PostEvent::post] to post your event to the sound engine.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The callback function can be used to be noticed when markers are reached or when the event is finished.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// An array of Wave file sources can be provided to resolve External Sources triggered by the event.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *Return* The playing ID of the event launched, or [AK_INVALID_PLAYING_ID] if posting the event failed</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *Remarks*</span>
-<span class="doccomment">/// &gt; - If used, the array of external sources should contain the information for each external source triggered by the</span>
-<span class="doccomment">/// event. When triggering an Event with multiple external sources, you need to differentiate each source</span>
-<span class="doccomment">/// by using the cookie property in the External Source in the Wwise project and in AkExternalSourceInfo.</span>
-<span class="doccomment">/// &gt; - If an event triggers the playback of more than one external source, they must be named uniquely in the project</span>
-<span class="doccomment">/// (therefore have a unique cookie) in order to tell them apart when filling the AkExternalSourceInfo structures.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *See also*</span>
-<span class="doccomment">/// &gt; - [render_audio]</span>
-<span class="doccomment">/// &gt; - [get_source_play_position]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PostEvent</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">game_obj_id</span>: <span class="ident">AkGameObjectID</span>,
-    <span class="ident">event_id</span>: <span class="ident">AkID</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-    <span class="ident">flags</span>: <span class="ident">AkCallbackType</span>,
-    <span class="comment">// external_sources: Vec&lt;...&gt;  // TODO</span>
-    <span class="ident">playing_id</span>: <span class="ident">AkPlayingID</span>,
+<span class="attr">#[derive(Debug, Copy, Clone)]
+</span><span class="doccomment">/// Helper to post events to the sound engine.
+///
+/// Use [PostEvent::post] to post your event to the sound engine.
+///
+/// The callback function can be used to be noticed when markers are reached or when the event is finished.
+///
+/// An array of Wave file sources can be provided to resolve External Sources triggered by the event.
+///
+/// *Return* The playing ID of the event launched, or [AK_INVALID_PLAYING_ID] if posting the event failed
+///
+/// *Remarks*
+/// &gt; - If used, the array of external sources should contain the information for each external source triggered by the
+/// event. When triggering an Event with multiple external sources, you need to differentiate each source
+/// by using the cookie property in the External Source in the Wwise project and in AkExternalSourceInfo.
+/// &gt; - If an event triggers the playback of more than one external source, they must be named uniquely in the project
+/// (therefore have a unique cookie) in order to tell them apart when filling the AkExternalSourceInfo structures.
+///
+/// *See also*
+/// &gt; - [render_audio]
+/// &gt; - [get_source_play_position]
+</span><span class="kw">pub struct </span>PostEvent&lt;<span class="lifetime">&#39;a</span>&gt; {
+    game_obj_id: AkGameObjectID,
+    event_id: AkID&lt;<span class="lifetime">&#39;a</span>&gt;,
+    flags: AkCallbackType,
+    <span class="comment">// external_sources: Vec&lt;...&gt;  // TODO
+    </span>playing_id: AkPlayingID,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">PostEvent</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Select an event by name or by ID, to play on a given game object.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">AkID</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">game_obj_id</span>: <span class="ident">AkGameObjectID</span>, <span class="ident">event_id</span>: <span class="ident">T</span>) -&gt; <span class="ident">PostEvent</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="ident">PostEvent</span> {
-            <span class="ident">game_obj_id</span>,
-            <span class="ident">event_id</span>: <span class="ident">event_id</span>.<span class="ident">into</span>(),
-            <span class="ident">flags</span>: <span class="ident">AkCallbackType</span>(<span class="number">0</span>),
-            <span class="comment">// external_sources: ...,</span>
-            <span class="ident">playing_id</span>: <span class="ident">AK_INVALID_PLAYING_ID</span>,
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; PostEvent&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Select an event by name or by ID, to play on a given game object.
+    </span><span class="kw">pub fn </span>new&lt;T: Into&lt;AkID&lt;<span class="lifetime">&#39;a</span>&gt;&gt;&gt;(game_obj_id: AkGameObjectID, event_id: T) -&gt; PostEvent&lt;<span class="lifetime">&#39;a</span>&gt; {
+        PostEvent {
+            game_obj_id,
+            event_id: event_id.into(),
+            flags: AkCallbackType(<span class="number">0</span>),
+            <span class="comment">// external_sources: ...,
+            </span>playing_id: AK_INVALID_PLAYING_ID,
         }
     }
 
-    <span class="doccomment">/// Add flags before posting. Bitmask: see [AkCallbackType].</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// *See also* [post_with_callback](Self::post_with_callback)</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_flags</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">flags</span>: <span class="ident">AkCallbackType</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">flags</span> <span class="op">|</span><span class="op">=</span> <span class="ident">flags</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Add flags before posting. Bitmask: see [AkCallbackType].
+    ///
+    /// *See also* [post_with_callback](Self::post_with_callback)
+    </span><span class="kw">pub fn </span>add_flags(<span class="kw-2">&amp;mut </span><span class="self">self</span>, flags: AkCallbackType) -&gt; <span class="kw-2">&amp;mut </span><span class="self">Self </span>{
+        <span class="self">self</span>.flags |= flags;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Set flags before posting. Bitmask: see [AkCallbackType]</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// *See also* [post_with_callback](Self::post_with_callback)</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">flags</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">flags</span>: <span class="ident">AkCallbackType</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">flags</span> <span class="op">=</span> <span class="ident">flags</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Set flags before posting. Bitmask: see [AkCallbackType]
+    ///
+    /// *See also* [post_with_callback](Self::post_with_callback)
+    </span><span class="kw">pub fn </span>flags(<span class="kw-2">&amp;mut </span><span class="self">self</span>, flags: AkCallbackType) -&gt; <span class="kw-2">&amp;mut </span><span class="self">Self </span>{
+        <span class="self">self</span>.flags = flags;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Advanced users only. Specify the playing ID to target with the event. Will Cause active</span>
-    <span class="doccomment">/// actions in this event to target an existing Playing ID. Let it be [AK_INVALID_PLAYING_ID]</span>
-    <span class="doccomment">/// or do not specify any for normal playback.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">playing_id</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">AkPlayingID</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">playing_id</span> <span class="op">=</span> <span class="ident">id</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Advanced users only. Specify the playing ID to target with the event. Will Cause active
+    /// actions in this event to target an existing Playing ID. Let it be [AK_INVALID_PLAYING_ID]
+    /// or do not specify any for normal playback.
+    </span><span class="kw">pub fn </span>playing_id(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: AkPlayingID) -&gt; <span class="kw-2">&amp;mut </span><span class="self">Self </span>{
+        <span class="self">self</span>.playing_id = id;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Posts the event to the sound engine.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">post</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AkPlayingID</span>, <span class="ident">AkResult</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="ident">AkID::Name</span>(<span class="ident">name</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">event_id</span> {
-            <span class="kw">let</span> <span class="ident">ak_playing_id</span> <span class="op">=</span> <span class="kw">unsafe</span> {
-                <span class="macro">with_cstring!</span>[<span class="ident">name</span> =&gt; <span class="ident">cname</span> {
-                    <span class="ident">PostEvent2</span>(
-                        <span class="ident">cname</span>.<span class="ident">as_ptr</span>(),
-                        <span class="self">self</span>.<span class="ident">game_obj_id</span>,
-                        <span class="self">self</span>.<span class="ident">flags</span>.<span class="number">0</span> <span class="kw">as</span> <span class="ident">u32</span>,
+    <span class="doccomment">/// Posts the event to the sound engine.
+    </span><span class="kw">pub fn </span>post(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;AkPlayingID, AkResult&gt; {
+        <span class="kw">if let </span>AkID::Name(name) = <span class="self">self</span>.event_id {
+            <span class="kw">let </span>ak_playing_id = <span class="kw">unsafe </span>{
+                <span class="macro">with_cstring!</span>[name =&gt; cname {
+                    PostEvent2(
+                        cname.as_ptr(),
+                        <span class="self">self</span>.game_obj_id,
+                        <span class="self">self</span>.flags.<span class="number">0 </span><span class="kw">as </span>u32,
                         <span class="prelude-val">None</span>,
-                        <span class="ident">::std::ptr::null_mut</span>(),
-                        <span class="number">0</span>,                      <span class="comment">// TODO</span>
-                        <span class="ident">::std::ptr::null_mut</span>(), <span class="comment">// TODO</span>
-                        <span class="self">self</span>.<span class="ident">playing_id</span>,
+                        ::std::ptr::null_mut(),
+                        <span class="number">0</span>,                      <span class="comment">// TODO
+                        </span>::std::ptr::null_mut(), <span class="comment">// TODO
+                        </span><span class="self">self</span>.playing_id,
                     )
                 }]
             };
-            <span class="kw">if</span> <span class="ident">ak_playing_id</span> <span class="op">==</span> <span class="ident">AK_INVALID_PLAYING_ID</span> {
-                <span class="prelude-val">Err</span>(<span class="ident">AkResult::AK_Fail</span>)
-            } <span class="kw">else</span> {
-                <span class="prelude-val">Ok</span>(<span class="ident">ak_playing_id</span>)
+            <span class="kw">if </span>ak_playing_id == AK_INVALID_PLAYING_ID {
+                <span class="prelude-val">Err</span>(AkResult::AK_Fail)
+            } <span class="kw">else </span>{
+                <span class="prelude-val">Ok</span>(ak_playing_id)
             }
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="kw">let</span> <span class="ident">AkID::ID</span>(<span class="ident">id</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">event_id</span> {
-            <span class="kw">let</span> <span class="ident">ak_playing_id</span> <span class="op">=</span> <span class="kw">unsafe</span> {
-                <span class="ident">PostEvent</span>(
-                    <span class="ident">id</span>,
-                    <span class="self">self</span>.<span class="ident">game_obj_id</span>,
-                    <span class="self">self</span>.<span class="ident">flags</span>.<span class="number">0</span> <span class="kw">as</span> <span class="ident">u32</span>,
+        } <span class="kw">else if let </span>AkID::ID(id) = <span class="self">self</span>.event_id {
+            <span class="kw">let </span>ak_playing_id = <span class="kw">unsafe </span>{
+                PostEvent(
+                    id,
+                    <span class="self">self</span>.game_obj_id,
+                    <span class="self">self</span>.flags.<span class="number">0 </span><span class="kw">as </span>u32,
                     <span class="prelude-val">None</span>,
-                    <span class="ident">::std::ptr::null_mut</span>(),
-                    <span class="number">0</span>,                      <span class="comment">// TODO</span>
-                    <span class="ident">::std::ptr::null_mut</span>(), <span class="comment">// TODO</span>
-                    <span class="self">self</span>.<span class="ident">playing_id</span>,
+                    ::std::ptr::null_mut(),
+                    <span class="number">0</span>,                      <span class="comment">// TODO
+                    </span>::std::ptr::null_mut(), <span class="comment">// TODO
+                    </span><span class="self">self</span>.playing_id,
                 )
             };
-            <span class="kw">if</span> <span class="ident">ak_playing_id</span> <span class="op">==</span> <span class="ident">AK_INVALID_PLAYING_ID</span> {
-                <span class="prelude-val">Err</span>(<span class="ident">AkResult::AK_Fail</span>)
-            } <span class="kw">else</span> {
-                <span class="prelude-val">Ok</span>(<span class="ident">ak_playing_id</span>)
+            <span class="kw">if </span>ak_playing_id == AK_INVALID_PLAYING_ID {
+                <span class="prelude-val">Err</span>(AkResult::AK_Fail)
+            } <span class="kw">else </span>{
+                <span class="prelude-val">Ok</span>(ak_playing_id)
             }
-        } <span class="kw">else</span> {
+        } <span class="kw">else </span>{
             <span class="macro">panic!</span>(<span class="string">&quot;need at least an event ID or and an event name to post&quot;</span>)
         }
     }
 
-    <span class="doccomment">/// Posts the event to the sound engine, calling `callback` according to [flags](Self::flags).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// `callback` can be a function or a closure.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// **⚡ ATTENTION ⚡**</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// `callback` will be called on the audio thread, **not** on the current thread where you called</span>
-    <span class="doccomment">/// this. This means your closure or function must access shared state in a thread-safe way.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This also means the closure or function must not be long to return, or audio might sutter as</span>
-    <span class="doccomment">/// it prevents the audio thread from processing buffers.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">post_with_callback</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">callback</span>: <span class="ident">F</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AkPlayingID</span>, <span class="ident">AkResult</span><span class="op">&gt;</span>
-    <span class="kw">where</span>
-        <span class="ident">F</span>: <span class="ident">FnMut</span>(<span class="ident"><span class="kw">crate</span>::AkCallbackInfo</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+    <span class="doccomment">/// Posts the event to the sound engine, calling `callback` according to [flags](Self::flags).
+    ///
+    /// `callback` can be a function or a closure.
+    ///
+    /// **⚡ ATTENTION ⚡**
+    ///
+    /// `callback` will be called on the audio thread, **not** on the current thread where you called
+    /// this. This means your closure or function must access shared state in a thread-safe way.
+    ///
+    /// This also means the closure or function must not be long to return, or audio might sutter as
+    /// it prevents the audio thread from processing buffers.
+    </span><span class="kw">pub fn </span>post_with_callback&lt;F&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, callback: F) -&gt; <span class="prelude-ty">Result</span>&lt;AkPlayingID, AkResult&gt;
+    <span class="kw">where
+        </span>F: FnMut(<span class="kw">crate</span>::AkCallbackInfo) + <span class="lifetime">&#39;static</span>,
     {
-        <span class="comment">// see http://blog.sagetheprogrammer.com/neat-rust-tricks-passing-rust-closures-to-c</span>
-        <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">Box::into_raw</span>(<span class="ident">Box::new</span>(<span class="ident">callback</span>));
+        <span class="comment">// see http://blog.sagetheprogrammer.com/neat-rust-tricks-passing-rust-closures-to-c
+        </span><span class="kw">let </span>data = Box::into_raw(Box::new(callback));
 
-        <span class="kw">if</span> <span class="kw">let</span> <span class="ident">AkID::Name</span>(<span class="ident">name</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">event_id</span> {
-            <span class="kw">let</span> <span class="ident">ak_playing_id</span> <span class="op">=</span> <span class="kw">unsafe</span> {
-                <span class="macro">with_cstring!</span>[<span class="ident">name</span> =&gt; <span class="ident">cname</span> {
-                    <span class="ident">PostEvent2</span>(
-                        <span class="ident">cname</span>.<span class="ident">as_ptr</span>(),
-                        <span class="self">self</span>.<span class="ident">game_obj_id</span>,
-                        (<span class="self">self</span>.<span class="ident">flags</span> <span class="op">|</span> <span class="ident">AkCallbackType::AK_EndOfEvent</span>).<span class="number">0</span> <span class="kw">as</span> <span class="ident">u32</span>,
-                        <span class="prelude-val">Some</span>(<span class="ident"><span class="self">Self</span>::call_callback_as_closure</span>::<span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>),
-                        <span class="ident">data</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>,
-                        <span class="number">0</span>,                      <span class="comment">// TODO</span>
-                        <span class="ident">::std::ptr::null_mut</span>(), <span class="comment">// TODO</span>
-                        <span class="self">self</span>.<span class="ident">playing_id</span>,
+        <span class="kw">if let </span>AkID::Name(name) = <span class="self">self</span>.event_id {
+            <span class="kw">let </span>ak_playing_id = <span class="kw">unsafe </span>{
+                <span class="macro">with_cstring!</span>[name =&gt; cname {
+                    PostEvent2(
+                        cname.as_ptr(),
+                        <span class="self">self</span>.game_obj_id,
+                        (<span class="self">self</span>.flags | AkCallbackType::AK_EndOfEvent).<span class="number">0 </span><span class="kw">as </span>u32,
+                        <span class="prelude-val">Some</span>(<span class="self">Self</span>::call_callback_as_closure::&lt;F&gt;),
+                        data <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                        <span class="number">0</span>,                      <span class="comment">// TODO
+                        </span>::std::ptr::null_mut(), <span class="comment">// TODO
+                        </span><span class="self">self</span>.playing_id,
                     )
                 }]
             };
-            <span class="kw">if</span> <span class="ident">ak_playing_id</span> <span class="op">==</span> <span class="ident">AK_INVALID_PLAYING_ID</span> {
-                <span class="prelude-val">Err</span>(<span class="ident">AkResult::AK_Fail</span>)
-            } <span class="kw">else</span> {
-                <span class="prelude-val">Ok</span>(<span class="ident">ak_playing_id</span>)
+            <span class="kw">if </span>ak_playing_id == AK_INVALID_PLAYING_ID {
+                <span class="prelude-val">Err</span>(AkResult::AK_Fail)
+            } <span class="kw">else </span>{
+                <span class="prelude-val">Ok</span>(ak_playing_id)
             }
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="kw">let</span> <span class="ident">AkID::ID</span>(<span class="ident">id</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">event_id</span> {
-            <span class="kw">let</span> <span class="ident">ak_playing_id</span> <span class="op">=</span> <span class="kw">unsafe</span> {
-                <span class="ident">PostEvent</span>(
-                    <span class="ident">id</span>,
-                    <span class="self">self</span>.<span class="ident">game_obj_id</span>,
-                    (<span class="self">self</span>.<span class="ident">flags</span> <span class="op">|</span> <span class="ident">AkCallbackType::AK_EndOfEvent</span>).<span class="number">0</span> <span class="kw">as</span> <span class="ident">u32</span>,
-                    <span class="prelude-val">Some</span>(<span class="ident"><span class="self">Self</span>::call_callback_as_closure</span>::<span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>),
-                    <span class="ident">data</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>,
-                    <span class="number">0</span>,                      <span class="comment">// TODO</span>
-                    <span class="ident">::std::ptr::null_mut</span>(), <span class="comment">// TODO</span>
-                    <span class="self">self</span>.<span class="ident">playing_id</span>,
+        } <span class="kw">else if let </span>AkID::ID(id) = <span class="self">self</span>.event_id {
+            <span class="kw">let </span>ak_playing_id = <span class="kw">unsafe </span>{
+                PostEvent(
+                    id,
+                    <span class="self">self</span>.game_obj_id,
+                    (<span class="self">self</span>.flags | AkCallbackType::AK_EndOfEvent).<span class="number">0 </span><span class="kw">as </span>u32,
+                    <span class="prelude-val">Some</span>(<span class="self">Self</span>::call_callback_as_closure::&lt;F&gt;),
+                    data <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                    <span class="number">0</span>,                      <span class="comment">// TODO
+                    </span>::std::ptr::null_mut(), <span class="comment">// TODO
+                    </span><span class="self">self</span>.playing_id,
                 )
             };
-            <span class="kw">if</span> <span class="ident">ak_playing_id</span> <span class="op">==</span> <span class="ident">AK_INVALID_PLAYING_ID</span> {
-                <span class="prelude-val">Err</span>(<span class="ident">AkResult::AK_Fail</span>)
-            } <span class="kw">else</span> {
-                <span class="prelude-val">Ok</span>(<span class="ident">ak_playing_id</span>)
+            <span class="kw">if </span>ak_playing_id == AK_INVALID_PLAYING_ID {
+                <span class="prelude-val">Err</span>(AkResult::AK_Fail)
+            } <span class="kw">else </span>{
+                <span class="prelude-val">Ok</span>(ak_playing_id)
             }
-        } <span class="kw">else</span> {
+        } <span class="kw">else </span>{
             <span class="macro">panic!</span>(<span class="string">&quot;need at least an event ID or and an event name to post&quot;</span>)
         }
     }
 
-    <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">call_callback_as_closure</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(
-        <span class="ident">cb_type</span>: <span class="ident">AkCallbackType</span>,
-        <span class="ident">cb_info</span>: <span class="kw-2">*mut</span> <span class="ident">bindings::root::AkCallbackInfo</span>,
-    ) <span class="kw">where</span>
-        <span class="ident">F</span>: <span class="ident">FnMut</span>(<span class="ident"><span class="kw">crate</span>::AkCallbackInfo</span>),
+    <span class="kw">unsafe extern </span><span class="string">&quot;C&quot; </span><span class="kw">fn </span>call_callback_as_closure&lt;F&gt;(
+        cb_type: AkCallbackType,
+        cb_info: <span class="kw-2">*mut </span>bindings::root::AkCallbackInfo,
+    ) <span class="kw">where
+        </span>F: FnMut(<span class="kw">crate</span>::AkCallbackInfo),
     {
-        <span class="comment">// see http://blog.sagetheprogrammer.com/neat-rust-tricks-passing-rust-closures-to-c</span>
+        <span class="comment">// see http://blog.sagetheprogrammer.com/neat-rust-tricks-passing-rust-closures-to-c
 
-        <span class="kw">let</span> <span class="ident">callback_ptr</span>: <span class="kw-2">*mut</span> <span class="ident">F</span>;
-        <span class="kw">let</span> <span class="ident">wrapped_cb_type</span>: <span class="ident"><span class="kw">crate</span>::AkCallbackInfo</span>;
-        <span class="kw">if</span> <span class="ident">cb_type</span>.<span class="ident">contains</span>(<span class="ident">AkCallbackType::AK_MusicSyncAll</span>) {
-            <span class="kw">let</span> <span class="ident">cb_info</span> <span class="op">=</span> <span class="kw-2">*</span>(<span class="ident">cb_info</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">AkMusicSyncCallbackInfo</span>);
-            <span class="ident">callback_ptr</span> <span class="op">=</span> <span class="ident">cb_info</span>.<span class="ident">_base</span>.<span class="ident">pCookie</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">F</span>;
-            <span class="ident">wrapped_cb_type</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::AkCallbackInfo::MusicSync</span> {
-                <span class="ident">game_obj_id</span>: <span class="ident">cb_info</span>.<span class="ident">_base</span>.<span class="ident">gameObjID</span>,
-                <span class="ident">playing_id</span>: <span class="ident">cb_info</span>.<span class="ident">playingID</span>,
-                <span class="ident">segment_info</span>: <span class="ident">cb_info</span>.<span class="ident">segmentInfo</span>,
-                <span class="ident">music_sync_type</span>: <span class="ident">cb_info</span>.<span class="ident">musicSyncType</span>,
+        </span><span class="kw">let </span>callback_ptr: <span class="kw-2">*mut </span>F;
+        <span class="kw">let </span>wrapped_cb_type: <span class="kw">crate</span>::AkCallbackInfo;
+        <span class="kw">if </span>cb_type.contains(AkCallbackType::AK_MusicSyncAll) {
+            <span class="kw">let </span>cb_info = <span class="kw-2">*</span>(cb_info <span class="kw">as </span><span class="kw-2">*mut </span>AkMusicSyncCallbackInfo);
+            callback_ptr = cb_info._base.pCookie <span class="kw">as </span><span class="kw-2">*mut </span>F;
+            wrapped_cb_type = <span class="kw">crate</span>::AkCallbackInfo::MusicSync {
+                game_obj_id: cb_info._base.gameObjID,
+                playing_id: cb_info.playingID,
+                segment_info: cb_info.segmentInfo,
+                music_sync_type: cb_info.musicSyncType,
 
-                <span class="ident">user_cue_name</span>: <span class="kw">if</span> <span class="ident">cb_info</span>.<span class="ident">pszUserCueName</span>.<span class="ident">is_null</span>() {
-                    <span class="string">&quot;&quot;</span>.<span class="ident">to_string</span>()
-                } <span class="kw">else</span> {
-                    <span class="comment">// Safety</span>
-                    <span class="comment">// pszUserCueName will be valid until to_string(), which will copy the bytes from</span>
-                    <span class="comment">// pszUserCueName onto the Rust-managed heap</span>
-                    <span class="ident">CStr::from_ptr</span>(<span class="ident">cb_info</span>.<span class="ident">pszUserCueName</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">::std::os::raw::c_char</span>)
-                        .<span class="ident">to_str</span>()
-                        .<span class="ident">unwrap</span>()
-                        .<span class="ident">to_string</span>()
+                user_cue_name: <span class="kw">if </span>cb_info.pszUserCueName.is_null() {
+                    <span class="string">&quot;&quot;</span>.to_string()
+                } <span class="kw">else </span>{
+                    <span class="comment">// Safety
+                    // pszUserCueName will be valid until to_string(), which will copy the bytes from
+                    // pszUserCueName onto the Rust-managed heap
+                    </span>CStr::from_ptr(cb_info.pszUserCueName <span class="kw">as </span><span class="kw-2">*const </span>::std::os::raw::c_char)
+                        .to_str()
+                        .unwrap()
+                        .to_string()
                 },
             };
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">cb_type</span>.<span class="ident">contains</span>(<span class="ident">AkCallbackType::AK_EndOfDynamicSequenceItem</span>) {
-            <span class="kw">let</span> <span class="ident">cb_info</span> <span class="op">=</span> <span class="kw-2">*</span>(<span class="ident">cb_info</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">AkDynamicSequenceItemCallbackInfo</span>);
-            <span class="ident">callback_ptr</span> <span class="op">=</span> <span class="ident">cb_info</span>.<span class="ident">_base</span>.<span class="ident">pCookie</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">F</span>;
-            <span class="ident">wrapped_cb_type</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::AkCallbackInfo::DynamicSequenceItem</span> {
-                <span class="ident">game_obj_id</span>: <span class="ident">cb_info</span>.<span class="ident">_base</span>.<span class="ident">gameObjID</span>,
-                <span class="ident">playing_id</span>: <span class="ident">cb_info</span>.<span class="ident">playingID</span>,
-                <span class="ident">audio_node_id</span>: <span class="ident">cb_info</span>.<span class="ident">audioNodeID</span>,
+        } <span class="kw">else if </span>cb_type.contains(AkCallbackType::AK_EndOfDynamicSequenceItem) {
+            <span class="kw">let </span>cb_info = <span class="kw-2">*</span>(cb_info <span class="kw">as </span><span class="kw-2">*mut </span>AkDynamicSequenceItemCallbackInfo);
+            callback_ptr = cb_info._base.pCookie <span class="kw">as </span><span class="kw-2">*mut </span>F;
+            wrapped_cb_type = <span class="kw">crate</span>::AkCallbackInfo::DynamicSequenceItem {
+                game_obj_id: cb_info._base.gameObjID,
+                playing_id: cb_info.playingID,
+                audio_node_id: cb_info.audioNodeID,
             };
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">cb_type</span>.<span class="ident">contains</span>(
-            <span class="ident">AkCallbackType::AK_EndOfEvent</span>
-                <span class="op">|</span> <span class="ident">AkCallbackType::AK_MusicPlayStarted</span>
-                <span class="op">|</span> <span class="ident">AkCallbackType::AK_Starvation</span>,
+        } <span class="kw">else if </span>cb_type.contains(
+            AkCallbackType::AK_EndOfEvent
+                | AkCallbackType::AK_MusicPlayStarted
+                | AkCallbackType::AK_Starvation,
         ) {
-            <span class="kw">let</span> <span class="ident">cb_info</span> <span class="op">=</span> <span class="kw-2">*</span>(<span class="ident">cb_info</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">AkEventCallbackInfo</span>);
-            <span class="ident">callback_ptr</span> <span class="op">=</span> <span class="ident">cb_info</span>.<span class="ident">_base</span>.<span class="ident">pCookie</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">F</span>;
-            <span class="ident">wrapped_cb_type</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::AkCallbackInfo::Event</span> {
-                <span class="ident">game_obj_id</span>: <span class="ident">cb_info</span>.<span class="ident">_base</span>.<span class="ident">gameObjID</span>,
-                <span class="ident">callback_type</span>: <span class="ident">cb_type</span>,
-                <span class="ident">playing_id</span>: <span class="ident">cb_info</span>.<span class="ident">playingID</span>,
-                <span class="ident">event_id</span>: <span class="ident">cb_info</span>.<span class="ident">eventID</span>,
+            <span class="kw">let </span>cb_info = <span class="kw-2">*</span>(cb_info <span class="kw">as </span><span class="kw-2">*mut </span>AkEventCallbackInfo);
+            callback_ptr = cb_info._base.pCookie <span class="kw">as </span><span class="kw-2">*mut </span>F;
+            wrapped_cb_type = <span class="kw">crate</span>::AkCallbackInfo::Event {
+                game_obj_id: cb_info._base.gameObjID,
+                callback_type: cb_type,
+                playing_id: cb_info.playingID,
+                event_id: cb_info.eventID,
             };
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">cb_type</span>.<span class="ident">contains</span>(<span class="ident">AkCallbackType::AK_Duration</span>) {
-            <span class="kw">let</span> <span class="ident">cb_info</span> <span class="op">=</span> <span class="kw-2">*</span>(<span class="ident">cb_info</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">AkDurationCallbackInfo</span>);
-            <span class="ident">callback_ptr</span> <span class="op">=</span> <span class="ident">cb_info</span>.<span class="ident">_base</span>.<span class="ident">_base</span>.<span class="ident">pCookie</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">F</span>;
-            <span class="ident">wrapped_cb_type</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::AkCallbackInfo::Duration</span> {
-                <span class="ident">game_obj_id</span>: <span class="ident">cb_info</span>.<span class="ident">_base</span>.<span class="ident">_base</span>.<span class="ident">gameObjID</span>,
-                <span class="ident">playing_id</span>: <span class="ident">cb_info</span>.<span class="ident">_base</span>.<span class="ident">playingID</span>,
-                <span class="ident">event_id</span>: <span class="ident">cb_info</span>.<span class="ident">_base</span>.<span class="ident">eventID</span>,
-                <span class="ident">duration</span>: <span class="ident">cb_info</span>.<span class="ident">fDuration</span>,
-                <span class="ident">estimated_duration</span>: <span class="ident">cb_info</span>.<span class="ident">fEstimatedDuration</span>,
-                <span class="ident">audio_node_id</span>: <span class="ident">cb_info</span>.<span class="ident">audioNodeID</span>,
-                <span class="ident">media_id</span>: <span class="ident">cb_info</span>.<span class="ident">mediaID</span>,
-                <span class="ident">streaming</span>: <span class="ident">cb_info</span>.<span class="ident">bStreaming</span>,
+        } <span class="kw">else if </span>cb_type.contains(AkCallbackType::AK_Duration) {
+            <span class="kw">let </span>cb_info = <span class="kw-2">*</span>(cb_info <span class="kw">as </span><span class="kw-2">*mut </span>AkDurationCallbackInfo);
+            callback_ptr = cb_info._base._base.pCookie <span class="kw">as </span><span class="kw-2">*mut </span>F;
+            wrapped_cb_type = <span class="kw">crate</span>::AkCallbackInfo::Duration {
+                game_obj_id: cb_info._base._base.gameObjID,
+                playing_id: cb_info._base.playingID,
+                event_id: cb_info._base.eventID,
+                duration: cb_info.fDuration,
+                estimated_duration: cb_info.fEstimatedDuration,
+                audio_node_id: cb_info.audioNodeID,
+                media_id: cb_info.mediaID,
+                streaming: cb_info.bStreaming,
             };
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">cb_type</span>.<span class="ident">contains</span>(<span class="ident">AkCallbackType::AK_Marker</span>) {
-            <span class="kw">let</span> <span class="ident">cb_info</span> <span class="op">=</span> <span class="kw-2">*</span>(<span class="ident">cb_info</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">AkMarkerCallbackInfo</span>);
-            <span class="ident">callback_ptr</span> <span class="op">=</span> <span class="ident">cb_info</span>.<span class="ident">_base</span>.<span class="ident">_base</span>.<span class="ident">pCookie</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">F</span>;
-            <span class="ident">wrapped_cb_type</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::AkCallbackInfo::Marker</span> {
-                <span class="ident">game_obj_id</span>: <span class="ident">cb_info</span>.<span class="ident">_base</span>.<span class="ident">_base</span>.<span class="ident">gameObjID</span>,
-                <span class="ident">playing_id</span>: <span class="ident">cb_info</span>.<span class="ident">_base</span>.<span class="ident">playingID</span>,
-                <span class="ident">event_id</span>: <span class="ident">cb_info</span>.<span class="ident">_base</span>.<span class="ident">eventID</span>,
-                <span class="ident">identifier</span>: <span class="ident">cb_info</span>.<span class="ident">uIdentifier</span>,
-                <span class="ident">position</span>: <span class="ident">cb_info</span>.<span class="ident">uPosition</span>,
-                <span class="ident">label</span>: <span class="kw">if</span> <span class="ident">cb_info</span>.<span class="ident">strLabel</span>.<span class="ident">is_null</span>() {
-                    <span class="string">&quot;&quot;</span>.<span class="ident">to_string</span>()
-                } <span class="kw">else</span> {
-                    <span class="comment">// Safety</span>
-                    <span class="comment">// strLabel will be valid until to_string(), which will copy the bytes from</span>
-                    <span class="comment">// strLabel onto the Rust-managed heap</span>
-                    <span class="ident">CStr::from_ptr</span>(<span class="ident">cb_info</span>.<span class="ident">strLabel</span>)
-                        .<span class="ident">to_str</span>()
-                        .<span class="ident">unwrap</span>()
-                        .<span class="ident">to_string</span>()
+        } <span class="kw">else if </span>cb_type.contains(AkCallbackType::AK_Marker) {
+            <span class="kw">let </span>cb_info = <span class="kw-2">*</span>(cb_info <span class="kw">as </span><span class="kw-2">*mut </span>AkMarkerCallbackInfo);
+            callback_ptr = cb_info._base._base.pCookie <span class="kw">as </span><span class="kw-2">*mut </span>F;
+            wrapped_cb_type = <span class="kw">crate</span>::AkCallbackInfo::Marker {
+                game_obj_id: cb_info._base._base.gameObjID,
+                playing_id: cb_info._base.playingID,
+                event_id: cb_info._base.eventID,
+                identifier: cb_info.uIdentifier,
+                position: cb_info.uPosition,
+                label: <span class="kw">if </span>cb_info.strLabel.is_null() {
+                    <span class="string">&quot;&quot;</span>.to_string()
+                } <span class="kw">else </span>{
+                    <span class="comment">// Safety
+                    // strLabel will be valid until to_string(), which will copy the bytes from
+                    // strLabel onto the Rust-managed heap
+                    </span>CStr::from_ptr(cb_info.strLabel)
+                        .to_str()
+                        .unwrap()
+                        .to_string()
                 },
             }
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">cb_type</span>.<span class="ident">contains</span>(<span class="ident">AkCallbackType::AK_MIDIEvent</span>) {
-            <span class="kw">let</span> <span class="ident">cb_info</span> <span class="op">=</span> <span class="kw-2">*</span>(<span class="ident">cb_info</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">AkMIDIEventCallbackInfo</span>);
-            <span class="ident">callback_ptr</span> <span class="op">=</span> <span class="ident">cb_info</span>.<span class="ident">_base</span>.<span class="ident">_base</span>.<span class="ident">pCookie</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">F</span>;
-            <span class="ident">wrapped_cb_type</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::AkCallbackInfo::Midi</span> {
-                <span class="ident">game_obj_id</span>: <span class="ident">cb_info</span>.<span class="ident">_base</span>.<span class="ident">_base</span>.<span class="ident">gameObjID</span>,
-                <span class="ident">playing_id</span>: <span class="ident">cb_info</span>.<span class="ident">_base</span>.<span class="ident">playingID</span>,
-                <span class="ident">event_id</span>: <span class="ident">cb_info</span>.<span class="ident">_base</span>.<span class="ident">eventID</span>,
-                <span class="ident">midi_event</span>: <span class="ident">cb_info</span>.<span class="ident">midiEvent</span>.<span class="ident">into</span>(),
+        } <span class="kw">else if </span>cb_type.contains(AkCallbackType::AK_MIDIEvent) {
+            <span class="kw">let </span>cb_info = <span class="kw-2">*</span>(cb_info <span class="kw">as </span><span class="kw-2">*mut </span>AkMIDIEventCallbackInfo);
+            callback_ptr = cb_info._base._base.pCookie <span class="kw">as </span><span class="kw-2">*mut </span>F;
+            wrapped_cb_type = <span class="kw">crate</span>::AkCallbackInfo::Midi {
+                game_obj_id: cb_info._base._base.gameObjID,
+                playing_id: cb_info._base.playingID,
+                event_id: cb_info._base.eventID,
+                midi_event: cb_info.midiEvent.into(),
             }
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">cb_type</span>.<span class="ident">contains</span>(<span class="ident">AkCallbackType::AK_MusicPlaylistSelect</span>) {
-            <span class="kw">let</span> <span class="ident">cb_info</span> <span class="op">=</span> <span class="kw-2">*</span>(<span class="ident">cb_info</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">AkMusicPlaylistCallbackInfo</span>);
-            <span class="ident">callback_ptr</span> <span class="op">=</span> <span class="ident">cb_info</span>.<span class="ident">_base</span>.<span class="ident">_base</span>.<span class="ident">pCookie</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">F</span>;
-            <span class="ident">wrapped_cb_type</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::AkCallbackInfo::MusicPlaylist</span> {
-                <span class="ident">game_obj_id</span>: <span class="ident">cb_info</span>.<span class="ident">_base</span>.<span class="ident">_base</span>.<span class="ident">gameObjID</span>,
-                <span class="ident">playing_id</span>: <span class="ident">cb_info</span>.<span class="ident">_base</span>.<span class="ident">playingID</span>,
-                <span class="ident">event_id</span>: <span class="ident">cb_info</span>.<span class="ident">_base</span>.<span class="ident">eventID</span>,
-                <span class="ident">playlist_id</span>: <span class="ident">cb_info</span>.<span class="ident">playlistID</span>,
-                <span class="ident">num_playlist_items</span>: <span class="ident">cb_info</span>.<span class="ident">uNumPlaylistItems</span>,
-                <span class="ident">playlist_selection</span>: <span class="ident">cb_info</span>.<span class="ident">uPlaylistSelection</span>,
-                <span class="ident">playlist_item_done</span>: <span class="ident">cb_info</span>.<span class="ident">uPlaylistItemDone</span>,
+        } <span class="kw">else if </span>cb_type.contains(AkCallbackType::AK_MusicPlaylistSelect) {
+            <span class="kw">let </span>cb_info = <span class="kw-2">*</span>(cb_info <span class="kw">as </span><span class="kw-2">*mut </span>AkMusicPlaylistCallbackInfo);
+            callback_ptr = cb_info._base._base.pCookie <span class="kw">as </span><span class="kw-2">*mut </span>F;
+            wrapped_cb_type = <span class="kw">crate</span>::AkCallbackInfo::MusicPlaylist {
+                game_obj_id: cb_info._base._base.gameObjID,
+                playing_id: cb_info._base.playingID,
+                event_id: cb_info._base.eventID,
+                playlist_id: cb_info.playlistID,
+                num_playlist_items: cb_info.uNumPlaylistItems,
+                playlist_selection: cb_info.uPlaylistSelection,
+                playlist_item_done: cb_info.uPlaylistItemDone,
             }
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">cb_type</span>.<span class="ident">contains</span>(<span class="ident">AkCallbackType::AK_SpeakerVolumeMatrix</span>) {
-            <span class="kw">let</span> <span class="ident">cb_info</span> <span class="op">=</span> <span class="kw-2">*</span>(<span class="ident">cb_info</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">AkSpeakerVolumeMatrixCallbackInfo</span>);
-            <span class="ident">callback_ptr</span> <span class="op">=</span> <span class="ident">cb_info</span>.<span class="ident">_base</span>.<span class="ident">_base</span>.<span class="ident">pCookie</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">F</span>;
-            <span class="ident">wrapped_cb_type</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::AkCallbackInfo::SpeakerMatrixVolume</span> {
-                <span class="ident">game_obj_id</span>: <span class="ident">cb_info</span>.<span class="ident">_base</span>.<span class="ident">_base</span>.<span class="ident">gameObjID</span>,
-                <span class="ident">playing_id</span>: <span class="ident">cb_info</span>.<span class="ident">_base</span>.<span class="ident">playingID</span>,
-                <span class="ident">event_id</span>: <span class="ident">cb_info</span>.<span class="ident">_base</span>.<span class="ident">eventID</span>,
-                <span class="ident">input_config</span>: <span class="ident">cb_info</span>.<span class="ident">inputConfig</span>,
-                <span class="ident">output_config</span>: <span class="ident">cb_info</span>.<span class="ident">outputConfig</span>,
+        } <span class="kw">else if </span>cb_type.contains(AkCallbackType::AK_SpeakerVolumeMatrix) {
+            <span class="kw">let </span>cb_info = <span class="kw-2">*</span>(cb_info <span class="kw">as </span><span class="kw-2">*mut </span>AkSpeakerVolumeMatrixCallbackInfo);
+            callback_ptr = cb_info._base._base.pCookie <span class="kw">as </span><span class="kw-2">*mut </span>F;
+            wrapped_cb_type = <span class="kw">crate</span>::AkCallbackInfo::SpeakerMatrixVolume {
+                game_obj_id: cb_info._base._base.gameObjID,
+                playing_id: cb_info._base.playingID,
+                event_id: cb_info._base.eventID,
+                input_config: cb_info.inputConfig,
+                output_config: cb_info.outputConfig,
             }
-        } <span class="kw">else</span> {
-            <span class="kw">if</span> <span class="op">!</span><span class="ident">cb_type</span>.<span class="ident">contains</span>(<span class="ident">AkCallbackType::AK_CallbackBits</span>) {
-                <span class="comment">// is it safe to panic here?</span>
-                <span class="macro">panic!</span>(<span class="string">&quot;Unexpected AkCallbackType encountered: {:?}&quot;</span>, <span class="ident">cb_type</span>.<span class="number">0</span>);
+        } <span class="kw">else </span>{
+            <span class="kw">if </span>!cb_type.contains(AkCallbackType::AK_CallbackBits) {
+                <span class="comment">// is it safe to panic here?
+                </span><span class="macro">panic!</span>(<span class="string">&quot;Unexpected AkCallbackType encountered: {:?}&quot;</span>, cb_type.<span class="number">0</span>);
             }
 
-            <span class="ident">callback_ptr</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">cb_info</span>).<span class="ident">pCookie</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">F</span>;
-            <span class="ident">wrapped_cb_type</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::AkCallbackInfo::Default</span> {
-                <span class="ident">game_obj_id</span>: (<span class="kw-2">*</span><span class="ident">cb_info</span>).<span class="ident">gameObjID</span>,
-                <span class="ident">callback_type</span>: <span class="ident">cb_type</span>,
+            callback_ptr = (<span class="kw-2">*</span>cb_info).pCookie <span class="kw">as </span><span class="kw-2">*mut </span>F;
+            wrapped_cb_type = <span class="kw">crate</span>::AkCallbackInfo::Default {
+                game_obj_id: (<span class="kw-2">*</span>cb_info).gameObjID,
+                callback_type: cb_type,
             };
         }
-        <span class="kw">let</span> <span class="ident">callback</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="kw-2">*</span><span class="ident">callback_ptr</span>;
+        <span class="kw">let </span>callback = <span class="kw-2">&amp;mut *</span>callback_ptr;
 
-        <span class="comment">// Info needed: is this safe if the callback panics? Should we do something with</span>
-        <span class="comment">// catch_unwind? Is this undefined behavior?</span>
-        <span class="ident">callback</span>(<span class="ident">wrapped_cb_type</span>);
+        <span class="comment">// Info needed: is this safe if the callback panics? Should we do something with
+        // catch_unwind? Is this undefined behavior?
+        </span>callback(wrapped_cb_type);
 
-        <span class="kw">if</span> <span class="ident">cb_type</span>.<span class="ident">contains</span>(<span class="ident">AkCallbackType::AK_EndOfEvent</span>) {
-            <span class="comment">// No more callbacks to process! Cleanup memory</span>
-            <span class="ident">Box::from_raw</span>(<span class="ident">callback_ptr</span>); <span class="comment">// effectively drops callback_ptr</span>
+        <span class="kw">if </span>cb_type.contains(AkCallbackType::AK_EndOfEvent) {
+            <span class="comment">// No more callbacks to process! Cleanup memory
+            </span>drop(Box::from_raw(callback_ptr));
         }
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="rrise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (76d770ac2 2022-04-02)" ></div>
-</body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="rrise" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (42325c525 2022-11-11)" data-search-js="search-39ee4160c7dc16c9.js" data-settings-js="settings-3a0b9947ba1bd99a.js" data-settings-css="settings-a66f7524084a489a.css" ></div></body></html>

@@ -1,9 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src\settings.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>settings.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../rrise/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
-        </a><h2 class="location"></h2>
-    </nav>
-    <nav class="sidebar"><a class="sidebar-logo" href="../../rrise/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
-        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../rrise/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src\settings.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>settings.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-eabf764633b9d7be.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-777f3e9583f8c92d.css"><link rel="stylesheet" disabled href="../../static.files/dark-e2f4109f2e82e3af.css"><link rel="stylesheet" disabled href="../../static.files/ayu-c360e709a65bed99.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../static.files/source-script-74087aa2e88f4475.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-c2d2a5dbaed13e6b.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../rrise/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -433,436 +428,449 @@
 <span id="428">428</span>
 <span id="429">429</span>
 <span id="430">430</span>
+<span id="431">431</span>
+<span id="432">432</span>
+<span id="433">433</span>
+<span id="434">434</span>
+<span id="435">435</span>
+<span id="436">436</span>
+<span id="437">437</span>
 </pre><pre class="rust"><code><span class="comment">/*
  * Copyright (c) 2022 Contributors to the Rrise project
- */</span>
+ */
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">wwrelease</span>))]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::bindings::root::AkCommSettings</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">wwrelease</span>))]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::bindings::root::AK::Comm</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::bindings::root::AK</span>::{<span class="ident">MemoryMgr</span>, <span class="ident">MusicEngine</span>, <span class="ident">SoundEngine</span>, <span class="ident">StreamMgr</span>};
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::bindings::root</span>::{<span class="ident">AkMemSettings</span>, <span class="ident">AkMusicSettings</span>, <span class="ident">AkStreamMgrSettings</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::to_os_char</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::OsChar</span>;
-<span class="kw">use</span> <span class="ident">log::error</span>;
-<span class="kw">use</span> <span class="ident">std::sync::atomic</span>::{<span class="ident">AtomicPtr</span>, <span class="ident">Ordering</span>};
+</span><span class="attr">#[cfg(not(wwrelease))]
+</span><span class="kw">pub use </span><span class="kw">crate</span>::bindings::root::AkCommSettings;
+<span class="attr">#[cfg(not(wwrelease))]
+</span><span class="kw">use </span><span class="kw">crate</span>::bindings::root::AK::Comm;
+<span class="kw">use </span><span class="kw">crate</span>::bindings::root::AK::{MemoryMgr, MusicEngine, SoundEngine, StreamMgr};
+<span class="kw">pub use </span><span class="kw">crate</span>::bindings::root::{AkMemSettings, AkMusicSettings, AkStreamMgrSettings};
+<span class="kw">use </span><span class="kw">crate</span>::to_os_char;
+<span class="kw">use </span><span class="kw">crate</span>::OsChar;
+<span class="kw">use </span>log::error;
+<span class="kw">use </span>std::sync::atomic::{AtomicPtr, Ordering};
 
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">AkMemSettings</span> {
-    <span class="doccomment">/// Obtain the default initialization settings for the default implementation of the Memory Manager.</span>
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ss</span>: <span class="ident">AkMemSettings</span> <span class="op">=</span> <span class="ident">std::mem::zeroed</span>();
-            <span class="ident">MemoryMgr::GetDefaultSettings</span>(<span class="kw-2">&amp;mut</span> <span class="ident">ss</span>);
-            <span class="ident">ss</span>
+<span class="kw">impl </span>Default <span class="kw">for </span>AkMemSettings {
+    <span class="doccomment">/// Obtain the default initialization settings for the default implementation of the Memory Manager.
+    </span><span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">unsafe </span>{
+            <span class="kw">let </span><span class="kw-2">mut </span>ss: AkMemSettings = std::mem::zeroed();
+            MemoryMgr::GetDefaultSettings(<span class="kw-2">&amp;mut </span>ss);
+            ss
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">AkMusicSettings</span> {
-    <span class="doccomment">/// Get the default values of the initialization settings of the music engine.</span>
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ss</span>: <span class="ident">AkMusicSettings</span> <span class="op">=</span> <span class="ident">std::mem::zeroed</span>();
-            <span class="ident">MusicEngine::GetDefaultInitSettings</span>(<span class="kw-2">&amp;mut</span> <span class="ident">ss</span>);
-            <span class="ident">ss</span>
+<span class="kw">impl </span>Default <span class="kw">for </span>AkMusicSettings {
+    <span class="doccomment">/// Get the default values of the initialization settings of the music engine.
+    </span><span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">unsafe </span>{
+            <span class="kw">let </span><span class="kw-2">mut </span>ss: AkMusicSettings = std::mem::zeroed();
+            MusicEngine::GetDefaultInitSettings(<span class="kw-2">&amp;mut </span>ss);
+            ss
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">AkStreamMgrSettings</span> {
-    <span class="doccomment">/// Get the default values for the Stream Manager&#39;s settings.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// *See also*</span>
-    <span class="doccomment">/// &gt; - [stream_mgr::init](crate::stream_mgr::init)</span>
-    <span class="doccomment">/// &gt; - [stream_mgr::init_default_stream_mgr](crate::stream_mgr::init_default_stream_mgr)</span>
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ss</span>: <span class="ident">AkStreamMgrSettings</span> <span class="op">=</span> <span class="ident">std::mem::zeroed</span>();
-            <span class="ident">StreamMgr::GetDefaultSettings</span>(<span class="kw-2">&amp;mut</span> <span class="ident">ss</span>);
-            <span class="ident">ss</span>
+<span class="kw">impl </span>Default <span class="kw">for </span>AkStreamMgrSettings {
+    <span class="doccomment">/// Get the default values for the Stream Manager&#39;s settings.
+    ///
+    /// *See also*
+    /// &gt; - [stream_mgr::init](crate::stream_mgr::init)
+    /// &gt; - [stream_mgr::init_default_stream_mgr](crate::stream_mgr::init_default_stream_mgr)
+    </span><span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">unsafe </span>{
+            <span class="kw">let </span><span class="kw-2">mut </span>ss: AkStreamMgrSettings = std::mem::zeroed();
+            StreamMgr::GetDefaultSettings(<span class="kw-2">&amp;mut </span>ss);
+            ss
         }
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">wwrelease</span>))]</span>
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">AkCommSettings</span> {
-    <span class="doccomment">/// Gets the communication module&#39;s default initialization settings values.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// *See also*</span>
-    <span class="doccomment">/// &gt; - [communication::init](crate::communication::init)</span>
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ss</span>: <span class="ident">AkCommSettings</span> <span class="op">=</span> <span class="ident">std::mem::zeroed</span>();
-            <span class="ident">Comm::GetDefaultInitSettings</span>(<span class="kw-2">&amp;mut</span> <span class="ident">ss</span>);
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">app_name</span>) <span class="op">=</span> <span class="ident">app_name</span>() {
-                <span class="ident">ss</span>.<span class="ident">szAppNetworkName</span> <span class="op">=</span> <span class="ident">app_name</span>;
+<span class="attr">#[cfg(not(wwrelease))]
+</span><span class="kw">impl </span>Default <span class="kw">for </span>AkCommSettings {
+    <span class="doccomment">/// Gets the communication module&#39;s default initialization settings values.
+    ///
+    /// *See also*
+    /// &gt; - [communication::init](crate::communication::init)
+    </span><span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">unsafe </span>{
+            <span class="kw">let </span><span class="kw-2">mut </span>ss: AkCommSettings = std::mem::zeroed();
+            Comm::GetDefaultInitSettings(<span class="kw-2">&amp;mut </span>ss);
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(app_name) = app_name() {
+                ss.szAppNetworkName = app_name;
             }
-            <span class="ident">ss</span>
+            ss
         }
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">wwrelease</span>))]</span>
-<span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">app_name</span>() -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>[<span class="ident">i8</span>; <span class="number">64</span>]<span class="op">&gt;</span> {
-    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">mut</span> <span class="ident">name</span>) <span class="op">=</span> <span class="ident">std::env::current_exe</span>()
-        .<span class="ident">ok</span>()<span class="question-mark">?</span>
-        .<span class="ident">file_name</span>()<span class="question-mark">?</span>
-        .<span class="ident">to_str</span>()<span class="question-mark">?</span>
-        .<span class="ident">to_owned</span>()
-        .<span class="ident">into</span>()
+<span class="attr">#[cfg(not(wwrelease))]
+</span><span class="kw">unsafe fn </span>app_name() -&gt; <span class="prelude-ty">Option</span>&lt;[i8; <span class="number">64</span>]&gt; {
+    <span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="kw-2">mut </span>name) = std::env::current_exe()
+        .ok()<span class="question-mark">?
+        </span>.file_name()<span class="question-mark">?
+        </span>.to_str()<span class="question-mark">?
+        </span>.to_owned()
+        .into()
     {
-        <span class="kw">if</span> <span class="ident">name</span>.<span class="ident">ends_with</span>(<span class="string">&quot;.exe&quot;</span>) {
-            <span class="ident">name</span>.<span class="ident">truncate</span>(<span class="ident">name</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="number">4</span>);
+        <span class="kw">if </span>name.ends_with(<span class="string">&quot;.exe&quot;</span>) {
+            name.truncate(name.len() - <span class="number">4</span>);
         }
 
-        <span class="kw">if</span> <span class="ident">name</span>.<span class="ident">len</span>() <span class="op">&lt;</span> <span class="number">64</span> {
-            <span class="ident">name</span>.<span class="ident">extend</span>(<span class="ident">std::iter::repeat</span>(<span class="string">&#39;\0&#39;</span>).<span class="ident">take</span>(<span class="number">64</span> <span class="op">-</span> <span class="ident">name</span>.<span class="ident">len</span>()));
-        } <span class="kw">else</span> {
-            <span class="ident">name</span>.<span class="ident">truncate</span>(<span class="number">64</span>);
+        <span class="kw">if </span>name.len() &lt; <span class="number">64 </span>{
+            name.extend(std::iter::repeat(<span class="string">&#39;\0&#39;</span>).take(<span class="number">64 </span>- name.len()));
+        } <span class="kw">else </span>{
+            name.truncate(<span class="number">64</span>);
         }
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">truncated</span> <span class="op">=</span> [<span class="number">0_u8</span>; <span class="number">64</span>];
-        <span class="ident">truncated</span>.<span class="ident">copy_from_slice</span>(<span class="ident">name</span>.<span class="ident">as_bytes</span>());
-        <span class="ident">truncated</span>[<span class="number">63</span>] <span class="op">=</span> <span class="number">0</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>truncated = [<span class="number">0_u8</span>; <span class="number">64</span>];
+        truncated.copy_from_slice(name.as_bytes());
+        truncated[<span class="number">63</span>] = <span class="number">0</span>;
 
-        <span class="prelude-val">Some</span>(<span class="ident">std::mem::transmute</span>(<span class="ident">truncated</span>))
-    } <span class="kw">else</span> {
-        <span class="prelude-val">None</span>
+        <span class="prelude-val">Some</span>(std::mem::transmute(truncated))
+    } <span class="kw">else </span>{
+        <span class="prelude-val">None
+    </span>}
+}
+
+<span class="kw">pub struct </span>AkInitSettingsPrivate {
+    <span class="attr">#[doc = <span class="string">&quot;When using DLLs for plugins, specify their path. Leave NULL if DLLs are in the same folder as the game executable.&quot;</span>]
+    </span>plugin_dll_path: Vec&lt;OsChar&gt;,
+}
+
+<span class="kw">impl </span>Default <span class="kw">for </span>AkInitSettingsPrivate {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            plugin_dll_path: <span class="macro">vec!</span>[<span class="number">0</span>]
+        }
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AkInitSettingsPrivate</span> {
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;When using DLLs for plugins, specify their path. Leave NULL if DLLs are in the same folder as the game executable.&quot;</span>]</span>
-    <span class="ident">plugin_dll_path</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">OsChar</span><span class="op">&gt;</span>,
+<span class="doccomment">/// Platform-independent initialization settings of the sound engine
+/// See also
+/// &gt; - [sound_engine::init](crate::sound_engine::init)
+/// &gt; - [AkPlatformInitSettings::default]
+</span><span class="kw">pub struct </span>AkInitSettings {
+    <span class="kw">pub </span>install_assert_hook: bool,
+    <span class="attr">#[doc = <span class="string">&quot;Maximum number of paths for positioning&quot;</span>]
+    </span><span class="kw">pub </span>max_num_paths: <span class="kw">crate</span>::bindings::root::AkUInt32,
+    <span class="attr">#[doc = <span class="string">&quot;Size of the command queue, in bytes&quot;</span>]
+    </span><span class="kw">pub </span>command_queue_size: <span class="kw">crate</span>::bindings::root::AkUInt32,
+    <span class="attr">#[doc = <span class="string">&quot;Sets to true to enable AK::SoundEngine::PrepareGameSync usage.&quot;</span>]
+    </span><span class="kw">pub </span>enable_game_sync_preparation: bool,
+    <span class="attr">#[doc = <span class="string">&quot;Number of quanta ahead when continuous containers should instantiate a new voice before which next sounds should start playing. This look-ahead time allows I/O to occur, and is especially useful to reduce the latency of continuous containers with trigger rate or sample-accurate transitions.&quot;</span>]
+    #[doc = <span class="string">&quot;Default is 1 audio quantum, also known as an audio frame. Its size is equal to AkInitSettings::num_samples_per_frame / AkPlatformInitSettings::sample_rate. For many platforms the default values - which can be overridden - are respectively 1,024 samples and 48 kHz. This gives a default 21.3 ms for an audio quantum, which is adequate if you have a RAM-based streaming device that completes transfers within 20 ms. With 1 look-ahead quantum, voices spawned by continuous containers are more likely to be ready when they are required to play, thereby improving the overall precision of sound scheduling. If your device completes transfers in 30 ms instead, you might consider increasing this value to 2 because it will grant new voices 2 audio quanta (~43 ms) to fetch data.&quot;</span>]
+    </span><span class="kw">pub </span>continuous_playback_look_ahead: <span class="kw">crate</span>::bindings::root::AkUInt32,
+    <span class="attr">#[doc = <span class="string">&quot;Number of samples per audio frame (256, 512, 1024, or 2048).&quot;</span>]
+    </span><span class="kw">pub </span>num_samples_per_frame: <span class="kw">crate</span>::bindings::root::AkUInt32,
+    <span class="attr">#[doc = <span class="string">&quot;Size of the monitoring queue, in bytes. This parameter is not used in Release build.&quot;</span>]
+    </span><span class="kw">pub </span>monitor_queue_pool_size: <span class="kw">crate</span>::bindings::root::AkUInt32,
+    <span class="attr">#[doc = <span class="string">&quot;Main output device settings.&quot;</span>]
+    </span><span class="kw">pub </span>settings_main_output: <span class="kw">crate</span>::bindings::root::AkOutputSettings,
+    <span class="attr">#[doc = <span class="string">&quot;Amount of time to wait for HW devices to trigger an audio interrupt. If there is no interrupt after that time, the sound engine will revert to  silent mode and continue operating until the HW finally comes back. Default value: 2000 (2 seconds)&quot;</span>]
+    </span><span class="kw">pub </span>max_hardware_timeout_ms: <span class="kw">crate</span>::bindings::root::AkUInt32,
+    <span class="attr">#[doc = <span class="string">&quot;Use a separate thread for loading sound banks. Allows asynchronous operations.&quot;</span>]
+    </span><span class="kw">pub </span>use_sound_bank_mgr_thread: bool,
+    <span class="attr">#[doc = <span class="string">&quot;Use a separate thread for processing audio. If set to false, audio processing will occur in RenderAudio(). \\ref goingfurther_eventmgrthread&quot;</span>]
+    </span><span class="kw">pub </span>use_lengine_thread: bool,
+    <span class="attr">#[doc = <span class="string">&quot;Application-defined audio source change event callback function.&quot;</span>]
+    </span><span class="kw">pub </span>bgm_callback: <span class="kw">crate</span>::bindings::root::AkBackgroundMusicChangeCallbackFunc,
+    <span class="attr">#[doc = <span class="string">&quot;Application-defined user data for the audio source change event callback function.&quot;</span>]
+    </span><span class="kw">pub </span>bgm_callback_cookie: AtomicPtr&lt;std::os::raw::c_void&gt;,
+    <span class="attr">#[doc = <span class="string">&quot;Floor plane axis for 3D game object viewing.&quot;</span>]
+    </span><span class="kw">pub </span>floor_plane: <span class="kw">crate</span>::bindings::root::AkFloorPlane,
+    <span class="attr">#[doc = <span class="string">&quot;The number of game units in a meter.&quot;</span>]
+    </span><span class="kw">pub </span>game_units_to_meters: <span class="kw">crate</span>::bindings::root::AkReal32,
+    <span class="attr">#[doc = <span class="string">&quot;The defined client task scheduler that AkSoundEngine will use to schedule internal tasks.&quot;</span>]
+    </span><span class="kw">pub </span>task_scheduler_desc: <span class="kw">crate</span>::bindings::root::AkTaskSchedulerDesc,
+    <span class="attr">#[doc = <span class="string">&quot;The number of bytes read by the BankReader when new data needs to be loaded from disk during serialization. Increasing this trades memory usage for larger, but fewer, file-read events during bank loading.&quot;</span>]
+    </span><span class="kw">pub </span>bank_read_buffer_size: <span class="kw">crate</span>::bindings::root::AkUInt32,
+    <span class="attr">#[doc = <span class="string">&quot;Debug setting: Only used when debug_out_of_range_check_enabled is true.  This defines the maximum values samples can have.  Normal audio must be contained within +1/-1.  This limit should be set higher to allow temporary or short excursions out of range.  Default is 16.&quot;</span>]
+    </span><span class="kw">pub </span>debug_out_of_range_limit: <span class="kw">crate</span>::bindings::root::AkReal32,
+    <span class="attr">#[doc = <span class="string">&quot;Debug setting: Enable checks for out-of-range (and NAN) floats in the processing code.  This incurs a small performance hit, but can be enabled in most scenarios.  Will print error messages in the log if invalid values are found at various point in the pipeline. Contact AK Support with the new error messages for more information.&quot;</span>]
+    </span><span class="kw">pub </span>debug_out_of_range_check_enabled: bool,
+    <span class="attr">#[doc = <span class="string">&quot;Private information&quot;</span>]
+    </span><span class="kw">pub </span>private_stuff: AkInitSettingsPrivate,
 }
 
-<span class="doccomment">/// Platform-independent initialization settings of the sound engine</span>
-<span class="doccomment">/// See also</span>
-<span class="doccomment">/// &gt; - [sound_engine::init](crate::sound_engine::init)</span>
-<span class="doccomment">/// &gt; - [AkPlatformInitSettings::default]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AkInitSettings</span> {
-    <span class="kw">pub</span> <span class="ident">install_assert_hook</span>: <span class="ident">bool</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Maximum number of paths for positioning&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">max_num_paths</span>: <span class="ident"><span class="kw">crate</span>::bindings::root::AkUInt32</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Size of the command queue, in bytes&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">command_queue_size</span>: <span class="ident"><span class="kw">crate</span>::bindings::root::AkUInt32</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Sets to true to enable AK::SoundEngine::PrepareGameSync usage.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">enable_game_sync_preparation</span>: <span class="ident">bool</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Number of quanta ahead when continuous containers should instantiate a new voice before which next sounds should start playing. This look-ahead time allows I/O to occur, and is especially useful to reduce the latency of continuous containers with trigger rate or sample-accurate transitions.&quot;</span>]</span>
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Default is 1 audio quantum, also known as an audio frame. Its size is equal to AkInitSettings::num_samples_per_frame / AkPlatformInitSettings::sample_rate. For many platforms the default values - which can be overridden - are respectively 1,024 samples and 48 kHz. This gives a default 21.3 ms for an audio quantum, which is adequate if you have a RAM-based streaming device that completes transfers within 20 ms. With 1 look-ahead quantum, voices spawned by continuous containers are more likely to be ready when they are required to play, thereby improving the overall precision of sound scheduling. If your device completes transfers in 30 ms instead, you might consider increasing this value to 2 because it will grant new voices 2 audio quanta (~43 ms) to fetch data.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">continuous_playback_look_ahead</span>: <span class="ident"><span class="kw">crate</span>::bindings::root::AkUInt32</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Number of samples per audio frame (256, 512, 1024, or 2048).&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">num_samples_per_frame</span>: <span class="ident"><span class="kw">crate</span>::bindings::root::AkUInt32</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Size of the monitoring queue, in bytes. This parameter is not used in Release build.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">monitor_queue_pool_size</span>: <span class="ident"><span class="kw">crate</span>::bindings::root::AkUInt32</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Main output device settings.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">settings_main_output</span>: <span class="ident"><span class="kw">crate</span>::bindings::root::AkOutputSettings</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Amount of time to wait for HW devices to trigger an audio interrupt. If there is no interrupt after that time, the sound engine will revert to  silent mode and continue operating until the HW finally comes back. Default value: 2000 (2 seconds)&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">max_hardware_timeout_ms</span>: <span class="ident"><span class="kw">crate</span>::bindings::root::AkUInt32</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Use a separate thread for loading sound banks. Allows asynchronous operations.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">use_sound_bank_mgr_thread</span>: <span class="ident">bool</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Use a separate thread for processing audio. If set to false, audio processing will occur in RenderAudio(). \\ref goingfurther_eventmgrthread&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">use_lengine_thread</span>: <span class="ident">bool</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Application-defined audio source change event callback function.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">bgm_callback</span>: <span class="ident"><span class="kw">crate</span>::bindings::root::AkBackgroundMusicChangeCallbackFunc</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Application-defined user data for the audio source change event callback function.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">bgm_callback_cookie</span>: <span class="ident">AtomicPtr</span><span class="op">&lt;</span><span class="ident">std::os::raw::c_void</span><span class="op">&gt;</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Floor plane axis for 3D game object viewing.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">floor_plane</span>: <span class="ident"><span class="kw">crate</span>::bindings::root::AkFloorPlane</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The number of game units in a meter.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">game_units_to_meters</span>: <span class="ident"><span class="kw">crate</span>::bindings::root::AkReal32</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The defined client task scheduler that AkSoundEngine will use to schedule internal tasks.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">task_scheduler_desc</span>: <span class="ident"><span class="kw">crate</span>::bindings::root::AkTaskSchedulerDesc</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The number of bytes read by the BankReader when new data needs to be loaded from disk during serialization. Increasing this trades memory usage for larger, but fewer, file-read events during bank loading.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">bank_read_buffer_size</span>: <span class="ident"><span class="kw">crate</span>::bindings::root::AkUInt32</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Debug setting: Only used when debug_out_of_range_check_enabled is true.  This defines the maximum values samples can have.  Normal audio must be contained within +1/-1.  This limit should be set higher to allow temporary or short excursions out of range.  Default is 16.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">debug_out_of_range_limit</span>: <span class="ident"><span class="kw">crate</span>::bindings::root::AkReal32</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Debug setting: Enable checks for out-of-range (and NAN) floats in the processing code.  This incurs a small performance hit, but can be enabled in most scenarios.  Will print error messages in the log if invalid values are found at various point in the pipeline. Contact AK Support with the new error messages for more information.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">debug_out_of_range_check_enabled</span>: <span class="ident">bool</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Private information&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">private_stuff</span>: <span class="ident">AkInitSettingsPrivate</span>,
+<span class="attr">#[derive(Debug)]
+</span><span class="doccomment">/// High-level IO devices initialization settings.
+</span><span class="kw">pub struct </span>AkDeviceSettings {
+    <span class="attr">#[doc = <span class="string">&quot;Pointer for I/O memory allocated by user.&quot;</span>]
+    #[doc = <span class="string">&quot;Pass NULL if you want memory to be allocated via AK::MemoryMgr::Malign().&quot;</span>]
+    #[doc = <span class="string">&quot;If specified, io_memory_size, io_memory_alignment and pool_attributes are ignored.&quot;</span>]
+    </span><span class="kw">pub </span>io_memory: AtomicPtr&lt;std::os::raw::c_void&gt;,
+    <span class="attr">#[doc = <span class="string">&quot;Size of memory for I/O (for automatic streams). It is passed directly to AK::MemoryMgr::Malign(), after having been rounded down to a multiple of granularity.&quot;</span>]
+    </span><span class="kw">pub </span>io_memory_size: u32,
+    <span class="attr">#[doc = <span class="string">&quot;I/O memory alignment. It is passed directly to AK::MemoryMgr::Malign().&quot;</span>]
+    </span><span class="kw">pub </span>io_memory_alignment: u32,
+    <span class="attr">#[doc = <span class="string">&quot;Attributes for I/O memory. Here, specify the allocation type (AkMemType_Device, and so on). It is passed directly to AK::MemoryMgr::Malign().&quot;</span>]
+    </span><span class="kw">pub </span>pool_attributes: u32,
+    <span class="attr">#[doc = <span class="string">&quot;I/O requests granularity (typical bytes/request).&quot;</span>]
+    </span><span class="kw">pub </span>granularity: u32,
+    <span class="attr">#[doc = <span class="string">&quot;Scheduler type flags.&quot;</span>]
+    </span><span class="kw">pub </span>scheduler_type_flags: u32,
+    <span class="attr">#[doc = <span class="string">&quot;Scheduler thread properties.&quot;</span>]
+    </span><span class="kw">pub </span>thread_properties: <span class="kw">crate</span>::AkThreadProperties,
+    <span class="attr">#[doc = <span class="string">&quot;Targeted automatic stream buffer length (ms). When a stream reaches that buffering, it stops being scheduled for I/O except if the scheduler is idle.&quot;</span>]
+    </span><span class="kw">pub </span>target_auto_stm_buffer_length: f32,
+    <span class="attr">#[doc = <span class="string">&quot;Maximum number of transfers that can be sent simultaneously to the Low-Level I/O (applies to AK_SCHEDULER_DEFERRED_LINED_UP device only).&quot;</span>]
+    </span><span class="kw">pub </span>max_concurrent_io: u32,
+    <span class="attr">#[doc = <span class="string">&quot;If true the device attempts to reuse IO buffers that have already been streamed from disk. This is particularly useful when streaming small looping sounds. The drawback is a small CPU hit when allocating memory, and a slightly larger memory footprint in the StreamManager pool.&quot;</span>]
+    </span><span class="kw">pub </span>use_stream_cache: bool,
+    <span class="attr">#[doc = <span class="string">&quot;Maximum number of bytes that can be \&quot;pinned\&quot; using AK::SoundEngine::PinEventInStreamCache() or AK::IAkStreamMgr::PinFileInCache()&quot;</span>]
+    </span><span class="kw">pub </span>max_cache_pinned_bytes: u32,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="doccomment">/// High-level IO devices initialization settings.</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AkDeviceSettings</span> {
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Pointer for I/O memory allocated by user.&quot;</span>]</span>
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Pass NULL if you want memory to be allocated via AK::MemoryMgr::Malign().&quot;</span>]</span>
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;If specified, io_memory_size, io_memory_alignment and pool_attributes are ignored.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">io_memory</span>: <span class="ident">AtomicPtr</span><span class="op">&lt;</span><span class="ident">std::os::raw::c_void</span><span class="op">&gt;</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Size of memory for I/O (for automatic streams). It is passed directly to AK::MemoryMgr::Malign(), after having been rounded down to a multiple of granularity.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">io_memory_size</span>: <span class="ident">u32</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;I/O memory alignment. It is passed directly to AK::MemoryMgr::Malign().&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">io_memory_alignment</span>: <span class="ident">u32</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Attributes for I/O memory. Here, specify the allocation type (AkMemType_Device, and so on). It is passed directly to AK::MemoryMgr::Malign().&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">pool_attributes</span>: <span class="ident">u32</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;I/O requests granularity (typical bytes/request).&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">granularity</span>: <span class="ident">u32</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Scheduler type flags.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">scheduler_type_flags</span>: <span class="ident">u32</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Scheduler thread properties.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">thread_properties</span>: <span class="ident"><span class="kw">crate</span>::AkThreadProperties</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Targeted automatic stream buffer length (ms). When a stream reaches that buffering, it stops being scheduled for I/O except if the scheduler is idle.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">target_auto_stm_buffer_length</span>: <span class="ident">f32</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Maximum number of transfers that can be sent simultaneously to the Low-Level I/O (applies to AK_SCHEDULER_DEFERRED_LINED_UP device only).&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">max_concurrent_io</span>: <span class="ident">u32</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;If true the device attempts to reuse IO buffers that have already been streamed from disk. This is particularly useful when streaming small looping sounds. The drawback is a small CPU hit when allocating memory, and a slightly larger memory footprint in the StreamManager pool.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">use_stream_cache</span>: <span class="ident">bool</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Maximum number of bytes that can be \&quot;pinned\&quot; using AK::SoundEngine::PinEventInStreamCache() or AK::IAkStreamMgr::PinFileInCache()&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">max_cache_pinned_bytes</span>: <span class="ident">u32</span>,
+<span class="attr">#[derive(Debug)]
+</span><span class="kw">pub struct </span>AkPlatformInitSettings {
+    <span class="attr">#[cfg(windows)]
+    #[doc = <span class="string">&quot;Handle to the window associated to the audio.&quot;</span>]
+    #[doc = <span class="string">&quot;Each game must specify the HWND of the application for device detection purposes.&quot;</span>]
+    #[doc = <span class="string">&quot;The value returned by GetDefaultPlatformInitSettings is the foreground HWND at&quot;</span>]
+    #[doc = <span class="string">&quot;the moment of the initialization of the sound engine and may not be the correct one for your game.&quot;</span>]
+    #[doc = <span class="string">&quot;It is required that each game provides the correct HWND to be used.&quot;</span>]
+    </span><span class="kw">pub </span>h_wnd: AtomicPtr&lt;core::ffi::c_void&gt;,
+    <span class="attr">#[doc = <span class="string">&quot;Lower engine threading properties&quot;</span>]
+    </span><span class="kw">pub </span>thread_lengine: <span class="kw">crate</span>::AkThreadProperties,
+    <span class="attr">#[doc = <span class="string">&quot;Ouput thread threading properties&quot;</span>]
+    </span><span class="kw">pub </span>thread_output_mgr: <span class="kw">crate</span>::AkThreadProperties,
+    <span class="attr">#[doc = <span class="string">&quot;Bank manager threading properties (its default priority is AK_THREAD_PRIORITY_NORMAL)&quot;</span>]
+    </span><span class="kw">pub </span>thread_bank_manager: <span class="kw">crate</span>::AkThreadProperties,
+    <span class="attr">#[doc = <span class="string">&quot;Monitor threading properties (its default priority is AK_THREAD_PRIORITY_ABOVENORMAL). This parameter is not used in Release build.&quot;</span>]
+    </span><span class="kw">pub </span>thread_monitor: <span class="kw">crate</span>::AkThreadProperties,
+    <span class="attr">#[doc = <span class="string">&quot;Number of refill buffers in voice buffer. 2 == double-buffered, defaults to 4.&quot;</span>]
+    </span><span class="kw">pub </span>num_refills_in_voice: u16,
+    <span class="attr">#[doc = <span class="string">&quot;Sampling Rate. Default is 48000 Hz. Use 24000hz for low quality. Any positive reasonable sample rate is supported. However be careful setting a custom value. Using an odd or really low sample rate may result in malfunctionning sound engine.&quot;</span>]
+    </span><span class="kw">pub </span>sample_rate: u32,
+    <span class="attr">#[cfg(windows)]
+    #[doc = <span class="string">&quot;Enables run-time detection of AVX and AVX2 SIMD support in the engine and plug-ins. Disabling this may improve CPU performance by allowing for higher CPU clockspeeds.&quot;</span>]
+    </span><span class="kw">pub </span>enable_avx_support: bool,
+    <span class="attr">#[cfg(windows)]
+    #[doc = <span class="string">&quot;Dictates how many Microsoft Spatial Sound dynamic objects will be reserved by the System sink. On Windows, other running processes will be prevented from reserving these objects. Set to 0 to disable the use of System Audio Objects. Default is 128.&quot;</span>]
+    </span><span class="kw">pub </span>max_system_audio_objects: u32,
+    <span class="attr">#[cfg(target_os = <span class="string">&quot;linux&quot;</span>)]
+    #[doc = <span class="string">&quot;Main audio API to use. Leave to [AkAPI_Default](crate::bindings::root::AkAudioAPILinux::AkAPI_Default) for the default sink (default value).&quot;</span>]
+    #[doc = <span class="string">&quot;If a valid audioDeviceShareset plug-in is provided, the AkAudioAPI will be Ignored.&quot;</span>]
+    </span><span class="kw">pub </span>audio_api: <span class="kw">crate</span>::bindings::root::AkAudioAPI,
+    <span class="attr">#[cfg(target_os = <span class="string">&quot;linux&quot;</span>)]
+    #[doc = <span class="string">&quot;Sample type. [AK_FLOAT](crate::bindings::root::AK_FLOAT) for 32 bit float, [AK_INT](crate::bindings::root::AK_INT) for 16 bit signed integer, defaults to [AK_FLOAT](crate::bindings::root::AK_FLOAT).&quot;</span>]
+    #[doc = <span class="string">&quot;Supported by [AkAPI_PulseAudio](crate::bindings::root::AkAudioAPILinux::AkAPI_PulseAudio) only.&quot;</span>]
+    </span><span class="kw">pub </span>sample_type: u16,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AkPlatformInitSettings</span> {
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Handle to the window associated to the audio.&quot;</span>]</span>
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Each game must specify the HWND of the application for device detection purposes.&quot;</span>]</span>
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The value returned by GetDefaultPlatformInitSettings is the foreground HWND at&quot;</span>]</span>
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;the moment of the initialization of the sound engine and may not be the correct one for your game.&quot;</span>]</span>
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;It is required that each game provides the correct HWND to be used.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">h_wnd</span>: <span class="ident">AtomicPtr</span><span class="op">&lt;</span><span class="ident">core::ffi::c_void</span><span class="op">&gt;</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Lower engine threading properties&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">thread_lengine</span>: <span class="ident"><span class="kw">crate</span>::AkThreadProperties</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Ouput thread threading properties&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">thread_output_mgr</span>: <span class="ident"><span class="kw">crate</span>::AkThreadProperties</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Bank manager threading properties (its default priority is AK_THREAD_PRIORITY_NORMAL)&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">thread_bank_manager</span>: <span class="ident"><span class="kw">crate</span>::AkThreadProperties</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Monitor threading properties (its default priority is AK_THREAD_PRIORITY_ABOVENORMAL). This parameter is not used in Release build.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">thread_monitor</span>: <span class="ident"><span class="kw">crate</span>::AkThreadProperties</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Number of refill buffers in voice buffer. 2 == double-buffered, defaults to 4.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">num_refills_in_voice</span>: <span class="ident">u16</span>,
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Sampling Rate. Default is 48000 Hz. Use 24000hz for low quality. Any positive reasonable sample rate is supported. However be careful setting a custom value. Using an odd or really low sample rate may result in malfunctionning sound engine.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">sample_rate</span>: <span class="ident">u32</span>,
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Enables run-time detection of AVX and AVX2 SIMD support in the engine and plug-ins. Disabling this may improve CPU performance by allowing for higher CPU clockspeeds.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">enable_avx_support</span>: <span class="ident">bool</span>,
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Dictates how many Microsoft Spatial Sound dynamic objects will be reserved by the System sink. On Windows, other running processes will be prevented from reserving these objects. Set to 0 to disable the use of System Audio Objects. Default is 128.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">max_system_audio_objects</span>: <span class="ident">u32</span>,
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;linux&quot;</span>)]</span>
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Main audio API to use. Leave to [AkAPI_Default](crate::bindings::root::AkAudioAPILinux::AkAPI_Default) for the default sink (default value).&quot;</span>]</span>
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;If a valid audioDeviceShareset plug-in is provided, the AkAudioAPI will be Ignored.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">audio_api</span>: <span class="ident"><span class="kw">crate</span>::bindings::root::AkAudioAPI</span>,
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;linux&quot;</span>)]</span>
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Sample type. [AK_FLOAT](crate::bindings::root::AK_FLOAT) for 32 bit float, [AK_INT](crate::bindings::root::AK_INT) for 16 bit signed integer, defaults to [AK_FLOAT](crate::bindings::root::AK_FLOAT).&quot;</span>]</span>
-    <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Supported by [AkAPI_PulseAudio](crate::bindings::root::AkAudioAPILinux::AkAPI_PulseAudio) only.&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="ident">sample_type</span>: <span class="ident">u16</span>,
-}
-
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">AkInitSettings</span> {
-    <span class="doccomment">/// Gets the default values of the platform-independent initialization settings.</span>
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">inner_settings</span> <span class="op">=</span> <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ss</span>: <span class="ident"><span class="kw">crate</span>::bindings::root::AkInitSettings</span> <span class="op">=</span> <span class="ident">std::mem::zeroed</span>();
-            <span class="ident">SoundEngine::GetDefaultInitSettings</span>(<span class="kw-2">&amp;mut</span> <span class="ident">ss</span>);
-            <span class="ident">ss</span>
+<span class="kw">impl </span>Default <span class="kw">for </span>AkInitSettings {
+    <span class="doccomment">/// Gets the default values of the platform-independent initialization settings.
+    </span><span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>inner_settings = <span class="kw">unsafe </span>{
+            <span class="kw">let </span><span class="kw-2">mut </span>ss: <span class="kw">crate</span>::bindings::root::AkInitSettings = std::mem::zeroed();
+            SoundEngine::GetDefaultInitSettings(<span class="kw-2">&amp;mut </span>ss);
+            ss
         };
-        <span class="self">Self</span> {
-            <span class="ident">install_assert_hook</span>: <span class="bool-val">false</span>,
-            <span class="ident">max_num_paths</span>: <span class="ident">inner_settings</span>.<span class="ident">uMaxNumPaths</span>,
-            <span class="ident">command_queue_size</span>: <span class="ident">inner_settings</span>.<span class="ident">uCommandQueueSize</span>,
-            <span class="ident">enable_game_sync_preparation</span>: <span class="ident">inner_settings</span>.<span class="ident">bEnableGameSyncPreparation</span>,
-            <span class="ident">continuous_playback_look_ahead</span>: <span class="ident">inner_settings</span>.<span class="ident">uContinuousPlaybackLookAhead</span>,
-            <span class="ident">num_samples_per_frame</span>: <span class="ident">inner_settings</span>.<span class="ident">uNumSamplesPerFrame</span>,
-            <span class="ident">monitor_queue_pool_size</span>: <span class="ident">inner_settings</span>.<span class="ident">uMonitorQueuePoolSize</span>,
-            <span class="ident">settings_main_output</span>: <span class="ident">inner_settings</span>.<span class="ident">settingsMainOutput</span>,
-            <span class="ident">max_hardware_timeout_ms</span>: <span class="ident">inner_settings</span>.<span class="ident">uMaxHardwareTimeoutMs</span>,
-            <span class="ident">use_sound_bank_mgr_thread</span>: <span class="ident">inner_settings</span>.<span class="ident">bUseSoundBankMgrThread</span>,
-            <span class="ident">use_lengine_thread</span>: <span class="ident">inner_settings</span>.<span class="ident">bUseLEngineThread</span>,
-            <span class="ident">bgm_callback</span>: <span class="ident">inner_settings</span>.<span class="ident">BGMCallback</span>,
-            <span class="ident">bgm_callback_cookie</span>: <span class="ident">inner_settings</span>.<span class="ident">BGMCallbackCookie</span>.<span class="ident">into</span>(),
-            <span class="ident">floor_plane</span>: <span class="ident">inner_settings</span>.<span class="ident">eFloorPlane</span>,
-            <span class="ident">game_units_to_meters</span>: <span class="ident">inner_settings</span>.<span class="ident">fGameUnitsToMeters</span>,
-            <span class="ident">task_scheduler_desc</span>: <span class="ident">inner_settings</span>.<span class="ident">taskSchedulerDesc</span>,
-            <span class="ident">bank_read_buffer_size</span>: <span class="ident">inner_settings</span>.<span class="ident">uBankReadBufferSize</span>,
-            <span class="ident">debug_out_of_range_limit</span>: <span class="ident">inner_settings</span>.<span class="ident">fDebugOutOfRangeLimit</span>,
-            <span class="ident">debug_out_of_range_check_enabled</span>: <span class="ident">inner_settings</span>.<span class="ident">bDebugOutOfRangeCheckEnabled</span>,
-            <span class="ident">private_stuff</span>: <span class="ident">AkInitSettingsPrivate::default</span>(),
+        <span class="self">Self </span>{
+            install_assert_hook: <span class="bool-val">false</span>,
+            max_num_paths: inner_settings.uMaxNumPaths,
+            command_queue_size: inner_settings.uCommandQueueSize,
+            enable_game_sync_preparation: inner_settings.bEnableGameSyncPreparation,
+            continuous_playback_look_ahead: inner_settings.uContinuousPlaybackLookAhead,
+            num_samples_per_frame: inner_settings.uNumSamplesPerFrame,
+            monitor_queue_pool_size: inner_settings.uMonitorQueuePoolSize,
+            settings_main_output: inner_settings.settingsMainOutput,
+            max_hardware_timeout_ms: inner_settings.uMaxHardwareTimeoutMs,
+            use_sound_bank_mgr_thread: inner_settings.bUseSoundBankMgrThread,
+            use_lengine_thread: inner_settings.bUseLEngineThread,
+            bgm_callback: inner_settings.BGMCallback,
+            bgm_callback_cookie: inner_settings.BGMCallbackCookie.into(),
+            floor_plane: inner_settings.eFloorPlane,
+            game_units_to_meters: inner_settings.fGameUnitsToMeters,
+            task_scheduler_desc: inner_settings.taskSchedulerDesc,
+            bank_read_buffer_size: inner_settings.uBankReadBufferSize,
+            debug_out_of_range_limit: inner_settings.fDebugOutOfRangeLimit,
+            debug_out_of_range_check_enabled: inner_settings.bDebugOutOfRangeCheckEnabled,
+            private_stuff: AkInitSettingsPrivate::default(),
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">AkDeviceSettings</span> {
-    <span class="doccomment">/// Gets the default values of the platform-independent initialization settings.</span>
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">inner_settings</span> <span class="op">=</span> <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ss</span>: <span class="ident"><span class="kw">crate</span>::bindings::root::AkDeviceSettings</span> <span class="op">=</span> <span class="ident">std::mem::zeroed</span>();
-            <span class="ident">StreamMgr::GetDefaultDeviceSettings</span>(<span class="kw-2">&amp;mut</span> <span class="ident">ss</span>);
-            <span class="ident">ss</span>
+<span class="kw">impl </span>Default <span class="kw">for </span>AkDeviceSettings {
+    <span class="doccomment">/// Gets the default values of the platform-independent initialization settings.
+    </span><span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>inner_settings = <span class="kw">unsafe </span>{
+            <span class="kw">let </span><span class="kw-2">mut </span>ss: <span class="kw">crate</span>::bindings::root::AkDeviceSettings = std::mem::zeroed();
+            StreamMgr::GetDefaultDeviceSettings(<span class="kw-2">&amp;mut </span>ss);
+            ss
         };
-        <span class="self">Self</span> {
-            <span class="ident">io_memory</span>: <span class="ident">inner_settings</span>.<span class="ident">pIOMemory</span>.<span class="ident">into</span>(),
-            <span class="ident">io_memory_size</span>: <span class="ident">inner_settings</span>.<span class="ident">uIOMemorySize</span>,
-            <span class="ident">io_memory_alignment</span>: <span class="ident">inner_settings</span>.<span class="ident">uIOMemoryAlignment</span>,
-            <span class="ident">pool_attributes</span>: <span class="ident">inner_settings</span>.<span class="ident">ePoolAttributes</span>,
-            <span class="ident">granularity</span>: <span class="ident">inner_settings</span>.<span class="ident">uGranularity</span>,
-            <span class="ident">scheduler_type_flags</span>: <span class="ident">inner_settings</span>.<span class="ident">uSchedulerTypeFlags</span>,
-            <span class="ident">thread_properties</span>: <span class="ident">inner_settings</span>.<span class="ident">threadProperties</span>,
-            <span class="ident">target_auto_stm_buffer_length</span>: <span class="ident">inner_settings</span>.<span class="ident">fTargetAutoStmBufferLength</span>,
-            <span class="ident">max_concurrent_io</span>: <span class="ident">inner_settings</span>.<span class="ident">uMaxConcurrentIO</span>,
-            <span class="ident">use_stream_cache</span>: <span class="ident">inner_settings</span>.<span class="ident">bUseStreamCache</span>,
-            <span class="ident">max_cache_pinned_bytes</span>: <span class="ident">inner_settings</span>.<span class="ident">uMaxCachePinnedBytes</span>,
+        <span class="self">Self </span>{
+            io_memory: inner_settings.pIOMemory.into(),
+            io_memory_size: inner_settings.uIOMemorySize,
+            io_memory_alignment: inner_settings.uIOMemoryAlignment,
+            pool_attributes: inner_settings.ePoolAttributes,
+            granularity: inner_settings.uGranularity,
+            scheduler_type_flags: inner_settings.uSchedulerTypeFlags,
+            thread_properties: inner_settings.threadProperties,
+            target_auto_stm_buffer_length: inner_settings.fTargetAutoStmBufferLength,
+            max_concurrent_io: inner_settings.uMaxConcurrentIO,
+            use_stream_cache: inner_settings.bUseStreamCache,
+            max_cache_pinned_bytes: inner_settings.uMaxCachePinnedBytes,
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">AkPlatformInitSettings</span> {
-    <span class="doccomment">/// Gets the default values of the platform-specific initialization settings.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// *Windows Specific*:</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// &gt; When initializing for Windows platform, the HWND value returned in the</span>
-    <span class="doccomment">/// &gt; AkPlatformInitSettings structure is the foreground HWND at the moment of the</span>
-    <span class="doccomment">/// &gt; initialization of the sound engine and may not be the correct one for your need.</span>
-    <span class="doccomment">/// &gt;</span>
-    <span class="doccomment">/// &gt; Each game must specify the HWND that will be passed to DirectSound initialization.</span>
-    <span class="doccomment">/// &gt;</span>
-    <span class="doccomment">/// &gt; It is required that each game provides the correct HWND to be used or it could cause</span>
-    <span class="doccomment">/// &gt; one of the following problem:</span>
-    <span class="doccomment">/// &gt;&gt; - Random Sound engine initialization failure.</span>
-    <span class="doccomment">/// &gt;&gt; - Audio focus to be located on the wrong window.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// *Warning* This function is not thread-safe.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// *See also*</span>
-    <span class="doccomment">/// &gt; - [sound_engine::init](crate::sound_engine::init)</span>
-    <span class="doccomment">/// &gt; - [AkInitSettings::default]</span>
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">inner_settings</span> <span class="op">=</span> <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ss</span>: <span class="ident"><span class="kw">crate</span>::bindings::root::AkPlatformInitSettings</span> <span class="op">=</span> <span class="ident">std::mem::zeroed</span>();
-            <span class="ident">SoundEngine::GetDefaultPlatformInitSettings</span>(<span class="kw-2">&amp;mut</span> <span class="ident">ss</span>);
-            <span class="ident">ss</span>
+<span class="kw">impl </span>Default <span class="kw">for </span>AkPlatformInitSettings {
+    <span class="doccomment">/// Gets the default values of the platform-specific initialization settings.
+    ///
+    /// *Windows Specific*:
+    ///
+    /// &gt; When initializing for Windows platform, the HWND value returned in the
+    /// &gt; AkPlatformInitSettings structure is the foreground HWND at the moment of the
+    /// &gt; initialization of the sound engine and may not be the correct one for your need.
+    /// &gt;
+    /// &gt; Each game must specify the HWND that will be passed to DirectSound initialization.
+    /// &gt;
+    /// &gt; It is required that each game provides the correct HWND to be used or it could cause
+    /// &gt; one of the following problem:
+    /// &gt;&gt; - Random Sound engine initialization failure.
+    /// &gt;&gt; - Audio focus to be located on the wrong window.
+    ///
+    /// *Warning* This function is not thread-safe.
+    ///
+    /// *See also*
+    /// &gt; - [sound_engine::init](crate::sound_engine::init)
+    /// &gt; - [AkInitSettings::default]
+    </span><span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>inner_settings = <span class="kw">unsafe </span>{
+            <span class="kw">let </span><span class="kw-2">mut </span>ss: <span class="kw">crate</span>::bindings::root::AkPlatformInitSettings = std::mem::zeroed();
+            SoundEngine::GetDefaultPlatformInitSettings(<span class="kw-2">&amp;mut </span>ss);
+            ss
         };
-        <span class="self">Self</span> {
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
-            <span class="ident">h_wnd</span>: (<span class="ident">inner_settings</span>.<span class="ident">hWnd</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">core::ffi::c_void</span>).<span class="ident">into</span>(),
-            <span class="ident">thread_lengine</span>: <span class="ident">inner_settings</span>.<span class="ident">threadLEngine</span>,
-            <span class="ident">thread_output_mgr</span>: <span class="ident">inner_settings</span>.<span class="ident">threadOutputMgr</span>,
-            <span class="ident">thread_bank_manager</span>: <span class="ident">inner_settings</span>.<span class="ident">threadBankManager</span>,
-            <span class="ident">thread_monitor</span>: <span class="ident">inner_settings</span>.<span class="ident">threadMonitor</span>,
-            <span class="ident">num_refills_in_voice</span>: <span class="ident">inner_settings</span>.<span class="ident">uNumRefillsInVoice</span>,
-            <span class="ident">sample_rate</span>: <span class="ident">inner_settings</span>.<span class="ident">uSampleRate</span>,
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
-            <span class="ident">enable_avx_support</span>: <span class="ident">inner_settings</span>.<span class="ident">bEnableAvxSupport</span>,
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
-            <span class="ident">max_system_audio_objects</span>: <span class="ident">inner_settings</span>.<span class="ident">uMaxSystemAudioObjects</span>,
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;linux&quot;</span>)]</span>
-            <span class="ident">audio_api</span>: <span class="ident">inner_settings</span>.<span class="ident">eAudioAPI</span>,
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;linux&quot;</span>)]</span>
-            <span class="ident">sample_type</span>: <span class="ident">inner_settings</span>.<span class="ident">sampleType</span>,
+        <span class="self">Self </span>{
+            <span class="attr">#[cfg(windows)]
+            </span>h_wnd: (inner_settings.hWnd <span class="kw">as </span><span class="kw-2">*mut </span>core::ffi::c_void).into(),
+            thread_lengine: inner_settings.threadLEngine,
+            thread_output_mgr: inner_settings.threadOutputMgr,
+            thread_bank_manager: inner_settings.threadBankManager,
+            thread_monitor: inner_settings.threadMonitor,
+            num_refills_in_voice: inner_settings.uNumRefillsInVoice,
+            sample_rate: inner_settings.uSampleRate,
+            <span class="attr">#[cfg(windows)]
+            </span>enable_avx_support: inner_settings.bEnableAvxSupport,
+            <span class="attr">#[cfg(windows)]
+            </span>max_system_audio_objects: inner_settings.uMaxSystemAudioObjects,
+            <span class="attr">#[cfg(target_os = <span class="string">&quot;linux&quot;</span>)]
+            </span>audio_api: inner_settings.eAudioAPI,
+            <span class="attr">#[cfg(target_os = <span class="string">&quot;linux&quot;</span>)]
+            </span>sample_type: inner_settings.sampleType,
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">AkInitSettings</span> {
-    <span class="doccomment">/// When using DLLs for plugins, specify their path. Leave NULL if DLLs are in the same folder as the game executable.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that on Windows, if `path` has spaces, the DLLs won&#39;t be discovered properly.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_plugin_dll_path</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">path</span>: <span class="ident">T</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">private_stuff</span>.<span class="ident">plugin_dll_path</span> <span class="op">=</span> <span class="ident">to_os_char</span>(<span class="ident">path</span>.<span class="ident">as_ref</span>());
-        <span class="self">self</span>
-    }
+<span class="kw">impl </span>AkInitSettings {
+    <span class="doccomment">/// When using DLLs for plugins, specify their path. Leave NULL if DLLs are in the same folder as the game executable.
+    ///
+    /// Note that on Windows, if `path` has spaces, the DLLs won&#39;t be discovered properly.
+    </span><span class="kw">pub fn </span>with_plugin_dll_path&lt;T: AsRef&lt;str&gt;&gt;(<span class="kw-2">mut </span><span class="self">self</span>, path: T) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.private_stuff.plugin_dll_path = to_os_char(path.as_ref());
+        <span class="self">self
+    </span>}
 
-    <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">ak_assert_hook</span>(
-        <span class="ident">expression</span>: <span class="kw-2">*const</span> <span class="ident">std::os::raw::c_char</span>,
-        <span class="ident">filename</span>: <span class="kw-2">*const</span> <span class="ident">std::os::raw::c_char</span>,
-        <span class="ident">line_nb</span>: <span class="ident">std::os::raw::c_int</span>,
+    <span class="kw">unsafe extern </span><span class="string">&quot;C&quot; </span><span class="kw">fn </span>ak_assert_hook(
+        expression: <span class="kw-2">*const </span>std::os::raw::c_char,
+        filename: <span class="kw-2">*const </span>std::os::raw::c_char,
+        line_nb: std::os::raw::c_int,
     ) {
-        <span class="kw">use</span> <span class="ident">std::ffi::CStr</span>;
+        <span class="kw">use </span>std::ffi::CStr;
 
-        <span class="kw">let</span> <span class="ident">expression</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">expression</span>.<span class="ident">is_null</span>() {
-            <span class="string">&quot;&lt;no_expr&gt;&quot;</span>.<span class="ident">to_string</span>()
-        } <span class="kw">else</span> {
-            <span class="comment">// Safety</span>
-            <span class="comment">// in_pszExpression will be valid until to_string(), which will copy the bytes from</span>
-            <span class="comment">// in_pszExpression onto the Rust-managed heap</span>
-            <span class="ident">CStr::from_ptr</span>(<span class="ident">expression</span>).<span class="ident">to_str</span>().<span class="ident">unwrap</span>().<span class="ident">to_string</span>()
+        <span class="kw">let </span>expression = <span class="kw">if </span>expression.is_null() {
+            <span class="string">&quot;&lt;no_expr&gt;&quot;</span>.to_string()
+        } <span class="kw">else </span>{
+            <span class="comment">// Safety
+            // in_pszExpression will be valid until to_string(), which will copy the bytes from
+            // in_pszExpression onto the Rust-managed heap
+            </span>CStr::from_ptr(expression).to_str().unwrap().to_string()
         };
-        <span class="kw">let</span> <span class="ident">filename</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">filename</span>.<span class="ident">is_null</span>() {
-            <span class="string">&quot;&lt;no_file&gt;&quot;</span>.<span class="ident">to_string</span>()
-        } <span class="kw">else</span> {
-            <span class="comment">// Safety</span>
-            <span class="comment">// in_pszFileName will be valid until to_string(), which will copy the bytes from</span>
-            <span class="comment">// in_pszFileName onto the Rust-managed heap</span>
-            <span class="ident">CStr::from_ptr</span>(<span class="ident">filename</span>).<span class="ident">to_str</span>().<span class="ident">unwrap</span>().<span class="ident">to_string</span>()
+        <span class="kw">let </span>filename = <span class="kw">if </span>filename.is_null() {
+            <span class="string">&quot;&lt;no_file&gt;&quot;</span>.to_string()
+        } <span class="kw">else </span>{
+            <span class="comment">// Safety
+            // in_pszFileName will be valid until to_string(), which will copy the bytes from
+            // in_pszFileName onto the Rust-managed heap
+            </span>CStr::from_ptr(filename).to_str().unwrap().to_string()
         };
 
-        <span class="macro">error!</span>(<span class="string">&quot;AK_ASSERT {}:{} on {}&quot;</span>, <span class="ident">filename</span>, <span class="ident">line_nb</span>, <span class="ident">expression</span>);
+        <span class="macro">error!</span>(<span class="string">&quot;AK_ASSERT {}:{} on {}&quot;</span>, filename, line_nb, expression);
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">as_ak</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="ident"><span class="kw">crate</span>::bindings::root::AkInitSettings</span> {
-        <span class="ident"><span class="kw">crate</span>::bindings::root::AkInitSettings</span> {
-            <span class="ident">pfnAssertHook</span>: <span class="kw">if</span> <span class="self">self</span>.<span class="ident">install_assert_hook</span> {
-                <span class="prelude-val">Some</span>(<span class="ident"><span class="self">Self</span>::ak_assert_hook</span>)
-            } <span class="kw">else</span> {
-                <span class="prelude-val">None</span>
-            },
-            <span class="ident">uMaxNumPaths</span>: <span class="self">self</span>.<span class="ident">max_num_paths</span>,
-            <span class="ident">uCommandQueueSize</span>: <span class="self">self</span>.<span class="ident">command_queue_size</span>,
-            <span class="ident">bEnableGameSyncPreparation</span>: <span class="self">self</span>.<span class="ident">enable_game_sync_preparation</span>,
-            <span class="ident">uContinuousPlaybackLookAhead</span>: <span class="self">self</span>.<span class="ident">continuous_playback_look_ahead</span>,
-            <span class="ident">uNumSamplesPerFrame</span>: <span class="self">self</span>.<span class="ident">num_samples_per_frame</span>,
-            <span class="ident">uMonitorQueuePoolSize</span>: <span class="self">self</span>.<span class="ident">monitor_queue_pool_size</span>,
-            <span class="ident">settingsMainOutput</span>: <span class="self">self</span>.<span class="ident">settings_main_output</span>,
-            <span class="ident">uMaxHardwareTimeoutMs</span>: <span class="self">self</span>.<span class="ident">max_hardware_timeout_ms</span>,
-            <span class="ident">bUseSoundBankMgrThread</span>: <span class="self">self</span>.<span class="ident">use_sound_bank_mgr_thread</span>,
-            <span class="ident">bUseLEngineThread</span>: <span class="self">self</span>.<span class="ident">use_lengine_thread</span>,
-            <span class="ident">BGMCallback</span>: <span class="self">self</span>.<span class="ident">bgm_callback</span>,
-            <span class="ident">BGMCallbackCookie</span>: <span class="self">self</span>.<span class="ident">bgm_callback_cookie</span>.<span class="ident">load</span>(<span class="ident">Ordering::SeqCst</span>),
-            <span class="ident">szPluginDLLPath</span>: <span class="self">self</span>.<span class="ident">private_stuff</span>.<span class="ident">plugin_dll_path</span>.<span class="ident">as_mut_ptr</span>(),
-            <span class="ident">eFloorPlane</span>: <span class="self">self</span>.<span class="ident">floor_plane</span>,
-            <span class="ident">fGameUnitsToMeters</span>: <span class="self">self</span>.<span class="ident">game_units_to_meters</span>,
-            <span class="ident">taskSchedulerDesc</span>: <span class="self">self</span>.<span class="ident">task_scheduler_desc</span>,
-            <span class="ident">uBankReadBufferSize</span>: <span class="self">self</span>.<span class="ident">bank_read_buffer_size</span>,
-            <span class="ident">fDebugOutOfRangeLimit</span>: <span class="self">self</span>.<span class="ident">debug_out_of_range_limit</span>,
-            <span class="ident">bDebugOutOfRangeCheckEnabled</span>: <span class="self">self</span>.<span class="ident">debug_out_of_range_check_enabled</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>as_ak(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw">crate</span>::bindings::root::AkInitSettings {
+        <span class="kw">crate</span>::bindings::root::AkInitSettings {
+            pfnAssertHook: <span class="kw">if </span><span class="self">self</span>.install_assert_hook {
+                <span class="prelude-val">Some</span>(<span class="self">Self</span>::ak_assert_hook)
+            } <span class="kw">else </span>{
+                <span class="prelude-val">None
+            </span>},
+            uMaxNumPaths: <span class="self">self</span>.max_num_paths,
+            uCommandQueueSize: <span class="self">self</span>.command_queue_size,
+            bEnableGameSyncPreparation: <span class="self">self</span>.enable_game_sync_preparation,
+            uContinuousPlaybackLookAhead: <span class="self">self</span>.continuous_playback_look_ahead,
+            uNumSamplesPerFrame: <span class="self">self</span>.num_samples_per_frame,
+            uMonitorQueuePoolSize: <span class="self">self</span>.monitor_queue_pool_size,
+            settingsMainOutput: <span class="self">self</span>.settings_main_output,
+            uMaxHardwareTimeoutMs: <span class="self">self</span>.max_hardware_timeout_ms,
+            bUseSoundBankMgrThread: <span class="self">self</span>.use_sound_bank_mgr_thread,
+            bUseLEngineThread: <span class="self">self</span>.use_lengine_thread,
+            BGMCallback: <span class="self">self</span>.bgm_callback,
+            BGMCallbackCookie: <span class="self">self</span>.bgm_callback_cookie.load(Ordering::SeqCst),
+            szPluginDLLPath: <span class="self">self</span>.private_stuff.plugin_dll_path.as_mut_ptr(),
+            eFloorPlane: <span class="self">self</span>.floor_plane,
+            fGameUnitsToMeters: <span class="self">self</span>.game_units_to_meters,
+            taskSchedulerDesc: <span class="self">self</span>.task_scheduler_desc,
+            uBankReadBufferSize: <span class="self">self</span>.bank_read_buffer_size,
+            fDebugOutOfRangeLimit: <span class="self">self</span>.debug_out_of_range_limit,
+            bDebugOutOfRangeCheckEnabled: <span class="self">self</span>.debug_out_of_range_check_enabled,
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">AkDeviceSettings</span> {
-    <span class="doccomment">/// Gets the default values of the platform-independent initialization settings.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">as_ak</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="ident"><span class="kw">crate</span>::bindings::root::AkDeviceSettings</span> {
-        <span class="ident"><span class="kw">crate</span>::bindings::root::AkDeviceSettings</span> {
-            <span class="ident">pIOMemory</span>: <span class="self">self</span>.<span class="ident">io_memory</span>.<span class="ident">load</span>(<span class="ident">Ordering::SeqCst</span>),
-            <span class="ident">uIOMemorySize</span>: <span class="self">self</span>.<span class="ident">io_memory_size</span>,
-            <span class="ident">uIOMemoryAlignment</span>: <span class="self">self</span>.<span class="ident">io_memory_alignment</span>,
-            <span class="ident">ePoolAttributes</span>: <span class="self">self</span>.<span class="ident">pool_attributes</span>,
-            <span class="ident">uGranularity</span>: <span class="self">self</span>.<span class="ident">granularity</span>,
-            <span class="ident">uSchedulerTypeFlags</span>: <span class="self">self</span>.<span class="ident">scheduler_type_flags</span>,
-            <span class="ident">threadProperties</span>: <span class="self">self</span>.<span class="ident">thread_properties</span>,
-            <span class="ident">fTargetAutoStmBufferLength</span>: <span class="self">self</span>.<span class="ident">target_auto_stm_buffer_length</span>,
-            <span class="ident">uMaxConcurrentIO</span>: <span class="self">self</span>.<span class="ident">max_concurrent_io</span>,
-            <span class="ident">bUseStreamCache</span>: <span class="self">self</span>.<span class="ident">use_stream_cache</span>,
-            <span class="ident">uMaxCachePinnedBytes</span>: <span class="self">self</span>.<span class="ident">max_cache_pinned_bytes</span>,
+<span class="kw">impl </span>AkDeviceSettings {
+    <span class="doccomment">/// Gets the default values of the platform-independent initialization settings.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>as_ak(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw">crate</span>::bindings::root::AkDeviceSettings {
+        <span class="kw">crate</span>::bindings::root::AkDeviceSettings {
+            pIOMemory: <span class="self">self</span>.io_memory.load(Ordering::SeqCst),
+            uIOMemorySize: <span class="self">self</span>.io_memory_size,
+            uIOMemoryAlignment: <span class="self">self</span>.io_memory_alignment,
+            ePoolAttributes: <span class="self">self</span>.pool_attributes,
+            uGranularity: <span class="self">self</span>.granularity,
+            uSchedulerTypeFlags: <span class="self">self</span>.scheduler_type_flags,
+            threadProperties: <span class="self">self</span>.thread_properties,
+            fTargetAutoStmBufferLength: <span class="self">self</span>.target_auto_stm_buffer_length,
+            uMaxConcurrentIO: <span class="self">self</span>.max_concurrent_io,
+            bUseStreamCache: <span class="self">self</span>.use_stream_cache,
+            uMaxCachePinnedBytes: <span class="self">self</span>.max_cache_pinned_bytes,
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">AkPlatformInitSettings</span> {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">as_ak</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="ident"><span class="kw">crate</span>::bindings::root::AkPlatformInitSettings</span> {
-        <span class="ident"><span class="kw">crate</span>::bindings::root::AkPlatformInitSettings</span> {
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
-            <span class="ident">hWnd</span>: <span class="self">self</span>.<span class="ident">h_wnd</span>.<span class="ident">load</span>(<span class="ident">Ordering::SeqCst</span>) <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident"><span class="kw">crate</span>::bindings::root::HWND__</span>,
-            <span class="ident">threadLEngine</span>: <span class="self">self</span>.<span class="ident">thread_lengine</span>,
-            <span class="ident">threadOutputMgr</span>: <span class="self">self</span>.<span class="ident">thread_output_mgr</span>,
-            <span class="ident">threadBankManager</span>: <span class="self">self</span>.<span class="ident">thread_bank_manager</span>,
-            <span class="ident">threadMonitor</span>: <span class="self">self</span>.<span class="ident">thread_monitor</span>,
-            <span class="ident">uNumRefillsInVoice</span>: <span class="self">self</span>.<span class="ident">num_refills_in_voice</span>,
-            <span class="ident">uSampleRate</span>: <span class="self">self</span>.<span class="ident">sample_rate</span>,
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
-            <span class="ident">bEnableAvxSupport</span>: <span class="self">self</span>.<span class="ident">enable_avx_support</span>,
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
-            <span class="ident">uMaxSystemAudioObjects</span>: <span class="self">self</span>.<span class="ident">max_system_audio_objects</span>,
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;linux&quot;</span>)]</span>
-            <span class="ident">eAudioAPI</span>: <span class="self">self</span>.<span class="ident">audio_api</span>,
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;linux&quot;</span>)]</span>
-            <span class="ident">sampleType</span>: <span class="self">self</span>.<span class="ident">sample_type</span>,
+<span class="kw">impl </span>AkPlatformInitSettings {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>as_ak(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw">crate</span>::bindings::root::AkPlatformInitSettings {
+        <span class="kw">crate</span>::bindings::root::AkPlatformInitSettings {
+            <span class="attr">#[cfg(windows)]
+            </span>hWnd: <span class="self">self</span>.h_wnd.load(Ordering::SeqCst) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">crate</span>::bindings::root::HWND__,
+            threadLEngine: <span class="self">self</span>.thread_lengine,
+            threadOutputMgr: <span class="self">self</span>.thread_output_mgr,
+            threadBankManager: <span class="self">self</span>.thread_bank_manager,
+            threadMonitor: <span class="self">self</span>.thread_monitor,
+            uNumRefillsInVoice: <span class="self">self</span>.num_refills_in_voice,
+            uSampleRate: <span class="self">self</span>.sample_rate,
+            <span class="attr">#[cfg(windows)]
+            </span>bEnableAvxSupport: <span class="self">self</span>.enable_avx_support,
+            <span class="attr">#[cfg(windows)]
+            </span>uMaxSystemAudioObjects: <span class="self">self</span>.max_system_audio_objects,
+            <span class="attr">#[cfg(target_os = <span class="string">&quot;linux&quot;</span>)]
+            </span>eAudioAPI: <span class="self">self</span>.audio_api,
+            <span class="attr">#[cfg(target_os = <span class="string">&quot;linux&quot;</span>)]
+            </span>sampleType: <span class="self">self</span>.sample_type,
         }
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="rrise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (76d770ac2 2022-04-02)" ></div>
-</body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="rrise" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (42325c525 2022-11-11)" data-search-js="search-39ee4160c7dc16c9.js" data-settings-js="settings-3a0b9947ba1bd99a.js" data-settings-css="settings-a66f7524084a489a.css" ></div></body></html>

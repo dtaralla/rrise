@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["init","Initialize the music engine."],["term","Terminate the music engine."]]});
+window.SIDEBAR_ITEMS = {"fn":[["init","Initialize the music engine."],["term","Terminate the music engine."]]};

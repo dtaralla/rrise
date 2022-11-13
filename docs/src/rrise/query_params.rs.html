@@ -1,9 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src\query_params.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>query_params.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../rrise/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
-        </a><h2 class="location"></h2>
-    </nav>
-    <nav class="sidebar"><a class="sidebar-logo" href="../../rrise/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
-        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../rrise/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src\query_params.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>query_params.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-eabf764633b9d7be.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-777f3e9583f8c92d.css"><link rel="stylesheet" disabled href="../../static.files/dark-e2f4109f2e82e3af.css"><link rel="stylesheet" disabled href="../../static.files/ayu-c360e709a65bed99.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../static.files/source-script-74087aa2e88f4475.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-c2d2a5dbaed13e6b.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../rrise/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -220,219 +215,218 @@
 <span id="215">215</span>
 </pre><pre class="rust"><code><span class="comment">/*
  * Copyright (c) 2022 Contributors to the Rrise project
- */</span>
+ */
 
-<span class="doccomment">//! The sound engine parameter query interface.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! *Remark* The functions in this namespace are thread-safe, unless stated otherwise.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! *Warnings*</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ⚡ Unless noted otherwise in the function definition that it will not acquire the main</span>
-<span class="doccomment">//! audio lock, the functions in this namespace might stall for several milliseconds before returning</span>
-<span class="doccomment">//! (as they cannot execute while the main sound engine thread is busy). They should therefore not</span>
-<span class="doccomment">//! be called from any game critical thread, such as the main game loop.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ⚡ There might be a significant delay between a Sound Engine call (such as PostEvent) and</span>
-<span class="doccomment">//! the information being reflected in a Query (such as GetIsGameObjectActive).</span>
+</span><span class="doccomment">//! The sound engine parameter query interface.
+//!
+//! *Remark* The functions in this namespace are thread-safe, unless stated otherwise.
+//!
+//! *Warnings*
+//!
+//! ⚡ Unless noted otherwise in the function definition that it will not acquire the main
+//! audio lock, the functions in this namespace might stall for several milliseconds before returning
+//! (as they cannot execute while the main sound engine thread is busy). They should therefore not
+//! be called from any game critical thread, such as the main game loop.
+//!
+//! ⚡ There might be a significant delay between a Sound Engine call (such as PostEvent) and
+//! the information being reflected in a Query (such as GetIsGameObjectActive).
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::bindings::root::AK::SoundEngine::Query</span>::{
-    <span class="ident">GetListenerPosition</span>, <span class="ident">GetListeners</span>, <span class="ident">GetPosition</span>, <span class="ident">GetRTPCValue</span>, <span class="ident">GetRTPCValue2</span>, <span class="ident">GetState</span>,
-    <span class="ident">GetState2</span>, <span class="ident">GetSwitch</span>, <span class="ident">GetSwitch2</span>, <span class="ident">RTPCValue_type</span>,
+</span><span class="kw">use </span><span class="kw">crate</span>::bindings::root::AK::SoundEngine::Query::{
+    GetListenerPosition, GetListeners, GetPosition, GetRTPCValue, GetRTPCValue2, GetState,
+    GetState2, GetSwitch, GetSwitch2, RTPCValue_type,
 };
-<span class="kw">use</span> <span class="kw">crate</span>::{
-    <span class="ident">ak_call_result</span>, <span class="ident">with_cstring</span>, <span class="ident">AkGameObjectID</span>, <span class="ident">AkID</span>, <span class="ident">AkListenerPosition</span>, <span class="ident">AkPlayingID</span>, <span class="ident">AkResult</span>,
-    <span class="ident">AkRtpcValue</span>, <span class="ident">AkSoundPosition</span>, <span class="ident">AkStateID</span>, <span class="ident">AkSwitchStateID</span>, <span class="ident">AK_INVALID_GAME_OBJECT</span>,
-    <span class="ident">AK_INVALID_PLAYING_ID</span>,
+<span class="kw">use crate</span>::{
+    ak_call_result, with_cstring, AkGameObjectID, AkID, AkListenerPosition, AkPlayingID, AkResult,
+    AkRtpcValue, AkSoundPosition, AkStateID, AkSwitchStateID, AK_INVALID_GAME_OBJECT,
+    AK_INVALID_PLAYING_ID,
 };
 
-<span class="doccomment">/// Enum used to request a specific RTPC Value.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Also used to inform the user of where the RTPC Value comes from.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// For example, the user may request the GameObject specific value by specifying RTPCValue_GameObject</span>
-<span class="doccomment">/// and can receive the Global Value if there was no GameObject specific value, and even the</span>
-<span class="doccomment">/// default value is there was no Global value either.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *See also* [get_rtpc_value]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">RtpcValueType</span> {
-    <span class="doccomment">/// The value is the Default RTPC.</span>
-    <span class="ident">Default</span>(<span class="ident">AkRtpcValue</span>),
-    <span class="doccomment">/// The value is the Global RTPC.</span>
-    <span class="ident">Global</span>(<span class="ident">AkRtpcValue</span>),
-    <span class="doccomment">/// The value is the game object specific RTPC.</span>
-    <span class="ident">GameObject</span>(<span class="ident">AkRtpcValue</span>),
-    <span class="doccomment">/// The value is the playing ID specific RTPC.</span>
-    <span class="ident">PlayingID</span>(<span class="ident">AkRtpcValue</span>),
-    <span class="doccomment">/// The value is not available for the RTPC specified.</span>
-    <span class="ident">Unavailable</span>(),
+<span class="doccomment">/// Enum used to request a specific RTPC Value.
+///
+/// Also used to inform the user of where the RTPC Value comes from.
+///
+/// For example, the user may request the GameObject specific value by specifying RTPCValue_GameObject
+/// and can receive the Global Value if there was no GameObject specific value, and even the
+/// default value is there was no Global value either.
+///
+/// *See also* [get_rtpc_value]
+</span><span class="attr">#[derive(Debug, Copy, Clone)]
+</span><span class="kw">pub enum </span>RtpcValueType {
+    <span class="doccomment">/// The value is the Default RTPC.
+    </span>Default(AkRtpcValue),
+    <span class="doccomment">/// The value is the Global RTPC.
+    </span>Global(AkRtpcValue),
+    <span class="doccomment">/// The value is the game object specific RTPC.
+    </span>GameObject(AkRtpcValue),
+    <span class="doccomment">/// The value is the playing ID specific RTPC.
+    </span>PlayingID(AkRtpcValue),
+    <span class="doccomment">/// The value is not available for the RTPC specified.
+    </span>Unavailable(),
 }
 
-<span class="doccomment">/// Get the position of a game object.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *Return* [AkResult::AK_Success] if succeeded, or [AkResult::AK_IDNotFound] if the game object</span>
-<span class="doccomment">/// was not registered</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_position</span>(<span class="ident">game_obj</span>: <span class="ident">AkGameObjectID</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AkSoundPosition</span>, <span class="ident">AkResult</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">result</span> <span class="op">=</span> <span class="ident">AkSoundPosition::new</span>();
-    <span class="macro">ak_call_result!</span>[<span class="ident">GetPosition</span>(<span class="ident">game_obj</span>, <span class="kw-2">&amp;mut</span> <span class="ident">result</span>)]<span class="question-mark">?</span>;
-    <span class="prelude-val">Ok</span>(<span class="ident">result</span>)
+<span class="doccomment">/// Get the position of a game object.
+///
+/// *Return* [AkResult::AK_Success] if succeeded, or [AkResult::AK_IDNotFound] if the game object
+/// was not registered
+</span><span class="kw">pub fn </span>get_position(game_obj: AkGameObjectID) -&gt; <span class="prelude-ty">Result</span>&lt;AkSoundPosition, AkResult&gt; {
+    <span class="kw">let </span><span class="kw-2">mut </span>result = AkSoundPosition::new();
+    <span class="macro">ak_call_result!</span>[GetPosition(game_obj, <span class="kw-2">&amp;mut </span>result)]<span class="question-mark">?</span>;
+    <span class="prelude-val">Ok</span>(result)
 }
 
-<span class="doccomment">/// Get a game object&#39;s listeners count.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *Return* the number of listeners of `for_source` if succeeded, or [AkResult::AK_IDNotFound] if the game object was not registered.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_listeners_count</span>(<span class="ident">for_source</span>: <span class="ident">AkGameObjectID</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">AkResult</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">result</span> <span class="op">=</span> <span class="number">0</span>;
-    <span class="macro">ak_call_result!</span>[<span class="ident">GetListeners</span>(<span class="ident">for_source</span>, <span class="ident">std::ptr::null_mut</span>(), <span class="kw-2">&amp;mut</span> <span class="ident">result</span>)]<span class="question-mark">?</span>;
-    <span class="prelude-val">Ok</span>(<span class="ident">result</span>)
+<span class="doccomment">/// Get a game object&#39;s listeners count.
+///
+/// *Return* the number of listeners of `for_source` if succeeded, or [AkResult::AK_IDNotFound] if the game object was not registered.
+</span><span class="kw">pub fn </span>get_listeners_count(for_source: AkGameObjectID) -&gt; <span class="prelude-ty">Result</span>&lt;u32, AkResult&gt; {
+    <span class="kw">let </span><span class="kw-2">mut </span>result = <span class="number">0</span>;
+    <span class="macro">ak_call_result!</span>[GetListeners(for_source, std::ptr::null_mut(), <span class="kw-2">&amp;mut </span>result)]<span class="question-mark">?</span>;
+    <span class="prelude-val">Ok</span>(result)
 }
 
-<span class="doccomment">/// Get a game object&#39;s listeners.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *Return* at most `max_count` listeners of `for_source` if succeeded, or [AkResult::AK_IDNotFound] if the game object was not registered.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_listeners</span>(
-    <span class="ident">for_source</span>: <span class="ident">AkGameObjectID</span>,
-    <span class="ident">max_count</span>: <span class="ident">usize</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">AkGameObjectID</span><span class="op">&gt;</span>, <span class="ident">AkResult</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">result</span> <span class="op">=</span> <span class="ident">Vec::with_capacity</span>(<span class="ident">max_count</span>);
-    <span class="ident">result</span>.<span class="ident">resize</span>(<span class="ident">max_count</span>, <span class="ident">AK_INVALID_GAME_OBJECT</span>);
-    <span class="macro">ak_call_result!</span>[<span class="ident">GetListeners</span>(
-        <span class="ident">for_source</span>,
-        <span class="ident">result</span>.<span class="ident">as_mut_ptr</span>(),
-        <span class="kw-2">&amp;mut</span> (<span class="ident">max_count</span> <span class="kw">as</span> <span class="ident">u32</span>)
+<span class="doccomment">/// Get a game object&#39;s listeners.
+///
+/// *Return* at most `max_count` listeners of `for_source` if succeeded, or [AkResult::AK_IDNotFound] if the game object was not registered.
+</span><span class="kw">pub fn </span>get_listeners(
+    for_source: AkGameObjectID,
+    max_count: usize,
+) -&gt; <span class="prelude-ty">Result</span>&lt;Vec&lt;AkGameObjectID&gt;, AkResult&gt; {
+    <span class="kw">let </span><span class="kw-2">mut </span>result = Vec::with_capacity(max_count);
+    result.resize(max_count, AK_INVALID_GAME_OBJECT);
+    <span class="macro">ak_call_result!</span>[GetListeners(
+        for_source,
+        result.as_mut_ptr(),
+        <span class="kw-2">&amp;mut </span>(max_count <span class="kw">as </span>u32)
     )]<span class="question-mark">?</span>;
-    <span class="ident">result</span>.<span class="ident">resize</span>(<span class="ident">max_count</span>, <span class="ident">AK_INVALID_GAME_OBJECT</span>);
-    <span class="prelude-val">Ok</span>(<span class="ident">result</span>)
+    result.resize(max_count, AK_INVALID_GAME_OBJECT);
+    <span class="prelude-val">Ok</span>(result)
 }
 
-<span class="doccomment">/// Get a listener&#39;s position.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Listener index is 0 for first listener, 7 for 8th listener, etc.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *Return* the position if succeeded, or [AkResult::AK_InvalidParameter] if the index is out of range</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_listener_position</span>(<span class="ident">index</span>: <span class="ident">u64</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AkListenerPosition</span>, <span class="ident">AkResult</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">result</span> <span class="op">=</span> <span class="ident">AkListenerPosition::new</span>();
-    <span class="macro">ak_call_result!</span>[<span class="ident">GetListenerPosition</span>(<span class="ident">index</span>, <span class="kw-2">&amp;mut</span> <span class="ident">result</span>)]<span class="question-mark">?</span>;
-    <span class="prelude-val">Ok</span>(<span class="ident">result</span>)
+<span class="doccomment">/// Get a listener&#39;s position.
+///
+/// Listener index is 0 for first listener, 7 for 8th listener, etc.
+///
+/// *Return* the position if succeeded, or [AkResult::AK_InvalidParameter] if the index is out of range
+</span><span class="kw">pub fn </span>get_listener_position(index: u64) -&gt; <span class="prelude-ty">Result</span>&lt;AkListenerPosition, AkResult&gt; {
+    <span class="kw">let </span><span class="kw-2">mut </span>result = AkListenerPosition::new();
+    <span class="macro">ak_call_result!</span>[GetListenerPosition(index, <span class="kw-2">&amp;mut </span>result)]<span class="question-mark">?</span>;
+    <span class="prelude-val">Ok</span>(result)
 }
 
-<span class="doccomment">/// Get the value of a real-time parameter control.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// An RTPC can have a any combination of a global value, a unique value for each game object, or a unique value for each playing ID.</span>
-<span class="doccomment">/// The value requested is determined by `requested_scope`, `on_game_obj` and `on_playing_id`.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// If a value at the requested scope is not found, the value that is available at the the next broadest scope will be returned.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *Remark*</span>
-<span class="doccomment">/// &gt; When looking up RTPC values via playing ID (ie. `requested_scope` is [RtpcValueType::PlayingID]), `on_game_obj` can be set to a specific game object (if it is available to the caller) to use as a fall back value.</span>
-<span class="doccomment">/// If the game object is unknown or unavailable, [None] or [AK_INVALID_GAME_OBJECT] can be passed in `on_game_obj`, and the game object will be looked up via `on_playing_id`.  </span>
-<span class="doccomment">/// However in this case, it is not possible to retrieve a game object value as a fall back value if the playing id does not exist. It is best to pass in the game object if possible.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// &gt; `on_game_obj` is ignored if `requested_scope` is [RtpcValueType::Global]</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// &gt; `on_playing_id` is ignored if `requested_scope` is not [RtpcValueType::PlayingID]</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *Return*</span>
-<span class="doccomment">/// - The scoped requested value if succeeded.</span>
-<span class="doccomment">/// - [AkResult::AK_IDNotFound] if the game object was not registered or the RTPC name could not be found.</span>
-<span class="doccomment">/// - [AkResult::AK_Fail] if the RTPC value could not be obtained.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *See also* [RtpcValueType]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_rtpc_value</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">AkID</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>(
-    <span class="ident">rtpc_id</span>: <span class="ident">T</span>,
-    <span class="ident">on_game_obj</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">AkGameObjectID</span><span class="op">&gt;</span>,
-    <span class="ident">on_playing_id</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">AkPlayingID</span><span class="op">&gt;</span>,
-    <span class="ident">requested_scope</span>: <span class="ident">RtpcValueType</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">RtpcValueType</span>, <span class="ident">AkResult</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">on_game_obj</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">on_game_obj</span> {
-        <span class="prelude-val">Some</span>(<span class="ident">game_obj</span>) =&gt; <span class="ident">game_obj</span>,
-        <span class="prelude-val">None</span> =&gt; <span class="ident">AK_INVALID_GAME_OBJECT</span>,
+<span class="doccomment">/// Get the value of a real-time parameter control.
+///
+/// An RTPC can have a any combination of a global value, a unique value for each game object, or a unique value for each playing ID.
+/// The value requested is determined by `requested_scope`, `on_game_obj` and `on_playing_id`.
+///
+/// If a value at the requested scope is not found, the value that is available at the the next broadest scope will be returned.
+///
+/// *Remark*
+/// &gt; When looking up RTPC values via playing ID (ie. `requested_scope` is [RtpcValueType::PlayingID]), `on_game_obj` can be set to a specific game object (if it is available to the caller) to use as a fall back value.
+/// If the game object is unknown or unavailable, [None] or [AK_INVALID_GAME_OBJECT] can be passed in `on_game_obj`, and the game object will be looked up via `on_playing_id`.  
+/// However in this case, it is not possible to retrieve a game object value as a fall back value if the playing id does not exist. It is best to pass in the game object if possible.
+///
+/// &gt; `on_game_obj` is ignored if `requested_scope` is [RtpcValueType::Global]
+///
+/// &gt; `on_playing_id` is ignored if `requested_scope` is not [RtpcValueType::PlayingID]
+///
+/// *Return*
+/// - The scoped requested value if succeeded.
+/// - [AkResult::AK_IDNotFound] if the game object was not registered or the RTPC name could not be found.
+/// - [AkResult::AK_Fail] if the RTPC value could not be obtained.
+///
+/// *See also* [RtpcValueType]
+</span><span class="kw">pub fn </span>get_rtpc_value&lt;<span class="lifetime">&#39;a</span>, T: Into&lt;AkID&lt;<span class="lifetime">&#39;a</span>&gt;&gt;&gt;(
+    rtpc_id: T,
+    on_game_obj: <span class="prelude-ty">Option</span>&lt;AkGameObjectID&gt;,
+    on_playing_id: <span class="prelude-ty">Option</span>&lt;AkPlayingID&gt;,
+    requested_scope: RtpcValueType,
+) -&gt; <span class="prelude-ty">Result</span>&lt;RtpcValueType, AkResult&gt; {
+    <span class="kw">let </span>on_game_obj = <span class="kw">match </span>on_game_obj {
+        <span class="prelude-val">Some</span>(game_obj) =&gt; game_obj,
+        <span class="prelude-val">None </span>=&gt; AK_INVALID_GAME_OBJECT,
     };
-    <span class="kw">let</span> <span class="ident">on_playing_id</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">on_playing_id</span> {
-        <span class="prelude-val">Some</span>(<span class="ident">playing_id</span>) =&gt; <span class="ident">playing_id</span>,
-        <span class="prelude-val">None</span> =&gt; <span class="ident">AK_INVALID_PLAYING_ID</span>,
+    <span class="kw">let </span>on_playing_id = <span class="kw">match </span>on_playing_id {
+        <span class="prelude-val">Some</span>(playing_id) =&gt; playing_id,
+        <span class="prelude-val">None </span>=&gt; AK_INVALID_PLAYING_ID,
     };
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value_type</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">requested_scope</span> {
-        <span class="ident">RtpcValueType::Default</span>(<span class="kw">_</span>) =&gt; <span class="ident">RTPCValue_type::RTPCValue_Default</span>,
-        <span class="ident">RtpcValueType::Global</span>(<span class="kw">_</span>) =&gt; <span class="ident">RTPCValue_type::RTPCValue_Global</span>,
-        <span class="ident">RtpcValueType::GameObject</span>(<span class="kw">_</span>) =&gt; <span class="ident">RTPCValue_type::RTPCValue_GameObject</span>,
-        <span class="ident">RtpcValueType::PlayingID</span>(<span class="kw">_</span>) =&gt; <span class="ident">RTPCValue_type::RTPCValue_PlayingID</span>,
-        <span class="ident">RtpcValueType::Unavailable</span>() =&gt; <span class="ident">RTPCValue_type::RTPCValue_Unavailable</span>,
+    <span class="kw">let </span><span class="kw-2">mut </span>value_type = <span class="kw">match </span>requested_scope {
+        RtpcValueType::Default(<span class="kw">_</span>) =&gt; RTPCValue_type::RTPCValue_Default,
+        RtpcValueType::Global(<span class="kw">_</span>) =&gt; RTPCValue_type::RTPCValue_Global,
+        RtpcValueType::GameObject(<span class="kw">_</span>) =&gt; RTPCValue_type::RTPCValue_GameObject,
+        RtpcValueType::PlayingID(<span class="kw">_</span>) =&gt; RTPCValue_type::RTPCValue_PlayingID,
+        RtpcValueType::Unavailable() =&gt; RTPCValue_type::RTPCValue_Unavailable,
     };
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">AkRtpcValue::default</span>();
+    <span class="kw">let </span><span class="kw-2">mut </span>value = AkRtpcValue::default();
 
-    <span class="kw">match</span> <span class="ident">rtpc_id</span>.<span class="ident">into</span>() {
-        <span class="ident">AkID::Name</span>(<span class="ident">name</span>) =&gt; <span class="macro">with_cstring!</span>[<span class="ident">name</span> =&gt; <span class="ident">cname</span> {
-            <span class="macro">ak_call_result!</span>[<span class="ident">GetRTPCValue2</span>(
-                <span class="ident">cname</span>.<span class="ident">as_ptr</span>(),
-                <span class="ident">on_game_obj</span>,
-                <span class="ident">on_playing_id</span>,
-                <span class="kw-2">&amp;mut</span> <span class="ident">value</span>,
-                <span class="kw-2">&amp;mut</span> <span class="ident">value_type</span>
+    <span class="kw">match </span>rtpc_id.into() {
+        AkID::Name(name) =&gt; <span class="macro">with_cstring!</span>[name =&gt; cname {
+            <span class="macro">ak_call_result!</span>[GetRTPCValue2(
+                cname.as_ptr(),
+                on_game_obj,
+                on_playing_id,
+                <span class="kw-2">&amp;mut </span>value,
+                <span class="kw-2">&amp;mut </span>value_type
             )
         ]}]<span class="question-mark">?</span>,
-        <span class="ident">AkID::ID</span>(<span class="ident">id</span>) =&gt; <span class="macro">ak_call_result!</span>[<span class="ident">GetRTPCValue</span>(
-            <span class="ident">id</span>,
-            <span class="ident">on_game_obj</span>,
-            <span class="ident">on_playing_id</span>,
-            <span class="kw-2">&amp;mut</span> <span class="ident">value</span>,
-            <span class="kw-2">&amp;mut</span> <span class="ident">value_type</span>
+        AkID::ID(id) =&gt; <span class="macro">ak_call_result!</span>[GetRTPCValue(
+            id,
+            on_game_obj,
+            on_playing_id,
+            <span class="kw-2">&amp;mut </span>value,
+            <span class="kw-2">&amp;mut </span>value_type
         )]<span class="question-mark">?</span>,
     };
 
-    <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">value_type</span> {
-        <span class="ident">RTPCValue_type::RTPCValue_Default</span> =&gt; <span class="ident">RtpcValueType::Default</span>(<span class="ident">value</span>),
-        <span class="ident">RTPCValue_type::RTPCValue_Global</span> =&gt; <span class="ident">RtpcValueType::Global</span>(<span class="ident">value</span>),
-        <span class="ident">RTPCValue_type::RTPCValue_GameObject</span> =&gt; <span class="ident">RtpcValueType::GameObject</span>(<span class="ident">value</span>),
-        <span class="ident">RTPCValue_type::RTPCValue_PlayingID</span> =&gt; <span class="ident">RtpcValueType::PlayingID</span>(<span class="ident">value</span>),
-        <span class="ident">RTPCValue_type::RTPCValue_Unavailable</span> =&gt; <span class="ident">RtpcValueType::Unavailable</span>(),
+    <span class="kw">let </span>result = <span class="kw">match </span>value_type {
+        RTPCValue_type::RTPCValue_Default =&gt; RtpcValueType::Default(value),
+        RTPCValue_type::RTPCValue_Global =&gt; RtpcValueType::Global(value),
+        RTPCValue_type::RTPCValue_GameObject =&gt; RtpcValueType::GameObject(value),
+        RTPCValue_type::RTPCValue_PlayingID =&gt; RtpcValueType::PlayingID(value),
+        RTPCValue_type::RTPCValue_Unavailable =&gt; RtpcValueType::Unavailable(),
     };
 
-    <span class="prelude-val">Ok</span>(<span class="ident">result</span>)
+    <span class="prelude-val">Ok</span>(result)
 }
 
-<span class="doccomment">/// Get the state of a switch group.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *Return* the active switch state if succeeded, or [AkResult::AK_IDNotFound] if the game object was not registered</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_switch</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">AkID</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>(
-    <span class="ident">switch_group</span>: <span class="ident">T</span>,
-    <span class="ident">on_game_obj</span>: <span class="ident">AkGameObjectID</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AkSwitchStateID</span>, <span class="ident">AkResult</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">result</span> <span class="op">=</span> <span class="ident">AkSwitchStateID::default</span>();
+<span class="doccomment">/// Get the state of a switch group.
+///
+/// *Return* the active switch state if succeeded, or [AkResult::AK_IDNotFound] if the game object was not registered
+</span><span class="kw">pub fn </span>get_switch&lt;<span class="lifetime">&#39;a</span>, T: Into&lt;AkID&lt;<span class="lifetime">&#39;a</span>&gt;&gt;&gt;(
+    switch_group: T,
+    on_game_obj: AkGameObjectID,
+) -&gt; <span class="prelude-ty">Result</span>&lt;AkSwitchStateID, AkResult&gt; {
+    <span class="kw">let </span><span class="kw-2">mut </span>result = AkSwitchStateID::default();
 
-    <span class="kw">match</span> <span class="ident">switch_group</span>.<span class="ident">into</span>() {
-        <span class="ident">AkID::Name</span>(<span class="ident">name</span>) =&gt; <span class="macro">with_cstring!</span>[<span class="ident">name</span> =&gt; <span class="ident">cname</span> {
-            <span class="macro">ak_call_result!</span>[<span class="ident">GetSwitch2</span>(
-                <span class="ident">cname</span>.<span class="ident">as_ptr</span>(),
-                <span class="ident">on_game_obj</span>,
-                <span class="kw-2">&amp;mut</span> <span class="ident">result</span>
+    <span class="kw">match </span>switch_group.into() {
+        AkID::Name(name) =&gt; <span class="macro">with_cstring!</span>[name =&gt; cname {
+            <span class="macro">ak_call_result!</span>[GetSwitch2(
+                cname.as_ptr(),
+                on_game_obj,
+                <span class="kw-2">&amp;mut </span>result
             )
         ]}]<span class="question-mark">?</span>,
-        <span class="ident">AkID::ID</span>(<span class="ident">id</span>) =&gt; <span class="macro">ak_call_result!</span>[<span class="ident">GetSwitch</span>(<span class="ident">id</span>, <span class="ident">on_game_obj</span>, <span class="kw-2">&amp;mut</span> <span class="ident">result</span>)]<span class="question-mark">?</span>,
+        AkID::ID(id) =&gt; <span class="macro">ak_call_result!</span>[GetSwitch(id, on_game_obj, <span class="kw-2">&amp;mut </span>result)]<span class="question-mark">?</span>,
     };
 
-    <span class="prelude-val">Ok</span>(<span class="ident">result</span>)
+    <span class="prelude-val">Ok</span>(result)
 }
 
-<span class="doccomment">/// Get the state of a state group.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *Return* the active state if succeeded, or [AkResult::AK_IDNotFound] if the state group name can not be found</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_state</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">AkID</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">state_group</span>: <span class="ident">T</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AkStateID</span>, <span class="ident">AkResult</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">result</span> <span class="op">=</span> <span class="ident">AkStateID::default</span>();
+<span class="doccomment">/// Get the state of a state group.
+///
+/// *Return* the active state if succeeded, or [AkResult::AK_IDNotFound] if the state group name can not be found
+</span><span class="kw">pub fn </span>get_state&lt;<span class="lifetime">&#39;a</span>, T: Into&lt;AkID&lt;<span class="lifetime">&#39;a</span>&gt;&gt;&gt;(state_group: T) -&gt; <span class="prelude-ty">Result</span>&lt;AkStateID, AkResult&gt; {
+    <span class="kw">let </span><span class="kw-2">mut </span>result = AkStateID::default();
 
-    <span class="kw">match</span> <span class="ident">state_group</span>.<span class="ident">into</span>() {
-        <span class="ident">AkID::Name</span>(<span class="ident">name</span>) =&gt; <span class="macro">with_cstring!</span>[<span class="ident">name</span> =&gt; <span class="ident">cname</span> {
-            <span class="macro">ak_call_result!</span>[<span class="ident">GetState2</span>(
-                <span class="ident">cname</span>.<span class="ident">as_ptr</span>(),
-                <span class="kw-2">&amp;mut</span> <span class="ident">result</span>
+    <span class="kw">match </span>state_group.into() {
+        AkID::Name(name) =&gt; <span class="macro">with_cstring!</span>[name =&gt; cname {
+            <span class="macro">ak_call_result!</span>[GetState2(
+                cname.as_ptr(),
+                <span class="kw-2">&amp;mut </span>result
             )
         ]}]<span class="question-mark">?</span>,
-        <span class="ident">AkID::ID</span>(<span class="ident">id</span>) =&gt; <span class="macro">ak_call_result!</span>[<span class="ident">GetState</span>(<span class="ident">id</span>, <span class="kw-2">&amp;mut</span> <span class="ident">result</span>)]<span class="question-mark">?</span>,
+        AkID::ID(id) =&gt; <span class="macro">ak_call_result!</span>[GetState(id, <span class="kw-2">&amp;mut </span>result)]<span class="question-mark">?</span>,
     };
 
-    <span class="prelude-val">Ok</span>(<span class="ident">result</span>)
+    <span class="prelude-val">Ok</span>(result)
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="rrise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (76d770ac2 2022-04-02)" ></div>
-</body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="rrise" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (42325c525 2022-11-11)" data-search-js="search-39ee4160c7dc16c9.js" data-settings-js="settings-3a0b9947ba1bd99a.js" data-settings-css="settings-a66f7524084a489a.css" ></div></body></html>

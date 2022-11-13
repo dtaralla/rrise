@@ -1,9 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src\game_syncs.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>game_syncs.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../rrise/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
-        </a><h2 class="location"></h2>
-    </nav>
-    <nav class="sidebar"><a class="sidebar-logo" href="../../rrise/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
-        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../rrise/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src\game_syncs.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>game_syncs.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-eabf764633b9d7be.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-777f3e9583f8c92d.css"><link rel="stylesheet" disabled href="../../static.files/dark-e2f4109f2e82e3af.css"><link rel="stylesheet" disabled href="../../static.files/ayu-c360e709a65bed99.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../static.files/source-script-74087aa2e88f4475.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-c2d2a5dbaed13e6b.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../rrise/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -263,262 +258,261 @@
 <span id="258">258</span>
 </pre><pre class="rust"><code><span class="comment">/*
  * Copyright (c) 2022 Contributors to the Rrise project
- */</span>
+ */
 
-<span class="doccomment">//! Everything related to RTPC, Switch, States and Triggers.</span>
+</span><span class="doccomment">//! Everything related to RTPC, Switch, States and Triggers.
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::bindings::root::AK::SoundEngine</span>::{
-    <span class="ident">PostTrigger</span>, <span class="ident">PostTrigger2</span>, <span class="ident">ResetRTPCValue</span>, <span class="ident">ResetRTPCValue2</span>, <span class="ident">SetRTPCValue</span>, <span class="ident">SetRTPCValue2</span>,
-    <span class="ident">SetRTPCValueByPlayingID</span>, <span class="ident">SetRTPCValueByPlayingID2</span>, <span class="ident">SetState</span>, <span class="ident">SetState2</span>, <span class="ident">SetSwitch</span>, <span class="ident">SetSwitch2</span>,
+</span><span class="kw">use </span><span class="kw">crate</span>::bindings::root::AK::SoundEngine::{
+    PostTrigger, PostTrigger2, ResetRTPCValue, ResetRTPCValue2, SetRTPCValue, SetRTPCValue2,
+    SetRTPCValueByPlayingID, SetRTPCValueByPlayingID2, SetState, SetState2, SetSwitch, SetSwitch2,
 };
-<span class="kw">use</span> <span class="kw">crate</span>::{
-    <span class="ident">ak_call_result</span>, <span class="ident">with_cstring</span>, <span class="ident">AkCurveInterpolation</span>, <span class="ident">AkGameObjectID</span>, <span class="ident">AkID</span>, <span class="ident">AkPlayingID</span>,
-    <span class="ident">AkResult</span>, <span class="ident">AkRtpcValue</span>, <span class="ident">AkTimeMs</span>, <span class="ident">AK_INVALID_GAME_OBJECT</span>, <span class="ident">AK_INVALID_PLAYING_ID</span>,
+<span class="kw">use crate</span>::{
+    ak_call_result, with_cstring, AkCurveInterpolation, AkGameObjectID, AkID, AkPlayingID,
+    AkResult, AkRtpcValue, AkTimeMs, AK_INVALID_GAME_OBJECT, AK_INVALID_PLAYING_ID,
 };
 
-<span class="doccomment">/// Helper to set or reset RTPCs.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Use [SetRtpcValue::set] or [SetRtpcValue::reset] to post the change to Wwise.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SetRtpcValue</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">rtpc_id</span>: <span class="ident">AkID</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-    <span class="ident">value</span>: <span class="ident">AkRtpcValue</span>,
-    <span class="ident">target_game_obj_id</span>: <span class="ident">AkGameObjectID</span>,
-    <span class="ident">target_playing_id</span>: <span class="ident">AkPlayingID</span>,
-    <span class="ident">interp_ms</span>: <span class="ident">AkTimeMs</span>,
-    <span class="ident">fade_curve</span>: <span class="ident">AkCurveInterpolation</span>,
-    <span class="ident">bypass_designer_interp</span>: <span class="ident">bool</span>,
+<span class="doccomment">/// Helper to set or reset RTPCs.
+///
+/// Use [SetRtpcValue::set] or [SetRtpcValue::reset] to post the change to Wwise.
+</span><span class="attr">#[derive(Debug, Copy, Clone)]
+</span><span class="kw">pub struct </span>SetRtpcValue&lt;<span class="lifetime">&#39;a</span>&gt; {
+    rtpc_id: AkID&lt;<span class="lifetime">&#39;a</span>&gt;,
+    value: AkRtpcValue,
+    target_game_obj_id: AkGameObjectID,
+    target_playing_id: AkPlayingID,
+    interp_ms: AkTimeMs,
+    fade_curve: AkCurveInterpolation,
+    bypass_designer_interp: bool,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">SetRtpcValue</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">AkID</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">rtpc_id</span>: <span class="ident">T</span>, <span class="ident">value</span>: <span class="ident">AkRtpcValue</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">rtpc_id</span>: <span class="ident">rtpc_id</span>.<span class="ident">into</span>(),
-            <span class="ident">value</span>,
-            <span class="ident">target_game_obj_id</span>: <span class="ident">AK_INVALID_GAME_OBJECT</span>,
-            <span class="ident">target_playing_id</span>: <span class="ident">AK_INVALID_PLAYING_ID</span>,
-            <span class="ident">interp_ms</span>: <span class="number">0</span>,
-            <span class="ident">fade_curve</span>: <span class="ident">AkCurveInterpolation::AkCurveInterpolation_Linear</span>,
-            <span class="ident">bypass_designer_interp</span>: <span class="bool-val">false</span>,
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; SetRtpcValue&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">pub fn </span>new&lt;T: Into&lt;AkID&lt;<span class="lifetime">&#39;a</span>&gt;&gt;&gt;(rtpc_id: T, value: AkRtpcValue) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            rtpc_id: rtpc_id.into(),
+            value,
+            target_game_obj_id: AK_INVALID_GAME_OBJECT,
+            target_playing_id: AK_INVALID_PLAYING_ID,
+            interp_ms: <span class="number">0</span>,
+            fade_curve: AkCurveInterpolation::AkCurveInterpolation_Linear,
+            bypass_designer_interp: <span class="bool-val">false</span>,
         }
     }
 
-    <span class="doccomment">/// Value to set.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// *Note* Doesn&#39;t consume self so that it&#39;s easier to reuse the same SetRTPCValue struct with</span>
-    <span class="doccomment">/// different values over time.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_value</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">value</span>: <span class="ident">AkRtpcValue</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">value</span> <span class="op">=</span> <span class="ident">value</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Value to set.
+    ///
+    /// *Note* Doesn&#39;t consume self so that it&#39;s easier to reuse the same SetRTPCValue struct with
+    /// different values over time.
+    </span><span class="kw">pub fn </span>with_value(<span class="kw-2">&amp;mut </span><span class="self">self</span>, value: AkRtpcValue) -&gt; <span class="kw-2">&amp;mut </span><span class="self">Self </span>{
+        <span class="self">self</span>.value = value;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Associated game object ID.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// With this function, you may set a game parameter value with global scope (default) or with game object scope.</span>
-    <span class="doccomment">/// Game object scope superseeds global scope. (Once a value is set for the game object scope, it will not be affected by changes to the global scope value.)</span>
-    <span class="doccomment">/// Game parameter values set with global scope are applied to all game objects that not yet registered, or already registered but not overridden with a value</span>
-    <span class="doccomment">/// with game object scope.</span>
-    <span class="doccomment">/// To set a game parameter value with global scope, leave the default or pass [AK_INVALID_GAME_OBJECT] as the game object.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Default: [AK_INVALID_GAME_OBJECT]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">for_target</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">game_obj_id</span>: <span class="ident">AkGameObjectID</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">target_game_obj_id</span> <span class="op">=</span> <span class="ident">game_obj_id</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Associated game object ID.
+    ///
+    /// With this function, you may set a game parameter value with global scope (default) or with game object scope.
+    /// Game object scope superseeds global scope. (Once a value is set for the game object scope, it will not be affected by changes to the global scope value.)
+    /// Game parameter values set with global scope are applied to all game objects that not yet registered, or already registered but not overridden with a value
+    /// with game object scope.
+    /// To set a game parameter value with global scope, leave the default or pass [AK_INVALID_GAME_OBJECT] as the game object.
+    ///
+    /// Default: [AK_INVALID_GAME_OBJECT]
+    </span><span class="kw">pub fn </span>for_target(<span class="kw-2">mut </span><span class="self">self</span>, game_obj_id: AkGameObjectID) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.target_game_obj_id = game_obj_id;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Associated playing ID.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// With this function, you may set a game parameter value on playing ID scope.</span>
-    <span class="doccomment">/// Playing id scope superseeds both game object scope and global scope.</span>
-    <span class="doccomment">/// Ignores any target game object set with [for_target](Self::for_target).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Default: [AK_INVALID_PLAYING_ID]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">for_playing_id</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">playing_id</span>: <span class="ident">AkPlayingID</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">target_playing_id</span> <span class="op">=</span> <span class="ident">playing_id</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Associated playing ID.
+    ///
+    /// With this function, you may set a game parameter value on playing ID scope.
+    /// Playing id scope superseeds both game object scope and global scope.
+    /// Ignores any target game object set with [for_target](Self::for_target).
+    ///
+    /// Default: [AK_INVALID_PLAYING_ID]
+    </span><span class="kw">pub fn </span>for_playing_id(<span class="kw-2">mut </span><span class="self">self</span>, playing_id: AkPlayingID) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.target_playing_id = playing_id;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Duration during which the game parameter is interpolated towards in_value.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// With this function, you may change the value of a game parameter over time. To do so, specify a non-zero</span>
-    <span class="doccomment">/// value for `ms`. At each audio frame, the game parameter value will be updated internally</span>
-    <span class="doccomment">/// according to the interpolation curve (set with [with_interp_curve](Self::with_interp_curve)).</span>
-    <span class="doccomment">/// If you call [set](Self::set) with `ms = 0` in the middle of an interpolation, the interpolation stops and</span>
-    <span class="doccomment">/// the new value is set directly. Thus, if you call [set](Self::set) at every game frame, you</span>
-    <span class="doccomment">/// should not use `with_interp_millis`, as it would have no effect and it is less efficient.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Default: `0`</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_interp_millis</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">ms</span>: <span class="ident">AkTimeMs</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">interp_ms</span> <span class="op">=</span> <span class="ident">ms</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Duration during which the game parameter is interpolated towards in_value.
+    ///
+    /// With this function, you may change the value of a game parameter over time. To do so, specify a non-zero
+    /// value for `ms`. At each audio frame, the game parameter value will be updated internally
+    /// according to the interpolation curve (set with [with_interp_curve](Self::with_interp_curve)).
+    /// If you call [set](Self::set) with `ms = 0` in the middle of an interpolation, the interpolation stops and
+    /// the new value is set directly. Thus, if you call [set](Self::set) at every game frame, you
+    /// should not use `with_interp_millis`, as it would have no effect and it is less efficient.
+    ///
+    /// Default: `0`
+    </span><span class="kw">pub fn </span>with_interp_millis(<span class="kw-2">mut </span><span class="self">self</span>, ms: AkTimeMs) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.interp_ms = ms;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// When [with_interp_millis](Self::with_interp_millis) is used and non-zero, describes the Curve</span>
-    <span class="doccomment">/// type to be used for the game parameter interpolation.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Default: [AkCurveInterpolation::AkCurveInterpolation_Linear]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_interp_curve</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">curve</span>: <span class="ident">AkCurveInterpolation</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">fade_curve</span> <span class="op">=</span> <span class="ident">curve</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// When [with_interp_millis](Self::with_interp_millis) is used and non-zero, describes the Curve
+    /// type to be used for the game parameter interpolation.
+    ///
+    /// Default: [AkCurveInterpolation::AkCurveInterpolation_Linear]
+    </span><span class="kw">pub fn </span>with_interp_curve(<span class="kw-2">mut </span><span class="self">self</span>, curve: AkCurveInterpolation) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.fade_curve = curve;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// `True` if you want to bypass the internal &quot;slew rate&quot; or &quot;over time filtering&quot; specified by the sound designer.</span>
-    <span class="doccomment">/// This is meant to be used when for example loading a level and you dont want the values to interpolate.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Default: `false`</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">should_bypass_designer_interp</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">should</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">bypass_designer_interp</span> <span class="op">=</span> <span class="ident">should</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// `True` if you want to bypass the internal &quot;slew rate&quot; or &quot;over time filtering&quot; specified by the sound designer.
+    /// This is meant to be used when for example loading a level and you dont want the values to interpolate.
+    ///
+    /// Default: `false`
+    </span><span class="kw">pub fn </span>should_bypass_designer_interp(<span class="kw-2">mut </span><span class="self">self</span>, should: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.bypass_designer_interp = should;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Post this RTPC configuration to Wwise.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">AkResult</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">target_playing_id</span> <span class="op">!</span><span class="op">=</span> <span class="ident">AK_INVALID_PLAYING_ID</span> {
-            <span class="kw">match</span> <span class="self">self</span>.<span class="ident">rtpc_id</span> {
-                <span class="ident">AkID::Name</span>(<span class="ident">name</span>) =&gt; <span class="macro">with_cstring!</span>[<span class="ident">name</span> =&gt; <span class="ident">cname</span> {
-                    <span class="macro">ak_call_result!</span>[<span class="ident">SetRTPCValueByPlayingID2</span>(
-                        <span class="ident">cname</span>.<span class="ident">as_ptr</span>(),
-                        <span class="self">self</span>.<span class="ident">value</span>,
-                        <span class="self">self</span>.<span class="ident">target_playing_id</span>,
-                        <span class="self">self</span>.<span class="ident">interp_ms</span>,
-                        <span class="self">self</span>.<span class="ident">fade_curve</span>,
-                        <span class="self">self</span>.<span class="ident">bypass_designer_interp</span>
+    <span class="doccomment">/// Post this RTPC configuration to Wwise.
+    </span><span class="kw">pub fn </span>set(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;(), AkResult&gt; {
+        <span class="kw">if </span><span class="self">self</span>.target_playing_id != AK_INVALID_PLAYING_ID {
+            <span class="kw">match </span><span class="self">self</span>.rtpc_id {
+                AkID::Name(name) =&gt; <span class="macro">with_cstring!</span>[name =&gt; cname {
+                    <span class="macro">ak_call_result!</span>[SetRTPCValueByPlayingID2(
+                        cname.as_ptr(),
+                        <span class="self">self</span>.value,
+                        <span class="self">self</span>.target_playing_id,
+                        <span class="self">self</span>.interp_ms,
+                        <span class="self">self</span>.fade_curve,
+                        <span class="self">self</span>.bypass_designer_interp
                     )
                 ]}],
-                <span class="ident">AkID::ID</span>(<span class="ident">id</span>) =&gt; <span class="macro">ak_call_result!</span>[<span class="ident">SetRTPCValueByPlayingID</span>(
-                    <span class="ident">id</span>,
-                    <span class="self">self</span>.<span class="ident">value</span>,
-                    <span class="self">self</span>.<span class="ident">target_playing_id</span>,
-                    <span class="self">self</span>.<span class="ident">interp_ms</span>,
-                    <span class="self">self</span>.<span class="ident">fade_curve</span>,
-                    <span class="self">self</span>.<span class="ident">bypass_designer_interp</span>
+                AkID::ID(id) =&gt; <span class="macro">ak_call_result!</span>[SetRTPCValueByPlayingID(
+                    id,
+                    <span class="self">self</span>.value,
+                    <span class="self">self</span>.target_playing_id,
+                    <span class="self">self</span>.interp_ms,
+                    <span class="self">self</span>.fade_curve,
+                    <span class="self">self</span>.bypass_designer_interp
                 )],
             }
-        } <span class="kw">else</span> {
-            <span class="kw">match</span> <span class="self">self</span>.<span class="ident">rtpc_id</span> {
-                <span class="ident">AkID::Name</span>(<span class="ident">name</span>) =&gt; <span class="macro">with_cstring!</span>[<span class="ident">name</span> =&gt; <span class="ident">cname</span> {
-                    <span class="macro">ak_call_result!</span>[<span class="ident">SetRTPCValue2</span>(
-                        <span class="ident">cname</span>.<span class="ident">as_ptr</span>(),
-                        <span class="self">self</span>.<span class="ident">value</span>,
-                        <span class="self">self</span>.<span class="ident">target_game_obj_id</span>,
-                        <span class="self">self</span>.<span class="ident">interp_ms</span>,
-                        <span class="self">self</span>.<span class="ident">fade_curve</span>,
-                        <span class="self">self</span>.<span class="ident">bypass_designer_interp</span>
+        } <span class="kw">else </span>{
+            <span class="kw">match </span><span class="self">self</span>.rtpc_id {
+                AkID::Name(name) =&gt; <span class="macro">with_cstring!</span>[name =&gt; cname {
+                    <span class="macro">ak_call_result!</span>[SetRTPCValue2(
+                        cname.as_ptr(),
+                        <span class="self">self</span>.value,
+                        <span class="self">self</span>.target_game_obj_id,
+                        <span class="self">self</span>.interp_ms,
+                        <span class="self">self</span>.fade_curve,
+                        <span class="self">self</span>.bypass_designer_interp
                     )
                 ]}],
-                <span class="ident">AkID::ID</span>(<span class="ident">id</span>) =&gt; <span class="macro">ak_call_result!</span>[<span class="ident">SetRTPCValue</span>(
-                    <span class="ident">id</span>,
-                    <span class="self">self</span>.<span class="ident">value</span>,
-                    <span class="self">self</span>.<span class="ident">target_game_obj_id</span>,
-                    <span class="self">self</span>.<span class="ident">interp_ms</span>,
-                    <span class="self">self</span>.<span class="ident">fade_curve</span>,
-                    <span class="self">self</span>.<span class="ident">bypass_designer_interp</span>
+                AkID::ID(id) =&gt; <span class="macro">ak_call_result!</span>[SetRTPCValue(
+                    id,
+                    <span class="self">self</span>.value,
+                    <span class="self">self</span>.target_game_obj_id,
+                    <span class="self">self</span>.interp_ms,
+                    <span class="self">self</span>.fade_curve,
+                    <span class="self">self</span>.bypass_designer_interp
                 )],
             }
         }
     }
 
-    <span class="doccomment">/// Post a reset of this RTPC configuration to Wwise.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Resets the value of the game parameter to its default value, as specified in the Wwise project.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Incompatible with [for_playing_id](Self::for_playing_id); only works at global or game object</span>
-    <span class="doccomment">/// scope, set with [for_target](Self::for_target).</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">reset</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">AkResult</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">rtpc_id</span> {
-            <span class="ident">AkID::Name</span>(<span class="ident">name</span>) =&gt; <span class="macro">with_cstring!</span>[<span class="ident">name</span> =&gt; <span class="ident">cname</span> {
-                <span class="macro">ak_call_result!</span>[<span class="ident">ResetRTPCValue2</span>(
-                    <span class="ident">cname</span>.<span class="ident">as_ptr</span>(),
-                    <span class="self">self</span>.<span class="ident">target_game_obj_id</span>,
-                    <span class="self">self</span>.<span class="ident">interp_ms</span>,
-                    <span class="self">self</span>.<span class="ident">fade_curve</span>,
-                    <span class="self">self</span>.<span class="ident">bypass_designer_interp</span>
+    <span class="doccomment">/// Post a reset of this RTPC configuration to Wwise.
+    ///
+    /// Resets the value of the game parameter to its default value, as specified in the Wwise project.
+    ///
+    /// Incompatible with [for_playing_id](Self::for_playing_id); only works at global or game object
+    /// scope, set with [for_target](Self::for_target).
+    </span><span class="kw">pub fn </span>reset(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;(), AkResult&gt; {
+        <span class="kw">match </span><span class="self">self</span>.rtpc_id {
+            AkID::Name(name) =&gt; <span class="macro">with_cstring!</span>[name =&gt; cname {
+                <span class="macro">ak_call_result!</span>[ResetRTPCValue2(
+                    cname.as_ptr(),
+                    <span class="self">self</span>.target_game_obj_id,
+                    <span class="self">self</span>.interp_ms,
+                    <span class="self">self</span>.fade_curve,
+                    <span class="self">self</span>.bypass_designer_interp
                 )
             ]}],
-            <span class="ident">AkID::ID</span>(<span class="ident">id</span>) =&gt; <span class="macro">ak_call_result!</span>[<span class="ident">ResetRTPCValue</span>(
-                <span class="ident">id</span>,
-                <span class="self">self</span>.<span class="ident">target_game_obj_id</span>,
-                <span class="self">self</span>.<span class="ident">interp_ms</span>,
-                <span class="self">self</span>.<span class="ident">fade_curve</span>,
-                <span class="self">self</span>.<span class="ident">bypass_designer_interp</span>
+            AkID::ID(id) =&gt; <span class="macro">ak_call_result!</span>[ResetRTPCValue(
+                id,
+                <span class="self">self</span>.target_game_obj_id,
+                <span class="self">self</span>.interp_ms,
+                <span class="self">self</span>.fade_curve,
+                <span class="self">self</span>.bypass_designer_interp
             )],
         }
     }
 }
 
-<span class="doccomment">/// Sets the State of a Switch Group.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Always returns [AkResult::AK_Success].</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Panics if switch_group and switch_id are not of the same variant.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_switch</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">AkID</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>(
-    <span class="ident">switch_group</span>: <span class="ident">T</span>,
-    <span class="ident">switch_id</span>: <span class="ident">T</span>,
-    <span class="ident">game_obj</span>: <span class="ident">AkGameObjectID</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">AkResult</span><span class="op">&gt;</span> {
-    <span class="kw">match</span> (<span class="ident">switch_group</span>.<span class="ident">into</span>(), <span class="ident">switch_id</span>.<span class="ident">into</span>()) {
-        (<span class="ident">AkID::Name</span>(<span class="ident">group</span>), <span class="ident">AkID::Name</span>(<span class="ident">switch</span>)) =&gt; {
-            <span class="macro">with_cstring!</span>[<span class="ident">group</span> =&gt; <span class="ident">groupc</span>, <span class="ident">switch</span> =&gt; <span class="ident">switchc</span> {
-                <span class="macro">ak_call_result!</span>[<span class="ident">SetSwitch2</span>(
-                    <span class="ident">groupc</span>.<span class="ident">as_ptr</span>(),
-                    <span class="ident">switchc</span>.<span class="ident">as_ptr</span>(),
-                    <span class="ident">game_obj</span>,
+<span class="doccomment">/// Sets the State of a Switch Group.
+///
+/// Always returns [AkResult::AK_Success].
+///
+/// Panics if switch_group and switch_id are not of the same variant.
+</span><span class="kw">pub fn </span>set_switch&lt;<span class="lifetime">&#39;a</span>, T: Into&lt;AkID&lt;<span class="lifetime">&#39;a</span>&gt;&gt;&gt;(
+    switch_group: T,
+    switch_id: T,
+    game_obj: AkGameObjectID,
+) -&gt; <span class="prelude-ty">Result</span>&lt;(), AkResult&gt; {
+    <span class="kw">match </span>(switch_group.into(), switch_id.into()) {
+        (AkID::Name(group), AkID::Name(switch)) =&gt; {
+            <span class="macro">with_cstring!</span>[group =&gt; groupc, switch =&gt; switchc {
+                <span class="macro">ak_call_result!</span>[SetSwitch2(
+                    groupc.as_ptr(),
+                    switchc.as_ptr(),
+                    game_obj,
                 )
             ]}]
         }
-        (<span class="ident">AkID::ID</span>(<span class="ident">group</span>), <span class="ident">AkID::ID</span>(<span class="ident">switch</span>)) =&gt; {
-            <span class="macro">ak_call_result!</span>[<span class="ident">SetSwitch</span>(<span class="ident">group</span>, <span class="ident">switch</span>, <span class="ident">game_obj</span>)]
+        (AkID::ID(group), AkID::ID(switch)) =&gt; {
+            <span class="macro">ak_call_result!</span>[SetSwitch(group, switch, game_obj)]
         }
-        <span class="kw">_</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;Args switch_group and switch_id should be of the same variant&quot;</span>),
+        <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;Args switch_group and switch_id should be of the same variant&quot;</span>),
     }
 }
 
-<span class="doccomment">/// Post the specified trigger.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Always returns [AkResult::AK_Success].</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">post_trigger</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">AkID</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>(
-    <span class="ident">trigger</span>: <span class="ident">T</span>,
-    <span class="ident">game_obj</span>: <span class="ident">AkGameObjectID</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">AkResult</span><span class="op">&gt;</span> {
-    <span class="kw">match</span> <span class="ident">trigger</span>.<span class="ident">into</span>() {
-        <span class="ident">AkID::Name</span>(<span class="ident">name</span>) =&gt; {
-            <span class="macro">with_cstring!</span>[<span class="ident">name</span> =&gt; <span class="ident">cname</span> {
-                <span class="macro">ak_call_result!</span>[<span class="ident">PostTrigger2</span>(
-                    <span class="ident">cname</span>.<span class="ident">as_ptr</span>(),
-                    <span class="ident">game_obj</span>,
+<span class="doccomment">/// Post the specified trigger.
+///
+/// Always returns [AkResult::AK_Success].
+</span><span class="kw">pub fn </span>post_trigger&lt;<span class="lifetime">&#39;a</span>, T: Into&lt;AkID&lt;<span class="lifetime">&#39;a</span>&gt;&gt;&gt;(
+    trigger: T,
+    game_obj: AkGameObjectID,
+) -&gt; <span class="prelude-ty">Result</span>&lt;(), AkResult&gt; {
+    <span class="kw">match </span>trigger.into() {
+        AkID::Name(name) =&gt; {
+            <span class="macro">with_cstring!</span>[name =&gt; cname {
+                <span class="macro">ak_call_result!</span>[PostTrigger2(
+                    cname.as_ptr(),
+                    game_obj,
                 )
             ]}]
         }
-        <span class="ident">AkID::ID</span>(<span class="ident">id</span>) =&gt; {
-            <span class="macro">ak_call_result!</span>[<span class="ident">PostTrigger</span>(<span class="ident">id</span>, <span class="ident">game_obj</span>)]
+        AkID::ID(id) =&gt; {
+            <span class="macro">ak_call_result!</span>[PostTrigger(id, game_obj)]
         }
     }
 }
 
-<span class="doccomment">/// Sets the state of a State Group.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *Return*</span>
-<span class="doccomment">/// &gt; - [AkResult::AK_Success] if successful</span>
-<span class="doccomment">/// &gt; - [AkResult::AK_IDNotFound] if the state or State Group name was not resolved to an existing ID.</span>
-<span class="doccomment">/// Make sure that the banks were generated with the &quot;include string&quot; option.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Panics if state_group and state_id are not of the same variant.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_state</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">AkID</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">state_group</span>: <span class="ident">T</span>, <span class="ident">state_id</span>: <span class="ident">T</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">AkResult</span><span class="op">&gt;</span> {
-    <span class="kw">match</span> (<span class="ident">state_group</span>.<span class="ident">into</span>(), <span class="ident">state_id</span>.<span class="ident">into</span>()) {
-        (<span class="ident">AkID::Name</span>(<span class="ident">group</span>), <span class="ident">AkID::Name</span>(<span class="ident">state</span>)) =&gt; {
-            <span class="macro">with_cstring!</span>[<span class="ident">group</span> =&gt; <span class="ident">groupc</span>, <span class="ident">state</span> =&gt; <span class="ident">statec</span> {
-                <span class="macro">ak_call_result!</span>[<span class="ident">SetState2</span>(
-                    <span class="ident">groupc</span>.<span class="ident">as_ptr</span>(),
-                    <span class="ident">statec</span>.<span class="ident">as_ptr</span>()
+<span class="doccomment">/// Sets the state of a State Group.
+///
+/// *Return*
+/// &gt; - [AkResult::AK_Success] if successful
+/// &gt; - [AkResult::AK_IDNotFound] if the state or State Group name was not resolved to an existing ID.
+/// Make sure that the banks were generated with the &quot;include string&quot; option.
+///
+/// Panics if state_group and state_id are not of the same variant.
+</span><span class="kw">pub fn </span>set_state&lt;<span class="lifetime">&#39;a</span>, T: Into&lt;AkID&lt;<span class="lifetime">&#39;a</span>&gt;&gt;&gt;(state_group: T, state_id: T) -&gt; <span class="prelude-ty">Result</span>&lt;(), AkResult&gt; {
+    <span class="kw">match </span>(state_group.into(), state_id.into()) {
+        (AkID::Name(group), AkID::Name(state)) =&gt; {
+            <span class="macro">with_cstring!</span>[group =&gt; groupc, state =&gt; statec {
+                <span class="macro">ak_call_result!</span>[SetState2(
+                    groupc.as_ptr(),
+                    statec.as_ptr()
                 )
             ]}]
         }
-        (<span class="ident">AkID::ID</span>(<span class="ident">group</span>), <span class="ident">AkID::ID</span>(<span class="ident">state</span>)) =&gt; {
-            <span class="macro">ak_call_result!</span>[<span class="ident">SetState</span>(<span class="ident">group</span>, <span class="ident">state</span>)]
+        (AkID::ID(group), AkID::ID(state)) =&gt; {
+            <span class="macro">ak_call_result!</span>[SetState(group, state)]
         }
-        <span class="kw">_</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;Args state_group and state_id should be of the same variant&quot;</span>),
+        <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;Args state_group and state_id should be of the same variant&quot;</span>),
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="rrise" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0-nightly (76d770ac2 2022-04-02)" ></div>
-</body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="rrise" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (42325c525 2022-11-11)" data-search-js="search-39ee4160c7dc16c9.js" data-settings-js="settings-3a0b9947ba1bd99a.js" data-settings-css="settings-a66f7524084a489a.css" ></div></body></html>

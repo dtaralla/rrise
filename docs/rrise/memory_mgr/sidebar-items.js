@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["init","Initialize the default implementation of the Memory Manager."],["is_initialized","Query whether the Memory Manager has been successfully initialized."],["term","Terminate the Memory Manager."]]});
+window.SIDEBAR_ITEMS = {"fn":[["init","Initialize the default implementation of the Memory Manager."],["is_initialized","Query whether the Memory Manager has been successfully initialized."],["term","Terminate the Memory Manager."]]};

@@ -69,7 +69,10 @@ fn main() -> Result<(), AkResult> {
 
         // move sound source from -3 to 3 along X axis over the sound length (0.974s), repeatedly
         let new_p = (-3.).lerp(3., app_time % 0.974);
-        set_position(THE_GAME_OBJECT, AkTransform::from([new_p, 0., 0.]))?;
+        set_position(
+            THE_GAME_OBJECT,
+            AkWorldTransform::from([new_p as f64, 0., 0.]),
+        )?;
 
         // simulate ~60 frames per second
         std::thread::sleep(Duration::from_millis(1000 / 60));

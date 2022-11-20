@@ -129,8 +129,14 @@ pub struct AkInitSettings {
     pub num_samples_per_frame: crate::bindings::root::AkUInt32,
     #[doc = "Size of the monitoring queue, in bytes. This parameter is not used in Release build."]
     pub monitor_queue_pool_size: crate::bindings::root::AkUInt32,
+    #[cfg(not(feature = "legacy"))]
+    #[doc = "Maximum size of the CPU monitoring queue, per thread, in bytes. This parameter is not used in Release build."]
+    pub cpu_monitor_queue_max_size: crate::bindings::root::AkUInt32,
     #[doc = "Main output device settings."]
     pub settings_main_output: crate::bindings::root::AkOutputSettings,
+    #[cfg(not(feature = "legacy"))]
+    #[doc = "Settings to configure the behavior of the Sound Engine's internal job manager"]
+    pub settings_job_manager: crate::bindings::root::AkJobMgrSettings,
     #[doc = "Amount of time to wait for HW devices to trigger an audio interrupt. If there is no interrupt after that time, the sound engine will revert to  silent mode and continue operating until the HW finally comes back. Default value: 2000 (2 seconds)"]
     pub max_hardware_timeout_ms: crate::bindings::root::AkUInt32,
     #[doc = "Use a separate thread for loading sound banks. Allows asynchronous operations."]
@@ -145,6 +151,7 @@ pub struct AkInitSettings {
     pub floor_plane: crate::bindings::root::AkFloorPlane,
     #[doc = "The number of game units in a meter."]
     pub game_units_to_meters: crate::bindings::root::AkReal32,
+    #[cfg(feature = "legacy")]
     #[doc = "The defined client task scheduler that AkSoundEngine will use to schedule internal tasks."]
     pub task_scheduler_desc: crate::bindings::root::AkTaskSchedulerDesc,
     #[doc = "The number of bytes read by the BankReader when new data needs to be loaded from disk during serialization. Increasing this trades memory usage for larger, but fewer, file-read events during bank loading."]
@@ -239,7 +246,11 @@ impl Default for AkInitSettings {
             continuous_playback_look_ahead: inner_settings.uContinuousPlaybackLookAhead,
             num_samples_per_frame: inner_settings.uNumSamplesPerFrame,
             monitor_queue_pool_size: inner_settings.uMonitorQueuePoolSize,
+            #[cfg(not(feature = "legacy"))]
+            cpu_monitor_queue_max_size: inner_settings.uCpuMonitorQueueMaxSize,
             settings_main_output: inner_settings.settingsMainOutput,
+            #[cfg(not(feature = "legacy"))]
+            settings_job_manager: inner_settings.settingsJobManager,
             max_hardware_timeout_ms: inner_settings.uMaxHardwareTimeoutMs,
             use_sound_bank_mgr_thread: inner_settings.bUseSoundBankMgrThread,
             use_lengine_thread: inner_settings.bUseLEngineThread,
@@ -247,6 +258,7 @@ impl Default for AkInitSettings {
             bgm_callback_cookie: inner_settings.BGMCallbackCookie.into(),
             floor_plane: inner_settings.eFloorPlane,
             game_units_to_meters: inner_settings.fGameUnitsToMeters,
+            #[cfg(feature = "legacy")]
             task_scheduler_desc: inner_settings.taskSchedulerDesc,
             bank_read_buffer_size: inner_settings.uBankReadBufferSize,
             debug_out_of_range_limit: inner_settings.fDebugOutOfRangeLimit,
@@ -377,7 +389,11 @@ impl AkInitSettings {
             uContinuousPlaybackLookAhead: self.continuous_playback_look_ahead,
             uNumSamplesPerFrame: self.num_samples_per_frame,
             uMonitorQueuePoolSize: self.monitor_queue_pool_size,
+            #[cfg(not(feature = "legacy"))]
+            uCpuMonitorQueueMaxSize: self.cpu_monitor_queue_max_size,
             settingsMainOutput: self.settings_main_output,
+            #[cfg(not(feature = "legacy"))]
+            settingsJobManager: self.settings_job_manager,
             uMaxHardwareTimeoutMs: self.max_hardware_timeout_ms,
             bUseSoundBankMgrThread: self.use_sound_bank_mgr_thread,
             bUseLEngineThread: self.use_lengine_thread,
@@ -386,10 +402,17 @@ impl AkInitSettings {
             szPluginDLLPath: self.private_stuff.plugin_dll_path.as_mut_ptr(),
             eFloorPlane: self.floor_plane,
             fGameUnitsToMeters: self.game_units_to_meters,
+            #[cfg(feature = "legacy")]
             taskSchedulerDesc: self.task_scheduler_desc,
             uBankReadBufferSize: self.bank_read_buffer_size,
             fDebugOutOfRangeLimit: self.debug_out_of_range_limit,
             bDebugOutOfRangeCheckEnabled: self.debug_out_of_range_check_enabled,
+            #[cfg(not(feature = "legacy"))]
+            fnProfilerPushTimer: None,
+            #[cfg(not(feature = "legacy"))]
+            fnProfilerPopTimer: None,
+            #[cfg(not(feature = "legacy"))]
+            fnProfilerPostMarker: None,
         }
     }
 }

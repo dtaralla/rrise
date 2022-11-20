@@ -81,6 +81,16 @@ impl Display for AKRESULT {
             AK_NoDistinctListener => "no distinct listener provided for AddOutput",
             AK_ACP_Error => "generic XMA decoder error",
             AK_ResourceInUse => "tesource is in use and cannot be released",
+            #[cfg(not(feature = "legacy"))]
+            AK_InvalidBankType => "Invalid bank type. The bank type was either supplied through a function call (e.g. LoadBank) or obtained from a bank loaded from memory.",
+            #[cfg(not(feature = "legacy"))]
+            AK_AlreadyInitialized => "Init() was called but that element was already initialized.",
+            #[cfg(not(feature = "legacy"))]
+            AK_NotInitialized => "The component being used is not initialized. Most likely AK::SoundEngine::Init() was not called yet, or AK::SoundEngine::Term was called too early.",
+            #[cfg(not(feature = "legacy"))]
+            AK_FilePermissionError => "The file access permissions prevent opening a file.",
+            #[cfg(not(feature = "legacy"))]
+            AK_UnknownFileError => "Rare file error occured, as opposed to AK_FileNotFound or AK_FilePermissionError. This lumps all unrecognized OS file system errors.",
         })
     }
 }

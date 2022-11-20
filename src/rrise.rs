@@ -128,6 +128,12 @@ pub use bindings::root::AkSoundPosition;
 pub use bindings::root::AkTransform;
 #[doc(inline)]
 pub use bindings::root::AkVector;
+#[cfg(not(feature = "legacy"))]
+#[doc(inline)]
+pub use bindings::root::AkVector64;
+#[cfg(not(feature = "legacy"))]
+#[doc(inline)]
+pub use bindings::root::AkWorldTransform;
 #[doc(inline)]
 pub use bindings::root::AKRESULT as AkResult;
 

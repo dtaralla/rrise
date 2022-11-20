@@ -34,7 +34,7 @@ fn main() -> io::Result<()> {
     // --- END RERUN CONFIG
 
     // --- CONSISTENCY CHECKS
-    #[cfg(not(feature = "v2021"))]
+    #[cfg(not(feature = "legacy"))]
     if !wwise_sdk
         .join("samples")
         .join("SoundEngine")
@@ -44,10 +44,10 @@ fn main() -> io::Result<()> {
     {
         panic!(
             "Expecting Wwise 2022 but required files not found.\n\
-            Isn't WWISESDK pointing to a Wwise 2021 SDK by any chance? In that case, enable feature `v2021`.\n\
+            Isn't WWISESDK pointing to a Wwise 2021 SDK by any chance? In that case, enable feature `legacy`.\n\
             Note: WWISESDK = {:?}", wwise_sdk);
     }
-    #[cfg(feature = "v2021")]
+    #[cfg(feature = "legacy")]
     if wwise_sdk
         .join("samples")
         .join("SoundEngine")
@@ -57,7 +57,7 @@ fn main() -> io::Result<()> {
     {
         panic!(
             "Expecting Wwise 2021 but WWISESDK seems to point to Wwise 2022 libs.\n\
-            If that is intentional, disable feature `v2021`.\n\
+            If that is intentional, disable feature `legacy`.\n\
             Note: WWISESDK = {:?}",
             wwise_sdk
         );
@@ -203,7 +203,7 @@ fn main() -> io::Result<()> {
         .flag_if_supported("-fpermissive")
         .warnings(false);
 
-    #[cfg(not(feature = "v2021"))]
+    #[cfg(not(feature = "legacy"))]
     {
         build.file(
             wwise_sdk
@@ -287,7 +287,7 @@ fn main() -> io::Result<()> {
         .parse_callbacks(Box::new(bindgen::CargoCallbacks))
         .layout_tests(false);
 
-    #[cfg(not(feature = "v2021"))]
+    #[cfg(not(feature = "legacy"))]
     {
         bindings_builder = bindings_builder
             .rustified_enum("AkBankTypeEnum")

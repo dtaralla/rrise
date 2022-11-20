@@ -246,7 +246,12 @@ pub fn set_position<T: Into<AkSoundPosition>>(
     game_object_id: AkGameObjectID,
     position: T,
 ) -> Result<(), AkResult> {
-    ak_call_result![SetPosition(game_object_id, &position.into())]
+    ak_call_result![SetPosition(
+        game_object_id,
+        &position.into(),
+        #[cfg(not(feature = "legacy"))]
+        AkSetPositionFlags::AkSetPositionFlags_Default
+    )]
 }
 
 /// Sets the default set of associated listeners for game objects that have not explicitly overridden their listener sets. Upon registration, all game objects reference the default listener set, until
@@ -382,7 +387,12 @@ pub fn stop_all(game_object_id: Option<AkGameObjectID>) {
 pub fn load_bank_by_name<T: AsRef<str>>(name: T) -> Result<AkBankID, AkResult> {
     let mut bank_id = 0;
     with_cstring![name.as_ref() => cname {
-        ak_call_result![LoadBank1(cname.as_ptr(), &mut bank_id) => bank_id]
+        ak_call_result![LoadBank1(
+            cname.as_ptr(),
+            &mut bank_id,
+            #[cfg(not(feature = "legacy"))]
+            (AkBankTypeEnum::AkBankType_User as AkBankType),
+        ) => bank_id]
     }]
 }
 

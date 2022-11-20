@@ -90,7 +90,11 @@ fn main() -> Result<(), AkResult> {
         }
 
         let new_p = (direction * -half_length).lerp(direction * half_length, t);
-        set_position(THE_GAME_OBJECT, AkTransform::from([new_p, 0., 2.]))?;
+
+        set_position(
+            THE_GAME_OBJECT,
+            AkWorldTransform::from([new_p as f64, 0., 2.]),
+        )?;
 
         // Doppler effect computation: because the movement is 1D and the listener doesn't move,
         // computation is simplified greatly!

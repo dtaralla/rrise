@@ -2,13 +2,13 @@
  * Copyright (c) 2022 Contributors to the Rrise project
  */
 
-use crate::{AkTransform, AkVector};
+use crate::{AkVector64, AkWorldTransform};
 
-impl From<[f32; 3]> for AkVector {
+impl From<[f64; 3]> for AkVector64 {
     /// In AkVectors, Y is the up component and Z is the forward component.
     ///
     /// Assumes values in `v` are in XYZ order.
-    fn from(v: [f32; 3]) -> Self {
+    fn from(v: [f64; 3]) -> Self {
         Self {
             X: v[0],
             Y: v[1],
@@ -17,23 +17,23 @@ impl From<[f32; 3]> for AkVector {
     }
 }
 
-impl From<[f32; 3]> for AkTransform {
-    /// Creates an AkTransform at position `p` with default orientation (up pointing up, forward
+impl From<[f64; 3]> for AkWorldTransform {
+    /// Creates an AkWorldTransform at position `p` with default orientation (up pointing up, forward
     /// pointing forward).
     ///
     /// Assumes values in `v` are in XYZ order.
-    fn from(p: [f32; 3]) -> Self {
+    fn from(p: [f64; 3]) -> Self {
         Self {
-            position: AkVector::from(p),
+            position: AkVector64::from(p),
             ..Default::default()
         }
     }
 }
 
-impl From<AkVector> for AkTransform {
-    /// Creates an AkTransform at position `p` with default orientation (up pointing up, forward
+impl From<AkVector64> for AkWorldTransform {
+    /// Creates an AkWorldTransform at position `p` with default orientation (up pointing up, forward
     /// pointing forward).
-    fn from(p: AkVector) -> Self {
+    fn from(p: AkVector64) -> Self {
         Self {
             position: p,
             ..Default::default()
@@ -41,21 +41,21 @@ impl From<AkVector> for AkTransform {
     }
 }
 
-impl Default for AkVector {
+impl Default for AkVector64 {
     /// The nul vector `[0, 0, 0]`.
     fn default() -> Self {
         unsafe { std::mem::zeroed() }
     }
 }
 
-impl AkVector {
+impl AkVector64 {
     /// The nul vector `[0, 0, 0]`.
     pub fn new() -> Self {
         Self::default()
     }
 
     /// The vector `[value, value, value]`.
-    pub fn splat<T: Into<f32> + Copy>(value: T) -> Self {
+    pub fn splat<T: Into<f64> + Copy>(value: T) -> Self {
         Self {
             X: value.into(),
             Y: value.into(),
@@ -64,36 +64,33 @@ impl AkVector {
     }
 }
 
-impl Default for AkTransform {
+impl Default for AkWorldTransform {
     /// Creates an AkTransform at `[0, 0, 0]` with default orientation (up pointing up, forward
     /// pointing forward).
     ///
     /// *See also*
-    /// > - [AkTransform::new]
+    /// > - [AkWorldTransform::new]
     fn default() -> Self {
         Self {
-            position: AkVector::default(),
+            position: AkVector64::default(),
             orientationFront: AkVector::from([0., 0., 1.]),
             orientationTop: AkVector::from([0., 1., 0.]),
         }
     }
 }
 
-impl AkTransform {
-    /// Creates the default AkTransform.
+impl AkWorldTransform {
+    /// Creates the default AkWorldTransform.
     ///
     /// *See also*
-    /// > - [AkTransform::default]
+    /// > - [AkWorldTransform::default]
     pub fn new() -> Self {
         Self::default()
     }
 
-    /// Creates an AkTransform at position `p` with default orientation (up pointing up, forward
+    /// Creates an AkWorldTransform at position `p` with default orientation (up pointing up, forward
     /// pointing forward).
-    pub fn from_position<T: Into<AkVector>>(p: T) -> Self {
-        AkTransform::from(p.into())
+    pub fn from_position<T: Into<AkVector64>>(p: T) -> Self {
+        AkWorldTransform::from(p.into())
     }
 }
-
-#[cfg(not(feature = "legacy"))]
-include!("transform_current.rs");

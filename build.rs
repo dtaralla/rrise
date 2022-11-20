@@ -33,6 +33,37 @@ fn main() -> io::Result<()> {
     println!("cargo:rerun-if-env-changed=RRISE_RERUN_BUILD");
     // --- END RERUN CONFIG
 
+    // --- CONSISTENCY CHECKS
+    #[cfg(not(feature = "v2021"))]
+    if !wwise_sdk
+        .join("samples")
+        .join("SoundEngine")
+        .join("Common")
+        .join("AkGeneratedSoundBanksResolver.cpp")
+        .exists()
+    {
+        panic!(
+            "Expecting Wwise 2022 but required files not found.\n\
+            Isn't WWISESDK pointing to a Wwise 2021 SDK by any chance? In that case, enable feature `v2021`.\n\
+            Note: WWISESDK = {:?}", wwise_sdk);
+    }
+    #[cfg(feature = "v2021")]
+    if wwise_sdk
+        .join("samples")
+        .join("SoundEngine")
+        .join("Common")
+        .join("AkGeneratedSoundBanksResolver.cpp")
+        .exists()
+    {
+        panic!(
+            "Expecting Wwise 2021 but WWISESDK seems to point to Wwise 2022 libs.\n\
+            If that is intentional, disable feature `v2021`.\n\
+            Note: WWISESDK = {:?}",
+            wwise_sdk
+        );
+    }
+    // --- END CONSISTENCY CHECKS
+
     // --- SETUP BUILD ENV
     println!("cargo:rustc-link-lib=static=AkSoundEngine");
     println!("cargo:rustc-link-lib=static=AkMusicEngine");

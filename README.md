@@ -46,7 +46,15 @@ Checkout the [rrise-headers](/rrise-headers) crate to automatically generate you
 Rust constants!
 
 ### Examples
-- Minimal example showcasing how to initialize the sound engine, start a moving source and terminate it
+To run the examples, you first have to generate all soundbanks of the test project in `examples/WwiseProject` 
+(if you link against Wwise 2022.1) **or** `examples/WwiseProject_legacy` (if you link against Wwise 2021.1).
+
+Each example comes in two versions: the legacy and default versions. Run the legacy versions if you are targeting 
+Wwise 2021.1, and run the default versions for Wwise 2022.1. The tests projects are already setup to output
+their generated soundbanks in `assets/soundbanks/`, and this is where the examples shall expect them.
+
+Currently, there are 3 examples:
+- Minimal program showcasing how to initialize the sound engine, start a moving emitter and terminate it
 - Doppler effect example showcasing RTPCs
 - Music engine example with frequency visualizer & event callbacks
 

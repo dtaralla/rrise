@@ -1,6 +1,6 @@
 [package]
 name = "rrise"
-version = "0.2.3"
+version = "0.3.0"
 edition = "2021"
 authors = ["David Taralla <davidtaralla@gmail.com> & Contributors to the Rrise project"]
 description = "A rust binding for Wwise"
@@ -33,7 +33,7 @@ bevy = { version = "0.9.0", optional = true, default-features = false, features 
 rrise-headers = { version = "0.2", optional = true }
 
 [build-dependencies]
-bindgen = "0.59.2"
+bindgen = "0.61.0"
 cc = { version = "1.0.73", features = ["parallel"] }
 paste = "1.0.7"
 
@@ -56,6 +56,7 @@ crate-type = ["dylib", "rlib"]
 
 [features]
 default = ["AkVorbisDecoder", "AkMeterFX"]
+v2021 = []
 AkVorbisDecoder = []
 AkOpusDecoder = ["AkOggOpusDecoder", "AkWemOpusDecoder"]
 AkAudioInputSource = []
@@ -90,13 +91,33 @@ name = "looping_event"
 required-features = ["examples"]
 
 [[example]]
+name = "looping_event_2021"
+required-features = ["examples", "v2021"]
+
+[[example]]
 name = "doppler"
 required-features = ["examples", "AkSineSource"]
+
+[[example]]
+name = "doppler_2021"
+required-features = ["examples", "v2021", "AkSineSource"]
 
 [[example]]
 name = "bevy_music_visualizer"
 required-features = [
     "examples",
+    "rrise-headers",
+    "AkMeterFX",
+    "AkParametricEQFX",
+    "bevy",
+    "crossbeam-channel",
+]
+
+[[example]]
+name = "bevy_music_visualizer_2021"
+required-features = [
+    "examples",
+    "v2021",
     "rrise-headers",
     "AkMeterFX",
     "AkParametricEQFX",

@@ -17,11 +17,15 @@ game engines. That said, I'm definitely not the most proficient in Rust. If you 
 or architectural choices, please reach out to improve the crate. Pull requests are more than welcome: **they are 
 encouraged**!
 
+Since 0.3.0, this crate supports the latest major Wwise version, 2022.1, **by default**. It also supports Wwise 2021.1, but you have to 
+opt-in by enabling the `legacy` feature.
+
 In order to use this crate, you should check the [system requirements](#Requirements) below.
 
 ## Capabilities
 - Build & run on Windows 10+
 - Build & run on WSL[^0]/Linux (on distros where Wwise is supported)
+- Wwise 2021 & 2022 are supported
 - (AD)PCM, Vorbis & Opus playback
 - Initialize/Update/Terminate sound & music engines
 - Post simple events (with support for callbacks as functions pointers or closures)
@@ -115,7 +119,9 @@ to `AkInitSettings::with_plugin_dll_path` contains spaces, the DLLs in that fold
 - Rust 1.61.0+
 - The `bindgen` crate [requirements](https://github.com/rust-lang/rust-bindgen/blob/master/book/src/requirements.md)
 - A licensed (free, trial, commercial,...) version of Wwise installed
-  - Tested Wwise versions:
+  - Tested Wwise 2022 versions:
+    - 2022.1.0
+  - Tested Wwise 2021 versions, using the `legacy` feature:
     - 2021.1.7
     - 2021.1.9
     - 2021.1.10
@@ -125,6 +131,7 @@ to `AkInitSettings::with_plugin_dll_path` contains spaces, the DLLs in that fold
   - Build tools (same as Rust, for the `cc` crate)
   - Wwise support for Visual Studio 2015 (14.0), 2017 (15.0), 2019 (16.0), 2022 (17.0)[^2] deployment platform
   - Make sure the `WWISESDK` environment variable is set to the SDK folder of your Wwise installation
+    - If you are planning to work with a Wwise 2021.x project, make sure to enable the `legacy` feature of this crate too
 - **On Linux: `clang`**
   - `g++` (for `libstdc++`)
   - Copy the SDK folder from a Windows[^3] install of Wwise on your Linux workstation (for instance in /opt/wwise)
@@ -140,6 +147,7 @@ However, this launcher being only available on Windows and MacOS, you'll need to
 you can work with this crate on Linux.
 
 ## Short-term roadmap
+- Extend Wwise 2022.1 support, with auto-defined soundbanks
 - Spatial module basic API and example
 - Review/Improve architecture
 

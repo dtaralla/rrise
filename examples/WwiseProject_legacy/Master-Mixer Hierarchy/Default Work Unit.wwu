@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{3F1283BE-1E7E-4C4B-86E5-5F7EF342BA75}" SchemaVersion="103">
+	<Busses>
+		<WorkUnit Name="Default Work Unit" ID="{3F1283BE-1E7E-4C4B-86E5-5F7EF342BA75}" PersistMode="Standalone">
+			<ChildrenList>
+				<Bus Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}">
+					<ReferenceList>
+						<Reference Name="AudioDevice">
+							<ObjectRef Name="System" ID="{623E5F0F-F66C-4740-9D60-45779A7E1DBB}" WorkUnitID="{D5F8DC42-1EAB-41AC-B43A-0719AE4383BB}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Bus Name="MetersSink" ID="{030AA1CC-5206-46E4-85FE-6F62F0ACC3F8}">
+							<Comment>We don't want any sound from those busses; only their metering!</Comment>
+							<PropertyList>
+								<Property Name="OutputBusVolume" Type="Real64">
+									<ValueList>
+										<Value>-96</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ChildrenList>
+								<AuxBus Name="Meters_05" ID="{A87A444E-FF86-4BB3-B193-B7F0545F1589}">
+									<ReferenceList>
+										<Reference Name="Effect0">
+											<Custom>
+												<Effect Name="Wwise Parametric EQ (Custom)" ID="{0F2C077C-15D7-4EDD-95DF-72B458952B70}" ShortID="545332552" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
+													<PropertyList>
+														<Property Name="FilterTypeBand1" Type="int32" Value="2"/>
+														<Property Name="FilterTypeBand3" Type="int32" Value="6"/>
+														<Property Name="FrequencyBand1" Type="Real32" Value="1600"/>
+														<Property Name="OnOffBand2" Type="bool" Value="False"/>
+														<Property Name="OnOffBand3" Type="bool" Value="False"/>
+														<Property Name="QFactorBand1" Type="Real32" Value="3"/>
+													</PropertyList>
+												</Effect>
+											</Custom>
+										</Reference>
+										<Reference Name="Effect1">
+											<Custom>
+												<Effect Name="Wwise Meter (Custom)" ID="{D0A11FC7-C0F4-40DE-AA6D-13736E06C0C9}" ShortID="241412675" PluginName="Wwise Meter" CompanyID="0" PluginID="129" PluginType="3">
+													<PropertyList>
+														<Property Name="Max" Type="Real32" Value="6"/>
+													</PropertyList>
+													<PluginData>
+	<GameParameter Name="Meters_05" ID="{1FACC7CB-5F63-4857-B558-5E30EFF213F7}"/>
+</PluginData>
+												</Effect>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ObjectLists/>
+								</AuxBus>
+								<AuxBus Name="Meters_10" ID="{D08FCC41-631D-42E1-B1CB-74E99ECE5F27}">
+									<ReferenceList>
+										<Reference Name="Effect0">
+											<Custom>
+												<Effect Name="Wwise Parametric EQ (Custom)" ID="{BC37AC8C-B96B-4214-B5AC-3574B749A877}" ShortID="251760958" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
+													<PropertyList>
+														<Property Name="FilterTypeBand1" Type="int32" Value="1"/>
+														<Property Name="FilterTypeBand3" Type="int32" Value="6"/>
+														<Property Name="FrequencyBand1" Type="Real32" Value="18000"/>
+														<Property Name="OnOffBand2" Type="bool" Value="False"/>
+														<Property Name="OnOffBand3" Type="bool" Value="False"/>
+													</PropertyList>
+												</Effect>
+											</Custom>
+										</Reference>
+										<Reference Name="Effect1">
+											<Custom>
+												<Effect Name="Wwise Meter (Custom)" ID="{AEAD1A2B-DD1A-46F5-96F8-03FBFF74E9D2}" ShortID="20212855" PluginName="Wwise Meter" CompanyID="0" PluginID="129" PluginType="3">
+													<PropertyList>
+														<Property Name="Max" Type="Real32" Value="6"/>
+													</PropertyList>
+													<PluginData>
+	<GameParameter Name="Meters_10" ID="{95B6C639-1262-4341-B4C6-9F3019D9E5F1}"/>
+</PluginData>
+												</Effect>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ObjectLists/>
+								</AuxBus>
+								<AuxBus Name="Meters_07" ID="{52F50381-B0C2-4DF6-BF94-781E90E93C0E}">
+									<ReferenceList>
+										<Reference Name="Effect0">
+											<Custom>
+												<Effect Name="Wwise Parametric EQ (Custom)" ID="{623C4DD7-7AF0-4877-B4A5-8F6C50E8B826}" ShortID="871126459" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
+													<PropertyList>
+														<Property Name="FilterTypeBand1" Type="int32" Value="2"/>
+														<Property Name="FilterTypeBand3" Type="int32" Value="6"/>
+														<Property Name="FrequencyBand1" Type="Real32" Value="3200"/>
+														<Property Name="OnOffBand2" Type="bool" Value="False"/>
+														<Property Name="OnOffBand3" Type="bool" Value="False"/>
+														<Property Name="QFactorBand1" Type="Real32" Value="2"/>
+													</PropertyList>
+												</Effect>
+											</Custom>
+										</Reference>
+										<Reference Name="Effect1">
+											<Custom>
+												<Effect Name="Wwise Meter (Custom)" ID="{2136AB83-368C-4860-9EB2-0AEFB6F51252}" ShortID="606056292" PluginName="Wwise Meter" CompanyID="0" PluginID="129" PluginType="3">
+													<PropertyList>
+														<Property Name="Max" Type="Real32" Value="6"/>
+													</PropertyList>
+													<PluginData>
+	<GameParameter Name="Meters_07" ID="{2C5E0626-F0AD-45AE-A796-EFEAD4B5FF66}"/>
+</PluginData>
+												</Effect>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ObjectLists/>
+								</AuxBus>
+								<AuxBus Name="Meters_06" ID="{531E4DAE-9B5D-4963-B76E-D8516431F9EE}">
+									<ReferenceList>
+										<Reference Name="Effect0">
+											<Custom>
+												<Effect Name="Wwise Parametric EQ (Custom)" ID="{A99A9357-768C-463F-8FAB-64B99306F58D}" ShortID="132871458" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
+													<PropertyList>
+														<Property Name="FilterTypeBand1" Type="int32" Value="2"/>
+														<Property Name="FilterTypeBand3" Type="int32" Value="6"/>
+														<Property Name="FrequencyBand1" Type="Real32" Value="2400"/>
+														<Property Name="OnOffBand2" Type="bool" Value="False"/>
+														<Property Name="OnOffBand3" Type="bool" Value="False"/>
+														<Property Name="QFactorBand1" Type="Real32" Value="2"/>
+													</PropertyList>
+												</Effect>
+											</Custom>
+										</Reference>
+										<Reference Name="Effect1">
+											<Custom>
+												<Effect Name="Wwise Meter (Custom)" ID="{4A4A0CBA-9A06-4937-A955-C3A148B5B892}" ShortID="923620231" PluginName="Wwise Meter" CompanyID="0" PluginID="129" PluginType="3">
+													<PropertyList>
+														<Property Name="Max" Type="Real32" Value="6"/>
+													</PropertyList>
+													<PluginData>
+	<GameParameter Name="Meters_06" ID="{7517C812-A4FC-42BC-AC0B-5A5AF33ACD9C}"/>
+</PluginData>
+												</Effect>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ObjectLists/>
+								</AuxBus>
+								<AuxBus Name="Meters_04" ID="{81BEF30F-7A73-482C-907F-BAB57D517B4D}">
+									<ReferenceList>
+										<Reference Name="Effect0">
+											<Custom>
+												<Effect Name="Wwise Parametric EQ (Custom)" ID="{DC5A067C-BACC-423D-A267-A94B3F2DF02B}" ShortID="491034653" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
+													<PropertyList>
+														<Property Name="FilterTypeBand1" Type="int32" Value="2"/>
+														<Property Name="FilterTypeBand3" Type="int32" Value="6"/>
+														<Property Name="FrequencyBand1" Type="Real32" Value="800"/>
+														<Property Name="OnOffBand2" Type="bool" Value="False"/>
+														<Property Name="OnOffBand3" Type="bool" Value="False"/>
+														<Property Name="QFactorBand1" Type="Real32" Value="6"/>
+													</PropertyList>
+												</Effect>
+											</Custom>
+										</Reference>
+										<Reference Name="Effect1">
+											<Custom>
+												<Effect Name="Wwise Meter (Custom)" ID="{28945D00-7B58-4C03-9F10-41A0357DE244}" ShortID="477605860" PluginName="Wwise Meter" CompanyID="0" PluginID="129" PluginType="3">
+													<PropertyList>
+														<Property Name="Max" Type="Real32" Value="6"/>
+													</PropertyList>
+													<PluginData>
+	<GameParameter Name="Meters_04" ID="{72BFF407-9CA6-45C1-B2E5-CCCD9FDD662F}"/>
+</PluginData>
+												</Effect>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ObjectLists/>
+								</AuxBus>
+								<AuxBus Name="Meters_03" ID="{8714D866-C97B-4F29-A1BC-E9405F8AEA2D}">
+									<ReferenceList>
+										<Reference Name="Effect0">
+											<Custom>
+												<Effect Name="Wwise Parametric EQ (Custom)" ID="{5A335DB5-0448-4F21-B6F3-C292202A64C5}" ShortID="739874622" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
+													<PropertyList>
+														<Property Name="FilterTypeBand1" Type="int32" Value="2"/>
+														<Property Name="FilterTypeBand3" Type="int32" Value="6"/>
+														<Property Name="FrequencyBand1" Type="Real32" Value="400"/>
+														<Property Name="OnOffBand2" Type="bool" Value="False"/>
+														<Property Name="OnOffBand3" Type="bool" Value="False"/>
+														<Property Name="QFactorBand1" Type="Real32" Value="6"/>
+													</PropertyList>
+												</Effect>
+											</Custom>
+										</Reference>
+										<Reference Name="Effect1">
+											<Custom>
+												<Effect Name="Wwise Meter (Custom)" ID="{CB778136-34EB-4842-AA35-1BB4451EF864}" ShortID="873145647" PluginName="Wwise Meter" CompanyID="0" PluginID="129" PluginType="3">
+													<PropertyList>
+														<Property Name="Max" Type="Real32" Value="6"/>
+													</PropertyList>
+													<PluginData>
+	<GameParameter Name="Meters_03" ID="{14E6962B-B8D9-423D-B639-5C5695322D56}"/>
+</PluginData>
+												</Effect>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ObjectLists/>
+								</AuxBus>
+								<AuxBus Name="Meters_08" ID="{D66E1FB4-BA61-4256-A5A1-906385B96383}">
+									<ReferenceList>
+										<Reference Name="Effect0">
+											<Custom>
+												<Effect Name="Wwise Parametric EQ (Custom)" ID="{86779FB4-689D-4181-9A67-25F3EEF313A7}" ShortID="940405989" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
+													<PropertyList>
+														<Property Name="FilterTypeBand1" Type="int32" Value="2"/>
+														<Property Name="FilterTypeBand3" Type="int32" Value="6"/>
+														<Property Name="FrequencyBand1" Type="Real32" Value="6400"/>
+														<Property Name="OnOffBand2" Type="bool" Value="False"/>
+														<Property Name="OnOffBand3" Type="bool" Value="False"/>
+														<Property Name="QFactorBand1" Type="Real32" Value="0.95"/>
+													</PropertyList>
+												</Effect>
+											</Custom>
+										</Reference>
+										<Reference Name="Effect1">
+											<Custom>
+												<Effect Name="Wwise Meter (Custom)" ID="{D464A46D-F56D-4342-9E11-59BD55AD557F}" ShortID="729747465" PluginName="Wwise Meter" CompanyID="0" PluginID="129" PluginType="3">
+													<PropertyList>
+														<Property Name="Max" Type="Real32" Value="6"/>
+													</PropertyList>
+													<PluginData>
+	<GameParameter Name="Meters_08" ID="{B532529C-9FF6-495D-856E-46BF1FBB05B6}"/>
+</PluginData>
+												</Effect>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ObjectLists/>
+								</AuxBus>
+								<AuxBus Name="Meters_09" ID="{4B417073-F5AA-4430-A1BB-F423918EF3CB}">
+									<ReferenceList>
+										<Reference Name="Effect0">
+											<Custom>
+												<Effect Name="Wwise Parametric EQ (Custom)" ID="{8F4D8626-4454-472C-85D3-5EC516F940FC}" ShortID="839134791" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
+													<PropertyList>
+														<Property Name="FilterTypeBand1" Type="int32" Value="2"/>
+														<Property Name="FilterTypeBand3" Type="int32" Value="6"/>
+														<Property Name="FrequencyBand1" Type="Real32" Value="12800"/>
+														<Property Name="OnOffBand2" Type="bool" Value="False"/>
+														<Property Name="OnOffBand3" Type="bool" Value="False"/>
+														<Property Name="QFactorBand1" Type="Real32" Value="0.9"/>
+													</PropertyList>
+												</Effect>
+											</Custom>
+										</Reference>
+										<Reference Name="Effect1">
+											<Custom>
+												<Effect Name="Wwise Meter (Custom)" ID="{44021288-DE75-4AC8-8F26-3695142A7CFE}" ShortID="726236359" PluginName="Wwise Meter" CompanyID="0" PluginID="129" PluginType="3">
+													<PropertyList>
+														<Property Name="Max" Type="Real32" Value="6"/>
+													</PropertyList>
+													<PluginData>
+	<GameParameter Name="Meters_09" ID="{10E219D2-0094-4AF0-A7B0-A10EC436ECAE}"/>
+</PluginData>
+												</Effect>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ObjectLists/>
+								</AuxBus>
+								<AuxBus Name="Meters_01" ID="{83314276-E960-4C50-BE87-5A9422FA223D}">
+									<ReferenceList>
+										<Reference Name="Effect0">
+											<Custom>
+												<Effect Name="Wwise Parametric EQ (Custom)" ID="{703E5434-9AC5-4705-BEE9-CB9F783DE4A1}" ShortID="564319396" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
+													<PropertyList>
+														<Property Name="FilterTypeBand1" Type="int32" Value="2"/>
+														<Property Name="FilterTypeBand2" Type="int32" Value="2"/>
+														<Property Name="FilterTypeBand3" Type="int32" Value="6"/>
+														<Property Name="FrequencyBand2" Type="Real32" Value="100"/>
+														<Property Name="OnOffBand2" Type="bool" Value="False"/>
+														<Property Name="OnOffBand3" Type="bool" Value="False"/>
+														<Property Name="QFactorBand1" Type="Real32" Value="6"/>
+													</PropertyList>
+												</Effect>
+											</Custom>
+										</Reference>
+										<Reference Name="Effect1">
+											<Custom>
+												<Effect Name="Wwise Meter (Custom)" ID="{53C735C7-46E3-4D9B-ACE9-8FE5D3BEA0EC}" ShortID="768536651" PluginName="Wwise Meter" CompanyID="0" PluginID="129" PluginType="3">
+													<PropertyList>
+														<Property Name="Max" Type="Real32" Value="6"/>
+													</PropertyList>
+													<PluginData>
+	<GameParameter Name="Meters_01" ID="{65433B19-DD73-45CA-8896-AF77DE7019F9}"/>
+</PluginData>
+												</Effect>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ObjectLists/>
+								</AuxBus>
+								<AuxBus Name="Meters_02" ID="{0F1D6226-4DC8-4529-8516-253BC75EA17C}">
+									<ReferenceList>
+										<Reference Name="Effect0">
+											<Custom>
+												<Effect Name="Wwise Parametric EQ (Custom)" ID="{87954792-CC74-40A0-8157-7562785EDC0B}" ShortID="1008999435" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
+													<PropertyList>
+														<Property Name="FilterTypeBand1" Type="int32" Value="2"/>
+														<Property Name="FilterTypeBand3" Type="int32" Value="6"/>
+														<Property Name="FrequencyBand1" Type="Real32" Value="200"/>
+														<Property Name="OnOffBand2" Type="bool" Value="False"/>
+														<Property Name="OnOffBand3" Type="bool" Value="False"/>
+														<Property Name="QFactorBand1" Type="Real32" Value="6"/>
+													</PropertyList>
+												</Effect>
+											</Custom>
+										</Reference>
+										<Reference Name="Effect1">
+											<Custom>
+												<Effect Name="Wwise Meter (Custom)" ID="{E4183CAE-9625-4C50-A858-AED8A1CAE8B4}" ShortID="250898752" PluginName="Wwise Meter" CompanyID="0" PluginID="129" PluginType="3">
+													<PropertyList>
+														<Property Name="Max" Type="Real32" Value="6"/>
+													</PropertyList>
+													<PluginData>
+	<GameParameter Name="Meters_02" ID="{E4327F9A-612B-4FE2-AC74-676A65517AF8}"/>
+</PluginData>
+												</Effect>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ObjectLists/>
+								</AuxBus>
+								<AuxBus Name="Meters_00" ID="{810D3AAD-D86C-45BC-A40A-F6707694C3D0}">
+									<ReferenceList>
+										<Reference Name="Effect0">
+											<Custom>
+												<Effect Name="Wwise Parametric EQ (Custom)" ID="{C18139FD-C148-4F8A-A139-CEACA47CA78F}" ShortID="611307128" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
+													<PropertyList>
+														<Property Name="FilterTypeBand1" Type="int32" Value="0"/>
+														<Property Name="FilterTypeBand2" Type="int32" Value="0"/>
+														<Property Name="FilterTypeBand3" Type="int32" Value="6"/>
+														<Property Name="FrequencyBand1" Type="Real32" Value="50"/>
+														<Property Name="FrequencyBand2" Type="Real32" Value="50"/>
+														<Property Name="GainBand2" Type="Real32" Value="-24"/>
+														<Property Name="OnOffBand2" Type="bool" Value="False"/>
+														<Property Name="OnOffBand3" Type="bool" Value="False"/>
+													</PropertyList>
+												</Effect>
+											</Custom>
+										</Reference>
+										<Reference Name="Effect1">
+											<Custom>
+												<Effect Name="Wwise Meter (Custom)" ID="{ED4A4304-86EE-4F34-AC53-929DBADEA32B}" ShortID="109343037" PluginName="Wwise Meter" CompanyID="0" PluginID="129" PluginType="3">
+													<PropertyList>
+														<Property Name="Max" Type="Real32" Value="6"/>
+													</PropertyList>
+													<PluginData>
+	<GameParameter Name="Meters_00" ID="{3355B0FF-D033-4EB9-9AA1-45ACBEB513EC}"/>
+</PluginData>
+												</Effect>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ObjectLists/>
+								</AuxBus>
+							</ChildrenList>
+							<ObjectLists/>
+						</Bus>
+						<AuxBus Name="Meters_4567" ID="{E1CDEB5F-4858-4BAB-BBD1-6720F3E1D05B}">
+							<Comment>We don't want any sound from those busses; only their metering!
+However, this bus' output bus volume needs to be greater than -80, otherwise this bus gets killed by Wwise (see project settings' volume thresholds). But we need it to be as silent as possible because it only serves to multiply the amount of auxiliary busses for a single source.</Comment>
+							<PropertyList>
+								<Property Name="OutputBusVolume" Type="Real64">
+									<ValueList>
+										<Value>-79.9</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="UserAuxSend0">
+									<ObjectRef Name="Meters_04" ID="{81BEF30F-7A73-482C-907F-BAB57D517B4D}" WorkUnitID="{3F1283BE-1E7E-4C4B-86E5-5F7EF342BA75}"/>
+								</Reference>
+								<Reference Name="UserAuxSend1">
+									<ObjectRef Name="Meters_05" ID="{A87A444E-FF86-4BB3-B193-B7F0545F1589}" WorkUnitID="{3F1283BE-1E7E-4C4B-86E5-5F7EF342BA75}"/>
+								</Reference>
+								<Reference Name="UserAuxSend2">
+									<ObjectRef Name="Meters_06" ID="{531E4DAE-9B5D-4963-B76E-D8516431F9EE}" WorkUnitID="{3F1283BE-1E7E-4C4B-86E5-5F7EF342BA75}"/>
+								</Reference>
+								<Reference Name="UserAuxSend3">
+									<ObjectRef Name="Meters_07" ID="{52F50381-B0C2-4DF6-BF94-781E90E93C0E}" WorkUnitID="{3F1283BE-1E7E-4C4B-86E5-5F7EF342BA75}"/>
+								</Reference>
+							</ReferenceList>
+							<ObjectLists/>
+						</AuxBus>
+						<AuxBus Name="Meters_0123" ID="{4EC83B50-D0AB-47E6-9B3D-3E6A91B534CD}">
+							<Comment>We don't want any sound from those busses; only their metering!
+However, this bus' output bus volume needs to be greater than -80, otherwise this bus gets killed by Wwise (see project settings' volume thresholds). But we need it to be as silent as possible because it only serves to multiply the amount of auxiliary busses for a single source.</Comment>
+							<PropertyList>
+								<Property Name="OutputBusVolume" Type="Real64">
+									<ValueList>
+										<Value>-79.9</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="UserAuxSend0">
+									<ObjectRef Name="Meters_00" ID="{810D3AAD-D86C-45BC-A40A-F6707694C3D0}" WorkUnitID="{3F1283BE-1E7E-4C4B-86E5-5F7EF342BA75}"/>
+								</Reference>
+								<Reference Name="UserAuxSend1">
+									<ObjectRef Name="Meters_01" ID="{83314276-E960-4C50-BE87-5A9422FA223D}" WorkUnitID="{3F1283BE-1E7E-4C4B-86E5-5F7EF342BA75}"/>
+								</Reference>
+								<Reference Name="UserAuxSend2">
+									<ObjectRef Name="Meters_02" ID="{0F1D6226-4DC8-4529-8516-253BC75EA17C}" WorkUnitID="{3F1283BE-1E7E-4C4B-86E5-5F7EF342BA75}"/>
+								</Reference>
+								<Reference Name="UserAuxSend3">
+									<ObjectRef Name="Meters_03" ID="{8714D866-C97B-4F29-A1BC-E9405F8AEA2D}" WorkUnitID="{3F1283BE-1E7E-4C4B-86E5-5F7EF342BA75}"/>
+								</Reference>
+							</ReferenceList>
+							<ObjectLists/>
+						</AuxBus>
+						<AuxBus Name="Meters_8910" ID="{89305FCB-79E4-4EA6-853D-DFE1D3D93AA9}">
+							<Comment>We don't want any sound from those busses; only their metering!
+However, this bus' output bus volume needs to be greater than -80, otherwise this bus gets killed by Wwise (see project settings' volume thresholds). But we need it to be as silent as possible because it only serves to multiply the amount of auxiliary busses for a single source.</Comment>
+							<PropertyList>
+								<Property Name="OutputBusVolume" Type="Real64">
+									<ValueList>
+										<Value>-79.9</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="UserAuxSend0">
+									<ObjectRef Name="Meters_08" ID="{D66E1FB4-BA61-4256-A5A1-906385B96383}" WorkUnitID="{3F1283BE-1E7E-4C4B-86E5-5F7EF342BA75}"/>
+								</Reference>
+								<Reference Name="UserAuxSend1">
+									<ObjectRef Name="Meters_09" ID="{4B417073-F5AA-4430-A1BB-F423918EF3CB}" WorkUnitID="{3F1283BE-1E7E-4C4B-86E5-5F7EF342BA75}"/>
+								</Reference>
+								<Reference Name="UserAuxSend2">
+									<ObjectRef Name="Meters_10" ID="{D08FCC41-631D-42E1-B1CB-74E99ECE5F27}" WorkUnitID="{3F1283BE-1E7E-4C4B-86E5-5F7EF342BA75}"/>
+								</Reference>
+							</ReferenceList>
+							<ObjectLists/>
+						</AuxBus>
+					</ChildrenList>
+					<ObjectLists/>
+				</Bus>
+			</ChildrenList>
+		</WorkUnit>
+	</Busses>
+</WwiseDocument>

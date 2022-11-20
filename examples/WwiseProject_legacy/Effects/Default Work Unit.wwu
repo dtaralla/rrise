@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{47A58128-9E67-4C42-913C-F45317EDEA27}" SchemaVersion="103">
+	<Effects>
+		<WorkUnit Name="Default Work Unit" ID="{47A58128-9E67-4C42-913C-F45317EDEA27}" PersistMode="Standalone">
+			<ChildrenList>
+				<Effect Name="New_Wwise_RoomVerb" ID="{D051180B-CF59-4D01-8839-86DE6A4D3952}" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+					<PropertyList>
+						<Property Name="DecayTime" Type="Real32" Value="0.7"/>
+						<Property Name="Density" Type="Real32" Value="100"/>
+						<Property Name="DryLevel" Type="Real32" Value="-2"/>
+						<Property Name="ERPattern" Type="int32" Value="14"/>
+						<Property Name="Quality" Type="int32" Value="16"/>
+						<Property Name="ReverbLevel" Type="Real32" Value="-4"/>
+						<Property Name="RoomShape" Type="Real32" Value="4"/>
+					</PropertyList>
+				</Effect>
+			</ChildrenList>
+		</WorkUnit>
+	</Effects>
+</WwiseDocument>

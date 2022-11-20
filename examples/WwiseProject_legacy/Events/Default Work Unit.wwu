@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{B237E31A-C7B6-4F70-9F67-BF6DA8E1A096}" SchemaVersion="103">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{B237E31A-C7B6-4F70-9F67-BF6DA8E1A096}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="PlayReferenceSoundTest" ID="{3CD34960-13C7-435E-B8DA-B391F2231352}">
+					<ChildrenList>
+						<Action Name="" ID="{E7816B53-38E3-4BA4-A838-2388C9747FE6}" ShortID="957791561">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="ReferenceSound" ID="{E5E9A52C-E23D-4D63-9D27-33FBBC02DE61}" WorkUnitID="{65E37865-6D38-4681-929B-B1CD0BE3F39F}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlayDoppler" ID="{3DCEA688-739C-4EF0-9882-5AB00F3D2DF9}">
+					<ChildrenList>
+						<Action Name="" ID="{88CBDFD3-6F0E-4B87-B1ED-AF752C109F6D}" ShortID="224685095">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="DopplerSound" ID="{5B75213F-5C2E-4A80-ADD7-EBA8D18D860D}" WorkUnitID="{65E37865-6D38-4681-929B-B1CD0BE3F39F}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlayMeteredMusic" ID="{361FB54F-1554-44E8-9217-D1AED3DF20EA}">
+					<ChildrenList>
+						<Action Name="" ID="{9021FBC2-4D32-4805-A510-E056F53FF02F}" ShortID="378169892">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="MeteredMusic" ID="{BCB4664C-1198-48A2-8148-148107676DA6}" WorkUnitID="{88901774-D060-4881-9271-34F3BFE8ED31}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

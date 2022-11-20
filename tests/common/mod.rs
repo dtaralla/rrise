@@ -18,7 +18,7 @@ pub fn init_sound_engine() -> Result<(), AkResult> {
     stream_mgr::init_default_stream_mgr(
         &AkStreamMgrSettings::default(),
         &mut AkDeviceSettings::default(),
-        format!("examples/WwiseProject/GeneratedSoundBanks/{}", platform),
+        format!("assets/soundbanks/{}", platform),
     )?;
     stream_mgr::set_current_language("English(US)")?;
 

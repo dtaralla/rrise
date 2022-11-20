@@ -21,8 +21,8 @@
 				</Property>
 				<Property Name="ExternalSourcesOutputPath" Type="string">
 					<ValueList>
-						<Value Platform="Windows">GeneratedSoundBanks\Windows</Value>
-						<Value Platform="Linux">GeneratedSoundBanks\Linux</Value>
+						<Value Platform="Windows">..\..\assets\soundbanks\Windows</Value>
+						<Value Platform="Linux">..\..\assets\soundbanks\Linux</Value>
 					</ValueList>
 				</Property>
 				<Property Name="GenerateSoundBankJSON" Type="bool" Value="True"/>
@@ -37,8 +37,8 @@
 				<Property Name="SoundBankHeaderFilePath" Type="string" Value="GeneratedSoundBanks"/>
 				<Property Name="SoundBankPaths" Type="string">
 					<ValueList>
-						<Value Platform="Windows">GeneratedSoundBanks\Windows\</Value>
-						<Value Platform="Linux">GeneratedSoundBanks\Linux\</Value>
+						<Value Platform="Windows">..\..\assets\soundbanks\Windows\</Value>
+						<Value Platform="Linux">..\..\assets\soundbanks\Linux\</Value>
 					</ValueList>
 				</Property>
 				<Property Name="SoundBankPostGenerateCustomCmdDescription" Type="string">

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{277CFB72-319A-401F-ABF2-CB1072D4AFDD}" SchemaVersion="103">
+	<GameParameters>
+		<WorkUnit Name="Default Work Unit" ID="{277CFB72-319A-401F-ABF2-CB1072D4AFDD}" PersistMode="Standalone">
+			<ChildrenList>
+				<GameParameter Name="Doppler" ID="{67A41D13-76BF-4767-A905-A31C551CC04A}">
+					<PropertyList>
+						<Property Name="InitialValue" Type="Real64" Value="1"/>
+						<Property Name="Max" Type="Real64" Value="16"/>
+					</PropertyList>
+				</GameParameter>
+				<Folder Name="Meters" ID="{FDB15ADB-342B-423C-9085-BC918387D8C7}" ShortID="509493850">
+					<ChildrenList>
+						<GameParameter Name="Meters_00" ID="{3355B0FF-D033-4EB9-9AA1-45ACBEB513EC}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="0"/>
+								<Property Name="Max" Type="Real64" Value="1"/>
+							</PropertyList>
+						</GameParameter>
+						<GameParameter Name="Meters_01" ID="{65433B19-DD73-45CA-8896-AF77DE7019F9}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="0"/>
+								<Property Name="Max" Type="Real64" Value="1"/>
+							</PropertyList>
+						</GameParameter>
+						<GameParameter Name="Meters_02" ID="{E4327F9A-612B-4FE2-AC74-676A65517AF8}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="0"/>
+								<Property Name="Max" Type="Real64" Value="1"/>
+							</PropertyList>
+						</GameParameter>
+						<GameParameter Name="Meters_03" ID="{14E6962B-B8D9-423D-B639-5C5695322D56}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="0"/>
+								<Property Name="Max" Type="Real64" Value="1"/>
+							</PropertyList>
+						</GameParameter>
+						<GameParameter Name="Meters_04" ID="{72BFF407-9CA6-45C1-B2E5-CCCD9FDD662F}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="0"/>
+								<Property Name="Max" Type="Real64" Value="1"/>
+							</PropertyList>
+						</GameParameter>
+						<GameParameter Name="Meters_05" ID="{1FACC7CB-5F63-4857-B558-5E30EFF213F7}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="0"/>
+								<Property Name="Max" Type="Real64" Value="1"/>
+							</PropertyList>
+						</GameParameter>
+						<GameParameter Name="Meters_06" ID="{7517C812-A4FC-42BC-AC0B-5A5AF33ACD9C}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="0"/>
+								<Property Name="Max" Type="Real64" Value="1"/>
+							</PropertyList>
+						</GameParameter>
+						<GameParameter Name="Meters_07" ID="{2C5E0626-F0AD-45AE-A796-EFEAD4B5FF66}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="0"/>
+								<Property Name="Max" Type="Real64" Value="1"/>
+							</PropertyList>
+						</GameParameter>
+						<GameParameter Name="Meters_08" ID="{B532529C-9FF6-495D-856E-46BF1FBB05B6}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="0"/>
+								<Property Name="Max" Type="Real64" Value="1"/>
+							</PropertyList>
+						</GameParameter>
+						<GameParameter Name="Meters_09" ID="{10E219D2-0094-4AF0-A7B0-A10EC436ECAE}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="0"/>
+								<Property Name="Max" Type="Real64" Value="1"/>
+							</PropertyList>
+						</GameParameter>
+						<GameParameter Name="Meters_10" ID="{95B6C639-1262-4341-B4C6-9F3019D9E5F1}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="0"/>
+								<Property Name="Max" Type="Real64" Value="1"/>
+							</PropertyList>
+						</GameParameter>
+					</ChildrenList>
+				</Folder>
+			</ChildrenList>
+		</WorkUnit>
+	</GameParameters>
+</WwiseDocument>

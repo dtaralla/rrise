@@ -53,6 +53,7 @@ features = ["x11"]
 name = "rrise"
 path = "src/rrise.rs"
 crate-type = ["dylib", "rlib"]
+doctest = false
 
 [features]
 default = ["AkVorbisDecoder", "AkMeterFX"]
@@ -85,6 +86,32 @@ AkTremoloFX = []
 AkOggOpusDecoder = []
 AkWemOpusDecoder = []
 examples = ["ctrlc", "simple_logger", "lerp", "cc"]
+test_static_link_all = [
+    "AkVorbisDecoder",
+    "AkOpusDecoder",
+    "AkAudioInputSource",
+    "AkCompressorFX",
+    "AkDelayFX",
+    "AkExpanderFX",
+    "AkFlangerFX",
+    "AkGainFX",
+    "AkGuitarDistortionFX",
+    "AkHarmonizerFX",
+    "AkMatrixReverbFX",
+    "AkMeterFX",
+    "AkParametricEQFX",
+    "AkPeakLimiterFX",
+    "AkPitchShifterFX",
+    "AkRecorderFX",
+    "AkRoomVerbFX",
+    "AkSilenceSource",
+    "AkSineSource",
+    "AkStereoDelayFX",
+    "AkSynthOneSource",
+    "AkTimeStretchFX",
+    "AkToneSource",
+    "AkTremoloFX"
+]
 
 [[example]]
 name = "looping_event"
@@ -129,30 +156,13 @@ required-features = [
 name = "one_frame_render"
 
 [[test]]
+name = "one_frame_render_legacy"
+required-features = ["legacy"]
+
+[[test]]
+name = "static_link_all_legacy"
+required-features = ["test_static_link_all", "legacy"]
+
+[[test]]
 name = "static_link_all"
-required-features = [
-    "AkVorbisDecoder",
-    "AkOpusDecoder",
-    "AkAudioInputSource",
-    "AkCompressorFX",
-    "AkDelayFX",
-    "AkExpanderFX",
-    "AkFlangerFX",
-    "AkGainFX",
-    "AkGuitarDistortionFX",
-    "AkHarmonizerFX",
-    "AkMatrixReverbFX",
-    "AkMeterFX",
-    "AkParametricEQFX",
-    "AkPeakLimiterFX",
-    "AkPitchShifterFX",
-    "AkRecorderFX",
-    "AkRoomVerbFX",
-    "AkSilenceSource",
-    "AkSineSource",
-    "AkStereoDelayFX",
-    "AkSynthOneSource",
-    "AkTimeStretchFX",
-    "AkToneSource",
-    "AkTremoloFX"
-]
+required-features = ["test_static_link_all"]

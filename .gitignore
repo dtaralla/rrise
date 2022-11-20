@@ -1,6 +1,7 @@
 .idea/
 target/
 Cargo.lock
+examples/WwiseProject/.backup/
 examples/WwiseProject/.cache/
 examples/WwiseProject/*.prof
 examples/WwiseProject/*.validationcache

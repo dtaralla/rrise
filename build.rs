@@ -172,6 +172,17 @@ fn main() -> io::Result<()> {
         .flag_if_supported("-fpermissive")
         .warnings(false);
 
+    #[cfg(not(feature = "v2021"))]
+    {
+        build.file(
+            wwise_sdk
+                .join("samples")
+                .join("SoundEngine")
+                .join("Common")
+                .join("AkGeneratedSoundBanksResolver.cpp"),
+        );
+    }
+
     stream_cc_platform_specifics(&mut build, &wwise_sdk)?;
 
     #[cfg(wwdebug)]
@@ -187,7 +198,8 @@ fn main() -> io::Result<()> {
     // --- END BUILD UTILITIES
 
     // --- RUN BINDGEN
-    let bindings = bindgen::Builder::default()
+    #[allow(unused_mut)]
+    let mut bindings_builder = bindgen::Builder::default()
         .header("c/ak.h")
         .header("c/utilities/default_streaming_mgr.h")
         .clang_arg(format!(
@@ -242,7 +254,16 @@ fn main() -> io::Result<()> {
         .must_use_type("AKRESULT")
         .enable_cxx_namespaces()
         .parse_callbacks(Box::new(bindgen::CargoCallbacks))
-        .layout_tests(false)
+        .layout_tests(false);
+
+    #[cfg(not(feature = "v2021"))]
+    {
+        bindings_builder = bindings_builder
+            .rustified_enum("AkBankTypeEnum")
+            .rustified_enum("AkSetPositionFlags");
+    }
+
+    let bindings = bindings_builder
         .generate()
         .expect("Unable to generate bindings");
 

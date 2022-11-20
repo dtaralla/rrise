@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<WwiseDocument Type="WorkUnit" ID="{3F1283BE-1E7E-4C4B-86E5-5F7EF342BA75}" SchemaVersion="103">
+<WwiseDocument Type="WorkUnit" ID="{3F1283BE-1E7E-4C4B-86E5-5F7EF342BA75}" SchemaVersion="110">
 	<Busses>
 		<WorkUnit Name="Default Work Unit" ID="{3F1283BE-1E7E-4C4B-86E5-5F7EF342BA75}" PersistMode="Standalone">
 			<ChildrenList>
 				<Bus Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}">
 					<ReferenceList>
-						<Reference Name="AudioDevice">
+						<Reference Name="AudioDevice" PluginName="System" CompanyID="0" PluginID="174" PluginType="7">
 							<ObjectRef Name="System" ID="{623E5F0F-F66C-4740-9D60-45779A7E1DBB}" WorkUnitID="{D5F8DC42-1EAB-41AC-B43A-0719AE4383BB}"/>
 						</Reference>
 					</ReferenceList>
@@ -49,7 +49,6 @@
 											</Custom>
 										</Reference>
 									</ReferenceList>
-									<ObjectLists/>
 								</AuxBus>
 								<AuxBus Name="Meters_10" ID="{D08FCC41-631D-42E1-B1CB-74E99ECE5F27}">
 									<ReferenceList>
@@ -79,7 +78,6 @@
 											</Custom>
 										</Reference>
 									</ReferenceList>
-									<ObjectLists/>
 								</AuxBus>
 								<AuxBus Name="Meters_07" ID="{52F50381-B0C2-4DF6-BF94-781E90E93C0E}">
 									<ReferenceList>
@@ -110,7 +108,6 @@
 											</Custom>
 										</Reference>
 									</ReferenceList>
-									<ObjectLists/>
 								</AuxBus>
 								<AuxBus Name="Meters_06" ID="{531E4DAE-9B5D-4963-B76E-D8516431F9EE}">
 									<ReferenceList>
@@ -141,7 +138,6 @@
 											</Custom>
 										</Reference>
 									</ReferenceList>
-									<ObjectLists/>
 								</AuxBus>
 								<AuxBus Name="Meters_04" ID="{81BEF30F-7A73-482C-907F-BAB57D517B4D}">
 									<ReferenceList>
@@ -172,7 +168,6 @@
 											</Custom>
 										</Reference>
 									</ReferenceList>
-									<ObjectLists/>
 								</AuxBus>
 								<AuxBus Name="Meters_03" ID="{8714D866-C97B-4F29-A1BC-E9405F8AEA2D}">
 									<ReferenceList>
@@ -203,7 +198,6 @@
 											</Custom>
 										</Reference>
 									</ReferenceList>
-									<ObjectLists/>
 								</AuxBus>
 								<AuxBus Name="Meters_08" ID="{D66E1FB4-BA61-4256-A5A1-906385B96383}">
 									<ReferenceList>
@@ -234,7 +228,6 @@
 											</Custom>
 										</Reference>
 									</ReferenceList>
-									<ObjectLists/>
 								</AuxBus>
 								<AuxBus Name="Meters_09" ID="{4B417073-F5AA-4430-A1BB-F423918EF3CB}">
 									<ReferenceList>
@@ -265,7 +258,6 @@
 											</Custom>
 										</Reference>
 									</ReferenceList>
-									<ObjectLists/>
 								</AuxBus>
 								<AuxBus Name="Meters_01" ID="{83314276-E960-4C50-BE87-5A9422FA223D}">
 									<ReferenceList>
@@ -297,7 +289,6 @@
 											</Custom>
 										</Reference>
 									</ReferenceList>
-									<ObjectLists/>
 								</AuxBus>
 								<AuxBus Name="Meters_02" ID="{0F1D6226-4DC8-4529-8516-253BC75EA17C}">
 									<ReferenceList>
@@ -328,7 +319,6 @@
 											</Custom>
 										</Reference>
 									</ReferenceList>
-									<ObjectLists/>
 								</AuxBus>
 								<AuxBus Name="Meters_00" ID="{810D3AAD-D86C-45BC-A40A-F6707694C3D0}">
 									<ReferenceList>
@@ -361,10 +351,8 @@
 											</Custom>
 										</Reference>
 									</ReferenceList>
-									<ObjectLists/>
 								</AuxBus>
 							</ChildrenList>
-							<ObjectLists/>
 						</Bus>
 						<AuxBus Name="Meters_4567" ID="{E1CDEB5F-4858-4BAB-BBD1-6720F3E1D05B}">
 							<Comment>We don't want any sound from those busses; only their metering!
@@ -390,7 +378,6 @@ However, this bus' output bus volume needs to be greater than -80, otherwise thi
 									<ObjectRef Name="Meters_07" ID="{52F50381-B0C2-4DF6-BF94-781E90E93C0E}" WorkUnitID="{3F1283BE-1E7E-4C4B-86E5-5F7EF342BA75}"/>
 								</Reference>
 							</ReferenceList>
-							<ObjectLists/>
 						</AuxBus>
 						<AuxBus Name="Meters_0123" ID="{4EC83B50-D0AB-47E6-9B3D-3E6A91B534CD}">
 							<Comment>We don't want any sound from those busses; only their metering!
@@ -416,7 +403,6 @@ However, this bus' output bus volume needs to be greater than -80, otherwise thi
 									<ObjectRef Name="Meters_03" ID="{8714D866-C97B-4F29-A1BC-E9405F8AEA2D}" WorkUnitID="{3F1283BE-1E7E-4C4B-86E5-5F7EF342BA75}"/>
 								</Reference>
 							</ReferenceList>
-							<ObjectLists/>
 						</AuxBus>
 						<AuxBus Name="Meters_8910" ID="{89305FCB-79E4-4EA6-853D-DFE1D3D93AA9}">
 							<Comment>We don't want any sound from those busses; only their metering!
@@ -439,10 +425,8 @@ However, this bus' output bus volume needs to be greater than -80, otherwise thi
 									<ObjectRef Name="Meters_10" ID="{D08FCC41-631D-42E1-B1CB-74E99ECE5F27}" WorkUnitID="{3F1283BE-1E7E-4C4B-86E5-5F7EF342BA75}"/>
 								</Reference>
 							</ReferenceList>
-							<ObjectLists/>
 						</AuxBus>
 					</ChildrenList>
-					<ObjectLists/>
 				</Bus>
 			</ChildrenList>
 		</WorkUnit>

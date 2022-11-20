@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<WwiseDocument Type="WorkUnit" ID="{88901774-D060-4881-9271-34F3BFE8ED31}" SchemaVersion="103">
+<WwiseDocument Type="WorkUnit" ID="{88901774-D060-4881-9271-34F3BFE8ED31}" SchemaVersion="110">
 	<InteractiveMusic>
 		<WorkUnit Name="Default Work Unit" ID="{88901774-D060-4881-9271-34F3BFE8ED31}" PersistMode="Standalone">
 			<ChildrenList>
@@ -126,7 +126,6 @@
 							<TransitionInfo/>
 						</MusicTransition>
 					</TransitionList>
-					<ObjectLists/>
 					<Playlist>
 						<MusicPlaylistItem Name="" ID="{CFC2B79D-E536-4C65-BB26-4A5EBB16904F}" ShortID="824802292">
 							<ChildrenList>

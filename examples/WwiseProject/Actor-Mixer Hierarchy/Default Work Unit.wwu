@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<WwiseDocument Type="WorkUnit" ID="{65E37865-6D38-4681-929B-B1CD0BE3F39F}" SchemaVersion="103">
+<WwiseDocument Type="WorkUnit" ID="{65E37865-6D38-4681-929B-B1CD0BE3F39F}" SchemaVersion="110">
 	<AudioObjects>
 		<WorkUnit Name="Default Work Unit" ID="{65E37865-6D38-4681-929B-B1CD0BE3F39F}" PersistMode="Standalone">
 			<ChildrenList>
@@ -83,6 +83,42 @@
 										<FocusUsage>
 											<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
 										</FocusUsage>
+										<ObstructionVolumeUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
+										</ObstructionVolumeUsage>
+										<ObstructionLPFUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
+										</ObstructionLPFUsage>
+										<ObstructionHPFUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
+										</ObstructionHPFUsage>
+										<OcclusionVolumeUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
+										</OcclusionVolumeUsage>
+										<OcclusionLPFUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
+										</OcclusionLPFUsage>
+										<OcclusionHPFUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
+										</OcclusionHPFUsage>
+										<DiffractionVolumeUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
+										</DiffractionVolumeUsage>
+										<DiffractionLPFUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
+										</DiffractionLPFUsage>
+										<DiffractionHPFUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
+										</DiffractionHPFUsage>
+										<TransmissionVolumeUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
+										</TransmissionVolumeUsage>
+										<TransmissionLPFUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
+										</TransmissionLPFUsage>
+										<TransmissionHPFUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
+										</TransmissionHPFUsage>
 									</CurveUsageInfoList>
 								</Attenuation>
 							</Custom>
@@ -190,7 +226,6 @@
 							</ChildrenList>
 						</Position>
 					</PositioningInfo>
-					<ObjectLists/>
 					<ActiveSourceList>
 						<ActiveSource Name="HeadHunterMissileHit2" ID="{5349B5B4-B4C8-4165-A22D-5AE6D7F96D3F}" Platform="Linked"/>
 					</ActiveSourceList>
@@ -199,64 +234,6 @@
 					<PropertyList>
 						<Property Name="3DSpatialization" Type="int16" Value="1"/>
 						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
-						<Property Name="Pitch" Type="int32">
-							<RTPCList>
-								<RTPC Name="" ID="{47790E29-1833-4A3F-BEA8-021B7578B5B4}" ShortID="208921205">
-									<ReferenceList>
-										<Reference Name="ControlInput">
-											<ObjectRef Name="Doppler" ID="{67A41D13-76BF-4767-A905-A31C551CC04A}" WorkUnitID="{277CFB72-319A-401F-ABF2-CB1072D4AFDD}"/>
-										</Reference>
-									</ReferenceList>
-									<Curve Name="" ID="{CC484707-7CD7-4108-9BF5-4E10195C35A1}">
-										<PropertyList>
-											<Property Name="Flags" Type="int32" Value="65537"/>
-										</PropertyList>
-										<PointList>
-											<Point>
-												<XPos>0</XPos>
-												<YPos>-4800</YPos>
-												<Flags>5</Flags>
-											</Point>
-											<Point>
-												<XPos>0.25</XPos>
-												<YPos>-2400</YPos>
-												<Flags>0</Flags>
-											</Point>
-											<Point>
-												<XPos>0.5</XPos>
-												<YPos>-1200</YPos>
-												<Flags>0</Flags>
-											</Point>
-											<Point>
-												<XPos>1</XPos>
-												<YPos>0</YPos>
-												<Flags>0</Flags>
-											</Point>
-											<Point>
-												<XPos>2</XPos>
-												<YPos>1200</YPos>
-												<Flags>0</Flags>
-											</Point>
-											<Point>
-												<XPos>4</XPos>
-												<YPos>2400</YPos>
-												<Flags>0</Flags>
-											</Point>
-											<Point>
-												<XPos>8</XPos>
-												<YPos>3600</YPos>
-												<Flags>0</Flags>
-											</Point>
-											<Point>
-												<XPos>16</XPos>
-												<YPos>4800</YPos>
-												<Flags>37</Flags>
-											</Point>
-										</PointList>
-									</Curve>
-								</RTPC>
-							</RTPCList>
-						</Property>
 						<Property Name="SpeakerPanning" Type="int16" Value="1"/>
 					</PropertyList>
 					<ReferenceList>
@@ -316,7 +293,7 @@
 														</Point>
 														<Point>
 															<XPos>18</XPos>
-															<YPos>-0</YPos>
+															<YPos>0</YPos>
 															<Flags>0</Flags>
 															<SegmentShape>Constant</SegmentShape>
 														</Point>
@@ -332,6 +309,42 @@
 										<FocusUsage>
 											<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
 										</FocusUsage>
+										<ObstructionVolumeUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
+										</ObstructionVolumeUsage>
+										<ObstructionLPFUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
+										</ObstructionLPFUsage>
+										<ObstructionHPFUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
+										</ObstructionHPFUsage>
+										<OcclusionVolumeUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
+										</OcclusionVolumeUsage>
+										<OcclusionLPFUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
+										</OcclusionLPFUsage>
+										<OcclusionHPFUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
+										</OcclusionHPFUsage>
+										<DiffractionVolumeUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
+										</DiffractionVolumeUsage>
+										<DiffractionLPFUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
+										</DiffractionLPFUsage>
+										<DiffractionHPFUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
+										</DiffractionHPFUsage>
+										<TransmissionVolumeUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
+										</TransmissionVolumeUsage>
+										<TransmissionLPFUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
+										</TransmissionLPFUsage>
+										<TransmissionHPFUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
+										</TransmissionHPFUsage>
 									</CurveUsageInfoList>
 								</Attenuation>
 							</Custom>
@@ -345,62 +358,139 @@
 					</ReferenceList>
 					<ChildrenList>
 						<SourcePlugin Name="Wwise Sine" ID="{EAA7B727-1445-4703-966C-4B04DE21E33E}" ShortID="91192747" PluginName="Wwise Sine" CompanyID="0" PluginID="100">
-							<PropertyList>
-								<Property Name="SineFrequency" Type="Real32">
-									<RTPCList>
-										<RTPC Name="" ID="{173F9517-0AFB-47CF-BEA0-C78EBEDE56A8}" ShortID="71577343">
-											<ReferenceList>
-												<Reference Name="ControlInput">
-													<Custom>
-														<ModulatorTime Name="Modulator Time (Custom)" ID="{AC54D4C7-E9AC-43BB-AD87-1C9D80CC4485}" ShortID="902235470">
-															<PropertyList>
-																<Property Name="TimeModDuration" Type="Real64" Value="2"/>
-																<Property Name="TimeModLoops" Type="int32" Value="0"/>
-															</PropertyList>
-														</ModulatorTime>
-													</Custom>
-												</Reference>
-											</ReferenceList>
-											<Curve Name="" ID="{C41EC668-213A-4D8A-A8DD-002CF9E4B6EA}">
+							<ObjectLists>
+								<ObjectList Name="RTPC">
+									<Reference>
+										<Local>
+											<RTPC Name="" ID="{173F9517-0AFB-47CF-BEA0-C78EBEDE56A8}" ShortID="71577343">
 												<PropertyList>
-													<Property Name="Flags" Type="int32" Value="5"/>
+													<Property Name="PropertyName" Type="string" Value="SineFrequency"/>
 												</PropertyList>
-												<PointList>
-													<Point>
-														<XPos>0</XPos>
-														<YPos>261.6</YPos>
-														<Flags>5</Flags>
-														<SegmentShape>Constant</SegmentShape>
-													</Point>
-													<Point>
-														<XPos>0.999</XPos>
-														<YPos>261.6</YPos>
-														<Flags>0</Flags>
-													</Point>
-													<Point>
-														<XPos>1</XPos>
-														<YPos>466.164</YPos>
-														<Flags>0</Flags>
-														<SegmentShape>Constant</SegmentShape>
-													</Point>
-													<Point>
-														<XPos>2</XPos>
-														<YPos>466.164</YPos>
-														<Flags>37</Flags>
-													</Point>
-												</PointList>
-											</Curve>
-										</RTPC>
-									</RTPCList>
-								</Property>
-							</PropertyList>
+												<ReferenceList>
+													<Reference Name="ControlInput">
+														<Custom>
+															<ModulatorTime Name="Modulator Time (Custom)" ID="{AC54D4C7-E9AC-43BB-AD87-1C9D80CC4485}" ShortID="902235470">
+																<PropertyList>
+																	<Property Name="TimeModDuration" Type="Real64" Value="2"/>
+																	<Property Name="TimeModLoops" Type="int32" Value="0"/>
+																</PropertyList>
+															</ModulatorTime>
+														</Custom>
+													</Reference>
+													<Reference Name="Curve">
+														<Custom>
+															<Curve Name="" ID="{C41EC668-213A-4D8A-A8DD-002CF9E4B6EA}">
+																<PropertyList>
+																	<Property Name="Flags" Type="int32" Value="5"/>
+																</PropertyList>
+																<PointList>
+																	<Point>
+																		<XPos>0</XPos>
+																		<YPos>261.6</YPos>
+																		<Flags>5</Flags>
+																		<SegmentShape>Constant</SegmentShape>
+																	</Point>
+																	<Point>
+																		<XPos>0.999</XPos>
+																		<YPos>261.6</YPos>
+																		<Flags>0</Flags>
+																	</Point>
+																	<Point>
+																		<XPos>1</XPos>
+																		<YPos>466.164</YPos>
+																		<Flags>0</Flags>
+																		<SegmentShape>Constant</SegmentShape>
+																	</Point>
+																	<Point>
+																		<XPos>2</XPos>
+																		<YPos>466.164</YPos>
+																		<Flags>37</Flags>
+																	</Point>
+																</PointList>
+															</Curve>
+														</Custom>
+													</Reference>
+												</ReferenceList>
+											</RTPC>
+										</Local>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
 							<Language>SFX</Language>
 						</SourcePlugin>
 					</ChildrenList>
 					<PositioningInfo>
 						<Panner Name="" ID="{EEF422F3-7177-4B6F-AD71-9B29532BB99D}"/>
 					</PositioningInfo>
-					<ObjectLists/>
+					<ObjectLists>
+						<ObjectList Name="RTPC">
+							<Reference>
+								<Local>
+									<RTPC Name="" ID="{47790E29-1833-4A3F-BEA8-021B7578B5B4}" ShortID="208921205">
+										<PropertyList>
+											<Property Name="PropertyName" Type="string" Value="Pitch"/>
+										</PropertyList>
+										<ReferenceList>
+											<Reference Name="ControlInput">
+												<ObjectRef Name="Doppler" ID="{67A41D13-76BF-4767-A905-A31C551CC04A}" WorkUnitID="{277CFB72-319A-401F-ABF2-CB1072D4AFDD}"/>
+											</Reference>
+											<Reference Name="Curve">
+												<Custom>
+													<Curve Name="" ID="{CC484707-7CD7-4108-9BF5-4E10195C35A1}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="65537"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-4800</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>0.25</XPos>
+																<YPos>-2400</YPos>
+																<Flags>0</Flags>
+															</Point>
+															<Point>
+																<XPos>0.5</XPos>
+																<YPos>-1200</YPos>
+																<Flags>0</Flags>
+															</Point>
+															<Point>
+																<XPos>1</XPos>
+																<YPos>0</YPos>
+																<Flags>0</Flags>
+															</Point>
+															<Point>
+																<XPos>2</XPos>
+																<YPos>1200</YPos>
+																<Flags>0</Flags>
+															</Point>
+															<Point>
+																<XPos>4</XPos>
+																<YPos>2400</YPos>
+																<Flags>0</Flags>
+															</Point>
+															<Point>
+																<XPos>8</XPos>
+																<YPos>3600</YPos>
+																<Flags>0</Flags>
+															</Point>
+															<Point>
+																<XPos>16</XPos>
+																<YPos>4800</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</Custom>
+											</Reference>
+										</ReferenceList>
+									</RTPC>
+								</Local>
+							</Reference>
+						</ObjectList>
+					</ObjectLists>
 					<ActiveSourceList>
 						<ActiveSource Name="Wwise Sine" ID="{EAA7B727-1445-4703-966C-4B04DE21E33E}" Platform="Linked"/>
 					</ActiveSourceList>

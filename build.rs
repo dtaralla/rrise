@@ -187,6 +187,7 @@ fn main() -> io::Result<()> {
     // --- END BUILD UTILITIES
 
     // --- RUN BINDGEN
+    #[cfg(any(target_os = "windows", target_os = "linux"))]
     let bindings = bindgen::Builder::default()
         .header("c/ak.h")
         .header("c/utilities/default_streaming_mgr.h")
@@ -209,6 +210,74 @@ fn main() -> io::Result<()> {
         .opaque_type("AkHashListBare_HashTableArray")
         .opaque_type("AkDbString")
         .opaque_type("AkDbString_Instance")
+        .allowlist_type("AK::.*")
+        .allowlist_type("Ak.*")
+        .allowlist_type("AK.*")
+        .allowlist_var("AK::.*")
+        .allowlist_var("AK.*")
+        .allowlist_var("Ak.*")
+        .allowlist_var("Ak.*")
+        .allowlist_function("AK::.*")
+        .allowlist_function("Ak.*")
+        .allowlist_function("InitDefaultStreamMgr")
+        .allowlist_function("TermDefaultStreamMgr")
+        .blocklist_item("AK_INVALID_GAME_OBJECT")
+        .blocklist_item("AK_INVALID_AUDIO_OBJECT_ID")
+        .rustified_enum("AKRESULT")
+        .rustified_enum("AkGroupType")
+        .rustified_enum("AkConnectionType")
+        .rustified_enum("AkCurveInterpolation")
+        .rustified_enum("MultiPositionType")
+        .rustified_enum("AkSpeakerPanningType")
+        .rustified_enum("Ak3DPositionType")
+        .rustified_enum("AkPanningRule")
+        .rustified_enum("Ak3DSpatializationMode")
+        .rustified_enum("AkPluginType")
+        .rustified_enum("AkNodeType")
+        .rustified_enum("AK::SoundEngine::Query::RTPCValue_type")
+        .bitfield_enum("AkAudioDeviceState")
+        .bitfield_enum("AkBusHierarchyFlags")
+        .bitfield_enum("AkMeteringFlags")
+        .bitfield_enum("AkCallbackType")
+        .bitfield_enum("AkAudioAPILinux")
+        .must_use_type("AKRESULT")
+        .enable_cxx_namespaces()
+        .parse_callbacks(Box::new(bindgen::CargoCallbacks))
+        .layout_tests(false)
+        .generate()
+        .expect("Unable to generate bindings");
+
+    #[cfg(target_os = "macos")]
+    let bindings = bindgen::Builder::default()
+        .header("c/ak.h")
+        .header("c/utilities/default_streaming_mgr.h")
+        .clang_args(&[
+            "-I",
+            wwise_sdk
+                .join("include")
+                .into_os_string()
+                .into_string()
+                .unwrap()
+                .as_str(),
+        ])
+        .clang_args(&["-x", "c++"])
+        .clang_args(&["-std=c++17"])
+        .clang_args(&[
+            "-isysroot",
+            "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks",
+        ])
+        .clang_args(&[
+            "-isysroot",
+            "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+        ])
+        .opaque_type("AkArray")
+        .opaque_type("AkListBareLight")
+        .opaque_type("AkHashList")
+        .opaque_type("AkHashList_HashTableArray")
+        .opaque_type("AkHashListBare")
+        .opaque_type("AkHashListBare_HashTableArray")
+        .opaque_type("AkDbString")
+        .opaque_type("AkDbString")
         .allowlist_type("AK::.*")
         .allowlist_type("Ak.*")
         .allowlist_type("AK.*")

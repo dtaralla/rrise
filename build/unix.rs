@@ -8,7 +8,7 @@ fn stream_cc_platform_specifics(build: &mut cc::Build, wwise_sdk: &PathBuf) -> i
         .compiler("clang")
         .shared_flag(true)
         .opt_level(2)
-        .flag("-std=c++17")
+        .flag("-std=c++14")
         .flag("-MMD")
         .flag("-MP")
         .flag("-fPIC")

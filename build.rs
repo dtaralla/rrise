@@ -199,6 +199,9 @@ fn main() -> io::Result<()> {
                 .into_string()
                 .unwrap()
         ))
+        .clang_arg("-x")
+        .clang_arg("c++")
+        .clang_arg("-std=c++14")
         .opaque_type("AkArray")
         .opaque_type("AkListBareLight")
         .opaque_type("AkHashList")
@@ -242,16 +245,8 @@ fn main() -> io::Result<()> {
         .parse_callbacks(Box::new(bindgen::CargoCallbacks))
         .layout_tests(false);
 
-    #[cfg(any(target_os = "windows", target_os = "linux"))]
-    let bindings_builder = bindings_builder
-        .clang_arg("-x")
-        .clang_arg("c++")
-        .clang_arg("-std=c++14");
-
     #[cfg(target_os = "macos")]
     let bindings_builder = bindings_builder
-        .clang_args(&["-x", "c++"])
-        .clang_args(&["-std=c++17"])
         .clang_args(&[
             "-isysroot",
             "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks",

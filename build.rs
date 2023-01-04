@@ -187,7 +187,8 @@ fn main() -> io::Result<()> {
     // --- END BUILD UTILITIES
 
     // --- RUN BINDGEN
-    let bindings = bindgen::Builder::default()
+
+    let bindings_builder = bindgen::Builder::default()
         .header("c/ak.h")
         .header("c/utilities/default_streaming_mgr.h")
         .clang_arg(format!(
@@ -242,7 +243,20 @@ fn main() -> io::Result<()> {
         .must_use_type("AKRESULT")
         .enable_cxx_namespaces()
         .parse_callbacks(Box::new(bindgen::CargoCallbacks))
-        .layout_tests(false)
+        .layout_tests(false);
+
+    #[cfg(target_os = "macos")]
+    let bindings_builder = bindings_builder
+        .clang_args(&[
+            "-isysroot",
+            "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks",
+        ])
+        .clang_args(&[
+            "-isysroot",
+            "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+        ]);
+
+    let bindings = bindings_builder
         .generate()
         .expect("Unable to generate bindings");
 
